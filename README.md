@@ -20,5 +20,5 @@
 
 # Material de Referência
 - Hero Siege - https://www.youtube.com/watch?v=-3NIV1yYQo0
-- 
--
+- Relic Hunter Zero - https://github.com/mventurelli/relichunterszero
+- Trello Relic Hunter Zero - https://trello.com/b/nM8TWNBR/relic-hunters-zero-open-source
