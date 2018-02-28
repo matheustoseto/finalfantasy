@@ -11,6 +11,8 @@
 - Craft
 - Elementos de RPG ( Exp/Lvl, Skill )
 - FPS/Melee
+- Sistema de Inventario
+- Drop Itens
 
 # Tilha Sonora
 -
