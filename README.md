@@ -13,7 +13,7 @@
 - Sistema de survive
 - Battle
 - Elementos de RPG (Exp/Lvl)
-? Hack and Slash
+- Hack and Slash (?)
 
 # Tilha Sonora
 -
