@@ -7,12 +7,13 @@
 - https://forum.unity.com/threads/released-lowpoly-style-packs.470131/
 
 # Conceito/Estilo de Gameplay
-- Hack and Slash
 - Craft
-- Elementos de RPG ( Exp/Lvl, Skill )
-- FPS/Melee
 - Sistema de Inventario
 - Drop Itens
+- Sistema de survive
+- Battle
+- Elementos de RPG (Exp/Lvl)
+? Hack and Slash
 
 # Tilha Sonora
 -
