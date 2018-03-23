@@ -12,8 +12,20 @@
 - Drop Itens
 - Sistema de survive
 - Battle
-- Elementos de RPG (Exp/Lvl)
+- Elementos de RPG (Exp/Lvl) (?)
 - Hack and Slash (?)
+
+# Gameplay
+- Viajante no espaço por algum motivo cai na terra na era dos dinossauros. 
+- Objetivo é sobreviver no planeta com os recursos da época.
+- Sua unica ajuda é sua impressora 3D futuristica.
+
+# Prototipação
+- Movimentação estilo Cubers
+- Inventario 
+- Craft
+- Interação com os Materiais
+- Sistema de survive
 
 # Tilha Sonora
 -
@@ -25,3 +37,8 @@
 - Hero Siege - https://www.youtube.com/watch?v=-3NIV1yYQo0
 - Relic Hunter Zero - https://github.com/mventurelli/relichunterszero
 - Trello Relic Hunter Zero - https://trello.com/b/nM8TWNBR/relic-hunters-zero-open-source
+- Cubers - https://www.youtube.com/watch?v=DiNWjsuiwpU
+
+# More
+- Itens para aumentar vida
+- Quest
