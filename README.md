@@ -21,11 +21,11 @@
 - Sua unica ajuda é sua impressora 3D futuristica.
 
 # Prototipação
+- Sistema de survive
 - Movimentação estilo Cubers
 - Inventario 
 - Craft
 - Interação com os Materiais
-- Sistema de survive
 
 # Tilha Sonora
 -
