@@ -1,0 +1,62 @@
+[
+	{
+		"id": 0,
+		"title": "Comida X",
+		"value": 1,
+		"type" : "Food",
+		"stats": {
+			"power": 10,
+			"defense": 0,
+			"vitality": 0
+		},
+		"description": "Comida X",
+		"stackable": true,
+		"rarity": 1,
+		"slug":  "slot"
+	},
+	{
+		"id": 1,
+		"title": "Machado X",
+		"value": 1,
+		"type" : "Weapon",
+		"stats": {
+			"power": 1,
+			"defense": 4,
+			"vitality": 2
+		},
+		"description": "Machado X",
+		"stackable": false,
+		"rarity": 1,
+		"slug":  "slot"
+	},
+	{
+		"id": 2,
+		"title": "Madeira X",
+		"value": 1,
+		"type" : "Material",
+		"stats": {
+			"power": 0,
+			"defense": 0,
+			"vitality": 0
+		},
+		"description": "Madeira X",
+		"stackable": true,
+		"rarity": 1,
+		"slug": "slot"
+	},
+	{
+		"id": 3,
+		"title": "Ferro X",
+		"value": 1,
+		"type" : "Material",
+		"stats": {
+			"power": 0,
+			"defense": 0,
+			"vitality": 0
+		},
+		"description": "Ferro X",
+		"stackable": true,
+		"rarity": 1,
+		"slug":  "slot"
+	}
+]
