@@ -6,6 +6,7 @@ public class Resource : MonoBehaviour {
 
     public Utils.ResourceType type;
     public GameObject item;
+    public int idItem;
     public int qnt;
 
     public Material onMouseOver;
@@ -53,6 +54,7 @@ public class Resource : MonoBehaviour {
     {
         if (playerEnter && mouseEnter)
         {
+            item.GetComponent<ItemResource>().idItem = idItem;
             for (int i = 1; i <= qnt; i++)
             {
                 Instantiate(item, transform.position + new Vector3(Random.Range(-0.9f,0.9f), 0, Random.Range(-0.9f, 0.9f)), transform.rotation);

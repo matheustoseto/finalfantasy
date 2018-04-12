@@ -12,7 +12,7 @@ public class Inventory : MonoBehaviour
 	ItemDatabase database;
 	public GameObject inventorySlot;
 	public GameObject inventoryItem;
-    public CharacterStatus characterStatus;
+    private CharacterStatus characterStatus;
 
     public int slotAmount;
 	public List<Item> items = new List<Item>();
@@ -23,8 +23,9 @@ public class Inventory : MonoBehaviour
 		database = GetComponent<ItemDatabase>();
 		inventoryPanel = GameObject.Find("InventoryPanel");
 		slotPanel = inventoryPanel.transform.Find("SlotPanel").gameObject;
+        characterStatus = GameObject.FindGameObjectWithTag("Player").GetComponent<CharacterStatus>();
 
-		for (int i = 0; i < slotAmount; i++)
+        for (int i = 0; i < slotAmount; i++)
 		{
 			items.Add(new Item());
 			slots.Add(Instantiate(inventorySlot));
@@ -99,7 +100,10 @@ public class Inventory : MonoBehaviour
     public ItemData FindItemData(int id)
     {
         ItemData item = (from it in slots
-                        where it.transform.GetChild(0).GetComponent<ItemData>() != null && it.transform.GetChild(0).GetComponent<ItemData>().item.Id == id
+                        where it.transform.childCount > 0 &&
+                        it.transform.GetChild(0) != null && 
+                        it.transform.GetChild(0).GetComponent<ItemData>() != null && 
+                        it.transform.GetChild(0).GetComponent<ItemData>().item.Id == id
                          select it.transform.GetChild(0).GetComponent<ItemData>()).FirstOrDefault();
 
         return item;

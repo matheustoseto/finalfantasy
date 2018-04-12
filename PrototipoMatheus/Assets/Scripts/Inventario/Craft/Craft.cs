@@ -6,8 +6,7 @@ using UnityEngine;
 public class Craft : MonoBehaviour {
 
     public Inventory inventory;
-    public bool openCraft = false;
-
+    private bool openCraft = false;
     public List<Utils.CraftItem> craftItens;
 
     private void OnGUI()
