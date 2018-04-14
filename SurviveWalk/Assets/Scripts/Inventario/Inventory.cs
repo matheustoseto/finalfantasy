@@ -7,21 +7,22 @@ using System.Collections.Generic;
 public class Inventory : MonoBehaviour
 {
 
-	GameObject inventoryPanel;
+    public GameObject inventoryPanel;
 	GameObject slotPanel;
 	ItemDatabase database;
 	public GameObject inventorySlot;
 	public GameObject inventoryItem;
+    public GameObject tooltip;
     private CharacterStatusSurvive characterStatusSurvive;
 
     public int slotAmount;
 	public List<Item> items = new List<Item>();
 	public List<GameObject> slots = new List<GameObject>();
+    
 
-	void Start()
+    void Start()
 	{
-		database = GetComponent<ItemDatabase>();
-		inventoryPanel = GameObject.Find("InventoryPanel");
+        database = GetComponent<ItemDatabase>();
 		slotPanel = inventoryPanel.transform.Find("SlotPanel").gameObject;
         characterStatusSurvive = GameObject.FindGameObjectWithTag("Player").GetComponent<CharacterStatusSurvive>();
 
@@ -32,6 +33,21 @@ public class Inventory : MonoBehaviour
 			slots[i].GetComponent<Slot>().id = i;
 			slots[i].transform.SetParent(slotPanel.transform);
 		}
+    }
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            if (inventoryPanel.activeSelf)
+            {
+                inventoryPanel.SetActive(false);
+                tooltip.SetActive(false);
+            } else
+            {
+                inventoryPanel.SetActive(true);
+            }
+        }
     }
 
     public void AddItem(int id)

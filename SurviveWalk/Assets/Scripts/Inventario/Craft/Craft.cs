@@ -2,63 +2,69 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Craft : MonoBehaviour {
 
     public Inventory inventory;
-    private bool openCraft = false;
-    public List<Utils.CraftItem> craftItens;
+    public ItemDatabase itemDatabase;
 
-    private void OnGUI()
+    public GameObject inventoryPanel;
+    public GameObject craftPanel;
+
+    private GameObject slotPanel;
+    public GameObject craftItem;
+    private List<GameObject> slots = new List<GameObject>();
+
+    private void Start()
     {
-        if (openCraft)
+        slotPanel = craftPanel.transform.Find("SlotPanel").gameObject;
+
+        foreach (CraftItem ct in itemDatabase.GetCraftList())
         {
-            GUI.Box(new Rect(Screen.width / 2 - 150, 50, 300, 200), "");
+            GameObject slot = Instantiate(craftItem, slotPanel.transform);
+            slot.GetComponent<CraftItem>().Id = ct.Id;
+            slot.GetComponent<CraftItem>().Combination = ct.Combination;
+            Button btn = slot.transform.Find("Craft").gameObject.GetComponent<Button>();
+            btn.onClick.AddListener(delegate { CraftItem(slot.GetComponent<CraftItem>()); });
+            Image img = slot.transform.Find("Craft").gameObject.transform.Find("Image").gameObject.GetComponent<Image>();
+            img.sprite = inventory.FindItem(ct.Id).Sprite;
+            Text text = slot.transform.Find("Combination").gameObject.transform.Find("Text").gameObject.GetComponent<Text>();
+            foreach(Combination cb in ct.Combination)
+                text.text += inventory.FindItem(cb.Id).Title + ": " + cb.Qt + " \n";
+        }
+    }
 
-            float y1 = 60;
-            float y2 = 60;
-
-            foreach (Utils.CraftItem craftItem in craftItens)
+    public void CraftItem(CraftItem craftItem)
+    {
+        Item item = inventory.FindItem(craftItem.Id);
+        bool isCraft = false;
+        int craftSize = craftItem.Combination.Count;
+        int i = 0;
+        foreach (Combination combination in craftItem.Combination)
+        {
+            foreach (Item it in inventory.items)
             {
-                Item item = inventory.FindItem(craftItem.idItem);
-                if (GUI.Button(new Rect(10 + Screen.width / 2 - 150, y1, 100, 50), item.Title))
+                if (it.Id == combination.Id)
                 {
-                    bool isCraft = false;
-                    int craftSize = craftItem.craftCombination.Count;
-                    int i = 0;
-                    foreach (Utils.CraftCombination craftCombination in craftItem.craftCombination)
-                    {               
-                        foreach (Item it in inventory.items)
-                        {
-                            if (it.Id == craftCombination.idItem)
-                            {
-                                i++;
-                                if (inventory.FindItemData(it.Id).amount >= craftCombination.qnt)
-                                {
-                                    isCraft = true;
-                                }
-                                else
-                                {
-                                    isCraft = false;
-                                }
-                            }
-                        }                    
-                    }
-                    if (craftSize == i && isCraft)
+                    i++;
+                    if (inventory.FindItemData(it.Id).amount >= combination.Qt)
                     {
-                        inventory.AddItem(item.Id);
-                        foreach (Utils.CraftCombination craftCombination in craftItem.craftCombination)
-                        {
-                            inventory.RemoveItem(craftCombination.idItem, craftCombination.qnt);
-                        }
+                        isCraft = true;
+                    }
+                    else
+                    {
+                        isCraft = false;
                     }
                 }
-                foreach (Utils.CraftCombination craftCombination in craftItem.craftCombination)
-                {
-                    GUI.Label(new Rect(120 + Screen.width / 2 - 150, y2, 100, 50), inventory.FindItem(craftCombination.idItem).Title + ": " + craftCombination.qnt);
-                    y2 += 20;
-                }
-                y1 += 20;
+            }
+        }
+        if (craftSize == i && isCraft)
+        {
+            inventory.AddItem(item.Id);
+            foreach (Combination combination in craftItem.Combination)
+            {
+                inventory.RemoveItem(combination.Id, combination.Qt);
             }
         }
     }
@@ -67,7 +73,8 @@ public class Craft : MonoBehaviour {
     {
         if ("Player".Equals(other.tag))
         {
-            openCraft = true;
+            inventoryPanel.SetActive(true);
+            craftPanel.SetActive(true);
         }
     }
 
@@ -75,7 +82,8 @@ public class Craft : MonoBehaviour {
     {
         if ("Player".Equals(other.tag))
         {
-            openCraft = false;
+            inventoryPanel.SetActive(false);
+            craftPanel.SetActive(false);
         }
     }
 }

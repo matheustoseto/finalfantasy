@@ -7,10 +7,14 @@ public class ItemDatabase : MonoBehaviour {
 	private List<Item> database = new List<Item>();
 	private JsonData itemData;
 
-	void Start()
+    private List<CraftItem> craftbase = new List<CraftItem>();
+    private JsonData craftData;
+
+    void Start()
 	{
 		itemData = JsonMapper.ToObject(File.ReadAllText(Application.dataPath + "/StreamingAssets/Items.json"));
-		ConstructItemDatabase();	
+        craftData = JsonMapper.ToObject(File.ReadAllText(Application.dataPath + "/StreamingAssets/Crafts.json"));
+        ConstructItemDatabase();	
 	}
 
 	public Item FetchItemById(int id)
@@ -24,8 +28,13 @@ public class ItemDatabase : MonoBehaviour {
 		}
 		return null;
 	}
-	
-	void ConstructItemDatabase()
+
+    public List<CraftItem> GetCraftList()
+    {
+        return craftbase;
+    }
+
+    void ConstructItemDatabase()
 	{
 		for (int i = 0; i < itemData.Count; i++)
 		{
@@ -45,7 +54,24 @@ public class ItemDatabase : MonoBehaviour {
 
 			database.Add(newItem);
 		}
-	}
+
+        for (int k = 0; k < craftData.Count; k++)
+        {
+            CraftItem craftItem = new CraftItem();
+            craftItem.Id = (int)craftData[k]["id"];
+
+            for(int j = 0; j < craftData[k]["combination"].Count; j++)
+            {
+                Combination combination = new Combination();
+                combination.Id = (int)craftData[k]["combination"][j]["id"];
+                combination.Qt = (int)craftData[k]["combination"][j]["qt"];
+
+                craftItem.Combination.Add(combination);
+            }
+
+            craftbase.Add(craftItem);
+        }
+    }
 }
 
 public class Item
@@ -67,4 +93,10 @@ public class Item
 	{
 		this.Id = -1;
 	}
+}
+
+public class Combination
+{
+    public int Id { get; set; }
+    public int Qt { get; set; }
 }

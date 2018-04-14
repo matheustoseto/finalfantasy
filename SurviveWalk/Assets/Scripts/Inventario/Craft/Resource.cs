@@ -5,10 +5,10 @@ using UnityEngine;
 public class Resource : MonoBehaviour {
 
     public Utils.ResourceType type;
-    public GameObject item;
     public int idItem;
     public int qnt;
 
+    public GameObject item;
     public Material onMouseOver;
     public Material onMouseExit;
 

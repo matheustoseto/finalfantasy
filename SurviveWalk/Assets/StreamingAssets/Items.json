@@ -12,7 +12,7 @@
 		"description": "Comida X",
 		"stackable": true,
 		"rarity": 1,
-		"slug":  "slot"
+		"slug":  "comida-x"
 	},
 	{
 		"id": 1,
@@ -27,7 +27,7 @@
 		"description": "Machado X",
 		"stackable": false,
 		"rarity": 1,
-		"slug":  "slot"
+		"slug":  "machado-x"
 	},
 	{
 		"id": 2,
@@ -42,7 +42,7 @@
 		"description": "Madeira X",
 		"stackable": true,
 		"rarity": 1,
-		"slug": "slot"
+		"slug": "madeira-x"
 	},
 	{
 		"id": 3,
@@ -57,6 +57,6 @@
 		"description": "Ferro X",
 		"stackable": true,
 		"rarity": 1,
-		"slug":  "slot"
+		"slug":  "ferro-x"
 	}
 ]
