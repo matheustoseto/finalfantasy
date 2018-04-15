@@ -1,0 +1,28 @@
+[
+	{
+		"id": 0,
+		"title": "House 1",
+		"levels": [
+			{
+				"idLevel" : 0,
+				"title" : "Level 1",
+				"combination" : [
+					{
+						"id" : 2,
+						"qt" : 3
+					}
+				]
+			},
+			{
+				"idLevel" : 1,
+				"title" : "Level 2",
+				"combination" : [
+					{
+						"id" : 2,
+						"qt" : 3
+					}
+				]
+			}
+		]
+	}
+]

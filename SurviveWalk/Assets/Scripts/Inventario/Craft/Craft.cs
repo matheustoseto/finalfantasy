@@ -14,7 +14,6 @@ public class Craft : MonoBehaviour {
 
     private GameObject slotPanel;
     public GameObject craftItem;
-    private List<GameObject> slots = new List<GameObject>();
 
     private void Start()
     {
@@ -37,7 +36,6 @@ public class Craft : MonoBehaviour {
 
     public void CraftItem(CraftItem craftItem)
     {
-        Item item = inventory.FindItem(craftItem.Id);
         bool isCraft = false;
         int craftSize = craftItem.Combination.Count;
         int i = 0;
@@ -61,7 +59,7 @@ public class Craft : MonoBehaviour {
         }
         if (craftSize == i && isCraft)
         {
-            inventory.AddItem(item.Id);
+            inventory.AddItem(inventory.FindItem(craftItem.Id).Id);
             foreach (Combination combination in craftItem.Combination)
             {
                 inventory.RemoveItem(combination.Id, combination.Qt);

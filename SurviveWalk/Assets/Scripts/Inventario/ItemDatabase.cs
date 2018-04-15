@@ -4,16 +4,24 @@ using System.Collections.Generic;
 using System.IO;
 
 public class ItemDatabase : MonoBehaviour {
-	private List<Item> database = new List<Item>();
+
+    // Items.json
+    private List<Item> database = new List<Item>();
 	private JsonData itemData;
 
+    // Crafts.json
     private List<CraftItem> craftbase = new List<CraftItem>();
     private JsonData craftData;
+
+    // HouseCrafts.json
+    private List<CraftHouse> housebase = new List<CraftHouse>();
+    private JsonData houseData;
 
     void Start()
 	{
 		itemData = JsonMapper.ToObject(File.ReadAllText(Application.dataPath + "/StreamingAssets/Items.json"));
         craftData = JsonMapper.ToObject(File.ReadAllText(Application.dataPath + "/StreamingAssets/Crafts.json"));
+        houseData = JsonMapper.ToObject(File.ReadAllText(Application.dataPath + "/StreamingAssets/HouseCrafts.json"));
         ConstructItemDatabase();	
 	}
 
@@ -32,6 +40,11 @@ public class ItemDatabase : MonoBehaviour {
     public List<CraftItem> GetCraftList()
     {
         return craftbase;
+    }
+
+    public List<CraftHouse> GetHouseList()
+    {
+        return housebase;
     }
 
     void ConstructItemDatabase()
@@ -71,6 +84,33 @@ public class ItemDatabase : MonoBehaviour {
 
             craftbase.Add(craftItem);
         }
+
+        for (int i = 0; i < houseData.Count; i++)
+        {
+            CraftHouse craftHouse = new CraftHouse();
+            craftHouse.Id = (int)houseData[i]["id"];
+            craftHouse.Title = houseData[i]["title"].ToString();
+
+            for (int j = 0; j < houseData[i]["levels"].Count; j++)
+            {
+                HouseLevel houseLevel = new HouseLevel();
+                houseLevel.IdLevel = (int)houseData[i]["levels"][j]["idLevel"];
+                houseLevel.Title = houseData[i]["levels"][j]["title"].ToString();
+
+                for (int k = 0; k < houseData[i]["levels"][j]["combination"].Count; k++)
+                {
+                    Combination combination = new Combination();
+                    combination.Id = (int)houseData[i]["levels"][j]["combination"][k]["id"];
+                    combination.Qt = (int)houseData[i]["levels"][j]["combination"][k]["qt"];
+
+                    houseLevel.Combination.Add(combination);
+                }
+
+                craftHouse.houseLevel.Add(houseLevel);
+            }
+
+            housebase.Add(craftHouse);
+        }
     }
 }
 
@@ -93,6 +133,20 @@ public class Item
 	{
 		this.Id = -1;
 	}
+}
+
+public class CraftHouse
+{
+    public int Id { get; set; }
+    public string Title { get; set; }
+    public List<HouseLevel> houseLevel = new List<HouseLevel>();
+}
+
+public class HouseLevel
+{
+    public int IdLevel { get; set; }
+    public string Title { get; set; }
+    public List<Combination> Combination = new List<Combination>();
 }
 
 public class Combination
