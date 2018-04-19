@@ -18,7 +18,85 @@
 				"title" : "Level 2",
 				"combination" : [
 					{
+						"id" : 3,
+						"qt" : 3
+					}
+				]
+			}
+		]
+	},
+	{
+		"id": 1,
+		"title": "House 2",
+		"levels": [
+			{
+				"idLevel" : 0,
+				"title" : "Level 1",
+				"combination" : [
+					{
 						"id" : 2,
+						"qt" : 3
+					}
+				]
+			},
+			{
+				"idLevel" : 1,
+				"title" : "Level 2",
+				"combination" : [
+					{
+						"id" : 3,
+						"qt" : 3
+					}
+				]
+			}
+		]
+	},
+	{
+		"id": 2,
+		"title": "House 3",
+		"levels": [
+			{
+				"idLevel" : 0,
+				"title" : "Level 1",
+				"combination" : [
+					{
+						"id" : 2,
+						"qt" : 3
+					}
+				]
+			},
+			{
+				"idLevel" : 1,
+				"title" : "Level 2",
+				"combination" : [
+					{
+						"id" : 3,
+						"qt" : 3
+					}
+				]
+			}
+		]
+	},
+	{
+		"id": 3,
+		"title": "House 4",
+		"levels": [
+			{
+				"idLevel" : 0,
+				"title" : "Level 1",
+				"combination" : [
+					{
+						"id" : 2,
+						"qt" : 3
+					}
+				]
+			},
+			{
+				"idLevel" : 1,
+				"title" : "Level 2",
+				"combination" : [
+					{
+						"id" : 3,
 						"qt" : 3
 					}
 				]
