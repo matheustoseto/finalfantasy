@@ -13,26 +13,41 @@ public class Inventory : MonoBehaviour
 	public GameObject inventorySlot;
 	public GameObject inventoryItem;
     public GameObject tooltip;
-    private CharacterStatusSurvive characterStatusSurvive;
+    public GameObject slotLifePanel;
+    private CharacterStatus characterStatus;
 
     public int slotAmount;
 	public List<Item> items = new List<Item>();
-	public List<GameObject> slots = new List<GameObject>();
-    
+    public List<GameObject> slots = new List<GameObject>();
+
+    private Item addItem;
 
     void Start()
 	{
         database = GetComponent<ItemDatabase>();
 		slotPanel = inventoryPanel.transform.Find("SlotPanel").gameObject;
-        characterStatusSurvive = GameObject.FindGameObjectWithTag("Player").GetComponent<CharacterStatusSurvive>();
+        characterStatus = GameObject.FindGameObjectWithTag("Player").GetComponent<CharacterStatus>();
 
         for (int i = 0; i < slotAmount; i++)
 		{
 			items.Add(new Item());
 			slots.Add(Instantiate(inventorySlot));
 			slots[i].GetComponent<Slot>().id = i;
-			slots[i].transform.SetParent(slotPanel.transform);
+            if (i > 5)
+            {
+                slots[i].transform.SetParent(slotPanel.transform);
+            } else
+            {
+                slots[i].transform.SetParent(slotLifePanel.transform);                
+            }			
 		}
+
+        slots[0].GetComponent<RectTransform>().anchoredPosition = new Vector2(10, 30);
+        slots[1].GetComponent<RectTransform>().anchoredPosition = new Vector2(80, 30);
+        slots[2].GetComponent<RectTransform>().anchoredPosition = new Vector2(150, 30);
+        slots[3].GetComponent<RectTransform>().anchoredPosition = new Vector2(450, 30);
+        slots[4].GetComponent<RectTransform>().anchoredPosition = new Vector2(520, 30);
+        slots[5].GetComponent<RectTransform>().anchoredPosition = new Vector2(590, 30);
     }
 
     void Update()
@@ -140,10 +155,20 @@ public class Inventory : MonoBehaviour
 
     public void UseItem(Item item)
     {
-        if ("Food".Equals(item.Type))
+        if ("Food".Equals(item.Type) && characterStatus.lifeProgress != characterStatus.life)
         {
-            characterStatusSurvive.fome += item.Power;
-            this.RemoveItem(item.Id,1);
+            if (!Progress.Instance.activeBar)
+            {
+                addItem = item;
+                Progress.Instance.ProgressBar(0.09F, AddItem);               
+            }                     
         }
+    }
+
+    public void AddItem()
+    {
+        characterStatus.addLife(addItem.Power);
+        this.RemoveItem(addItem.Id, 1);
+        addItem = null;
     }
 }

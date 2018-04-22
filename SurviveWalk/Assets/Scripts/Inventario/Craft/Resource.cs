@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System;
 using UnityEngine;
 
 public class Resource : MonoBehaviour {
@@ -7,6 +6,7 @@ public class Resource : MonoBehaviour {
     public Utils.ResourceType type;
     public int idItem;
     public int qnt;
+    public float speed;
 
     public GameObject item;
     public Material onMouseOver;
@@ -29,6 +29,7 @@ public class Resource : MonoBehaviour {
         {
             playerEnter = false;
             GetComponent<Renderer>().material = onMouseExit;
+            Progress.Instance.DisableProgressBar();
         }
     }
 
@@ -38,6 +39,11 @@ public class Resource : MonoBehaviour {
         {
             GetComponent<Renderer>().material = onMouseOver;
             mouseEnter = true;
+
+            if (Input.GetMouseButtonDown(0))
+                Progress.Instance.ProgressBar(speed, new Action(CreateItem));
+            else if (Input.GetMouseButtonUp(0))
+                Progress.Instance.DisableProgressBar();
         }
     }
 
@@ -47,19 +53,17 @@ public class Resource : MonoBehaviour {
         {
             GetComponent<Renderer>().material = onMouseExit;
             mouseEnter = false;
+            Progress.Instance.DisableProgressBar();
         }
     }
 
-    private void OnMouseUp()
+    public void CreateItem()
     {
-        if (playerEnter && mouseEnter)
+        item.GetComponent<ItemResource>().idItem = idItem;
+        for (int i = 1; i <= qnt; i++)
         {
-            item.GetComponent<ItemResource>().idItem = idItem;
-            for (int i = 1; i <= qnt; i++)
-            {
-                Instantiate(item, transform.position + new Vector3(Random.Range(-0.9f,0.9f), 0, Random.Range(-0.9f, 0.9f)), transform.rotation);
-            }     
-            Destroy(gameObject);
-        }   
+            Instantiate(item, transform.position + new Vector3(UnityEngine.Random.Range(-0.9f, 0.9f), 0, UnityEngine.Random.Range(-0.9f, 0.9f)), transform.rotation);            
+        }
+        Destroy(gameObject);
     }
 }

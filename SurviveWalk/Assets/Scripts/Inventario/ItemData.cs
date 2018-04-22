@@ -11,11 +11,13 @@ public class ItemData : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
 	private Inventory inv;
 	private Tooltip tooltip;
 	private Vector2 offset;
+    private GameObject canvas;
 
 	void Start()
 	{
 		inv = GameObject.Find("Inventory").GetComponent<Inventory>();
 		tooltip = inv.GetComponent<Tooltip>();
+        canvas = GameObject.FindGameObjectWithTag("Canvas");
 
         GetComponent<RectTransform>().localPosition = Vector3.zero;
         GetComponent<RectTransform>().ForceUpdateRectTransforms();
@@ -25,7 +27,7 @@ public class ItemData : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
 	{
 		if (item != null)
 		{
-			this.transform.SetParent(this.transform.parent.parent);
+			this.transform.SetParent(canvas.transform);
 			this.transform.position = eventData.position - offset;
 			GetComponent<CanvasGroup>().blocksRaycasts = false;
 		}

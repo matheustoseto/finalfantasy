@@ -108,8 +108,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 0
-  item: {fileID: 1993325973734462, guid: ec6f2c1bb43c91546aef41c8dda42d6d, type: 2}
+  idItem: 0
   qnt: 1
+  speed: 0.02
+  item: {fileID: 1993325973734462, guid: ec6f2c1bb43c91546aef41c8dda42d6d, type: 2}
+  getItem: {fileID: 1667461407893088, guid: 873b7be637eb1534a9f46c964159185b, type: 2}
   onMouseOver: {fileID: 2100000, guid: 985d003ded8831e4ca51fa57858f0621, type: 2}
   onMouseExit: {fileID: 2100000, guid: 41a2b66a4d94c2a46a968ab08368f95c, type: 2}
 --- !u!224 &224721401991269442

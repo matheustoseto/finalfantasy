@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - Minimap
+  - Resource
+  - Item
+  - Canvas
   layers:
   - Default
   - TransparentFX
