@@ -10,10 +10,15 @@ public class Resource : MonoBehaviour {
 
     public GameObject item;
     public Material onMouseOver;
-    public Material onMouseExit;
+    private Material onMouseExit;
 
     private bool playerEnter = false;
     private bool mouseEnter = false;
+
+    private void Start()
+    {
+        onMouseExit = GetComponent<Renderer>().material;
+    }
 
     private void OnTriggerEnter(Collider other)
     {
