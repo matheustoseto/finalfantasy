@@ -8,9 +8,12 @@ public class Resource : MonoBehaviour {
     public int qnt;
     public float speed;
 
-    public GameObject item;
+    public GameObject item; 
     public Material onMouseOver;
     private Material onMouseExit;
+
+    private GameObject player;
+    private GameObject alert;
 
     private bool playerEnter = false;
     private bool mouseEnter = false;
@@ -18,6 +21,8 @@ public class Resource : MonoBehaviour {
     private void Start()
     {
         onMouseExit = GetComponent<Renderer>().material;
+        player = GameObject.FindGameObjectWithTag("Player");
+        alert = GameObject.FindGameObjectWithTag("Alerta");
     }
 
     private void OnTriggerEnter(Collider other)
@@ -45,10 +50,20 @@ public class Resource : MonoBehaviour {
             GetComponent<Renderer>().material = onMouseOver;
             mouseEnter = true;
 
-            if (Input.GetMouseButtonDown(0))
-                Progress.Instance.ProgressBar(speed, new Action(CreateItem));
-            else if (Input.GetMouseButtonUp(0))
+            if (Input.GetMouseButtonDown(0)){
+                Item item = player.GetComponent<SlotSelect>().GetSelectItemBySlot();
+                if (Utils.PodeCraftar(type, item))
+                {
+                    Progress.Instance.ProgressBar(speed, new Action(CreateItem));
+                } else
+                {
+                    alert.GetComponent<Alerta>().SetText(Utils.PodeCraftarDS(type));
+                }
+            }else if (Input.GetMouseButtonUp(0))
+            {
                 Progress.Instance.DisableProgressBar();
+            }
+               
         }
     }
 

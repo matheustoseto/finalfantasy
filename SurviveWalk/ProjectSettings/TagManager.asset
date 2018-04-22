@@ -8,6 +8,7 @@ TagManager:
   - Resource
   - Item
   - Canvas
+  - Alerta
   layers:
   - Default
   - TransparentFX

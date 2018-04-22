@@ -54,8 +54,8 @@ public class ItemData : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
 
         if (Input.GetMouseButtonDown(1))
         {
-            inv.UseItem(item);
-            tooltip.Deactivate();
+            if(inv.UseItem(item))
+                tooltip.Deactivate();
         }
     }
 

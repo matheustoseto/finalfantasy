@@ -48,6 +48,16 @@ public class Inventory : MonoBehaviour
         slots[3].GetComponent<RectTransform>().anchoredPosition = new Vector2(450, 30);
         slots[4].GetComponent<RectTransform>().anchoredPosition = new Vector2(520, 30);
         slots[5].GetComponent<RectTransform>().anchoredPosition = new Vector2(590, 30);
+
+        //Add item
+        AddItem(2);
+        AddItem(2);
+        AddItem(2);
+        AddItem(2);
+        AddItem(3);
+        AddItem(3);
+        AddItem(3);
+        AddItem(3);
     }
 
     void Update()
@@ -153,16 +163,18 @@ public class Inventory : MonoBehaviour
 		return false;
 	}
 
-    public void UseItem(Item item)
+    public bool UseItem(Item item)
     {
         if ("Food".Equals(item.Type) && characterStatus.lifeProgress != characterStatus.life)
         {
             if (!Progress.Instance.activeBar)
             {
                 addItem = item;
-                Progress.Instance.ProgressBar(0.09F, AddItem);               
+                Progress.Instance.ProgressBar(0.09F, AddItem);
+                return true;
             }                     
         }
+        return false;
     }
 
     public void AddItem()

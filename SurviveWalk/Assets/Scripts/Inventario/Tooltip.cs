@@ -18,7 +18,7 @@ public class Tooltip : MonoBehaviour
 	{
 		if (tooltip.activeSelf)
 		{
-			tooltip.transform.position = Input.mousePosition;
+			tooltip.transform.position = Input.mousePosition + new Vector3(0,30,0);
 		}
 	}
 
@@ -44,9 +44,9 @@ public class Tooltip : MonoBehaviour
         } else if ("Food".Equals(item.Type))
         {
             data += "\nFood: " + item.Power;
-        } else if ("Material".Equals(item.Type))
+        } else
         {
-            data += "\nMaterial";
+            data += "\n"+ item.Type;
         }
 
 		tooltip.transform.GetChild(0).GetComponent<Text>().text = data;

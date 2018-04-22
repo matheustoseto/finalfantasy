@@ -18,7 +18,7 @@
 		"id": 1,
 		"title": "Machado X",
 		"value": 1,
-		"type" : "Weapon",
+		"type" : "Machado",
 		"stats": {
 			"power": 1,
 			"defense": 4,
@@ -58,5 +58,20 @@
 		"stackable": true,
 		"rarity": 1,
 		"slug":  "ferro-x"
+	},
+	{
+		"id": 4,
+		"title": "Picareta X",
+		"value": 1,
+		"type" : "Picareta",
+		"stats": {
+			"power": 1,
+			"defense": 4,
+			"vitality": 2
+		},
+		"description": "Picareta X",
+		"stackable": false,
+		"rarity": 1,
+		"slug":  "picareta-x"
 	}
 ]
