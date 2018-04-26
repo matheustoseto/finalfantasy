@@ -1,5 +1,31 @@
 [
 	{
+		"id": 7,
+		"combination": [
+			{
+				"id" : 5,
+				"qt" : 2
+			},
+			{
+				"id" : 6,
+				"qt" : 2
+			}
+		]
+	},
+	{
+		"id": 8,
+		"combination": [
+			{
+				"id" : 5,
+				"qt" : 2
+			},
+			{
+				"id" : 6,
+				"qt" : 2
+			}
+		]
+	},
+	{
 		"id": 1,
 		"combination": [
 			{

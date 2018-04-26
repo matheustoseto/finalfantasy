@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Utils {
 
-    public enum ResourceType { Comida, Madeira, Ferro, Machado , Picareta };
+    public enum ResourceType { Comida, Madeira, Ferro, Machado , Picareta, Pedra, Galho };
     public enum HouseType { House1 = 0, House2 = 1, House3 = 2, House4 = 3 };
 
     public static bool PodeCraftar(ResourceType resourceType, Item item)
@@ -22,6 +22,14 @@ public class Utils {
                 return true;
             }
         } else if (ResourceType.Comida == resourceType)
+        {
+            return true;
+        }
+        else if (ResourceType.Galho == resourceType)
+        {
+            return true;
+        }
+        else if (ResourceType.Pedra == resourceType)
         {
             return true;
         }

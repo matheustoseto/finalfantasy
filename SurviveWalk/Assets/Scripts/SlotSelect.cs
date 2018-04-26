@@ -36,10 +36,10 @@ public class SlotSelect : MonoBehaviour {
             Select(3);
         } else if (Input.GetKeyDown(KeyCode.Alpha5))
         {
-            Select(4);
+            //Select(4);
         } else if (Input.GetKeyDown(KeyCode.Alpha6))
         {
-            Select(5);
+            //Select(5);
         }      
     }
 

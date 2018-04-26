@@ -29,8 +29,12 @@ public class Craft : MonoBehaviour {
             Image img = slot.transform.Find("Craft").gameObject.transform.Find("Image").gameObject.GetComponent<Image>();
             img.sprite = inventory.FindItem(ct.Id).Sprite;
             Text text = slot.transform.Find("Combination").gameObject.transform.Find("Text").gameObject.GetComponent<Text>();
-            foreach(Combination cb in ct.Combination)
+
+            text.text += inventory.FindItem(ct.Id).Title + " \n";
+            foreach (Combination cb in ct.Combination)
+            {
                 text.text += inventory.FindItem(cb.Id).Title + ": " + cb.Qt + " \n";
+            }            
         }
     }
 

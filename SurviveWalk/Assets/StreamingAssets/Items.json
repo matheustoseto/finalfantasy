@@ -1,7 +1,7 @@
 [
 	{
 		"id": 0,
-		"title": "Comida X",
+		"title": "Fruta",
 		"value": 1,
 		"type" : "Food",
 		"stats": {
@@ -9,14 +9,14 @@
 			"defense": 0,
 			"vitality": 0
 		},
-		"description": "Comida X",
+		"description": "Fruta",
 		"stackable": true,
 		"rarity": 1,
 		"slug":  "comida-x"
 	},
 	{
 		"id": 1,
-		"title": "Machado X",
+		"title": "Machado de Ferro",
 		"value": 1,
 		"type" : "Machado",
 		"stats": {
@@ -24,14 +24,14 @@
 			"defense": 4,
 			"vitality": 2
 		},
-		"description": "Machado X",
+		"description": "Machado de Ferro",
 		"stackable": false,
 		"rarity": 1,
 		"slug":  "machado-x"
 	},
 	{
 		"id": 2,
-		"title": "Madeira X",
+		"title": "Madeira",
 		"value": 1,
 		"type" : "Material",
 		"stats": {
@@ -39,14 +39,14 @@
 			"defense": 0,
 			"vitality": 0
 		},
-		"description": "Madeira X",
+		"description": "Madeira",
 		"stackable": true,
 		"rarity": 1,
 		"slug": "madeira-x"
 	},
 	{
 		"id": 3,
-		"title": "Ferro X",
+		"title": "Ferro",
 		"value": 1,
 		"type" : "Material",
 		"stats": {
@@ -54,14 +54,14 @@
 			"defense": 0,
 			"vitality": 0
 		},
-		"description": "Ferro X",
+		"description": "Ferro",
 		"stackable": true,
 		"rarity": 1,
 		"slug":  "ferro-x"
 	},
 	{
 		"id": 4,
-		"title": "Picareta X",
+		"title": "Picareta de Ferro",
 		"value": 1,
 		"type" : "Picareta",
 		"stats": {
@@ -69,9 +69,69 @@
 			"defense": 4,
 			"vitality": 2
 		},
-		"description": "Picareta X",
+		"description": "Picareta de Ferro",
 		"stackable": false,
 		"rarity": 1,
 		"slug":  "picareta-x"
+	},
+	{
+		"id": 5,
+		"title": "Galho",
+		"value": 1,
+		"type" : "Material",
+		"stats": {
+			"power": 0,
+			"defense": 0,
+			"vitality": 0
+		},
+		"description": "Galho",
+		"stackable": true,
+		"rarity": 1,
+		"slug":  "galho"
+	},
+	{
+		"id": 6,
+		"title": "Pedra",
+		"value": 1,
+		"type" : "Material",
+		"stats": {
+			"power": 0,
+			"defense": 0,
+			"vitality": 0
+		},
+		"description": "Pedra",
+		"stackable": true,
+		"rarity": 1,
+		"slug":  "pedra"
+	},
+	{
+		"id": 7,
+		"title": "Machado de Pedra",
+		"value": 1,
+		"type" : "Machado",
+		"stats": {
+			"power": 1,
+			"defense": 4,
+			"vitality": 2
+		},
+		"description": "Machado de Pedra",
+		"stackable": false,
+		"rarity": 1,
+		"slug":  "machado-pedra"
+	},
+	{
+		"id": 8,
+		"title": "Picadera de Pedra",
+		"value": 1,
+		"type" : "Picareta",
+		"stats": {
+			"power": 1,
+			"defense": 4,
+			"vitality": 2
+		},
+		"description": "Picadera de Pedra",
+		"stackable": false,
+		"rarity": 1,
+		"slug":  "picadera-pedra"
 	}
 ]

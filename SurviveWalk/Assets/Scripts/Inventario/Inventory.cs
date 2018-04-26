@@ -33,7 +33,7 @@ public class Inventory : MonoBehaviour
 			items.Add(new Item());
 			slots.Add(Instantiate(inventorySlot));
 			slots[i].GetComponent<Slot>().id = i;
-            if (i > 5)
+            if (i > 3)
             {
                 slots[i].transform.SetParent(slotPanel.transform);
             } else
@@ -42,22 +42,27 @@ public class Inventory : MonoBehaviour
             }			
 		}
 
-        slots[0].GetComponent<RectTransform>().anchoredPosition = new Vector2(10, 30);
-        slots[1].GetComponent<RectTransform>().anchoredPosition = new Vector2(80, 30);
-        slots[2].GetComponent<RectTransform>().anchoredPosition = new Vector2(150, 30);
-        slots[3].GetComponent<RectTransform>().anchoredPosition = new Vector2(450, 30);
-        slots[4].GetComponent<RectTransform>().anchoredPosition = new Vector2(520, 30);
-        slots[5].GetComponent<RectTransform>().anchoredPosition = new Vector2(590, 30);
+        //slots[0].GetComponent<RectTransform>().anchoredPosition = new Vector2(10, 30);
+        //slots[1].GetComponent<RectTransform>().anchoredPosition = new Vector2(80, 30);
+        //slots[2].GetComponent<RectTransform>().anchoredPosition = new Vector2(150, 30);
+        //slots[3].GetComponent<RectTransform>().anchoredPosition = new Vector2(450, 30);
+        //slots[4].GetComponent<RectTransform>().anchoredPosition = new Vector2(520, 30);
+        //slots[5].GetComponent<RectTransform>().anchoredPosition = new Vector2(590, 30);
+
+        slots[0].GetComponent<RectTransform>().anchoredPosition = new Vector2(80, 30);
+        slots[1].GetComponent<RectTransform>().anchoredPosition = new Vector2(150, 30);
+        slots[2].GetComponent<RectTransform>().anchoredPosition = new Vector2(450, 30);
+        slots[3].GetComponent<RectTransform>().anchoredPosition = new Vector2(520, 30);
 
         //Add item
-        AddItem(2);
-        AddItem(2);
-        AddItem(2);
-        AddItem(2);
-        AddItem(3);
-        AddItem(3);
-        AddItem(3);
-        AddItem(3);
+        //AddItem(2);
+        //AddItem(2);
+        //AddItem(2);
+        //AddItem(2);
+        //AddItem(3);
+        //AddItem(3);
+        //AddItem(3);
+        //AddItem(3);
     }
 
     void Update()
