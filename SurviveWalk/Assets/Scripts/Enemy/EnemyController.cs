@@ -95,7 +95,6 @@ public class EnemyController : MonoBehaviour {
 
             Body.material = OnAttack;
 
-            print(life);
             this.life -= life;
 
             if (this.life <= 0)

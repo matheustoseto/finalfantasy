@@ -5,22 +5,19 @@ using System;
 [RequireComponent(typeof(CharacterController))]
 public class MoveControl : MonoBehaviour
 {
-    private CharacterController charControl = null;
+    public Transform body = null;
+    public GameObject arrow = null;
+    public float speedWalk = 10;
+    public float speedRun = 20;
+    public float gravity = 20.0F;
+    public bool isBodyRotateKeyboard = true;
 
-    [SerializeField] private Transform body = null;
-    [SerializeField] private GameObject arrow = null;
-    [SerializeField] private float speedWalk = 10;
-    [SerializeField] private float speedRun = 20;
-    [SerializeField] private bool isBodyRotateKeyboard = true;
     private float speedActual = 0;
     private Vector3 speed = Vector2.zero;
-    //private bool isJump = false;
+    private CharacterController charControl = null;
 
-
-    #region Properties
     public float SpeedWalk { get { return speedWalk; } }
     public float SpeedRun { get { return speedRun; } }
-    #endregion
 
     public void Awake()
     {
@@ -68,8 +65,11 @@ public class MoveControl : MonoBehaviour
         else
             speedActual = speedWalk;
 
+        Vector3 move = transform.TransformDirection(speed * speedActual * Time.deltaTime);
 
-        charControl.Move(transform.TransformDirection(speed * speedActual * Time.deltaTime));
+        move.y -= gravity * Time.deltaTime;
+
+        charControl.Move(move);
     }
 
     private void BodyRotateKeyboard(float inputForward, float inputTurn)

@@ -17,7 +17,6 @@ public class Resource : MonoBehaviour {
     private GameObject alert;
 
     private bool playerEnter = false;
-    private bool mouseEnter = false;
     private float deltaTimer;
     private bool create = false;
 
@@ -63,7 +62,6 @@ public class Resource : MonoBehaviour {
         if (playerEnter && !create)
         {
             GetComponent<Renderer>().material = onMouseOver;
-            mouseEnter = true;
 
             if (Input.GetMouseButtonDown(0)){
                 Item item = player.GetComponent<SlotSelect>().GetSelectItemBySlot();
@@ -87,7 +85,6 @@ public class Resource : MonoBehaviour {
         if (playerEnter)
         {
             GetComponent<Renderer>().material = onMouseExit;
-            mouseEnter = false;
             Progress.Instance.DisableProgressBar();
         }
     }
