@@ -133,7 +133,8 @@ public class HouseCraft : MonoBehaviour {
         if ("Player".Equals(other.tag))
         {
             LoadHousePanel();
-            inventoryPanel.SetActive(true);
+            if (!inventoryPanel.activeSelf)
+                inventory.ActiveDisableInventory();
             housePanel.SetActive(true);
 
             for (int i = 1; i <= levels.Count; i++)
@@ -154,7 +155,8 @@ public class HouseCraft : MonoBehaviour {
     {
         if ("Player".Equals(other.tag))
         {
-            inventoryPanel.SetActive(false);
+            if(inventoryPanel.activeSelf)
+                inventory.ActiveDisableInventory();
             housePanel.SetActive(false);
 
             for (int i = 0; i < slotPanel.transform.childCount; i++)

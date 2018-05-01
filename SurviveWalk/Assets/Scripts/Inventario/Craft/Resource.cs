@@ -7,6 +7,7 @@ public class Resource : MonoBehaviour {
     public int idItem;
     public int qnt;
     public float speed;
+    public float timer = 1f;
 
     public GameObject item; 
     public Material onMouseOver;
@@ -17,12 +18,26 @@ public class Resource : MonoBehaviour {
 
     private bool playerEnter = false;
     private bool mouseEnter = false;
+    private float deltaTimer;
+    private bool create = false;
 
     private void Start()
     {
         onMouseExit = GetComponent<Renderer>().material;
         player = GameObject.FindGameObjectWithTag("Player");
         alert = GameObject.FindGameObjectWithTag("Alerta");
+    }
+
+    private void Update()
+    {
+        if (deltaTimer <= 0 && create)
+        {
+            this.gameObject.transform.localScale = new Vector3(1F, 1F, 1F);
+            create = false;
+        } else if (deltaTimer >= 0 && create)
+        {
+            deltaTimer -= Time.deltaTime;
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -45,7 +60,7 @@ public class Resource : MonoBehaviour {
 
     private void OnMouseOver()
     {
-        if (playerEnter)
+        if (playerEnter && !create)
         {
             GetComponent<Renderer>().material = onMouseOver;
             mouseEnter = true;
@@ -84,6 +99,13 @@ public class Resource : MonoBehaviour {
         {
             Instantiate(item, transform.position + new Vector3(UnityEngine.Random.Range(-0.9f, 0.9f), 0, UnityEngine.Random.Range(-0.9f, 0.9f)), transform.rotation);            
         }
-        Destroy(gameObject);
+        DisableItem();
+    }
+
+    private void DisableItem()
+    {
+        deltaTimer = timer;
+        this.gameObject.transform.localScale = new Vector3(0.5F,0.5F,0.5F);
+        create = true;
     }
 }

@@ -54,13 +54,13 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4046195370019234}
-  - component: {fileID: 136710864253147602}
   - component: {fileID: 195620724137323504}
   - component: {fileID: 54435461504307708}
+  - component: {fileID: 65470768162626634}
   - component: {fileID: 114826351760033924}
   m_Layer: 0
   m_Name: Enemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -203,6 +203,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!65 &65470768162626634
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1938548814568140}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2, y: 2, z: 2}
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!65 &65663070636359824
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -226,20 +238,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef65a9537032bfe47a9d94b6a1bd3afc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnAttack: {fileID: 2100000, guid: 397e0f071a93d294fae25a8e481df13b, type: 2}
+  Body: {fileID: 23669461396261824}
   radius: 10
---- !u!136 &136710864253147602
-CapsuleCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1938548814568140}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: -0.04, y: 0.94, z: 0}
+  life: 10
+  power: 2
 --- !u!195 &195620724137323504
 NavMeshAgent:
   m_ObjectHideFlags: 1

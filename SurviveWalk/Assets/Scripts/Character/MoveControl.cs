@@ -75,8 +75,9 @@ public class MoveControl : MonoBehaviour
     private void BodyRotateKeyboard(float inputForward, float inputTurn)
     {
         // Efetuar  rotação em Y
-        if (inputForward == 0 && inputTurn == 0) body.transform.eulerAngles = new Vector3(0, 180, 0); // Center
-        else if (inputForward > 0 && inputTurn == 0) body.transform.eulerAngles = new Vector3(0, 0, 0); // Up
+        /*if (inputForward == 0 && inputTurn == 0) body.transform.eulerAngles = new Vector3(0, 180, 0); // Center
+        else*/
+        if (inputForward > 0 && inputTurn == 0) body.transform.eulerAngles = new Vector3(0, 0, 0); // Up
         else if (inputForward > 0 && inputTurn > 0) body.transform.eulerAngles = new Vector3(0, 45, 0); // UpRight
         else if (inputForward == 0 && inputTurn > 0) body.transform.eulerAngles = new Vector3(0, 90, 0); // Right
         else if (inputForward < 0 && inputTurn > 0) body.transform.eulerAngles = new Vector3(0, 135, 0); // DownRight

@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class SlotSelect : MonoBehaviour {
 
     public Inventory inventory;
-    public GameObject weapon;
+    public Weapon weapon;
     public int slotSelect = 0;
 
     private int backupSlotSelect = 0;
@@ -51,6 +51,8 @@ public class SlotSelect : MonoBehaviour {
         backupSlotSelect = slotSelect;
         if (inventory.slots[slotSelect].transform.childCount > 0)
             SetWeapon(inventory.slots[slotSelect].transform.GetChild(0).gameObject);
+        else
+            SetWeapon(null);
     }
 
     public void SetWeapon(GameObject slotItem)
@@ -60,15 +62,15 @@ public class SlotSelect : MonoBehaviour {
             Item item = inventory.FindItem(slotItem.GetComponent<ItemData>().item.Id);
             if ("Weapon".Equals(item.Type))
             {
-                weapon.GetComponent<Weapon>().item = item;
+                weapon.item = item;
             }
             else
             {
-                weapon.GetComponent<Weapon>().item = null;
+                weapon.item = null;
             }
         } else
         {
-            weapon.GetComponent<Weapon>().item = null;
+            weapon.item = null;
         }    
     }
 

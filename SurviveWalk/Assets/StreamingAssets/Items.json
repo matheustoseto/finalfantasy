@@ -1,7 +1,7 @@
 [
 	{
 		"id": 0,
-		"title": "Fruta",
+		"title": "Maça",
 		"value": 1,
 		"type" : "Food",
 		"stats": {
@@ -9,10 +9,10 @@
 			"defense": 0,
 			"vitality": 0
 		},
-		"description": "Fruta",
+		"description": "Uma maça madura.",
 		"stackable": true,
 		"rarity": 1,
-		"slug":  "comida-x"
+		"slug":  "apple"
 	},
 	{
 		"id": 1,
@@ -24,10 +24,10 @@
 			"defense": 4,
 			"vitality": 2
 		},
-		"description": "Machado de Ferro",
+		"description": "Um machado de ferro.",
 		"stackable": false,
 		"rarity": 1,
-		"slug":  "machado-x"
+		"slug":  "iron_axe"
 	},
 	{
 		"id": 2,
@@ -39,10 +39,10 @@
 			"defense": 0,
 			"vitality": 0
 		},
-		"description": "Madeira",
+		"description": "Uma madeira cortada.",
 		"stackable": true,
 		"rarity": 1,
-		"slug": "madeira-x"
+		"slug": "madeira"
 	},
 	{
 		"id": 3,
@@ -54,10 +54,10 @@
 			"defense": 0,
 			"vitality": 0
 		},
-		"description": "Ferro",
+		"description": "Um amontoado de ferro.",
 		"stackable": true,
 		"rarity": 1,
-		"slug":  "ferro-x"
+		"slug":  "ferro"
 	},
 	{
 		"id": 4,
@@ -69,10 +69,10 @@
 			"defense": 4,
 			"vitality": 2
 		},
-		"description": "Picareta de Ferro",
+		"description": "Uma picareta de ferro.",
 		"stackable": false,
 		"rarity": 1,
-		"slug":  "picareta-x"
+		"slug":  "iron_pick"
 	},
 	{
 		"id": 5,
@@ -84,7 +84,7 @@
 			"defense": 0,
 			"vitality": 0
 		},
-		"description": "Galho",
+		"description": "Um amontoado de galhos.",
 		"stackable": true,
 		"rarity": 1,
 		"slug":  "galho"
@@ -99,7 +99,7 @@
 			"defense": 0,
 			"vitality": 0
 		},
-		"description": "Pedra",
+		"description": "Um amontoado de pedras.",
 		"stackable": true,
 		"rarity": 1,
 		"slug":  "pedra"
@@ -114,10 +114,10 @@
 			"defense": 4,
 			"vitality": 2
 		},
-		"description": "Machado de Pedra",
+		"description": "Um machado de pedra.",
 		"stackable": false,
 		"rarity": 1,
-		"slug":  "machado-pedra"
+		"slug":  "stone_axe"
 	},
 	{
 		"id": 8,
@@ -129,9 +129,39 @@
 			"defense": 4,
 			"vitality": 2
 		},
-		"description": "Picadera de Pedra",
+		"description": "Uma picareta de pedra.",
 		"stackable": false,
 		"rarity": 1,
-		"slug":  "picadera-pedra"
+		"slug":  "stone_pick"
+	},
+	{
+		"id": 9,
+		"title": "Espada de Madeira",
+		"value": 1,
+		"type" : "Weapon",
+		"stats": {
+			"power": 2,
+			"defense": 1,
+			"vitality": 1
+		},
+		"description": "Uma espada feita de madeira.",
+		"stackable": false,
+		"rarity": 1,
+		"slug":  "wood_sword"
+	},
+	{
+		"id": 10,
+		"title": "Espada de Ferro",
+		"value": 1,
+		"type" : "Weapon",
+		"stats": {
+			"power": 5,
+			"defense": 1,
+			"vitality": 1
+		},
+		"description": "Uma espada feita de ferro.",
+		"stackable": false,
+		"rarity": 1,
+		"slug":  "iron_sword"
 	}
 ]

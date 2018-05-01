@@ -5,10 +5,15 @@ using UnityEngine.UI;
 
 public class Map : MonoBehaviour {
 
-    public GameObject player;
+    private GameObject player;
     public Text coordenadas;
 
-	void Update () {
+    private void Start()
+    {
+        player = PlayerManager.instance.player;
+    }
+
+    void Update () {
         coordenadas.text = "X: " + Mathf.RoundToInt(player.transform.position.x) + " Y: " + Mathf.RoundToInt(player.transform.position.z);
     }
 }

@@ -9,6 +9,8 @@ TagManager:
   - Item
   - Canvas
   - Alerta
+  - Enemy
+  - Startpoint
   layers:
   - Default
   - TransparentFX
@@ -20,7 +22,7 @@ TagManager:
   - 
   - MiniMap
   - Person
-  - 
+  - Floor
   - 
   - 
   - 

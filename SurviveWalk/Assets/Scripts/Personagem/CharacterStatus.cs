@@ -10,10 +10,40 @@ public class CharacterStatus : MonoBehaviour {
     public float life;
     public float lifeProgress;
 
+    private bool redFlag = true;
+    private float a = 170;
+    private Color originalColor;
+
     private void Start()
     {
+        transform.localPosition = GameObject.FindGameObjectWithTag("Startpoint").transform.position;
+        originalColor = lifeBar.GetComponent<Image>().color;
         lifeBar.transform.localScale = new Vector3(PegarTamanhoBarra(lifeProgress, life), lifeBar.transform.localScale.y, lifeBar.transform.localScale.z);
         lifeText.text = PegarPorcentagemBarra(lifeProgress, life, 100) + "%";
+        
+    }
+
+    private void Update()
+    {
+        if (lifeProgress < 50)
+        {
+            if (redFlag)
+            {
+                lifeBar.GetComponent<Image>().color = new Color(255, 0, 0, a / 255);
+                a -= 4;
+                if (a <= 100)
+                    redFlag = false;
+            } else if(!redFlag)
+            {
+                lifeBar.GetComponent<Image>().color = new Color(255, 0, 0, a / 255);
+                a += 4;
+                if (a >= 200)
+                    redFlag = true;
+            }
+        } else
+        {
+            lifeBar.GetComponent<Image>().color = originalColor;
+        }
     }
 
     public void addLife(float addLife)
@@ -22,6 +52,22 @@ public class CharacterStatus : MonoBehaviour {
         if (lifeProgress > life)
             lifeProgress = life;
 
+        lifeBar.transform.localScale = new Vector3(PegarTamanhoBarra(lifeProgress, life), lifeBar.transform.localScale.y, lifeBar.transform.localScale.z);
+        lifeText.text = PegarPorcentagemBarra(lifeProgress, life, 100) + "%";     
+    }
+
+    public void RemoveLife(float removeLife)
+    {
+        if ((lifeProgress - removeLife) <= 0)
+        {
+            lifeProgress = 0;
+            transform.localPosition = GameObject.FindGameObjectWithTag("Startpoint").transform.position;
+            lifeProgress = 30;
+        } else
+        {
+            lifeProgress -= removeLife;
+        }
+            
         lifeBar.transform.localScale = new Vector3(PegarTamanhoBarra(lifeProgress, life), lifeBar.transform.localScale.y, lifeBar.transform.localScale.z);
         lifeText.text = PegarPorcentagemBarra(lifeProgress, life, 100) + "%";
     }

@@ -5,14 +5,55 @@ using UnityEngine;
 public class Weapon : MonoBehaviour {
 
     public Item item;
+    private bool attck = false;
+    private Vector3 originalPosition;
 
-	// Use this for initialization
 	void Start () {
-		
-	}
+        originalPosition = transform.localPosition;
+    }
 	
-	// Update is called once per frame
 	void Update () {
-		
+        if (Input.GetMouseButtonDown(0))
+        {
+            Attack();
+        } else if (Input.GetMouseButtonUp(0))
+        {
+            attck = false;
+            transform.localPosition = originalPosition;
+        }
 	}
+
+    void Attack()
+    {
+        attck = true;
+        transform.localPosition += new Vector3(0, 0, 0.6f);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if ("Enemy".Equals(other.tag) && attck)
+        {
+            if (item != null)
+                other.GetComponent<EnemyController>().RemoveLife(item.Power);
+            else
+                other.GetComponent<EnemyController>().RemoveLife(1);
+
+            attck = false;
+            transform.localPosition = originalPosition;
+        }
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if ("Enemy".Equals(other.tag) && attck)
+        {
+            if(item != null)
+                other.GetComponent<EnemyController>().RemoveLife(item.Power);
+            else
+                other.GetComponent<EnemyController>().RemoveLife(1);
+
+            attck = false;
+            transform.localPosition = originalPosition;
+        }
+    }
 }

@@ -75,7 +75,8 @@ public class Craft : MonoBehaviour {
     {
         if ("Player".Equals(other.tag))
         {
-            inventoryPanel.SetActive(true);
+            if (!inventoryPanel.activeSelf)
+                inventory.ActiveDisableInventory();
             craftPanel.SetActive(true);
         }
     }
@@ -84,7 +85,8 @@ public class Craft : MonoBehaviour {
     {
         if ("Player".Equals(other.tag))
         {
-            inventoryPanel.SetActive(false);
+            if (inventoryPanel.activeSelf)
+                inventory.ActiveDisableInventory();
             craftPanel.SetActive(false);
         }
     }

@@ -69,14 +69,7 @@ public class Inventory : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.I))
         {
-            if (inventoryPanel.activeSelf)
-            {
-                inventoryPanel.SetActive(false);
-                tooltip.SetActive(false);
-            } else
-            {
-                inventoryPanel.SetActive(true);
-            }
+            ActiveDisableInventory();
         }
     }
 
@@ -187,5 +180,18 @@ public class Inventory : MonoBehaviour
         characterStatus.addLife(addItem.Power);
         this.RemoveItem(addItem.Id, 1);
         addItem = null;
+    }
+
+    public void ActiveDisableInventory()
+    {
+        if (inventoryPanel.activeSelf)
+        {
+            inventoryPanel.SetActive(false);
+            tooltip.SetActive(false);
+        }
+        else
+        {
+            inventoryPanel.SetActive(true);
+        }
     }
 }
