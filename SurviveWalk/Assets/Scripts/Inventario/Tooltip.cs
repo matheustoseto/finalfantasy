@@ -36,20 +36,25 @@ public class Tooltip : MonoBehaviour
 
 	public void ConstructDataString()
 	{
-        data = "<color=#FFEC58FF><b>" + item.Title + "</b></color>\n\n" + item.Description;
+        data = "<color=#FFEC58FF><b>" + item.Title + "</b></color>";
+
+        if(item.Durability > 0)
+            data += " (" + item.DurabilityCount + "/" + item.Durability + ")";
+
+        data += "\n\n" + item.Description;
 
         if ("Weapon".Equals(item.Type))
         {
-            data+= "\nPower: " + item.Power;
+            data+= "\n<color=#FFEC58FF><b>Power:</b></color> " + item.Power;
         } else if ("Food".Equals(item.Type))
         {
-            data += "\nFood: " + item.Power;
+            data += "\n<color=#FFEC58FF><b>Vida:</b></color> " + item.Power;
         } else
         {
-            data += "\n"+ item.Type;
+            data += "\n<color=#FFEC58FF><b>" + item.Type + "</b></color>";
         }
 
-		tooltip.transform.GetChild(0).GetComponent<Text>().text = data;
+        tooltip.transform.GetChild(0).GetComponent<Text>().text = data;
 	}
 
 }

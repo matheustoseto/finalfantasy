@@ -6,7 +6,6 @@ using System.Collections.Generic;
 
 public class Inventory : MonoBehaviour
 {
-
     public GameObject inventoryPanel;
 	GameObject slotPanel;
 	ItemDatabase database;
@@ -22,8 +21,12 @@ public class Inventory : MonoBehaviour
 
     private Item addItem;
 
+    private static Inventory instance = null;
+    public static Inventory Instance { get { return instance; } }
+
     void Start()
 	{
+        instance = this;
         database = GetComponent<ItemDatabase>();
 		slotPanel = inventoryPanel.transform.Find("SlotPanel").gameObject;
         characterStatus = GameObject.FindGameObjectWithTag("Player").GetComponent<CharacterStatus>();
@@ -55,8 +58,8 @@ public class Inventory : MonoBehaviour
         slots[3].GetComponent<RectTransform>().anchoredPosition = new Vector2(520, 30);
 
         //Add item
-        //AddItem(2);
-        //AddItem(2);
+        AddItem(10);
+        AddItem(10);
         //AddItem(2);
         //AddItem(2);
         //AddItem(3);
@@ -74,18 +77,19 @@ public class Inventory : MonoBehaviour
     }
 
     public void AddItem(int id)
-	{        
-		Item itemToAdd = database.FetchItemById(id);
+	{
+        Item itemToAdd = new Item(database.FetchItemById(id));
         if (itemToAdd.Stackable && CheckIfItemIsInInventory(itemToAdd))
 		{
 			for (int i = 0; i < items.Count; i++)
 			{
 				if (items[i].Id == id)
 				{
-					ItemData data = slots[i].transform.GetChild(0).GetComponent<ItemData>();
+                    itemToAdd.Slot = i;
+                    ItemData data = slots[i].transform.GetChild(0).GetComponent<ItemData>();
 					data.amount++;
 					data.transform.GetChild(0).GetComponent<Text>().text = data.amount.ToString();
-					break;
+                    break;
 				}
 			}
 		}
@@ -95,10 +99,11 @@ public class Inventory : MonoBehaviour
 			{
 				if (items[i].Id == -1)
 				{
-					items[i] = itemToAdd;
-					GameObject itemObj = Instantiate(inventoryItem);
+                    itemToAdd.Slot = i;
+                    items[i] = itemToAdd;
+                    GameObject itemObj = Instantiate(inventoryItem);
 					itemObj.GetComponent<ItemData>().item = itemToAdd;
-					itemObj.GetComponent<ItemData>().slotId = i;
+                    itemObj.GetComponent<ItemData>().slotId = i;
                     itemObj.GetComponent<ItemData>().amount = 1;
                     itemObj.transform.SetParent(slots[i].transform);
                     itemObj.transform.position = Vector3.zero;
@@ -122,7 +127,7 @@ public class Inventory : MonoBehaviour
             Destroy(data.gameObject);
             for (int i = 0; i < items.Count; i++)
             {
-                if (items[i].Id == id)
+                if (items[i].Id.Equals(id))
                 {
                     items[i] = new Item();
                 }
@@ -132,7 +137,7 @@ public class Inventory : MonoBehaviour
 
     public Item FindItem(int id)
     {
-        Item item = database.FetchItemById(id);
+        Item item = new Item(database.FetchItemById(id));
         return item;
     }
 
@@ -142,7 +147,19 @@ public class Inventory : MonoBehaviour
                         where it.transform.childCount > 0 &&
                         it.transform.GetChild(0) != null && 
                         it.transform.GetChild(0).GetComponent<ItemData>() != null && 
-                        it.transform.GetChild(0).GetComponent<ItemData>().item.Id == id
+                        it.transform.GetChild(0).GetComponent<ItemData>().item.Id.Equals(id)
+                         select it.transform.GetChild(0).GetComponent<ItemData>()).FirstOrDefault();
+
+        return item;
+    }
+
+    public ItemData FindDurabilityItemData(Item itemRemove)
+    {
+        ItemData item = (from it in slots
+                         where it.transform.childCount > 0 &&
+                         it.transform.GetChild(0) != null &&
+                         it.transform.GetChild(0).GetComponent<ItemData>() != null &&
+                         it.transform.GetChild(0).GetComponent<ItemData>().item.Equals(itemRemove)
                          select it.transform.GetChild(0).GetComponent<ItemData>()).FirstOrDefault();
 
         return item;
@@ -152,7 +169,7 @@ public class Inventory : MonoBehaviour
 	{
 		for (int i = 0; i < items.Count; i++)
 		{
-			if (items[i].Id == item.Id)
+			if (items[i].Id.Equals(item.Id))
 			{
 				return true;
 			}
@@ -167,19 +184,45 @@ public class Inventory : MonoBehaviour
         {
             if (!Progress.Instance.activeBar)
             {
-                addItem = item;
-                Progress.Instance.ProgressBar(0.09F, AddItem);
+                addItem = new Item(item);
+                Progress.Instance.ProgressBar(0.09F, AddLife);
                 return true;
             }                     
         }
         return false;
     }
 
-    public void AddItem()
+    public void AddLife()
     {
         characterStatus.addLife(addItem.Power);
         this.RemoveItem(addItem.Id, 1);
         addItem = null;
+    }
+
+    public bool RemoveDurability(Item item)
+    {    
+        for (int i = 0; i < items.Count; i++)
+        {
+            if (items[i].Id.Equals(item.Id) && items[i].Slot.Equals(item.Slot))
+            {
+                items[i].DurabilityCount -= 1;
+
+                if (items[i].DurabilityCount <= 0)
+                {
+                    RemoveItemDurability(items[i]);
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    public void RemoveItemDurability(Item item)
+    {
+        tooltip.SetActive(false);
+        ItemData itemData = FindDurabilityItemData(item);
+        if(itemData != null)
+            Destroy(itemData.gameObject);
     }
 
     public void ActiveDisableInventory()

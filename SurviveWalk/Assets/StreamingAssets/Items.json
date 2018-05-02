@@ -12,6 +12,7 @@
 		"description": "Uma maça madura.",
 		"stackable": true,
 		"rarity": 1,
+		"durability" : 0,
 		"slug":  "apple"
 	},
 	{
@@ -27,6 +28,7 @@
 		"description": "Um machado de ferro.",
 		"stackable": false,
 		"rarity": 1,
+		"durability" : 10,
 		"slug":  "iron_axe"
 	},
 	{
@@ -42,6 +44,7 @@
 		"description": "Uma madeira cortada.",
 		"stackable": true,
 		"rarity": 1,
+		"durability" : 0,
 		"slug": "madeira"
 	},
 	{
@@ -57,6 +60,7 @@
 		"description": "Um amontoado de ferro.",
 		"stackable": true,
 		"rarity": 1,
+		"durability" : 0,
 		"slug":  "ferro"
 	},
 	{
@@ -72,6 +76,7 @@
 		"description": "Uma picareta de ferro.",
 		"stackable": false,
 		"rarity": 1,
+		"durability" : 10,
 		"slug":  "iron_pick"
 	},
 	{
@@ -87,6 +92,7 @@
 		"description": "Um amontoado de galhos.",
 		"stackable": true,
 		"rarity": 1,
+		"durability" : 0,
 		"slug":  "galho"
 	},
 	{
@@ -102,6 +108,7 @@
 		"description": "Um amontoado de pedras.",
 		"stackable": true,
 		"rarity": 1,
+		"durability" : 0,
 		"slug":  "pedra"
 	},
 	{
@@ -117,6 +124,7 @@
 		"description": "Um machado de pedra.",
 		"stackable": false,
 		"rarity": 1,
+		"durability" : 5,
 		"slug":  "stone_axe"
 	},
 	{
@@ -132,6 +140,7 @@
 		"description": "Uma picareta de pedra.",
 		"stackable": false,
 		"rarity": 1,
+		"durability" : 5,
 		"slug":  "stone_pick"
 	},
 	{
@@ -147,6 +156,7 @@
 		"description": "Uma espada feita de madeira.",
 		"stackable": false,
 		"rarity": 1,
+		"durability" : 5,
 		"slug":  "wood_sword"
 	},
 	{
@@ -162,6 +172,7 @@
 		"description": "Uma espada feita de ferro.",
 		"stackable": false,
 		"rarity": 1,
+		"durability" : 10,
 		"slug":  "iron_sword"
 	}
 ]

@@ -21,7 +21,14 @@ public class Utils {
             {
                 return true;
             }
-        } else if (ResourceType.Comida == resourceType)
+        }
+
+        return PodeCraftarSemMaterial(resourceType);
+    }
+
+    public static bool PodeCraftarSemMaterial(ResourceType resourceType)
+    {
+        if (ResourceType.Comida == resourceType)
         {
             return true;
         }

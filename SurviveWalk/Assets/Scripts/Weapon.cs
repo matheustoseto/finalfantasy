@@ -34,10 +34,15 @@ public class Weapon : MonoBehaviour {
         if ("Enemy".Equals(other.tag) && attck)
         {
             if (item != null)
-                other.GetComponent<EnemyController>().RemoveLife(item.Power);
-            else
+            {
+                if (other.GetComponent<EnemyController>().RemoveLife(item.Power))
+                    if (Inventory.Instance.RemoveDurability(item))
+                        item = null;
+            } else
+            {
                 other.GetComponent<EnemyController>().RemoveLife(1);
-
+            }
+ 
             attck = false;
             transform.localPosition = originalPosition;
         }

@@ -86,7 +86,7 @@ public class EnemyController : MonoBehaviour {
         transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 5f);
     }
 
-    public void RemoveLife(float life)
+    public bool RemoveLife(float life)
     {
         if (!removeLife)
         {
@@ -99,7 +99,10 @@ public class EnemyController : MonoBehaviour {
 
             if (this.life <= 0)
                 Destroy(gameObject);
-        }       
+
+            return true;
+        }
+        return false;
     }
 
     private void OnTriggerStay(Collider other)

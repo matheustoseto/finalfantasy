@@ -59,7 +59,7 @@ public class SlotSelect : MonoBehaviour {
     {
         if (slotItem != null)
         {
-            Item item = inventory.FindItem(slotItem.GetComponent<ItemData>().item.Id);
+            Item item = slotItem.GetComponent<ItemData>().item;
             if ("Weapon".Equals(item.Type))
             {
                 weapon.item = item;

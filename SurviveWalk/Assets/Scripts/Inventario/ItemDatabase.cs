@@ -63,7 +63,9 @@ public class ItemDatabase : MonoBehaviour {
 			newItem.Stackable = (bool)itemData[i]["stackable"];
 			newItem.Rarity = (int)itemData[i]["rarity"];
 			newItem.Slug = itemData[i]["slug"].ToString();
-			newItem.Sprite = Resources.Load<Sprite>("Sprites/Items/" + newItem.Slug);
+            newItem.Durability = (int)itemData[i]["durability"];
+            newItem.DurabilityCount = (int)itemData[i]["durability"];
+            newItem.Sprite = Resources.Load<Sprite>("Sprites/Items/" + newItem.Slug);
 
 			database.Add(newItem);
 		}
@@ -117,7 +119,8 @@ public class ItemDatabase : MonoBehaviour {
 public class Item
 {
 	public int Id { get; set; }
-	public string Title { get; set; }
+    public int Slot { get; set; }
+    public string Title { get; set; }
 	public int Value { get; set; }
     public string Type { get; set; }
     public int Power { get; set; }
@@ -126,13 +129,34 @@ public class Item
 	public string Description { get; set; }
 	public bool Stackable { get; set; }
 	public int Rarity { get; set; }
-	public string Slug { get; set; }
+    public int Durability { get; set; }
+    public int DurabilityCount { get; set; }
+    public string Slug { get; set; }
 	public Sprite Sprite { get; set; }
 
 	public Item()
 	{
 		this.Id = -1;
 	}
+
+    public Item(Item item)
+    {
+        this.Id = item.Id;
+        this.Slot = item.Slot;
+        this.Title = item.Title;
+        this.Value = item.Value;
+        this.Type = item.Type;
+        this.Power = item.Power;
+        this.Defense = item.Defense;
+        this.Vitality = item.Vitality;
+        this.Description = item.Description;
+        this.Stackable = item.Stackable;
+        this.Rarity = item.Rarity;
+        this.Durability = item.Durability;
+        this.DurabilityCount = item.DurabilityCount;
+        this.Slug = item.Slug;
+        this.Sprite = item.Sprite;
+    }
 }
 
 public class CraftHouse

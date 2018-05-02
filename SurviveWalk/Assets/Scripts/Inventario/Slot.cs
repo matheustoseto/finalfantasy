@@ -10,7 +10,7 @@ public class Slot : MonoBehaviour, IDropHandler
 
 	void Start()
 	{
-		inv = GameObject.Find("Inventory").GetComponent<Inventory>();
+        inv = Inventory.Instance;
 	}
 
 	public void OnDrop(PointerEventData eventData)

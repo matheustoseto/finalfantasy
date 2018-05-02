@@ -15,7 +15,7 @@ public class ItemData : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
 
 	void Start()
 	{
-		inv = GameObject.Find("Inventory").GetComponent<Inventory>();
+        inv = Inventory.Instance;
 		tooltip = inv.GetComponent<Tooltip>();
         canvas = GameObject.FindGameObjectWithTag("Canvas");
 
@@ -45,7 +45,9 @@ public class ItemData : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
 	{
 		this.transform.SetParent(inv.slots[slotId].transform);
 		this.transform.position = inv.slots[slotId].transform.position;
-		GetComponent<CanvasGroup>().blocksRaycasts = true;
+        item.Slot = slotId;
+
+        GetComponent<CanvasGroup>().blocksRaycasts = true;
 	}
 
 	public void OnPointerDown(PointerEventData eventData)

@@ -20,6 +20,8 @@ public class Resource : MonoBehaviour {
     private float deltaTimer;
     private bool create = false;
 
+    private Item selectItem;
+
     private void Start()
     {
         onMouseExit = GetComponent<Renderer>().material;
@@ -64,8 +66,8 @@ public class Resource : MonoBehaviour {
             GetComponent<Renderer>().material = onMouseOver;
 
             if (Input.GetMouseButtonDown(0)){
-                Item item = player.GetComponent<SlotSelect>().GetSelectItemBySlot();
-                if (Utils.PodeCraftar(type, item))
+                selectItem = player.GetComponent<SlotSelect>().GetSelectItemBySlot();
+                if (Utils.PodeCraftar(type, selectItem))
                 {
                     Progress.Instance.ProgressBar(speed, new Action(CreateItem));
                 } else
@@ -91,6 +93,8 @@ public class Resource : MonoBehaviour {
 
     public void CreateItem()
     {
+        if(selectItem != null && !Utils.PodeCraftarSemMaterial(type))
+            Inventory.Instance.RemoveDurability(selectItem);
         item.GetComponent<ItemResource>().idItem = idItem;
         for (int i = 1; i <= qnt; i++)
         {
