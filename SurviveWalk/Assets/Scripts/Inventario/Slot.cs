@@ -27,7 +27,7 @@ public class Slot : MonoBehaviour, IDropHandler
             droppedItem.item.Slot = id;
 
             Transform item = this.transform.GetChild(0);
-			item.GetComponent<ItemData>().slotId = droppedItem.slotId;
+            item.GetComponent<ItemData>().slotId = droppedItem.slotId;
             item.GetComponent<ItemData>().item.Slot = droppedItem.slotId;
             item.transform.SetParent(inv.slots[droppedItem.slotId].transform);
 			item.transform.position = inv.slots[droppedItem.slotId].transform.position;
@@ -37,7 +37,7 @@ public class Slot : MonoBehaviour, IDropHandler
 
             droppedItem.slotId = id;
 			droppedItem.transform.SetParent(this.transform);
-			droppedItem.transform.position = this.transform.position;        
-		}
+			droppedItem.transform.position = this.transform.position;
+        }
 	}
 }

@@ -4,27 +4,26 @@ using UnityEngine;
 
 public class IcarusController : MonoBehaviour {
 
+    public GameObject seta;
     public float runSpeed = 10;
     public float turnSmoothTime = 0.2f;
     public float speedSmoothTime = 0.1f;
-    float turnSmoothVelocity;
-    float speedSmoothVelocity;
-    float currentSpeed;
-    float velocityY;
+    private float turnSmoothVelocity;
+    private float speedSmoothVelocity;
+    private float currentSpeed;
+    private float velocityY;
 
-    CharacterController controller;
-
+    private CharacterController controller;
 
     void Start()
     {
         controller = GetComponent<CharacterController>();
+        seta.SetActive(true);
     }
-
 
     void Update()
     {
         Vector2 input = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
-
         Move(input);
     }
 

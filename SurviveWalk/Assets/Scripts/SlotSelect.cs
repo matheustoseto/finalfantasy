@@ -50,16 +50,15 @@ public class SlotSelect : MonoBehaviour {
         inventory.slots[slotSelect].GetComponent<Image>().color = Color.green;
         backupSlotSelect = slotSelect;
         if (inventory.slots[slotSelect].transform.childCount > 0)
-            SetWeapon(inventory.slots[slotSelect].transform.GetChild(0).gameObject);
+            SetWeapon(inventory.items[slotSelect]);
         else
             SetWeapon(null);
     }
 
-    public void SetWeapon(GameObject slotItem)
+    public void SetWeapon(Item item)
     {
-        if (slotItem != null)
+        if (item != null)
         {
-            Item item = slotItem.GetComponent<ItemData>().item;
             if ("Weapon".Equals(item.Type))
             {
                 weapon.item = item;
@@ -77,7 +76,10 @@ public class SlotSelect : MonoBehaviour {
     public Item GetSelectItemBySlot()
     {
         if (inventory.slots[slotSelect].transform.childCount > 0)
-            return inventory.slots[slotSelect].transform.GetChild(0).gameObject.GetComponent<ItemData>().item;
+        {
+            return inventory.items[slotSelect];
+            //return inventory.slots[slotSelect].transform.GetChild(0).gameObject.GetComponent<ItemData>().item;
+        }
         return null;
     }
 }

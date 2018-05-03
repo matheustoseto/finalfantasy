@@ -12,7 +12,7 @@ public class CharacterItem : MonoBehaviour {
         if (other.GetComponent<ItemResource>() != null)
         {
             inventory.AddItem(other.GetComponent<ItemResource>().idItem);
-            GameObject item = Instantiate(getItem, other.gameObject.transform.position, other.gameObject.transform.rotation);
+            GameObject item = Instantiate(getItem, other.gameObject.transform.position, Quaternion.identity);
             item.GetComponent<SpriteRenderer>().sprite = inventory.FindItem(other.GetComponent<ItemResource>().idItem).Sprite;
             Destroy(other.gameObject);
         }   

@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class CharacterStatus : MonoBehaviour {
 
     public GameObject lifeBar;
+    public GameObject startPoint;
     public Text lifeText;
     public float life;
     public float lifeProgress;
@@ -16,7 +17,7 @@ public class CharacterStatus : MonoBehaviour {
 
     private void Start()
     {
-        transform.localPosition = GameObject.FindGameObjectWithTag("Startpoint").transform.position;
+        transform.position = startPoint.transform.position;
         originalColor = lifeBar.GetComponent<Image>().color;
         lifeBar.transform.localScale = new Vector3(PegarTamanhoBarra(lifeProgress, life), lifeBar.transform.localScale.y, lifeBar.transform.localScale.z);
         lifeText.text = PegarPorcentagemBarra(lifeProgress, life, 100) + "%";
@@ -61,7 +62,7 @@ public class CharacterStatus : MonoBehaviour {
         if ((lifeProgress - removeLife) <= 0)
         {
             lifeProgress = 0;
-            transform.localPosition = GameObject.FindGameObjectWithTag("Startpoint").transform.position;
+            transform.position = startPoint.transform.position;
             lifeProgress = 30;
         } else
         {

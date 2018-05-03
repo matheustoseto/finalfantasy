@@ -33,18 +33,7 @@ public class Weapon : MonoBehaviour {
     {
         if ("Enemy".Equals(other.tag) && attck)
         {
-            if (item != null)
-            {
-                if (other.GetComponent<EnemyController>().RemoveLife(item.Power))
-                    if (Inventory.Instance.RemoveDurability(item))
-                        item = null;
-            } else
-            {
-                other.GetComponent<EnemyController>().RemoveLife(1);
-            }
- 
-            attck = false;
-            transform.localPosition = originalPosition;
+            Damage(other.GetComponent<EnemyController>());
         }
     }
 
@@ -52,13 +41,28 @@ public class Weapon : MonoBehaviour {
     {
         if ("Enemy".Equals(other.tag) && attck)
         {
-            if(item != null)
-                other.GetComponent<EnemyController>().RemoveLife(item.Power);
-            else
-                other.GetComponent<EnemyController>().RemoveLife(1);
-
-            attck = false;
-            transform.localPosition = originalPosition;
+            Damage(other.GetComponent<EnemyController>());
         }
+    }
+
+    public void Damage(EnemyController enemyController)
+    {
+        if (item != null)
+        {
+            if (enemyController.RemoveLife(item.Power))
+            {
+                if (Inventory.Instance.RemoveDurability(item))
+                {
+                    item = null;
+                }
+            }
+        }
+        else
+        {
+            enemyController.RemoveLife(1);
+        }
+
+        attck = false;
+        transform.localPosition = originalPosition;
     }
 }

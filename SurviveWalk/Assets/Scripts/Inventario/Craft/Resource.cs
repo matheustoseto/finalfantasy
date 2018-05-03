@@ -21,9 +21,11 @@ public class Resource : MonoBehaviour {
     private bool create = false;
 
     private Item selectItem;
+    private Vector3 originalScale;
 
     private void Start()
     {
+        originalScale = this.gameObject.transform.localScale;
         onMouseExit = GetComponent<Renderer>().material;
         player = GameObject.FindGameObjectWithTag("Player");
         alert = GameObject.FindGameObjectWithTag("Alerta");
@@ -33,7 +35,7 @@ public class Resource : MonoBehaviour {
     {
         if (deltaTimer <= 0 && create)
         {
-            this.gameObject.transform.localScale = new Vector3(1F, 1F, 1F);
+            this.gameObject.transform.localScale = originalScale;
             create = false;
         } else if (deltaTimer >= 0 && create)
         {
@@ -101,7 +103,7 @@ public class Resource : MonoBehaviour {
         item.GetComponent<ItemResource>().idItem = idItem;
         for (int i = 1; i <= qnt; i++)
         {
-            Vector3 pos = transform.position + new Vector3(UnityEngine.Random.Range(-0.9f, 0.9f), 0, UnityEngine.Random.Range(-0.9f, 0.9f));
+            Vector3 pos = transform.position + new Vector3(UnityEngine.Random.Range(-1.5f, 1.5f), 0, UnityEngine.Random.Range(-1.5f, 1.5f));
             Instantiate(item, pos, transform.rotation);            
         }
         DisableItem();
@@ -110,7 +112,7 @@ public class Resource : MonoBehaviour {
     private void DisableItem()
     {
         deltaTimer = timer;
-        this.gameObject.transform.localScale = new Vector3(0.5F,0.5F,0.5F);
+        this.gameObject.transform.localScale = new Vector3(0.5F, this.gameObject.transform.localScale.y, 0.5F);
         create = true;
     }
 }

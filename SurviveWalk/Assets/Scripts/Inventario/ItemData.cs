@@ -45,7 +45,6 @@ public class ItemData : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
 	{
 		this.transform.SetParent(inv.slots[slotId].transform);
 		this.transform.position = inv.slots[slotId].transform.position;
-        item.Slot = slotId;
 
         GetComponent<CanvasGroup>().blocksRaycasts = true;
 	}
