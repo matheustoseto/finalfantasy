@@ -93,12 +93,16 @@ public class Resource : MonoBehaviour {
 
     public void CreateItem()
     {
-        if(selectItem != null && !Utils.PodeCraftarSemMaterial(type))
+        if (!Utils.PodeCraftarSemMaterial(type))
+        {
             Inventory.Instance.RemoveDurability(selectItem);
+        }
+            
         item.GetComponent<ItemResource>().idItem = idItem;
         for (int i = 1; i <= qnt; i++)
         {
-            Instantiate(item, transform.position + new Vector3(UnityEngine.Random.Range(-0.9f, 0.9f), 0, UnityEngine.Random.Range(-0.9f, 0.9f)), transform.rotation);            
+            Vector3 pos = transform.position + new Vector3(UnityEngine.Random.Range(-0.9f, 0.9f), 0, UnityEngine.Random.Range(-0.9f, 0.9f));
+            Instantiate(item, pos, transform.rotation);            
         }
         DisableItem();
     }

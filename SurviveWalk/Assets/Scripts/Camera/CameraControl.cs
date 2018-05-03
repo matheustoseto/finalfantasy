@@ -33,7 +33,9 @@ public class CameraControl : CameraFollow {
 	
     private void GetInputs()
     {
-        inputCameraPosition = PlayerControl.playerInput.CameraPositionKeyboard;
+        //inputCameraPosition = PlayerControl.playerInput.CameraPositionKeyboard;
+
+        inputCameraPosition = Input.GetKeyDown(KeyCode.PageDown) ? -1 : Input.GetKeyDown(KeyCode.PageUp) ? 1 : 0;
     }
 
 	// Update is called once per frame

@@ -79,13 +79,13 @@ public class Inventory : MonoBehaviour
     public void AddItem(int id)
 	{
         Item itemToAdd = new Item(database.FetchItemById(id));
+
         if (itemToAdd.Stackable && CheckIfItemIsInInventory(itemToAdd))
 		{
 			for (int i = 0; i < items.Count; i++)
 			{
-				if (items[i].Id == id)
+				if (items[i].Id.Equals(itemToAdd.Id))
 				{
-                    itemToAdd.Slot = i;
                     ItemData data = slots[i].transform.GetChild(0).GetComponent<ItemData>();
 					data.amount++;
 					data.transform.GetChild(0).GetComponent<Text>().text = data.amount.ToString();
@@ -97,7 +97,7 @@ public class Inventory : MonoBehaviour
 		{
 			for (int i = 0; i < items.Count; i++)
 			{
-				if (items[i].Id == -1)
+				if (items[i].Id.Equals(-1))
 				{
                     itemToAdd.Slot = i;
                     items[i] = itemToAdd;
@@ -222,7 +222,17 @@ public class Inventory : MonoBehaviour
         tooltip.SetActive(false);
         ItemData itemData = FindDurabilityItemData(item);
         if(itemData != null)
+        {
             Destroy(itemData.gameObject);
+            for (int i = 0; i < items.Count; i++)
+            {
+                if (items[i].Id.Equals(itemData.item.Id))
+                {
+                    items[i] = new Item();
+                }
+            }
+        }
+            
     }
 
     public void ActiveDisableInventory()

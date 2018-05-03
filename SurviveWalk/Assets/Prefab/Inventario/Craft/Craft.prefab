@@ -37,7 +37,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1219412246263294}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.08, y: 0.5, z: -6.94}
+  m_LocalPosition: {x: -0.08, y: -3.54, z: 0.06}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -107,12 +107,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8b267b5799bd93459bf878035b4340e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerInventory: {fileID: 0}
-  openCraft: 0
-  craftItens:
-  - preFab: {fileID: 1993325973734462, guid: ec2a4e0c4c1ca2d4db8a3d5b3849876f, type: 2}
-    craftCombination:
-    - item: 1
-      qnt: 3
-    - item: 2
-      qnt: 1
+  inventory: {fileID: 0}
+  itemDatabase: {fileID: 0}
+  inventoryPanel: {fileID: 0}
+  craftPanel: {fileID: 0}
+  craftItem: {fileID: 1961529577840948, guid: 8af379d5f1b38a64b8adf8c7aad5de6f, type: 2}

@@ -77,7 +77,7 @@ public class SlotSelect : MonoBehaviour {
     public Item GetSelectItemBySlot()
     {
         if (inventory.slots[slotSelect].transform.childCount > 0)
-            return inventory.FindItem(inventory.slots[slotSelect].transform.GetChild(0).gameObject.GetComponent<ItemData>().item.Id);
+            return inventory.slots[slotSelect].transform.GetChild(0).gameObject.GetComponent<ItemData>().item;
         return null;
     }
 }

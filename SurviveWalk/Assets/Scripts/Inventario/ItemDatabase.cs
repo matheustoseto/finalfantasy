@@ -29,7 +29,7 @@ public class ItemDatabase : MonoBehaviour {
 	{
 		for (int i = 0; i < database.Count; i++)
 		{
-			if (id.Equals(database[i].Id))
+			if (database[i].Id.Equals(id))
 			{
 				return database[i];
 			}
@@ -156,6 +156,48 @@ public class Item
         this.DurabilityCount = item.DurabilityCount;
         this.Slug = item.Slug;
         this.Sprite = item.Sprite;
+    }
+
+    public override bool Equals(object obj)
+    {
+        var item = obj as Item;
+        return item != null &&
+               Id == item.Id &&
+               Slot == item.Slot &&
+               Title == item.Title &&
+               Value == item.Value &&
+               Type == item.Type &&
+               Power == item.Power &&
+               Defense == item.Defense &&
+               Vitality == item.Vitality &&
+               Description == item.Description &&
+               Stackable == item.Stackable &&
+               Rarity == item.Rarity &&
+               Durability == item.Durability &&
+               DurabilityCount == item.DurabilityCount &&
+               Slug == item.Slug &&
+               EqualityComparer<Sprite>.Default.Equals(Sprite, item.Sprite);
+    }
+
+    public override int GetHashCode()
+    {
+        var hashCode = 745842380;
+        hashCode = hashCode * -1521134295 + Id.GetHashCode();
+        hashCode = hashCode * -1521134295 + Slot.GetHashCode();
+        hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Title);
+        hashCode = hashCode * -1521134295 + Value.GetHashCode();
+        hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Type);
+        hashCode = hashCode * -1521134295 + Power.GetHashCode();
+        hashCode = hashCode * -1521134295 + Defense.GetHashCode();
+        hashCode = hashCode * -1521134295 + Vitality.GetHashCode();
+        hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Description);
+        hashCode = hashCode * -1521134295 + Stackable.GetHashCode();
+        hashCode = hashCode * -1521134295 + Rarity.GetHashCode();
+        hashCode = hashCode * -1521134295 + Durability.GetHashCode();
+        hashCode = hashCode * -1521134295 + DurabilityCount.GetHashCode();
+        hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Slug);
+        hashCode = hashCode * -1521134295 + EqualityComparer<Sprite>.Default.GetHashCode(Sprite);
+        return hashCode;
     }
 }
 
