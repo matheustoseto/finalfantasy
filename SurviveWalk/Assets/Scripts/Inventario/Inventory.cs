@@ -58,8 +58,8 @@ public class Inventory : MonoBehaviour
         slots[3].GetComponent<RectTransform>().anchoredPosition = new Vector2(520, 30);
 
         //Add item
-        AddItem(10);
-        AddItem(10);
+        AddItem(9);
+        //AddItem(10);
         //AddItem(2);
         //AddItem(2);
         //AddItem(3);
