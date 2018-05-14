@@ -31,7 +31,7 @@ public class CameraControl : CameraFollow {
             DistancePoint = distancePositions[posDistPosition];
 	}
 	
-    private void GetInputs()
+    protected virtual void GetInputs()
     {
         //inputCameraPosition = PlayerControl.playerInput.CameraPositionKeyboard;
 
@@ -47,6 +47,13 @@ public class CameraControl : CameraFollow {
     {
         Follow();
 
+        ChangeCameraPosition();
+
+        LootAt();
+    }
+
+    protected void ChangeCameraPosition()
+    {
         if (distancePositions.Count > 0)
         {
             if (inputCameraPosition > 0 && posDistPosition + 1 < distancePositions.Count) // Page Up
@@ -60,9 +67,7 @@ public class CameraControl : CameraFollow {
                 DistancePoint = distancePositions[posDistPosition];
             }
         }
-        LootAt();
     }
-
 
     private void LootAt()
     {
