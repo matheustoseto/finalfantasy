@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum TypeMove { Original, RotateY, Turn }
 public class IcarusController : MonoBehaviour {
 
     public Transform body = null;
@@ -11,6 +12,8 @@ public class IcarusController : MonoBehaviour {
     public float speedRotation = 250;
     public float turnSmoothTime = 0.2f;
     public float speedSmoothTime = 0.1f;
+    public TypeMove typeMove = TypeMove.RotateY;
+
     private float turnSmoothVelocity;
     private float speedSmoothVelocity;
     private float currentSpeed;
@@ -20,7 +23,7 @@ public class IcarusController : MonoBehaviour {
 
     private CharacterController controller;
 
-    public float SpeedRotation { get { return speedRotation; } }
+    public  float SpeedRotation { get { return speedRotation; } }
 
     void Start()
     {
@@ -37,25 +40,23 @@ public class IcarusController : MonoBehaviour {
 
     void Move(Vector2 dir)
     {
+        switch (typeMove)
+        {
+            case TypeMove.Original: MoveOriginal(dir); return;
+            case TypeMove.RotateY: MoveRotateY(dir); return;
+            case TypeMove.Turn: MoveTurn(dir); return;
+            default:
+                MoveOriginal(dir); return;
+        }
+    }
+
+
+    void MoveRotateY(Vector2 dir)
+    {
         Vector2 inputDir = dir.normalized;
 
-        /*if (inputDir != Vector2.zero)
-        {
-            float targetRotation = Mathf.Atan2(inputDir.x, inputDir.y) * Mathf.Rad2Deg;
-            transform.eulerAngles = Vector3.up * Mathf.SmoothDampAngle(transform.eulerAngles.y, targetRotation, ref turnSmoothVelocity, turnSmoothTime);
-        }
-        */
         float targetSpeed = runSpeed * inputDir.magnitude;
         currentSpeed = Mathf.SmoothDamp(currentSpeed, targetSpeed, ref speedSmoothVelocity, speedSmoothTime);
-
-        //Vector3 velocity = transform.forward * currentSpeed + Vector3.up * velocityY;
-        //controller.Move(velocity * Time.deltaTime);
-
-
-        ///////////////////////////////////////////////////////////////////////////////
-
-        // Body Rotate //
-        //BodyRotateKeyboard(inputDir.y, inputDir.x);
 
         // Efetuar movimentação e rotação em Y
         transform.Rotate(0, inputDir.x * speedRotation, 0);
@@ -80,38 +81,8 @@ public class IcarusController : MonoBehaviour {
 
     }
 
-    //public void MoveBullet(float inputForward, float inputTurn, float inputRotationY, float inputRun)
-    //{
-    //    // Efetuar movimentação e rotação em Y
-    //    transform.Rotate(0, inputRotationY * speedRotation, 0);
-
-    //    // Efetuar rotação em X
-    //    //orientacao.Rotate(-entVirarX * speedRotation, 0, 0);
-
-    //    // Efetuar delocamento no cenário
-    //    Vector3 auxSpeed = Vector3.zero;
-    //    if (inputRun > 0)
-    //        speedActual = speedRun;
-    //    else
-    //        speedActual = speedWalk;
-
-    //    if (inputForward > 0 && inputTurn > 0)
-    //    {
-    //        auxSpeed.z = 0.5f;// (inputForward * speedActual) / 2;
-    //        auxSpeed.x = 0.5f; // (inputTurn * speedActual) / 2;
-    //    }
-    //    else
-    //    {
-    //        auxSpeed.z = 1; // inputForward * speedActual;
-    //        auxSpeed.x = 1; // inputTurn * speedActual;
-    //    }
-    //    speed.z = auxSpeed.z * inputForward * speedActual;
-    //    speed.x = auxSpeed.x * inputTurn * speedActual;
-
-    //    charControl.Move(transform.TransformDirection(speed * Time.deltaTime));
-    //}
-
-    void Move1(Vector2 dir)
+    
+    void MoveTurn(Vector2 dir)
     {
         Vector2 inputDir = dir.normalized;
 
@@ -147,28 +118,25 @@ public class IcarusController : MonoBehaviour {
         //    speedActual = speedWalk;
 
         Vector3 move = transform.TransformDirection(speed * currentSpeed * Time.deltaTime);
-
         controller.Move(move);
-
-
     }
 
-    //void Move_Old(Vector2 dir)
-    //{
-    //    Vector2 inputDir = dir.normalized;
+    void MoveOriginal(Vector2 dir)
+    {
+        Vector2 inputDir = dir.normalized;
 
-    //    if (inputDir != Vector2.zero)
-    //    {
-    //        float targetRotation = Mathf.Atan2(inputDir.x, inputDir.y) * Mathf.Rad2Deg;
-    //        transform.eulerAngles = Vector3.up * Mathf.SmoothDampAngle(transform.eulerAngles.y, targetRotation, ref turnSmoothVelocity, turnSmoothTime);
-    //    }
+        if (inputDir != Vector2.zero)
+        {
+            float targetRotation = Mathf.Atan2(inputDir.x, inputDir.y) * Mathf.Rad2Deg;
+            transform.eulerAngles = Vector3.up * Mathf.SmoothDampAngle(transform.eulerAngles.y, targetRotation, ref turnSmoothVelocity, turnSmoothTime);
+        }
 
-    //    float targetSpeed = runSpeed * inputDir.magnitude;
-    //    currentSpeed = Mathf.SmoothDamp(currentSpeed, targetSpeed, ref speedSmoothVelocity, speedSmoothTime);
+        float targetSpeed = runSpeed * inputDir.magnitude;
+        currentSpeed = Mathf.SmoothDamp(currentSpeed, targetSpeed, ref speedSmoothVelocity, speedSmoothTime);
 
-    //    Vector3 velocity = transform.forward * currentSpeed + Vector3.up * velocityY;
-    //    controller.Move(velocity * Time.deltaTime);
-    //}
+        Vector3 velocity = transform.forward * currentSpeed + Vector3.up * velocityY;
+        controller.Move(velocity * Time.deltaTime);
+    }
 
 
     private void BodyRotateKeyboard(float inputForward, float inputTurn)
