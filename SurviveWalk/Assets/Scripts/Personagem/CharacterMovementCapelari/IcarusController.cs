@@ -13,6 +13,7 @@ public class IcarusController : MonoBehaviour {
     public float turnSmoothTime = 0.2f;
     public float speedSmoothTime = 0.1f;
     public TypeMove typeMove = TypeMove.RotateY;
+    Animator animator;    
 
     private float turnSmoothVelocity;
     private float speedSmoothVelocity;
@@ -27,6 +28,7 @@ public class IcarusController : MonoBehaviour {
 
     void Start()
     {
+        animator = GetComponent<Animator>();
         controller = GetComponent<CharacterController>();
         seta.SetActive(true);
     }
@@ -35,7 +37,9 @@ public class IcarusController : MonoBehaviour {
     {
         input.x = Input.GetAxisRaw("Horizontal");
         input.y = Input.GetAxisRaw("Vertical");
+        
         Move(input);
+        Animating(input);
     }
 
     void Move(Vector2 dir)
@@ -154,4 +158,9 @@ public class IcarusController : MonoBehaviour {
         else if (inputForward > 0 && inputTurn < 0) body.transform.eulerAngles = new Vector3(0, 315, 0); // UpLeft
     }
 
+    void Animating(Vector2 dir)
+    {
+        bool running = dir.x != 0f || dir.y != 0f;
+        animator.SetBool("isRunning", running);
+    }
 }
