@@ -14,6 +14,9 @@ public class EnemyController : MonoBehaviour {
     Vector3 enemyInitialPos;
     Transform playerTarget;
     NavMeshAgent agent;
+    EnemyAnimator enemy;
+    Animator animator;
+
 
     private float timer = 0.3f;
     private bool removeLife = false;
@@ -25,57 +28,61 @@ public class EnemyController : MonoBehaviour {
    
     // Use this for initialization
     void Start () {
-        originalMaterial = Body.material;
+        //originalMaterial = Body.material;
         enemyInitialPos = transform.position;
         playerTarget = PlayerManager.instance.player.transform;
         agent = GetComponent<NavMeshAgent>();
-	}
+        enemy = GetComponent<EnemyAnimator>();
+        animator = GetComponent<Animator>();
+    }
 	
 	// Update is called once per frame
 	void Update () {
-
-        if (removeLife)
+        if (enemy.realrised)
         {
-            timer -= Time.deltaTime;
-
-            if (timer <= 0)
+            if (removeLife)
             {
-                removeLife = false;
-                Body.material = originalMaterial;
+                timer -= Time.deltaTime;
+
+                if (timer <= 0)
+                {
+                    removeLife = false;
+                    Body.material = originalMaterial;
+                }
             }
-        }
 
-        if (attack)
-        {
-            timerAttack -= Time.deltaTime;
-
-            if (timerAttack <= 0)
+            if (attack)
             {
-                attack = false;
+                timerAttack -= Time.deltaTime;
+
+                if (timerAttack <= 0)
+                {
+                    attack = false;
+                }
             }
-        }
 
-        float distance = Vector3.Distance(playerTarget.position, transform.position);
+            float distance = Vector3.Distance(playerTarget.position, transform.position);
 
-        //Player in range = chase!
-        if(distance <= radius)
-        {
-            agent.SetDestination(playerTarget.position);
-            lookToPlayer();
-
-            if (distance <= agent.stoppingDistance)
+            //Player in range = chase!
+            if (distance <= radius)
             {
-                //PUT Attack the player HERE!!
+                agent.SetDestination(playerTarget.position);
                 lookToPlayer();
-            }
-        }
 
-        //Return to original spawn point + put full HP
-        else
-        {
-            agent.SetDestination(enemyInitialPos);
-            //PUT FULL HP HERE!!
-        }           
+                if (distance <= agent.stoppingDistance)
+                {
+                    //PUT Attack the player HERE!!
+                    lookToPlayer();
+                }
+            }
+
+            //Return to original spawn point + put full HP
+            else
+            {
+                agent.SetDestination(enemyInitialPos);
+                //PUT FULL HP HERE!!
+            }
+        }          
 	}
 
     //Looks to player
@@ -107,10 +114,11 @@ public class EnemyController : MonoBehaviour {
 
     private void OnTriggerStay(Collider other)
     {
-        if ("Player".Equals(other.tag) && !attack)
+        if ("Player".Equals(other.tag) && !attack && enemy.realrised)
         {
             other.GetComponent<CharacterStatus>().RemoveLife(power);
             attack = true;
+            animator.SetTrigger("isAttack");
             timerAttack = 0.9f;
         }
     }

@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: bf05053c41edf8e4da9e42b049a83d38
-timeCreated: 1526504423
+guid: 48ecdc11b8e74e842beb3a1eb96ff357
+timeCreated: 1526940932
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
@@ -9,68 +9,77 @@ ModelImporter:
     100002: CoM
     100004: Cube
     100006: Head
-    100008: //RootNode
-    100010: LeftFinger
-    100012: LeftFoot
-    100014: LeftHand
-    100016: LeftHandThumb
-    100018: LeftLowerArm
-    100020: LeftLowerLeg
+    100008: LeftFinger
+    100010: LeftFoot
+    100012: LeftHand
+    100014: LeftHandThumb
+    100016: LeftLowerArm
+    100018: LeftLowerLeg
+    100020: LeftPoleTarget
     100022: LeftShoulder
     100024: LeftToes
     100026: LeftUpperArm
     100028: LeftUpperLeg
-    100030: Neck
-    100032: Pelvis
-    100034: RightFinger
-    100036: RightFoot
-    100038: RightHand
-    100040: RightHandThumb
-    100042: RightLowerArm
-    100044: RightLowerLeg
-    100046: RightShoulder
-    100048: RightToes
-    100050: RightUpperArm
-    100052: RightUpperLeg
-    100054: Spine1
-    100056: Spine2
-    100058: Spine3
+    100030: Mouth
+    100032: Neck
+    100034: Pelvis
+    100036: RightFinger
+    100038: RightFoot
+    100040: RightHand
+    100042: RightHandThumb
+    100044: RightLowerArm
+    100046: RightLowerLeg
+    100048: RightPoleTarget
+    100050: RightShoulder
+    100052: RightToes
+    100054: RightUpperArm
+    100056: RightUpperLeg
+    100058: //RootNode
+    100060: Spine1
+    100062: Spine2
+    100064: Spine3
     400000: Armature
     400002: CoM
     400004: Cube
     400006: Head
-    400008: //RootNode
-    400010: LeftFinger
-    400012: LeftFoot
-    400014: LeftHand
-    400016: LeftHandThumb
-    400018: LeftLowerArm
-    400020: LeftLowerLeg
+    400008: LeftFinger
+    400010: LeftFoot
+    400012: LeftHand
+    400014: LeftHandThumb
+    400016: LeftLowerArm
+    400018: LeftLowerLeg
+    400020: LeftPoleTarget
     400022: LeftShoulder
     400024: LeftToes
     400026: LeftUpperArm
     400028: LeftUpperLeg
-    400030: Neck
-    400032: Pelvis
-    400034: RightFinger
-    400036: RightFoot
-    400038: RightHand
-    400040: RightHandThumb
-    400042: RightLowerArm
-    400044: RightLowerLeg
-    400046: RightShoulder
-    400048: RightToes
-    400050: RightUpperArm
-    400052: RightUpperLeg
-    400054: Spine1
-    400056: Spine2
-    400058: Spine3
+    400030: Mouth
+    400032: Neck
+    400034: Pelvis
+    400036: RightFinger
+    400038: RightFoot
+    400040: RightHand
+    400042: RightHandThumb
+    400044: RightLowerArm
+    400046: RightLowerLeg
+    400048: RightPoleTarget
+    400050: RightShoulder
+    400052: RightToes
+    400054: RightUpperArm
+    400056: RightUpperLeg
+    400058: //RootNode
+    400060: Spine1
+    400062: Spine2
+    400064: Spine3
     2100000: unnamed
     4300000: Cube
-    7400000: Default Take
-    7400002: Idle
-    7400004: Run
-    7400006: Walk
+    7400000: Dead
+    7400002: Attack
+    7400004: Idle
+    7400006: Dead
+    7400008: Run
+    7400010: Walk
+    7400012: Rise
     9500000: //RootNode
     13700000: Cube
   externalObjects: {}
@@ -84,7 +93,7 @@ ModelImporter:
     bakeSimulation: 0
     resampleCurves: 1
     optimizeGameObjects: 0
-    motionNodeName: 
+    motionNodeName: <Root Transform>
     rigImportErrors: 
     rigImportWarnings: 
     animationImportErrors: 
@@ -101,38 +110,10 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Default Take
+      name: Dead
       takeName: Default Take
       firstFrame: 0
-      lastFrame: 63
-      wrapMode: 0
-      orientationOffsetY: 0
-      level: 0
-      cycleOffset: 0
-      loop: 0
-      hasAdditiveReferencePose: 0
-      loopTime: 0
-      loopBlend: 0
-      loopBlendOrientation: 0
-      loopBlendPositionY: 0
-      loopBlendPositionXZ: 0
-      keepOriginalOrientation: 0
-      keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 0
-      heightFromFeet: 0
-      mirror: 0
-      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-      curves: []
-      events: []
-      transformMask: []
-      maskType: 3
-      maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
-    - serializedVersion: 16
-      name: Idle
-      takeName: Idle
-      firstFrame: 0
-      lastFrame: 64
+      lastFrame: 0
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -157,10 +138,66 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
+      name: Idle
+      takeName: Idle
+      firstFrame: 0
+      lastFrame: 44
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Rise
+      takeName: Rise
+      firstFrame: 0
+      lastFrame: 77
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
       name: Run
       takeName: Run
       firstFrame: 0
-      lastFrame: 15
+      lastFrame: 16
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -188,6 +225,34 @@ ModelImporter:
       name: Walk
       takeName: Walk
       firstFrame: 0
+      lastFrame: 1
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Attack
+      takeName: Attack
+      firstFrame: 0
       lastFrame: 24
       wrapMode: 0
       orientationOffsetY: 0
@@ -195,7 +260,7 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 1
+      loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0

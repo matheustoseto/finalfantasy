@@ -38,8 +38,7 @@ public class IcarusController : MonoBehaviour {
         input.x = Input.GetAxisRaw("Horizontal");
         input.y = Input.GetAxisRaw("Vertical");
         
-        Move(input);
-        Animating(input);
+        Move(input);        
     }
 
     void Move(Vector2 dir)
@@ -156,11 +155,5 @@ public class IcarusController : MonoBehaviour {
         else if (inputForward < 0 && inputTurn < 0) body.transform.eulerAngles = new Vector3(0, 225, 0); // DownLeft
         else if (inputForward == 0 && inputTurn < 0) body.transform.eulerAngles = new Vector3(0, 270, 0); // Left
         else if (inputForward > 0 && inputTurn < 0) body.transform.eulerAngles = new Vector3(0, 315, 0); // UpLeft
-    }
-
-    void Animating(Vector2 dir)
-    {
-        bool running = dir.x != 0f || dir.y != 0f;
-        animator.SetBool("isRunning", running);
     }
 }
