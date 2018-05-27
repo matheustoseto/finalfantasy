@@ -2,12 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 public class EnemyController : MonoBehaviour {
 
     public Material OnAttack;
     public Renderer Body;
     public float radius = 10f;
+    public GameObject lifeBar;
+    public GameObject hitPopUp;
     public Utils.EnemyType enemyType;
 
     Vector3 enemyInitialPos;
@@ -25,6 +28,8 @@ public class EnemyController : MonoBehaviour {
 
     private bool attack = false;
     private float timerAttack = 0.9f;
+
+    private float lifeTotal;
    
     // Use this for initialization
     void Start () {
@@ -36,12 +41,16 @@ public class EnemyController : MonoBehaviour {
         animator = GetComponent<Animator>();
 
         enemyStats = Inventory.Instance.GetEnemyData(enemyType.GetHashCode());
+        lifeTotal = enemyStats.Life;
     }
 	
 	// Update is called once per frame
 	void Update () {
         if (enemy.realrised)
         {
+            if(!lifeBar.activeSelf)
+                lifeBar.SetActive(true);
+
             if (removeLife)
             {
                 timer -= Time.deltaTime;
@@ -105,6 +114,10 @@ public class EnemyController : MonoBehaviour {
             Body.material = OnAttack;
 
             enemyStats.Life -= life;
+            lifeBar.GetComponent<Image>().fillAmount = enemyStats.Life / lifeTotal;
+   
+            GameObject hit = Instantiate(hitPopUp, transform.position + new Vector3(0,6,0), hitPopUp.transform.rotation);
+            hit.GetComponent<HitPopUp>().SetText(life.ToString());
 
             if (enemyStats.Life <= 0)
                 Destroy(gameObject);
@@ -117,7 +130,7 @@ public class EnemyController : MonoBehaviour {
     private void OnTriggerStay(Collider other)
     {
         if ("Player".Equals(other.tag) && !attack && enemy.realrised)
-        {
+        {         
             other.GetComponent<CharacterStatus>().RemoveLife(enemyStats.Power);
             attack = true;
             animator.SetTrigger("isAttack");

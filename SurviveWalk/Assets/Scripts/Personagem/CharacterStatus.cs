@@ -8,6 +8,7 @@ public class CharacterStatus : MonoBehaviour {
     public GameObject lifeBar;
     public GameObject startPoint;
     public Text lifeText;
+    public GameObject hitPopUp;
     public float life;
     public float lifeProgress;
 
@@ -59,6 +60,9 @@ public class CharacterStatus : MonoBehaviour {
 
     public void RemoveLife(float removeLife)
     {
+        GameObject hit = Instantiate(hitPopUp, transform.position + new Vector3(0, 6, 0), hitPopUp.transform.rotation);
+        hit.GetComponent<HitPopUp>().SetText(removeLife.ToString());
+
         if ((lifeProgress - removeLife) <= 0)
         {
             lifeProgress = 0;
