@@ -45,9 +45,21 @@ public class Resource : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other)
     {
-        if ("Player".Equals(other.tag))
+        if ("Player".Equals(other.tag) && !create)
         {
             playerEnter = true;
+            GetComponent<Renderer>().material = onMouseOver;
+        }
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if ("Player".Equals(other.tag) && !create)
+        {
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                CraftItem();
+            }
         }
     }
 
@@ -65,22 +77,29 @@ public class Resource : MonoBehaviour {
     {
         if (playerEnter && !create)
         {
-            GetComponent<Renderer>().material = onMouseOver;
+            //GetComponent<Renderer>().material = onMouseOver;
 
             if (Input.GetMouseButtonDown(0)){
-                selectItem = player.GetComponent<SlotSelect>().GetSelectItemBySlot();
-                if (Utils.PodeCraftar(type, selectItem))
-                {
-                    Progress.Instance.ProgressBar(speed, new Action(CreateItem));
-                } else
-                {
-                    alert.GetComponent<Alerta>().SetText(Utils.PodeCraftarDS(type));
-                }
-            }else if (Input.GetMouseButtonUp(0))
+                CraftItem();
+            }
+            else if (Input.GetMouseButtonUp(0))
             {
-                Progress.Instance.DisableProgressBar();
+                //Progress.Instance.DisableProgressBar();
             }
                
+        }
+    }
+
+    private void CraftItem()
+    {
+        selectItem = player.GetComponent<SlotSelect>().GetSelectItemBySlot();
+        if (Utils.PodeCraftar(type, selectItem))
+        {
+            Progress.Instance.ProgressBar(speed, new Action(CreateItem));
+        }
+        else
+        {
+            alert.GetComponent<Alerta>().SetText(Utils.PodeCraftarDS(type));
         }
     }
 
@@ -88,8 +107,8 @@ public class Resource : MonoBehaviour {
     {
         if (playerEnter)
         {
-            GetComponent<Renderer>().material = onMouseExit;
-            Progress.Instance.DisableProgressBar();
+            //GetComponent<Renderer>().material = onMouseExit;
+            //Progress.Instance.DisableProgressBar();
         }
     }
 

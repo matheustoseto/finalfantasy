@@ -36,12 +36,12 @@ public class Inventory : MonoBehaviour
 			items.Add(new Item());
 			slots.Add(Instantiate(inventorySlot));
 			slots[i].GetComponent<Slot>().id = i;
-            if (i > 3)
+            if (i >= slotAmount - 4)
             {
-                slots[i].transform.SetParent(slotPanel.transform);
+                slots[i].transform.SetParent(slotLifePanel.transform);
             } else
             {
-                slots[i].transform.SetParent(slotLifePanel.transform);                
+                slots[i].transform.SetParent(slotPanel.transform);            
             }			
 		}
 
@@ -52,13 +52,13 @@ public class Inventory : MonoBehaviour
         //slots[4].GetComponent<RectTransform>().anchoredPosition = new Vector2(520, 30);
         //slots[5].GetComponent<RectTransform>().anchoredPosition = new Vector2(590, 30);
 
-        slots[0].GetComponent<RectTransform>().anchoredPosition = new Vector2(80, 30);
-        slots[1].GetComponent<RectTransform>().anchoredPosition = new Vector2(150, 30);
-        slots[2].GetComponent<RectTransform>().anchoredPosition = new Vector2(450, 30);
-        slots[3].GetComponent<RectTransform>().anchoredPosition = new Vector2(520, 30);
+        slots[15].GetComponent<RectTransform>().anchoredPosition = new Vector2(80, 30);
+        slots[16].GetComponent<RectTransform>().anchoredPosition = new Vector2(150, 30);
+        slots[17].GetComponent<RectTransform>().anchoredPosition = new Vector2(450, 30);
+        slots[18].GetComponent<RectTransform>().anchoredPosition = new Vector2(520, 30);
 
         //Add item
-        AddItem(9);
+        AddItemInSlot(9,15);
         //AddItem(10);
         //AddItem(2);
         //AddItem(2);
@@ -73,6 +73,41 @@ public class Inventory : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.I))
         {
             ActiveDisableInventory();
+        }
+    }
+
+    public void AddItemInSlot(int id, int slot)
+    {
+        Item itemToAdd = new Item(database.FetchItemById(id));
+        if (itemToAdd.Stackable && CheckIfItemIsInInventory(itemToAdd))
+        {
+            for (int i = 0; i < items.Count; i++)
+            {
+                if (items[i].Id.Equals(itemToAdd.Id))
+                {
+                    ItemData data = slots[i].transform.GetChild(0).GetComponent<ItemData>();
+                    data.amount++;
+                    data.transform.GetChild(0).GetComponent<Text>().text = data.amount.ToString();
+                    break;
+                }
+            }
+        }
+        else
+        {
+            if (items[slot].Id.Equals(-1))
+            {
+                itemToAdd.Slot = slot;
+                items[slot] = itemToAdd;
+                GameObject itemObj = Instantiate(inventoryItem);
+                itemObj.GetComponent<ItemData>().item = itemToAdd;
+                itemObj.GetComponent<ItemData>().slotId = slot;
+                itemObj.GetComponent<ItemData>().amount = 1;
+                itemObj.transform.SetParent(slots[slot].transform);
+                itemObj.transform.position = Vector3.zero;
+                itemObj.GetComponent<Image>().sprite = itemToAdd.Sprite;
+                itemObj.name = "Item: " + itemToAdd.Title;
+                //slots[i].name = "Slot: " + itemToAdd.Title;
+            }
         }
     }
 
@@ -246,5 +281,14 @@ public class Inventory : MonoBehaviour
         {
             inventoryPanel.SetActive(true);
         }
+    }
+
+    public Enemy GetEnemyData(int id)
+    {
+        Enemy enemy = (from it in database.GetEnemyList()
+                         where it.Id.Equals(id)
+                         select it).FirstOrDefault();
+
+        return new Enemy(enemy);
     }
 }

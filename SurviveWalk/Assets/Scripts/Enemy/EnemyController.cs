@@ -8,8 +8,7 @@ public class EnemyController : MonoBehaviour {
     public Material OnAttack;
     public Renderer Body;
     public float radius = 10f;
-    public float life = 10;
-    public float power = 2;
+    public Utils.EnemyType enemyType;
 
     Vector3 enemyInitialPos;
     Transform playerTarget;
@@ -17,6 +16,7 @@ public class EnemyController : MonoBehaviour {
     EnemyAnimator enemy;
     Animator animator;
 
+    Enemy enemyStats;
 
     private float timer = 0.3f;
     private bool removeLife = false;
@@ -28,12 +28,14 @@ public class EnemyController : MonoBehaviour {
    
     // Use this for initialization
     void Start () {
-        //originalMaterial = Body.material;
+        originalMaterial = Body.material;
         enemyInitialPos = transform.position;
         playerTarget = PlayerManager.instance.player.transform;
         agent = GetComponent<NavMeshAgent>();
         enemy = GetComponent<EnemyAnimator>();
         animator = GetComponent<Animator>();
+
+        enemyStats = Inventory.Instance.GetEnemyData(enemyType.GetHashCode());
     }
 	
 	// Update is called once per frame
@@ -93,18 +95,18 @@ public class EnemyController : MonoBehaviour {
         transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 5f);
     }
 
-    public bool RemoveLife(float life)
+    public bool RemoveLife(int life)
     {
-        if (!removeLife)
+        if (enemy.realrised && !removeLife)
         {
             timer = 0.3f;
             removeLife = true;
 
             Body.material = OnAttack;
 
-            this.life -= life;
+            enemyStats.Life -= life;
 
-            if (this.life <= 0)
+            if (enemyStats.Life <= 0)
                 Destroy(gameObject);
 
             return true;
@@ -116,7 +118,7 @@ public class EnemyController : MonoBehaviour {
     {
         if ("Player".Equals(other.tag) && !attack && enemy.realrised)
         {
-            other.GetComponent<CharacterStatus>().RemoveLife(power);
+            other.GetComponent<CharacterStatus>().RemoveLife(enemyStats.Power);
             attack = true;
             animator.SetTrigger("isAttack");
             timerAttack = 0.9f;

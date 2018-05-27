@@ -7,14 +7,14 @@ public class SlotSelect : MonoBehaviour {
 
     public Inventory inventory;
     public Weapon weapon;
-    public int slotSelect = 0;
+    public int slotSelect = 15;
 
-    private int backupSlotSelect = 0;
+    private int backupSlotSelect = 15;
     private Color defaultColor = new Color(0.875F, 0.875F, 0.875F, 1.000F);
 
     private void Start()
     {
-        Select(0);
+        Select(15);
     }
 
     void Update () {
@@ -24,16 +24,16 @@ public class SlotSelect : MonoBehaviour {
                 inventory.UseItem(inventory.slots[slotSelect].transform.GetChild(0).gameObject.GetComponent<ItemData>().item);
         } else if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            Select(0);
+            Select(15);
         } else if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-            Select(1);
+            Select(16);
         } else if (Input.GetKeyDown(KeyCode.Alpha3))
         {
-            Select(2);
+            Select(17);
         }else if (Input.GetKeyDown(KeyCode.Alpha4))
         {
-            Select(3);
+            Select(18);
         } else if (Input.GetKeyDown(KeyCode.Alpha5))
         {
             //Select(4);

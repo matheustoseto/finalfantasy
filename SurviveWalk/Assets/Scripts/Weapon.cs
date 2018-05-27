@@ -33,7 +33,7 @@ public class Weapon : MonoBehaviour {
     {
         if ("Enemy".Equals(other.tag) && attck)
         {
-            Damage(other.GetComponent<EnemyController>());
+            Damage(other.GetComponent<Skeleton>().enemyController);
         }
     }
 
@@ -41,7 +41,7 @@ public class Weapon : MonoBehaviour {
     {
         if ("Enemy".Equals(other.tag) && attck)
         {
-            Damage(other.GetComponent<EnemyController>());
+            Damage(other.GetComponent<Skeleton>().enemyController);
         }
     }
 

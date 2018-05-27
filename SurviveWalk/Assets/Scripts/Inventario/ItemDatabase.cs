@@ -17,11 +17,16 @@ public class ItemDatabase : MonoBehaviour {
     private List<CraftHouse> housebase = new List<CraftHouse>();
     private JsonData houseData;
 
+    // Enemy.json
+    private List<Enemy> enemybase = new List<Enemy>();
+    private JsonData enemyData;
+
     void Start()
 	{
 		itemData = JsonMapper.ToObject(File.ReadAllText(Application.dataPath + "/StreamingAssets/Items.json"));
         craftData = JsonMapper.ToObject(File.ReadAllText(Application.dataPath + "/StreamingAssets/Crafts.json"));
         houseData = JsonMapper.ToObject(File.ReadAllText(Application.dataPath + "/StreamingAssets/HouseCrafts.json"));
+        enemyData = JsonMapper.ToObject(File.ReadAllText(Application.dataPath + "/StreamingAssets/Enemy.json"));
         ConstructItemDatabase();	
 	}
 
@@ -45,6 +50,11 @@ public class ItemDatabase : MonoBehaviour {
     public List<CraftHouse> GetHouseList()
     {
         return housebase;
+    }
+
+    public List<Enemy> GetEnemyList()
+    {
+        return enemybase;
     }
 
     void ConstructItemDatabase()
@@ -112,6 +122,17 @@ public class ItemDatabase : MonoBehaviour {
             }
 
             housebase.Add(craftHouse);
+        }
+
+        for (int i = 0; i < enemyData.Count; i++)
+        {
+            Enemy enemy = new Enemy();
+            enemy.Id = (int)enemyData[i]["id"];
+            enemy.Name = enemyData[i]["name"].ToString();
+            enemy.Life = (int)enemyData[i]["life"];
+            enemy.Power = (int)enemyData[i]["power"];
+
+            enemybase.Add(enemy);
         }
     }
 }
@@ -219,4 +240,25 @@ public class Combination
 {
     public int Id { get; set; }
     public int Qt { get; set; }
+}
+
+public class Enemy
+{
+    public int Id { get; set; }
+    public string Name { get; set; }
+    public int Life { get; set; }
+    public int Power { get; set; }
+
+    public Enemy()
+    {
+        this.Id = -1;
+    }
+
+    public Enemy(Enemy enemy)
+    {
+        this.Id = enemy.Id;
+        this.Name = enemy.Name;
+        this.Life = enemy.Life;
+        this.Power = enemy.Power;
+    }
 }
