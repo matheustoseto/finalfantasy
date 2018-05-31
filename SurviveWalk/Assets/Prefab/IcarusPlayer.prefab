@@ -576,7 +576,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4397220009860354}
   m_Layer: 0
-  m_Name: Icarus
+  m_Name: Icarus GFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -930,7 +930,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1243056167215986}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.06, z: 139.6}
+  m_LocalPosition: {x: 0, y: -0.059, z: 139.6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4720815280532664}
@@ -1649,7 +1649,7 @@ MonoBehaviour:
   lifeBar: {fileID: 0}
   startPoint: {fileID: 0}
   lifeText: {fileID: 0}
-  hitPopUp: {fileID: 0}
+  hitPopUp: {fileID: 1409074696108854, guid: 3bbc232133bf10540b62da15e0b49d05, type: 2}
   life: 100
   lifeProgress: 30
 --- !u!137 &137011273200181944
@@ -1740,7 +1740,7 @@ CharacterController:
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 1.5, z: 0}
+  m_Center: {x: 0, y: 1.36, z: 0}
 --- !u!195 &195979651359731844
 NavMeshAgent:
   m_ObjectHideFlags: 1
