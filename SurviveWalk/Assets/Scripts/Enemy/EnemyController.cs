@@ -21,7 +21,7 @@ public class EnemyController : MonoBehaviour {
 
     Enemy enemyStats;
 
-    private float timer = 0.3f;
+    private float timer = 0.5f;
     private bool removeLife = false;
     
     private Material originalMaterial;
