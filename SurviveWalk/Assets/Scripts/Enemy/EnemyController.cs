@@ -18,6 +18,7 @@ public class EnemyController : MonoBehaviour {
     NavMeshAgent agent;
     EnemyAnimator enemy;
     Animator animator;
+    BoxCollider boxcol;
 
     Enemy enemyStats;
 
@@ -39,6 +40,7 @@ public class EnemyController : MonoBehaviour {
         agent = GetComponent<NavMeshAgent>();
         enemy = GetComponent<EnemyAnimator>();
         animator = GetComponent<Animator>();
+        boxcol = GetComponent<BoxCollider>();
 
         enemyStats = Inventory.Instance.GetEnemyData(enemyType.GetHashCode());
         lifeTotal = enemyStats.Life;
@@ -48,7 +50,8 @@ public class EnemyController : MonoBehaviour {
 	void Update () {
         if (enemy.realrised)
         {
-            if(!lifeBar.activeSelf)
+            boxcol.size = new Vector3(3f, 1f, 3f);
+            if (!lifeBar.activeSelf)
                 lifeBar.SetActive(true);
 
             if (removeLife)

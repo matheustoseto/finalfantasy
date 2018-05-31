@@ -16090,6 +16090,31 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 195340124698716282, guid: a80116098c60ecc4396f7b60fa04cdb1,
+        type: 2}
+      propertyPath: m_AngularSpeed
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 195340124698716282, guid: a80116098c60ecc4396f7b60fa04cdb1,
+        type: 2}
+      propertyPath: m_StoppingDistance
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 195340124698716282, guid: a80116098c60ecc4396f7b60fa04cdb1,
+        type: 2}
+      propertyPath: m_Speed
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 195340124698716282, guid: a80116098c60ecc4396f7b60fa04cdb1,
+        type: 2}
+      propertyPath: m_AutoBraking
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 195340124698716282, guid: a80116098c60ecc4396f7b60fa04cdb1,
+        type: 2}
+      propertyPath: m_Acceleration
+      value: 18
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a80116098c60ecc4396f7b60fa04cdb1, type: 2}
   m_IsPrefabParent: 0
