@@ -43,6 +43,13 @@ ModelImporter:
     4300008: Cube.002
     4300010: Cube.001
     4300012: Cube
+    6400000: Cube
+    6400002: Cube.001
+    6400004: Cube.002
+    6400006: Cube.003
+    6400008: Cube.004
+    6400010: Cube.005
+    6400012: Cube.006
   externalObjects: {}
   materials:
     importMaterials: 1
