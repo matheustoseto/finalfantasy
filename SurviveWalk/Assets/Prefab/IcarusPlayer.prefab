@@ -151,8 +151,8 @@ GameObject:
   - component: {fileID: 114414164166508568}
   - component: {fileID: 114987845741895160}
   - component: {fileID: 114271285037516962}
+  - component: {fileID: 114335226560044660}
   - component: {fileID: 114228763285759654}
-  - component: {fileID: 114430698779263162}
   - component: {fileID: 114846457404772136}
   - component: {fileID: 54895948016325938}
   - component: {fileID: 195979651359731844}
@@ -1394,7 +1394,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: be481894e2f3d924db765b9c00bd6b71, type: 2}
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1546,6 +1546,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   progressBar: {fileID: 0}
   activeBar: 0
+--- !u!114 &114335226560044660
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1243056167215986}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a3b2f1b7874e4b40b227f42ac8f65d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 1243056167215986}
 --- !u!114 &114414164166508568
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1559,18 +1571,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inventory: {fileID: 0}
   getItem: {fileID: 1667461407893088, guid: 873b7be637eb1534a9f46c964159185b, type: 2}
---- !u!114 &114430698779263162
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1243056167215986}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6a3b2f1b7874e4b40b227f42ac8f65d5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 1243056167215986}
 --- !u!114 &114557465291418168
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1634,6 +1634,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10c294687f2cf7b4ebb74862b2575f71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 0}
   distancePoints: []
 --- !u!114 &114987845741895160
 MonoBehaviour:
