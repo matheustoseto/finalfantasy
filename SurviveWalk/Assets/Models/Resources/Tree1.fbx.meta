@@ -1,55 +1,27 @@
 fileFormatVersion: 2
-guid: 98a42d4e5fdee524b8b3511e1473cfc7
-timeCreated: 1527706923
+guid: 6791ad80666bd7c43b399e6d8cf17574
+timeCreated: 1528136285
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
-    100000: Cube
-    100002: Cube.001
-    100004: Cube.002
-    100006: Cube.003
-    100008: Cube.004
-    100010: Cube.005
-    100012: Cube.006
-    100014: //RootNode
-    400000: Cube
-    400002: Cube.001
-    400004: Cube.002
-    400006: Cube.003
-    400008: Cube.004
-    400010: Cube.005
-    400012: Cube.006
-    400014: //RootNode
-    2100000: Rocks
-    2300000: Cube
-    2300002: Cube.001
-    2300004: Cube.002
-    2300006: Cube.003
-    2300008: Cube.004
-    2300010: Cube.005
-    2300012: Cube.006
-    3300000: Cube
-    3300002: Cube.001
-    3300004: Cube.002
-    3300006: Cube.003
-    3300008: Cube.004
-    3300010: Cube.005
-    3300012: Cube.006
-    4300000: Cube.006
-    4300002: Cube.005
-    4300004: Cube.004
-    4300006: Cube.003
-    4300008: Cube.002
-    4300010: Cube.001
-    4300012: Cube
-    6400000: Cube
-    6400002: Cube.001
-    6400004: Cube.002
-    6400006: Cube.003
-    6400008: Cube.004
-    6400010: Cube.005
-    6400012: Cube.006
+    100000: Tree
+    100002: //RootNode
+    100004: Tree2
+    400000: Tree
+    400002: //RootNode
+    400004: Tree2
+    2100000: Tree
+    2100002: Bush.004
+    2100004: Bush
+    2100006: Bush.003
+    2100008: Bush.002
+    2300000: Tree
+    2300002: Tree2
+    3300000: Tree
+    3300002: Tree2
+    4300000: Tree2
+    4300002: Tree
   externalObjects: {}
   materials:
     importMaterials: 1
