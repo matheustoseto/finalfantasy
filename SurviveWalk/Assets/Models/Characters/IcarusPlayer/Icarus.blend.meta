@@ -35,6 +35,14 @@ ModelImporter:
     100054: Spine1
     100056: Spine2
     100058: Spine3
+    100060: Arms
+    100062: Body
+    100064: Chest
+    100066: Foot
+    100068: Hands
+    100070: Head_0
+    100072: Legs
+    100074: Neck_0
     400000: Armature
     400002: CoM
     400004: Cube
@@ -65,8 +73,24 @@ ModelImporter:
     400054: Spine1
     400056: Spine2
     400058: Spine3
+    400060: Arms
+    400062: Body
+    400064: Chest
+    400066: Foot
+    400068: Hands
+    400070: Head_0
+    400072: Legs
+    400074: Neck_0
     2100000: unnamed
     4300000: Cube
+    4300002: Head
+    4300004: Neck
+    4300006: Hands
+    4300008: Arms
+    4300010: Chest
+    4300012: Legs
+    4300014: Foot
+    4300016: Body
     7400000: Default Take
     7400002: Attack
     7400004: Idle
@@ -74,6 +98,14 @@ ModelImporter:
     7400008: Walk
     9500000: //RootNode
     13700000: Cube
+    13700002: Arms
+    13700004: Body
+    13700006: Chest
+    13700008: Foot
+    13700010: Hands
+    13700012: Head
+    13700014: Legs
+    13700016: Neck
   externalObjects: {}
   materials:
     importMaterials: 1

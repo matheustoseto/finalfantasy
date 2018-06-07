@@ -245,7 +245,7 @@ MonoBehaviour:
   idItem: 2
   qnt: 2
   speed: 0.07
-  timer: 10
+  timer: 120
   item: {fileID: 1993325973734462, guid: ec6f2c1bb43c91546aef41c8dda42d6d, type: 2}
   objRender: {fileID: 1497977502301048}
   active: {fileID: 1948232289363010}

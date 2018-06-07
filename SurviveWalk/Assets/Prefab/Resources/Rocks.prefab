@@ -619,7 +619,7 @@ MonoBehaviour:
   idItem: 6
   qnt: 2
   speed: 0.07
-  timer: 10
+  timer: 30
   item: {fileID: 1993325973734462, guid: ec6f2c1bb43c91546aef41c8dda42d6d, type: 2}
   objRender: {fileID: 1851999782862708}
   active: {fileID: 1042889559634602}
