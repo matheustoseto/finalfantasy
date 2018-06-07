@@ -9,7 +9,9 @@ public class Resource : MonoBehaviour {
     public float speed;
     public float timer = 1f;
 
-    public GameObject item; 
+    public GameObject item;
+    public GameObject objRender;
+    public GameObject active;
     public Material onMouseOver;
     private Material onMouseExit;
 
@@ -21,12 +23,12 @@ public class Resource : MonoBehaviour {
     private bool create = false;
 
     private Item selectItem;
-    private Vector3 originalScale;
+    //private Vector3 originalScale;
 
     private void Start()
     {
-        originalScale = this.gameObject.transform.localScale;
-        onMouseExit = GetComponent<Renderer>().material;
+        //originalScale = this.gameObject.transform.localScale;
+        onMouseExit = objRender.GetComponent<Renderer>().material;
         player = GameObject.FindGameObjectWithTag("Player");
         alert = GameObject.FindGameObjectWithTag("Alerta");
     }
@@ -35,7 +37,8 @@ public class Resource : MonoBehaviour {
     {
         if (deltaTimer <= 0 && create)
         {
-            this.gameObject.transform.localScale = originalScale;
+            //this.gameObject.transform.localScale = originalScale;
+            active.SetActive(true);
             create = false;
         } else if (deltaTimer >= 0 && create)
         {
@@ -48,7 +51,7 @@ public class Resource : MonoBehaviour {
         if ("Player".Equals(other.tag) && !create)
         {
             playerEnter = true;
-            GetComponent<Renderer>().material = onMouseOver;
+            objRender.GetComponent<Renderer>().material = onMouseOver;
         }
     }
 
@@ -56,6 +59,7 @@ public class Resource : MonoBehaviour {
     {
         if ("Player".Equals(other.tag) && !create)
         {
+            objRender.GetComponent<Renderer>().material = onMouseOver;
             if (Input.GetKeyDown(KeyCode.E))
             {
                 CraftItem();
@@ -68,7 +72,7 @@ public class Resource : MonoBehaviour {
         if ("Player".Equals(other.tag))
         {
             playerEnter = false;
-            GetComponent<Renderer>().material = onMouseExit;
+            objRender.GetComponent<Renderer>().material = onMouseExit;
             Progress.Instance.DisableProgressBar();
         }
     }
@@ -122,8 +126,8 @@ public class Resource : MonoBehaviour {
         item.GetComponent<ItemResource>().idItem = idItem;
         for (int i = 1; i <= qnt; i++)
         {
-            Vector3 pos = transform.position + new Vector3(UnityEngine.Random.Range(-1.5f, 1.5f), 0, UnityEngine.Random.Range(-1.5f, 1.5f));
-            Instantiate(item, pos, transform.rotation);            
+            Vector3 pos = player.transform.position + new Vector3(UnityEngine.Random.Range(-2f, 2f), 0, UnityEngine.Random.Range(-2f, 2f));
+            Instantiate(item, pos, transform.rotation);
         }
         DisableItem();
     }
@@ -131,7 +135,9 @@ public class Resource : MonoBehaviour {
     private void DisableItem()
     {
         deltaTimer = timer;
-        this.gameObject.transform.localScale = new Vector3(0.5F, this.gameObject.transform.localScale.y, 0.5F);
+        //this.gameObject.transform.localScale = new Vector3(0.5F, this.gameObject.transform.localScale.y, 0.5F);
+        active.SetActive(false);
         create = true;
+        objRender.GetComponent<Renderer>().material = onMouseExit;
     }
 }

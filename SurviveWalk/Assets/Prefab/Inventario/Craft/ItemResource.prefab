@@ -22,8 +22,8 @@ GameObject:
   - component: {fileID: 33147861589706978}
   - component: {fileID: 65502367468687182}
   - component: {fileID: 65376279548374270}
-  - component: {fileID: 54079706662124178}
   - component: {fileID: 23403576504372208}
+  - component: {fileID: 54196639462556326}
   - component: {fileID: 114831150638191176}
   m_Layer: 0
   m_Name: ItemResource
@@ -59,7 +59,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: b89adf57187728349a31fa9c7fda1435, type: 2}
+  - {fileID: 2100000, guid: f6d27cbb6b7b2ff42b5e14d5814880ef, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -86,7 +86,7 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1993325973734462}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!54 &54079706662124178
+--- !u!54 &54196639462556326
 Rigidbody:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -123,7 +123,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2, y: 2, z: 2}
+  m_Size: {x: 4, y: 4, z: 4}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &114831150638191176
 MonoBehaviour:
@@ -136,4 +136,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0076ab8a9de83ec4ead2340fae1a798c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  idItem: 6
+  idItem: 0

@@ -12,6 +12,9 @@ public class SlotSelect : MonoBehaviour {
     private int backupSlotSelect = 15;
     private Color defaultColor = new Color(0.875F, 0.875F, 0.875F, 1.000F);
 
+    private bool redFlag = true;
+    private float a = 255;
+
     private void Start()
     {
         Select(15);
@@ -40,7 +43,26 @@ public class SlotSelect : MonoBehaviour {
         } else if (Input.GetKeyDown(KeyCode.Alpha6))
         {
             //Select(5);
-        }      
+        }
+        SelectEfect();
+    }
+
+    private void SelectEfect()
+    {
+        if (redFlag)
+        {
+            inventory.slots[slotSelect].GetComponent<Image>().color = new Color(0, a / 255, 0, 255);
+            a -= 5;
+            if (a <= 200)
+                redFlag = false;
+        }
+        else if (!redFlag)
+        {
+            inventory.slots[slotSelect].GetComponent<Image>().color = new Color(0, a / 255, 0, 255);
+            a += 5;
+            if (a >= 255)
+                redFlag = true;
+        }
     }
 
     private void Select(int id)

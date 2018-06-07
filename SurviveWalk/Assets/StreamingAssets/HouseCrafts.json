@@ -12,16 +12,6 @@
 						"qt" : 3
 					}
 				]
-			},
-			{
-				"idLevel" : 1,
-				"title" : "Level 2",
-				"combination" : [
-					{
-						"id" : 3,
-						"qt" : 3
-					}
-				]
 			}
 		]
 	},
@@ -35,16 +25,6 @@
 				"combination" : [
 					{
 						"id" : 2,
-						"qt" : 3
-					}
-				]
-			},
-			{
-				"idLevel" : 1,
-				"title" : "Level 2",
-				"combination" : [
-					{
-						"id" : 3,
 						"qt" : 3
 					}
 				]
@@ -64,16 +44,6 @@
 						"qt" : 3
 					}
 				]
-			},
-			{
-				"idLevel" : 1,
-				"title" : "Level 2",
-				"combination" : [
-					{
-						"id" : 3,
-						"qt" : 3
-					}
-				]
 			}
 		]
 	},
@@ -87,16 +57,6 @@
 				"combination" : [
 					{
 						"id" : 2,
-						"qt" : 3
-					}
-				]
-			},
-			{
-				"idLevel" : 1,
-				"title" : "Level 2",
-				"combination" : [
-					{
-						"id" : 3,
 						"qt" : 3
 					}
 				]

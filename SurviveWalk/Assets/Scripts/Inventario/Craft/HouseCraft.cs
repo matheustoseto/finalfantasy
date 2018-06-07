@@ -12,6 +12,7 @@ public class HouseCraft : MonoBehaviour {
     public GameObject inventoryPanel;
     public GameObject housePanel;
     public GameObject houseItem;
+    public GameObject level0;
     public List<GameObject> levels;
 
     private GameObject slotPanel;
@@ -65,7 +66,7 @@ public class HouseCraft : MonoBehaviour {
                 {
                     if (houseLevel == i)
                     {
-                        this.gameObject.GetComponent<MeshRenderer>().enabled = false;
+                        level0.SetActive(false);
                         levels[i].SetActive(true);                   
                         if (i > 0)
                             levels[i - 1].SetActive(false);

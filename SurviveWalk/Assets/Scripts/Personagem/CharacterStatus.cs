@@ -32,13 +32,13 @@ public class CharacterStatus : MonoBehaviour {
             if (redFlag)
             {
                 lifeBar.GetComponent<Image>().color = new Color(255, 0, 0, a / 255);
-                a -= 4;
+                a -= 5;
                 if (a <= 100)
                     redFlag = false;
             } else if(!redFlag)
             {
                 lifeBar.GetComponent<Image>().color = new Color(255, 0, 0, a / 255);
-                a += 4;
+                a += 5;
                 if (a >= 200)
                     redFlag = true;
             }
@@ -62,6 +62,7 @@ public class CharacterStatus : MonoBehaviour {
     {
         GameObject hit = Instantiate(hitPopUp, transform.position + new Vector3(0, 6, 0), hitPopUp.transform.rotation);
         hit.GetComponent<HitPopUp>().SetText(removeLife.ToString());
+        hit.GetComponent<HitPopUp>().text.color = Color.yellow;
 
         if ((lifeProgress - removeLife) <= 0)
         {
