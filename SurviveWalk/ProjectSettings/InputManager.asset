@@ -55,12 +55,12 @@ InputManager:
     joyNum: 0
   - serializedVersion: 3
     m_Name: Fire1
-    descriptiveName: right ctrl / mouse 1
+    descriptiveName: right ctrl / mouse 0
     descriptiveNegativeName: 
     negativeButton: 
     positiveButton: right ctrl
     altNegativeButton: 
-    altPositiveButton: mouse 1
+    altPositiveButton: mouse 0
     gravity: 1000
     dead: 0.001
     sensitivity: 1000
@@ -71,12 +71,12 @@ InputManager:
     joyNum: 0
   - serializedVersion: 3
     m_Name: Fire2
-    descriptiveName: right shift / mouse 2
+    descriptiveName: right shift / mouse 1
     descriptiveNegativeName: 
     negativeButton: 
     positiveButton: right shift
     altNegativeButton: 
-    altPositiveButton: mouse 2
+    altPositiveButton: mouse 1
     gravity: 1000
     dead: 0.001
     sensitivity: 1000

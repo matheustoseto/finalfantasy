@@ -18,7 +18,7 @@ public class CameraControlRotate : CameraControl {
 
     // Use this for initialization
     void Start () {
-        speedRotation = TargetObject.Player.SpeedRotation;
+        speedRotation = TargetObject.IcarusPlayer.SpeedRotation;
 	}
 
     protected override void GetInputs()

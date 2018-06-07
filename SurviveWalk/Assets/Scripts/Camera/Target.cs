@@ -2,17 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Target : MonoBehaviour
+public class Target : PlayerManager
 {
     [SerializeField] private List<Transform> distancePoints = new List<Transform>();
 
-    private IcarusController player;
+    private IcarusController icarusPlayer;
 
-    public IcarusController Player { get { return player; } }
+    public IcarusController IcarusPlayer { get { return icarusPlayer; } }
 
     void Awake()
     {
-        player = GetComponent<IcarusController>();
+        instance = this;
+        icarusPlayer = GetComponent<IcarusController>();
     }
 
     public Transform GetTransform()
