@@ -123,15 +123,15 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1376948721707914}
-  m_LocalRotation: {x: -0.0105213, y: -0.8103313, z: 0.007606366, w: -0.5858282}
-  m_LocalPosition: {x: -99.14, y: -10.92, z: -29.99}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: 0.02102202, y: 0.836989, z: -0.015193739, w: 0.5466048}
+  m_LocalPosition: {x: 200.8, y: -15.85, z: 102.2}
+  m_LocalScale: {x: 1.5000005, y: 1.4999998, z: 1.5000005}
   m_Children:
   - {fileID: 4365925795001222}
   - {fileID: 4709465354001268}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 390.46, z: 0}
+  m_LocalEulerAnglesHint: {x: 1.4130001, y: 755.9, z: 0.467}
 --- !u!23 &23525505105534290
 MeshRenderer:
   m_ObjectHideFlags: 1
@@ -247,6 +247,6 @@ MonoBehaviour:
   speed: 0.07
   timer: 120
   item: {fileID: 1993325973734462, guid: ec6f2c1bb43c91546aef41c8dda42d6d, type: 2}
-  objRender: {fileID: 1497977502301048}
+  objRender: {fileID: 1560023018990592}
   active: {fileID: 1948232289363010}
   onMouseOver: {fileID: 2100000, guid: 985d003ded8831e4ca51fa57858f0621, type: 2}

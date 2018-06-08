@@ -15,15 +15,15 @@ public class Weapon : MonoBehaviour {
 	void Update () {
         if (Input.GetMouseButtonDown(0))
         {
-            Attack();
+            //Attack();
         } else if (Input.GetMouseButtonUp(0))
         {
-            attck = false;
-            transform.localPosition = originalPosition;
+            //attck = false;
+            //transform.localPosition = originalPosition;
         }
 	}
 
-    void Attack()
+    public void Attack()
     {
         attck = true;
         transform.localPosition += new Vector3(0, 0, 0.6f);
