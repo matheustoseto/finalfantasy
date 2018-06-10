@@ -10,20 +10,25 @@ public class IcarusPlayerController : CharacterState {
     private CharacterMoveControl moveControl = null;
     private CharacterAnimationControl aniControl = null;
 
+    [Header("Tools / Weapon:")]
+    [SerializeField] private Weapon weapon;
+
     [Header("Inputs:")]
     [SerializeField] private Vector2 btDirection = Vector2.zero;
-    [SerializeField] private float   btAttack  = 0;
-    [SerializeField] private float   btAction = 0;
-    [SerializeField] private float   btDash    = 0;
+    [SerializeField] private float   btAttack    = 0;
+    [SerializeField] private float   btAction    = 0;
+    [SerializeField] private float   btDash      = 0;
 
-    private bool isAnimation = false;
 
     [Header("Debug:")]
     [SerializeField] private bool isAttackDb = false;
 
-    private float timer, timerFinish = 0;
 
     public static Transform GetInstance() { return player; }
+
+    #region Properties
+    public Weapon Weapon { get { return weapon; } }
+    #endregion
 
     // Use this for initialization
 
@@ -31,13 +36,21 @@ public class IcarusPlayerController : CharacterState {
     {
         if (player == null)
             player = transform;
-    }
 
-    void Start () {
         moveControl = GetComponent<CharacterMoveControl>();
 
         if (aniControl == null)
-            aniControl = GetComponent<CharacterAnimationControl>();
+            aniControl = GetComponentInChildren<CharacterAnimationControl>();
+
+        if (weapon == null)
+        {
+            weapon = GetComponentInChildren<Weapon>();
+            aniControl.Weapon = weapon;
+        }
+    }
+
+    void Start () {
+        EnterState(state);
     }
 
 
@@ -56,32 +69,32 @@ public class IcarusPlayerController : CharacterState {
         GetInput();
 
         UpdateState();
+        aniControl.ExecuteAnimations();
     }
 
     #region EnterState
     protected override void EnterMoveState()
     {
-        isAnimation = false;
-        //moveControl.Stop();
+        // ANIMATION //
+        aniControl.IsLocomotion = true;
+
     }
 
     protected override void EnterAttackState()
     {
-        timer = 0;
-        timerFinish = 0.6f;
-        isAnimation = false;
+        aniControl.IsAttack = true;
         moveControl.Stop();
     }
 
     protected override void EnterDashState()
     {
-        isAnimation = false;
+        aniControl.IsDash = true;
         moveControl.Stop();
     }
 
     protected override void EnterActionState()
     {
-        isAnimation = false;
+        aniControl.IsAction = true;
         moveControl.Stop();
     }
 
@@ -91,10 +104,8 @@ public class IcarusPlayerController : CharacterState {
 
     protected override void UpdateMoveState()
     {
-        //moveControl.Move(btDirection);
-
-        // ANIMATION //
-        aniControl.Locomotion();
+        moveControl.Move(btDirection);
+        aniControl.SpeedPercent = moveControl.Magnitude / 2;
 
 
         // CHANGE STATE //
@@ -119,80 +130,28 @@ public class IcarusPlayerController : CharacterState {
 
     protected override void UpdateAttackState()
     {
-
-        // ANIMATION //
-        //bool isAttack = aniControl.IsAnimationCurrentName(TypeStateCharacter.Attack);
-        //bool isAttack = aniControl.IsPlayingCurrentAnimatorState();
-
-        if (!isAnimation)
+        if (aniControl.IsAnimationCurrentName(state.ToString()) && aniControl.IsAnimationCurrentOver())
         {
-            aniControl.Attack();
-            //isAttack = true;
-            isAnimation = true;
-        }
-
-
-        isAttackDb = isAnimation;
-
-        //if (!isAttack)
-        //Debug.Log(aniControl.IsPlayingCurrentAnimatorState());
-        //Debug.Log(aniControl.Animator.GetCurrentAnimatorStateInfo(0).IsName("Attack"));
-        //if (!aniControl.Animator.GetCurrentAnimatorStateInfo(0).IsName("Atttack"))
-
-        //if (!aniControl.IsAttack)
-        if(aniControl.Animator.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
-        {
-            aniControl.Animator.SetBool("Attack", false);
-            isAnimation = false;
-            // CHANGE STATE //
             EnterState(TypeStateCharacter.Move);
             return;
         }
-
-        // ANIMATION //
-        //bool isAttack = aniControl.IsAnimationCurrentName(TypeStateCharacter.Attack);
-        //bool isAttack = aniControl.IsPlayingCurrentAnimatorState();
-
-        //if (!isAnimation)
-        //{
-        //    aniControl.Attack();
-        //    isAnimation = true;
-        //}
-
-        //if (!aniControl.Animator.get)
-        //{
-        //    EnterState(TypeStateCharacter.Move);
-        //}
-
     }
 
     protected override void UpdateDashState()
     {
-        bool isDash = aniControl.IsAnimationCurrentName(TypeStateCharacter.Dash); 
-        if (btDash != 0)
-        {
-            isDash = aniControl.Dash();
-            isDash = true;
-        }
-
-        if (!isDash)
+        if (aniControl.IsAnimationCurrentName(state.ToString()) && aniControl.IsAnimationCurrentOver())
         {
             EnterState(TypeStateCharacter.Move);
+            return;
         }
     }
 
     protected override void UpdateActionState()
     {
-        bool isAction = aniControl.IsAnimationCurrentName(TypeStateCharacter.Action);
-        if (btDash != 0)
-        {
-            isAction = aniControl.Action();
-            isAction = true;
-        }
-
-        if (!isAction)
+        if (aniControl.IsAnimationCurrentName(state.ToString()) && aniControl.IsAnimationCurrentOver())
         {
             EnterState(TypeStateCharacter.Move);
+            return;
         }
     }
 
@@ -200,6 +159,12 @@ public class IcarusPlayerController : CharacterState {
     #endregion
 
     #region LeaveState
+    protected override void LeaveState()
+    {
+        base.LeaveState();
+        aniControl.Release();
+    }
+
     protected override void LeaveMoveState()
     {
         

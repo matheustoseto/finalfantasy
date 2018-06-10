@@ -45,8 +45,9 @@ public class CharacterState : MonoBehaviour {
             case TypeStateCharacter.Attack : EnterAttackState();  break;
             case TypeStateCharacter.Dash   : EnterDashState();    break;
             case TypeStateCharacter.Action : EnterActionState();  break;
-            case TypeStateCharacter.Patrol : EnterPatrolState(); break;
-            case TypeStateCharacter.Follow : EnterFollowState(); break;
+            case TypeStateCharacter.Patrol : EnterPatrolState();  break;
+            case TypeStateCharacter.Follow : EnterFollowState();  break;
+            case TypeStateCharacter.Back   : EnterBackState();    break;
             default: break;
         }
 
@@ -58,6 +59,7 @@ public class CharacterState : MonoBehaviour {
     protected virtual void EnterActionState() { }
     protected virtual void EnterPatrolState() { }
     protected virtual void EnterFollowState() { }
+    protected virtual void EnterBackState() { }
     #endregion
 
 
@@ -70,8 +72,9 @@ public class CharacterState : MonoBehaviour {
             case TypeStateCharacter.Attack : UpdateAttackState();  break;
             case TypeStateCharacter.Dash   : UpdateDashState();    break;
             case TypeStateCharacter.Action : UpdateActionState();  break;
-            case TypeStateCharacter.Patrol : UpdatePatrolState(); break;
-            case TypeStateCharacter.Follow : UpdateFollowState(); break;
+            case TypeStateCharacter.Patrol : UpdatePatrolState();  break;
+            case TypeStateCharacter.Follow : UpdateFollowState();  break;
+            case TypeStateCharacter.Back   : UpdateBackState();    break;
             default: break;
         }
     }
@@ -82,11 +85,12 @@ public class CharacterState : MonoBehaviour {
     protected virtual void UpdateActionState() { }
     protected virtual void UpdatePatrolState() { }
     protected virtual void UpdateFollowState() { }
+    protected virtual void UpdateBackState() { }
     #endregion
 
 
     #region LeaveState
-    protected void LeaveState()
+    protected virtual void LeaveState()
     {
         switch (state)
         {
@@ -94,8 +98,9 @@ public class CharacterState : MonoBehaviour {
             case TypeStateCharacter.Attack : LeaveAttackState();  break;
             case TypeStateCharacter.Dash   : LeaveDashState();    break;
             case TypeStateCharacter.Action : LeaveActionState();  break;
-            case TypeStateCharacter.Patrol : LeavePatrolState(); break;
-            case TypeStateCharacter.Follow : LeaveFollowState(); break;
+            case TypeStateCharacter.Patrol : LeavePatrolState();  break;
+            case TypeStateCharacter.Follow : LeaveFollowState();  break;
+            case TypeStateCharacter.Back   : LeaveBackState();    break;
             default: break;
         }
     }
@@ -106,7 +111,7 @@ public class CharacterState : MonoBehaviour {
     protected virtual void LeaveActionState() { }
     protected virtual void LeavePatrolState() { }
     protected virtual void LeaveFollowState() { }
-    
+    protected virtual void LeaveBackState() { }
     #endregion
 
 

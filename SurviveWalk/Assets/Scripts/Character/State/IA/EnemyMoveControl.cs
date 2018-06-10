@@ -13,6 +13,9 @@ public class EnemyMoveControl : MonoBehaviour {
     private Vector3 enemyInitialPos;
 
 
+    public float Magnitude { get { return agent.velocity.magnitude; } }
+
+
     // Use this for initialization
     void Start () {
         
@@ -27,7 +30,7 @@ public class EnemyMoveControl : MonoBehaviour {
     }
 
 
-    public void move(Vector3 pointReference)
+    public void Move(Vector3 pointReference)
     {
         
         agent.isStopped = false;
@@ -35,7 +38,7 @@ public class EnemyMoveControl : MonoBehaviour {
         //navAg.speed = speed;
     }
 
-    public void stop()
+    public void Stop()
     {
 
         agent.isStopped = true;

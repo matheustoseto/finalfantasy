@@ -2,133 +2,105 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class CharacterAnimationControl : MonoBehaviour {
 
     //const float locomotionAnimationSmoothTime = .1f;
 
     private Animator animator = null;
-    private CharacterController charController = null;
+
+    private Weapon weapon;
+
+    float speedPercent = 0;
+
+    private bool isLocomotion = false;
+    private bool isAttack     = false;
+    private bool isDash       = false;
+    private bool isAction     = false;
+
 
     [Header("Smooth:")]
     [SerializeField] [Range(-1, 1)] private float locomotionTime = 0.1f;
 
 
-    private bool isAttack = false;
+    #region Properties
+    public Weapon Weapon { get { return weapon; } set { weapon = value; } }
 
-    public bool IsAttack { get { return isAttack; } }
-
-
-    // Use this for initialization
-    void Start() {
-        animator = GetComponent<Animator>();
-        charController = GetComponent<CharacterController>();
-    }
-
-    public Animator Animator { get { return animator; } }
-
-
-    protected bool IsAnimationCurrentName(string animCurrent)
-    {
-        return animator.GetCurrentAnimatorStateInfo(0).IsName(animCurrent);
-    }
-
-    public bool IsPlayingCurrentAnimatorState()
-    {
-        Debug.Log("length(" + animator.GetCurrentAnimatorStateInfo(0).length + ") > normalizedTime(" + animator.GetCurrentAnimatorStateInfo(0).normalizedTime + ") = "
-                           + (animator.GetCurrentAnimatorStateInfo(0).length > animator.GetCurrentAnimatorStateInfo(0).normalizedTime));
-
-        return animator.GetCurrentAnimatorStateInfo(0).length >
-               animator.GetCurrentAnimatorStateInfo(0).normalizedTime;
-    }
-
-    public bool IsAnimationCurrentName(TypeStateCharacter state)
-    {
-        bool animationActive = false;
-        switch (state)
-        {
-            case TypeStateCharacter.Move:
-                animationActive = IsAnimationCurrentName("Locomotion");
-                break;
-            case TypeStateCharacter.Attack:
-                animationActive = IsAnimationCurrentName("Attack");
-                break;
-            case TypeStateCharacter.Dash:
-                animationActive = IsAnimationCurrentName("Dash");
-                break;
-            case TypeStateCharacter.Action:
-                animationActive = IsAnimationCurrentName("Action");
-                break;
-            default:
-                break;
-        }
-        return animationActive;
-    }
-
-
-
-    #region Animations Activated
-    public void Locomotion()
-    {
-
-        animator.SetBool("isAttack", false);
-
-        float speedPercent = charController.velocity.magnitude / 2;
-        //animator.SetFloat("speedPercent", speedPercent, locomotionTime, Time.deltaTime);
-        animator.SetFloat("Speed", speedPercent, locomotionTime, Time.deltaTime);
-        
-        //Debug.Log("[ANIMATION][LOCOMOTION]: Activate");
-    }
-
-
-    public void Attack()
-    {
-        float speedPercent = charController.velocity.magnitude / 2;
-        //animator.SetFloat("speedPercent", 0, locomotionTime, Time.deltaTime);
-        animator.SetFloat("Speed", 0);
-
-        //animator.SetBool("isAttack", true);
-        animator.SetBool("Attack", true);
-
-        //isAttack = true;
-        //Debug.Log("[ANIMATION][ATTACK]: Activate");
-    }
-
-    public bool Dash()
-    {
-        bool isDash = false;
-        //isDash = IsAnimationCurrentName("isDash");
-
-        //if (!isDash)
-        //{
-        //    animator.SetTrigger("isDash");
-        //    isDash = true;
-            Debug.Log("[ANIMATION][DASH]: Activate");
-        //}
-        return isDash;
-    }
-
-    public bool Action()
-    {
-        bool isAction = false;
-        //isAction = IsAnimationCurrentName("isAction");
-
-        //if (!isAction)
-        //{
-        //    animator.SetTrigger("isAction");
-        //    isAction = true;
-            Debug.Log("[ANIMATION][ACTION]: Activate");
-        //}
-        return isAction;
-    }
+    public float SpeedPercent { get { return speedPercent; } set { speedPercent = value; } }
+    public bool IsLocomotion  { get { return isLocomotion; } set { isLocomotion = value; } }
+    public bool IsAttack      { get { return isAttack;     } set { isAttack = value;     } }
+    public bool IsDash        { get { return isDash;       } set { isDash = value;       } }
+    public bool IsAction      { get { return isAction;     } set { isAction = value;     } }
 
 
     #endregion
 
-    //public void AttackFinish()
-    //{
-    //    //animator.SetBool("isAttack", false);
-    //    animator.SetBool("Attack", false);
-    //    isAttack = false;
-    //}
 
+    // Use this for initialization
+    void Start()
+    {
+        animator = GetComponent<Animator>();
+        
+    }
+
+
+
+
+    public void Release()
+    {
+        isLocomotion = false;
+        isAttack     = false;
+        isDash       = false;
+        isAction     = false;
+    }
+
+
+    public void ExecuteAnimations()
+    {
+        animator.SetFloat("Speed", speedPercent, locomotionTime, Time.deltaTime);
+        animator.SetBool(TypeStateCharacter.Attack.ToString(), isAttack);
+        animator.SetBool(TypeStateCharacter.Dash.ToString()  , isDash  );
+        animator.SetBool(TypeStateCharacter.Action.ToString(), isAction);
+    }
+
+
+
+
+    #region VerifyState
+    public bool IsAnimationCurrentName(string animCurrent)
+    {
+        return animator.GetCurrentAnimatorStateInfo(0).IsName(animCurrent);
+    }
+
+    public bool IsAnimationCurrentOver()
+    {
+        return animator.GetCurrentAnimatorStateInfo(0).normalizedTime
+            > animator.GetCurrentAnimatorStateInfo(0).length;
+    }
+
+    public float AnimationCurrentTime()
+    {
+        return animator.GetCurrentAnimatorStateInfo(0).normalizedTime
+            / animator.GetCurrentAnimatorStateInfo(0).length;
+    }
+    #endregion
+
+    
+    #region Event
+    public void EventAnimation(string nameEvent, int type, bool eventActive)
+    {
+
+    }
+
+    public void AttackOn()
+    {
+        if (weapon != null)
+            weapon.Attack();
+    }
+
+    public void AttackOff()
+    {
+
+    }
+    #endregion
 }

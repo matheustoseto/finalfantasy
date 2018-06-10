@@ -27,12 +27,18 @@ public class CharacterMoveControl : MonoBehaviour {
 
     public Transform  Body        { get { return body;        } }
     public GameObject BodyMiniMap { get { return bodyMiniMap; } }
+    public float Magnitude { get { return charController.velocity.magnitude; } }
 
     #endregion
 
+
+    private void Awake()
+    {
+        charController = GetComponent<CharacterController>();
+    }
+
     // Use this for initialization
     void Start () {
-        charController = GetComponent<CharacterController>();
         navAgent = GetComponent<NavMeshAgent>();
         navAgent.Stop();
 
