@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Scene/Paulo-IcarusGamePlay.unity
+- path: Assets/Scene/BalanceamentoV1.unity
   isLoaded: 1
   isActive: 1
