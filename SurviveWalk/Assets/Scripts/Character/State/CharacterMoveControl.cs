@@ -20,7 +20,7 @@ public class CharacterMoveControl : MonoBehaviour {
 
     [Header("Reference:")]
     [SerializeField] private GameObject bodyMiniMap = null;
-    [SerializeField] private Transform  body        = null;
+    [SerializeField] private Transform body = null;
 
 
     #region Properties

@@ -51,6 +51,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4491404832653670}
   - component: {fileID: 95494751002449242}
+  - component: {fileID: 114643858282455972}
   m_Layer: 9
   m_Name: Icarus GFX
   m_TagString: Untagged
@@ -213,7 +214,6 @@ GameObject:
   - component: {fileID: 143208099317941632}
   - component: {fileID: 195081328510952278}
   - component: {fileID: 114328811089280034}
-  - component: {fileID: 114115364330114146}
   - component: {fileID: 114750838395224932}
   - component: {fileID: 114509452855519176}
   m_Layer: 0
@@ -420,7 +420,6 @@ GameObject:
   - component: {fileID: 33028002369189492}
   - component: {fileID: 65820327563285226}
   - component: {fileID: 23589816000341186}
-  - component: {fileID: 114665600418151488}
   m_Layer: 9
   m_Name: Arm
   m_TagString: Untagged
@@ -2100,7 +2099,7 @@ Animator:
   m_GameObject: {fileID: 1091927323710074}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 37bc00edd1c33cf40b9df356a20aa2a4, type: 3}
-  m_Controller: {fileID: 9100000, guid: 220d2a4970f5eb54daa52ca79529c51c, type: 2}
+  m_Controller: {fileID: 9100000, guid: 3f7ca33f0d47e8149a048efa1fe14edb, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -2108,18 +2107,6 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &114115364330114146
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1327605054124788}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 912091ad9f8bb5245b33fca4e408c269, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  locomotionTime: 0.1
 --- !u!114 &114328811089280034
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2145,6 +2132,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   state: 0
+  weapon: {fileID: 0}
   btDirection: {x: 0, y: 0}
   btAttack: 0
   btAction: 0
@@ -2161,17 +2149,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2750d4064624a04dad64df6779c118a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114665600418151488
+--- !u!114 &114643858282455972
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1539081991162340}
+  m_GameObject: {fileID: 1091927323710074}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c2750d4064624a04dad64df6779c118a, type: 3}
+  m_Script: {fileID: 11500000, guid: 912091ad9f8bb5245b33fca4e408c269, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  locomotionTime: 0.1
 --- !u!114 &114750838395224932
 MonoBehaviour:
   m_ObjectHideFlags: 1

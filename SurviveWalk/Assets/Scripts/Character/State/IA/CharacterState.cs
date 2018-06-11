@@ -48,6 +48,9 @@ public class CharacterState : MonoBehaviour {
             case TypeStateCharacter.Patrol : EnterPatrolState();  break;
             case TypeStateCharacter.Follow : EnterFollowState();  break;
             case TypeStateCharacter.Back   : EnterBackState();    break;
+            case TypeStateCharacter.Rise   : EnterRiseState();    break;
+            case TypeStateCharacter.Fall   : EnterFallState();    break;
+            case TypeStateCharacter.Dead   : EnterDeadState();    break;
             default: break;
         }
 
@@ -60,6 +63,9 @@ public class CharacterState : MonoBehaviour {
     protected virtual void EnterPatrolState() { }
     protected virtual void EnterFollowState() { }
     protected virtual void EnterBackState() { }
+    protected virtual void EnterRiseState() { }
+    protected virtual void EnterFallState() { }
+    protected virtual void EnterDeadState() { }
     #endregion
 
 
@@ -75,6 +81,9 @@ public class CharacterState : MonoBehaviour {
             case TypeStateCharacter.Patrol : UpdatePatrolState();  break;
             case TypeStateCharacter.Follow : UpdateFollowState();  break;
             case TypeStateCharacter.Back   : UpdateBackState();    break;
+            case TypeStateCharacter.Rise   : UpdateRiseState();    break;
+            case TypeStateCharacter.Fall   : UpdateFallState();    break;
+            case TypeStateCharacter.Dead   : UpdateDeadState();    break;
             default: break;
         }
     }
@@ -86,6 +95,9 @@ public class CharacterState : MonoBehaviour {
     protected virtual void UpdatePatrolState() { }
     protected virtual void UpdateFollowState() { }
     protected virtual void UpdateBackState() { }
+    protected virtual void UpdateRiseState() { }
+    protected virtual void UpdateFallState() { }
+    protected virtual void UpdateDeadState() { }
     #endregion
 
 
@@ -101,6 +113,9 @@ public class CharacterState : MonoBehaviour {
             case TypeStateCharacter.Patrol : LeavePatrolState();  break;
             case TypeStateCharacter.Follow : LeaveFollowState();  break;
             case TypeStateCharacter.Back   : LeaveBackState();    break;
+            case TypeStateCharacter.Rise   : LeaveRiseState();    break;
+            case TypeStateCharacter.Fall   : LeaveFallState();    break;
+            case TypeStateCharacter.Dead   : LeaveDeadState();    break;
             default: break;
         }
     }
@@ -112,6 +127,9 @@ public class CharacterState : MonoBehaviour {
     protected virtual void LeavePatrolState() { }
     protected virtual void LeaveFollowState() { }
     protected virtual void LeaveBackState() { }
+    protected virtual void LeaveRiseState() { }
+    protected virtual void LeaveFallState() { }
+    protected virtual void LeaveDeadState() { }
     #endregion
 
 

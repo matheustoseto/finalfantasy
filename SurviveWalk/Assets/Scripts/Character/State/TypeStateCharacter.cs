@@ -2,5 +2,5 @@
 
 public enum TypeStateCharacter
 {
-    Move, Attack, Dash, Action, Patrol, Follow, Back
+    Move, Attack, Dash, Action, Patrol, Follow, Back, Rise, Dead, Fall
 }
