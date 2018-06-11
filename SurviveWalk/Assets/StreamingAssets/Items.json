@@ -21,14 +21,14 @@
 		"value": 1,
 		"type" : "Machado",
 		"stats": {
-			"power": 1,
+			"power": 4,
 			"defense": 4,
 			"vitality": 2
 		},
 		"description": "Um machado de ferro.",
 		"stackable": false,
 		"rarity": 1,
-		"durability" : 10,
+		"durability" : 20,
 		"slug":  "iron_axe"
 	},
 	{
@@ -69,14 +69,14 @@
 		"value": 1,
 		"type" : "Picareta",
 		"stats": {
-			"power": 1,
+			"power": 4,
 			"defense": 4,
 			"vitality": 2
 		},
 		"description": "Uma picareta de ferro.",
 		"stackable": false,
 		"rarity": 1,
-		"durability" : 10,
+		"durability" : 12,
 		"slug":  "iron_pick"
 	},
 	{
@@ -117,14 +117,14 @@
 		"value": 1,
 		"type" : "Machado",
 		"stats": {
-			"power": 1,
+			"power": 2,
 			"defense": 4,
 			"vitality": 2
 		},
 		"description": "Um machado de pedra.",
 		"stackable": false,
 		"rarity": 1,
-		"durability" : 5,
+		"durability" : 10,
 		"slug":  "stone_axe"
 	},
 	{
@@ -133,14 +133,14 @@
 		"value": 1,
 		"type" : "Picareta",
 		"stats": {
-			"power": 1,
+			"power": 2,
 			"defense": 4,
 			"vitality": 2
 		},
 		"description": "Uma picareta de pedra.",
 		"stackable": false,
 		"rarity": 1,
-		"durability" : 5,
+		"durability" : 8,
 		"slug":  "stone_pick"
 	},
 	{
@@ -156,7 +156,7 @@
 		"description": "Uma espada feita de madeira.",
 		"stackable": false,
 		"rarity": 1,
-		"durability" : 5,
+		"durability" : 10,
 		"slug":  "wood_sword"
 	},
 	{
@@ -172,7 +172,7 @@
 		"description": "Uma espada feita de ferro.",
 		"stackable": false,
 		"rarity": 1,
-		"durability" : 10,
+		"durability" : 20,
 		"slug":  "iron_sword"
 	}
 ]

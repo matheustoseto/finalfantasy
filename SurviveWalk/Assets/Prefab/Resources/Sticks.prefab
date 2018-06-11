@@ -383,9 +383,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 6
   idItem: 5
-  qnt: 2
-  speed: 0.07
-  timer: 30
+  qnt: 4
+  speed: 0.01
+  timer: 40
   item: {fileID: 1993325973734462, guid: ec6f2c1bb43c91546aef41c8dda42d6d, type: 2}
   objRender: {fileID: 1054836242681942}
   active: {fileID: 1831626507561902}

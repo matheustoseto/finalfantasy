@@ -270,8 +270,8 @@ MonoBehaviour:
   type: 0
   idItem: 0
   qnt: 1
-  speed: 0.07
-  timer: 80
+  speed: 0.01
+  timer: 120
   item: {fileID: 1993325973734462, guid: ec6f2c1bb43c91546aef41c8dda42d6d, type: 2}
   objRender: {fileID: 1154693620106670}
   active: {fileID: 1115634826328232}
