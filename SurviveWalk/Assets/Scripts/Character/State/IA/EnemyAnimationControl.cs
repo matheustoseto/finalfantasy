@@ -2,95 +2,54 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyAnimationControl : MonoBehaviour {
-
-    private Animator animator = null;
-
-    private Weapon weapon;
+public class EnemyAnimationControl : CharacterAnimationControl {
 
     float speedPercent = 0;
 
-    private bool isLocomotion = false;
-    private bool isAttack     = false;
+    //private bool isLocomotion = false;
+    //private bool isAttack     = false;
     private bool isRise       = false;
-    private bool isDead       = false;
+    private bool isFakeDead   = false;
     private bool isFall       = false;
-
-
-
-    [Header("Smooth:")]
-    [SerializeField] [Range(-1, 1)] private float locomotionTime = 0.1f;
+    private bool isDead = false;
 
 
     #region Properties
-    public Weapon Weapon { get { return weapon; } set { weapon = value; } }
+    //public Weapon Weapon { get { return weapon; } set { weapon = value; } }
 
-    public float SpeedPercent { get { return speedPercent; } set { speedPercent = value; } }
-    public bool IsLocomotion { get { return isLocomotion; } set { isLocomotion = value; } }
-    public bool IsAttack { get { return isAttack; } set { isAttack = value; } }
+    //public float SpeedPercent { get { return speedPercent; } set { speedPercent = value; } }
+    //public bool IsLocomotion { get { return isLocomotion; } set { isLocomotion = value; } }
+    //public bool IsAttack { get { return isAttack; } set { isAttack = value; } }
     public bool IsRise { get { return isRise; } set { isRise = value; } }
-    public bool IsDead { get { return isDead; } set { isDead = value; } }
+    public bool IsFakeDead { get { return isFakeDead; } set { isFakeDead = value; } }
     public bool IsFall { get { return isFall; } set { isFall = value; } }
-
+    public bool IsDead { get { return isDead; } set { isDead = value; } }
     #endregion
 
 
-    // Use this for initialization
-    void Start()
-    {
-        animator = GetComponent<Animator>();
 
+
+    public override void Release()
+    {
+        base.Release();
+        IsLocomotion = false;
+        IsAttack = false;
+        IsRise = false;
+        IsFakeDead = false;
+        IsFall = false;
+        IsDead = false;
     }
 
 
-
-
-    public void Release()
+    public override void ExecuteAnimations()
     {
-        isLocomotion = false;
-        isAttack = false;
-        isRise = false;
-        isDead = false;
-        isFall = false;
+        animator.SetFloat("Speed", speedPercent, LocomotionTime, Time.deltaTime);
+        animator.SetBool(TypeStateCharacter.Attack.ToString(), IsAttack);
+        animator.SetBool(TypeStateCharacter.Rise.ToString(), IsRise);
+        animator.SetBool(TypeStateCharacter.FakeDead.ToString(), IsFakeDead);
+        animator.SetBool(TypeStateCharacter.Fall.ToString(), IsFall);
+        animator.SetBool(TypeStateCharacter.Dead.ToString(), IsDead);
     }
 
 
-    public void ExecuteAnimations()
-    {
-        animator.SetFloat("Speed", speedPercent, locomotionTime, Time.deltaTime);
-        animator.SetBool(TypeStateCharacter.Attack.ToString(), isAttack);
-        animator.SetBool(TypeStateCharacter.Rise.ToString(), isRise);
-        animator.SetBool(TypeStateCharacter.Dead.ToString(), isDead);
-        animator.SetBool(TypeStateCharacter.Fall.ToString(), isFall);
-    }
-
-
-
-
-    #region VerifyState
-    public bool IsAnimationCurrentName(string animCurrent)
-    {
-        return animator.GetCurrentAnimatorStateInfo(0).IsName(animCurrent);
-    }
-
-    public bool IsAnimationCurrentOver()
-    {
-        return animator.GetCurrentAnimatorStateInfo(0).normalizedTime
-            > animator.GetCurrentAnimatorStateInfo(0).length;
-    }
-
-    public float AnimationCurrentTime()
-    {
-        return animator.GetCurrentAnimatorStateInfo(0).normalizedTime
-            / animator.GetCurrentAnimatorStateInfo(0).length;
-    }
-    #endregion
-
-
-    #region Event
-    public void EventAnimation(string nameEvent, int type, bool eventActive)
-    {
-
-    }
-    #endregion
 }

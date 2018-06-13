@@ -7,7 +7,7 @@ public class CharacterAnimationControl : MonoBehaviour {
 
     //const float locomotionAnimationSmoothTime = .1f;
 
-    private Animator animator = null;
+    protected Animator animator = null;
 
     private Weapon weapon;
 
@@ -24,6 +24,7 @@ public class CharacterAnimationControl : MonoBehaviour {
 
 
     #region Properties
+    public float LocomotionTime { get { return locomotionTime; } }
     public Weapon Weapon { get { return weapon; } set { weapon = value; } }
 
     public float SpeedPercent { get { return speedPercent; } set { speedPercent = value; } }
@@ -46,7 +47,7 @@ public class CharacterAnimationControl : MonoBehaviour {
 
 
 
-    public void Release()
+    public virtual void Release()
     {
         isLocomotion = false;
         isAttack     = false;
@@ -55,7 +56,7 @@ public class CharacterAnimationControl : MonoBehaviour {
     }
 
 
-    public void ExecuteAnimations()
+    public virtual void ExecuteAnimations()
     {
         animator.SetFloat("Speed", speedPercent, locomotionTime, Time.deltaTime);
         animator.SetBool(TypeStateCharacter.Attack.ToString(), isAttack);
@@ -75,6 +76,13 @@ public class CharacterAnimationControl : MonoBehaviour {
     public bool IsAnimationCurrentOver()
     {
         return animator.GetCurrentAnimatorStateInfo(0).normalizedTime
+            > animator.GetCurrentAnimatorStateInfo(0).length;
+    }
+
+    public bool IsAnimationFinish(string animCurrent)
+    {
+        return animator.GetCurrentAnimatorStateInfo(0).IsName(animCurrent) &&
+               animator.GetCurrentAnimatorStateInfo(0).normalizedTime
             > animator.GetCurrentAnimatorStateInfo(0).length;
     }
 

@@ -41,16 +41,17 @@ public class CharacterState : MonoBehaviour {
 
         switch (state)
         {
-            case TypeStateCharacter.Move   : EnterMoveState();    break;
-            case TypeStateCharacter.Attack : EnterAttackState();  break;
-            case TypeStateCharacter.Dash   : EnterDashState();    break;
-            case TypeStateCharacter.Action : EnterActionState();  break;
-            case TypeStateCharacter.Patrol : EnterPatrolState();  break;
-            case TypeStateCharacter.Follow : EnterFollowState();  break;
-            case TypeStateCharacter.Back   : EnterBackState();    break;
-            case TypeStateCharacter.Rise   : EnterRiseState();    break;
-            case TypeStateCharacter.Fall   : EnterFallState();    break;
-            case TypeStateCharacter.Dead   : EnterDeadState();    break;
+            case TypeStateCharacter.Move    : EnterMoveState();     break;
+            case TypeStateCharacter.Attack  : EnterAttackState();   break;
+            case TypeStateCharacter.Dash    : EnterDashState();     break;
+            case TypeStateCharacter.Action  : EnterActionState();   break;
+            case TypeStateCharacter.Patrol  : EnterPatrolState();   break;
+            case TypeStateCharacter.Follow  : EnterFollowState();   break;
+            case TypeStateCharacter.Back    : EnterBackState();     break;
+            case TypeStateCharacter.Rise    : EnterRiseState();     break;
+            case TypeStateCharacter.FakeDead: EnterFakeDeadState(); break;
+            case TypeStateCharacter.Fall    : EnterFallState();     break;
+            case TypeStateCharacter.Dead    : EnterDeadState();     break;
             default: break;
         }
 
@@ -64,6 +65,7 @@ public class CharacterState : MonoBehaviour {
     protected virtual void EnterFollowState() { }
     protected virtual void EnterBackState() { }
     protected virtual void EnterRiseState() { }
+    protected virtual void EnterFakeDeadState() { }
     protected virtual void EnterFallState() { }
     protected virtual void EnterDeadState() { }
     #endregion
@@ -74,16 +76,17 @@ public class CharacterState : MonoBehaviour {
     {
         switch (state)
         {
-            case TypeStateCharacter.Move   : UpdateMoveState();    break;
-            case TypeStateCharacter.Attack : UpdateAttackState();  break;
-            case TypeStateCharacter.Dash   : UpdateDashState();    break;
-            case TypeStateCharacter.Action : UpdateActionState();  break;
-            case TypeStateCharacter.Patrol : UpdatePatrolState();  break;
-            case TypeStateCharacter.Follow : UpdateFollowState();  break;
-            case TypeStateCharacter.Back   : UpdateBackState();    break;
-            case TypeStateCharacter.Rise   : UpdateRiseState();    break;
-            case TypeStateCharacter.Fall   : UpdateFallState();    break;
-            case TypeStateCharacter.Dead   : UpdateDeadState();    break;
+            case TypeStateCharacter.Move     : UpdateMoveState();     break;
+            case TypeStateCharacter.Attack   : UpdateAttackState();   break;
+            case TypeStateCharacter.Dash     : UpdateDashState();     break;
+            case TypeStateCharacter.Action   : UpdateActionState();   break;
+            case TypeStateCharacter.Patrol   : UpdatePatrolState();   break;
+            case TypeStateCharacter.Follow   : UpdateFollowState();   break;
+            case TypeStateCharacter.Back     : UpdateBackState();     break;
+            case TypeStateCharacter.Rise     : UpdateRiseState();     break;
+            case TypeStateCharacter.FakeDead : UpdateFakeDeadState(); break;
+            case TypeStateCharacter.Fall     : UpdateFallState();     break;
+            case TypeStateCharacter.Dead     : UpdateDeadState();     break;
             default: break;
         }
     }
@@ -96,6 +99,7 @@ public class CharacterState : MonoBehaviour {
     protected virtual void UpdateFollowState() { }
     protected virtual void UpdateBackState() { }
     protected virtual void UpdateRiseState() { }
+    protected virtual void UpdateFakeDeadState() { }
     protected virtual void UpdateFallState() { }
     protected virtual void UpdateDeadState() { }
     #endregion
@@ -106,16 +110,17 @@ public class CharacterState : MonoBehaviour {
     {
         switch (state)
         {
-            case TypeStateCharacter.Move   : LeaveMoveState();    break;
-            case TypeStateCharacter.Attack : LeaveAttackState();  break;
-            case TypeStateCharacter.Dash   : LeaveDashState();    break;
-            case TypeStateCharacter.Action : LeaveActionState();  break;
-            case TypeStateCharacter.Patrol : LeavePatrolState();  break;
-            case TypeStateCharacter.Follow : LeaveFollowState();  break;
-            case TypeStateCharacter.Back   : LeaveBackState();    break;
-            case TypeStateCharacter.Rise   : LeaveRiseState();    break;
-            case TypeStateCharacter.Fall   : LeaveFallState();    break;
-            case TypeStateCharacter.Dead   : LeaveDeadState();    break;
+            case TypeStateCharacter.Move    : LeaveMoveState();     break;
+            case TypeStateCharacter.Attack  : LeaveAttackState();   break;
+            case TypeStateCharacter.Dash    : LeaveDashState();     break;
+            case TypeStateCharacter.Action  : LeaveActionState();   break;
+            case TypeStateCharacter.Patrol  : LeavePatrolState();   break;
+            case TypeStateCharacter.Follow  : LeaveFollowState();   break;
+            case TypeStateCharacter.Back    : LeaveBackState();     break;
+            case TypeStateCharacter.Rise    : LeaveRiseState();     break;
+            case TypeStateCharacter.FakeDead: LeaveFakeDeadState(); break;
+            case TypeStateCharacter.Fall    : LeaveFallState();     break;
+            case TypeStateCharacter.Dead    : LeaveDeadState();     break;
             default: break;
         }
     }
@@ -128,6 +133,7 @@ public class CharacterState : MonoBehaviour {
     protected virtual void LeaveFollowState() { }
     protected virtual void LeaveBackState() { }
     protected virtual void LeaveRiseState() { }
+    protected virtual void LeaveFakeDeadState() { }
     protected virtual void LeaveFallState() { }
     protected virtual void LeaveDeadState() { }
     #endregion
