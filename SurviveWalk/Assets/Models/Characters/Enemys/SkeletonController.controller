@@ -8,48 +8,48 @@ AnimatorController:
   m_Name: SkeletonController
   serializedVersion: 5
   m_AnimatorParameters:
-  - m_Name: speedPercent
+  - m_Name: Speed
     m_Type: 1
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   - m_Name: Locomotion
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   - m_Name: Attack
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   - m_Name: Rise
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   - m_Name: FakeDead
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   - m_Name: Fall
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   - m_Name: Dead
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
@@ -86,7 +86,7 @@ BlendTree:
     m_CycleOffset: 0
     m_DirectBlendParameter: speedPercent
     m_Mirror: 0
-  m_BlendParameter: speedPercent
+  m_BlendParameter: Speed
   m_BlendParameterY: Blend
   m_MinThreshold: 0.6
   m_MaxThreshold: 0.90000004
@@ -517,10 +517,10 @@ AnimatorState:
   m_TimeParameterActive: 0
   m_Motion: {fileID: 7400012, guid: 48ecdc11b8e74e842beb3a1eb96ff357, type: 3}
   m_Tag: 
-  m_SpeedParameter: speedPercent
+  m_SpeedParameter: Speed
   m_MirrorParameter: Locomotion
   m_CycleOffsetParameter: 
-  m_TimeParameter: speedPercent
+  m_TimeParameter: Speed
 --- !u!1102 &1102336830474983986
 AnimatorState:
   serializedVersion: 5
@@ -569,10 +569,10 @@ AnimatorState:
   m_TimeParameterActive: 0
   m_Motion: {fileID: 7400012, guid: 48ecdc11b8e74e842beb3a1eb96ff357, type: 3}
   m_Tag: 
-  m_SpeedParameter: speedPercent
+  m_SpeedParameter: Speed
   m_MirrorParameter: Locomotion
   m_CycleOffsetParameter: 
-  m_TimeParameter: speedPercent
+  m_TimeParameter: Speed
 --- !u!1102 &1102573644595383282
 AnimatorState:
   serializedVersion: 5

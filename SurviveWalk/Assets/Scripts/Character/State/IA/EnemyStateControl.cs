@@ -9,7 +9,14 @@ public class EnemyStateControl : CharacterState {
 
     private EnemyMoveControl moveControl;
 
-    [SerializeField] private Transform monitoringPoint = null;
+    // Way Points //
+    [Header("Patrol:")]
+    [SerializeField] private Vector3 monitoringPoint = Vector3.zero;
+    [SerializeField] private bool isPatrolStart = false;
+    private bool isPatrolCompleted = false;
+    private Path path = null;
+    private List<Transform> listWayPoints = new List<Transform>();
+    private int actualWp = 0;
 
     [Header("Radius Distance Detect:")]
     [SerializeField] private float radiusDetectPlayer    = 10f;
@@ -27,8 +34,8 @@ public class EnemyStateControl : CharacterState {
     [SerializeField] private Weapon weapon;
 
     // Estados //
-    bool isPatrolCompleted = false;
 
+    
 
     [Header("Test")]
     [SerializeField] private TypeStateCharacter newState = TypeStateCharacter.Rise;
@@ -59,10 +66,34 @@ public class EnemyStateControl : CharacterState {
     }
 
     // Use this for initialization
-    void Start () {
+    void Start()
+    {
+        #region WayPoints
+        path = GetComponent<Path>();
+        if (path != null)
+        {
+            if (path.WayPoints != null && path.WayPoints.Count > 0 && path.WayPoints[0] != null)
+            {
+                listWayPoints = path.WayPoints;
+            }
+            else
+            {
+                listWayPoints.Clear();
+                listWayPoints.Add(transform);
+            }
+        }
+        #endregion
+
         playerTarget = IcarusPlayerController.GetInstance();
 
-        EnterState(state);
+        if (state != TypeStateCharacter.FakeDead)
+        {
+            if (state == TypeStateCharacter.Patrol)
+                isPatrolStart = true;
+            EnterState(TypeStateCharacter.Rise);
+        }
+        else
+            EnterState(state);
     }
 	
 
@@ -115,6 +146,7 @@ public class EnemyStateControl : CharacterState {
     protected override void EnterPatrolState()
     {
         AnimationMove();
+        monitoringPoint = listWayPoints[actualWp].position;
     }
 
     protected override void EnterBackState()
@@ -153,18 +185,19 @@ public class EnemyStateControl : CharacterState {
 
     protected override void UpdateMoveState()
     {
+        #region Action
+        // Stop - Idle //
+        aniControl.SpeedPercent = moveControl.Magnitude / 2;
+        #endregion
 
-
-
-        // Transições //
-
-        float pointDistance = Distance(wayPoint.position, transform.position);
-        if (pointDistance > radiusLimitMonitoringPoint)
-        {
-            // Personagem muito longe do ponto de origem //
-            EnterState(TypeStateCharacter.Follow);
-            return;
-        }
+        #region Transtions
+        //float pointDistance = Distance(wayPoint.position, transform.position);
+        //if (pointDistance > radiusLimitMonitoringPoint)
+        //{
+        //    // Personagem muito longe do ponto de origem //
+        //    EnterState(TypeStateCharacter.Follow);
+        //    return;
+        //}
 
         float playerDistance = Distance(playerTarget.position, transform.position);
         if (playerDistance <= radiusAttack)
@@ -181,7 +214,6 @@ public class EnemyStateControl : CharacterState {
             return;
         }
 
-        isPatrolCompleted = true;
         timer += Time.deltaTime;
         if (timer >= timerWait)
         {
@@ -199,14 +231,21 @@ public class EnemyStateControl : CharacterState {
                 EnterState(TypeStateCharacter.Patrol);
             }
         }
+        #endregion
 
     }
 
     protected override void UpdateAttackState()
     {
+        #region Action
+        // Olhar para o player //
+        moveControl.LookAt(playerTarget.position);
+        #endregion
+
+        #region Transtions
         if (aniControl.IsAnimationFinish(state.ToString()))
         {
-            float pointDistance = Distance(wayPoint.position, transform.position);
+            float pointDistance = Distance(listWayPoints[actualWp].position, transform.position);
             if (pointDistance > radiusLimitMonitoringPoint)
             {
                 // Personagem muito longe do ponto de origem //
@@ -230,12 +269,20 @@ public class EnemyStateControl : CharacterState {
             }
             return;
         }
+        #endregion
     }
 
     protected override void UpdateFollowState()
     {
+        #region Action
+        moveControl.Move(playerTarget.position);
+        moveControl.LookAt(playerTarget.position);
+        aniControl.SpeedPercent = moveControl.Magnitude / 2;
+        #endregion
 
-        float pointDistance = Distance(wayPoint.position, transform.position);
+        #region Transtions
+        float pointDistance = Distance(listWayPoints[actualWp].position, transform.position);
+
         if (pointDistance > radiusLimitMonitoringPoint)
         {
             // Personagem muito longe do ponto de origem //
@@ -244,18 +291,32 @@ public class EnemyStateControl : CharacterState {
         }
 
         float playerDistance = Distance(playerTarget.position, transform.position);
+        if (playerDistance > radiusPlayerDistance)
+        {
+            // Detectou o jogador //
+            EnterState(TypeStateCharacter.Back);
+            return;
+        }
+
         if (playerDistance <= radiusAttack)
         {
             // Detectou o jogador e está em área de ataque //
             EnterState(TypeStateCharacter.Attack);
             return;
         }
-
+        #endregion
     }
 
     protected override void UpdatePatrolState()
     {
 
+        #region Action
+        moveControl.Move(listWayPoints[actualWp].position);
+        moveControl.LookAt(listWayPoints[actualWp].position);
+        aniControl.SpeedPercent = moveControl.Magnitude / 2;
+        #endregion
+
+        #region Transtions
         float playerDistance = Distance(playerTarget.position, transform.position);
         if (playerDistance <= radiusPlayerDistance)
         {
@@ -264,43 +325,61 @@ public class EnemyStateControl : CharacterState {
             return;
         }
 
-        float pointDistance = Distance(wayPoint.position, transform.position);
+        float pointDistance = Distance(listWayPoints[actualWp].position, transform.position);
         if (pointDistance <= radiusMonitoringPoint)
         {
             // Chegou no destino //
             EnterState(TypeStateCharacter.Move);
             return;
         }
+        #endregion
     }
 
     protected override void UpdateBackState()
     {
-        
-        // Transições //
-        float pointDistance = Distance(wayPoint.position, transform.position);
+
+        #region Action
+        moveControl.Move(listWayPoints[actualWp].position);
+        moveControl.LookAt(listWayPoints[actualWp].position);
+        aniControl.SpeedPercent = moveControl.Magnitude / 2;
+        #endregion
+
+        #region Transtions
+        float pointDistance = Distance(listWayPoints[actualWp].position, transform.position);
+        Debug.Log("pointDistance: " + pointDistance);
         if (pointDistance <= radiusMonitoringPoint)
         {
             // Chegou a ponto de origem //
+            // radiusMonitoringPoint precisa ser igual ao navAgent.StoppingDistance //
+
             EnterState(TypeStateCharacter.Move);
             return;
         }
+        #endregion
     }
 
     protected override void UpdateRiseState()
     {
+        #region Action
+        // Rise //
+        #endregion
 
-        // Transições //
+        #region Transtions
         if (aniControl.IsAnimationCurrentName(state.ToString()) && aniControl.IsAnimationCurrentOver())
         {
             EnterState(TypeStateCharacter.Move);
             return;
         }
+        #endregion
     }
 
     protected override void UpdateFakeDeadState()
     {
+        #region Action
+        // Fake Dead //
+        #endregion
 
-        // Transições //
+        #region Transtions
         if (aniControl.IsAnimationFinish(state.ToString()))
         {
             float playerDistance = Distance(playerTarget.position, transform.position);
@@ -310,24 +389,44 @@ public class EnemyStateControl : CharacterState {
                 return;
             }
 
+            if (isPatrolStart)
+            {
+                timer += Time.deltaTime;
+                if (timer >= timerWait)
+                {
+                    timer = 0;
+                    EnterState(TypeStateCharacter.Rise);
+                }
+            }
         }
+        #endregion
 
     }
 
     protected override void UpdateFallState()
-    {
+    {  
+        #region Action
+        // Fall //
+        #endregion
 
-        // Transições //
+        #region Transtions
         if (aniControl.IsAnimationCurrentName(state.ToString()) && aniControl.IsAnimationCurrentOver())
         {
             EnterState(TypeStateCharacter.FakeDead);
             return;
         }
+        #endregion
     }
 
     protected override void UpdateDeadState()
     {
-        
+        #region Action
+        // Dead //
+        #endregion
+
+        #region Transtions
+        // No transtions //
+        #endregion
     }
 
     #endregion
@@ -357,7 +456,13 @@ public class EnemyStateControl : CharacterState {
 
     protected override void LeavePatrolState()
     {
-        
+        actualWp++;
+        if (actualWp >= listWayPoints.Count)
+        {
+            actualWp = 0;
+            if (!isPatrolStart)
+                isPatrolCompleted = true;
+        }
     }
 
     protected override void LeaveBackState()
@@ -377,7 +482,8 @@ public class EnemyStateControl : CharacterState {
 
     protected override void LeaveFallState()
     {
-        
+        actualWp = 0;
+        isPatrolCompleted = false;
     }
 
     protected override void LeaveDeadState()

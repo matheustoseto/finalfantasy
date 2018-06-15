@@ -7,11 +7,12 @@ public class EnemyMoveControl : MonoBehaviour {
 
     private NavMeshAgent navAgent;
 
-
     [Header("Reference:")]
     [SerializeField] private GameObject bodyMiniMap = null;
     [SerializeField] private Transform  body = null;
 
+    [Header("Test:")]
+    [SerializeField] private float magnitude = 0;
 
 
     private Vector3 enemyInitialPos;
@@ -45,7 +46,7 @@ public class EnemyMoveControl : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-
+        magnitude = Magnitude / 2;
         
 
     }
@@ -66,7 +67,11 @@ public class EnemyMoveControl : MonoBehaviour {
     }
 
 
-    
+    public void LookAt(Vector3 wordPosition)
+    {
+        wordPosition.y = transform.position.y;
+        transform.LookAt(wordPosition);
+    }
 
     
 

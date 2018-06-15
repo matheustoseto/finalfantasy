@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class EnemyAnimationControl : CharacterAnimationControl {
 
-    float speedPercent = 0;
-
     //private bool isLocomotion = false;
     //private bool isAttack     = false;
     private bool isRise       = false;
@@ -43,7 +41,7 @@ public class EnemyAnimationControl : CharacterAnimationControl {
 
     public override void ExecuteAnimations()
     {
-        animator.SetFloat("Speed", speedPercent, LocomotionTime, Time.deltaTime);
+        animator.SetFloat("Speed", SpeedPercent, LocomotionTime, Time.deltaTime);
         animator.SetBool(TypeStateCharacter.Attack.ToString(), IsAttack);
         animator.SetBool(TypeStateCharacter.Rise.ToString(), IsRise);
         animator.SetBool(TypeStateCharacter.FakeDead.ToString(), IsFakeDead);
