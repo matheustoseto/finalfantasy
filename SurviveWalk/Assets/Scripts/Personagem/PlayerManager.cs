@@ -6,10 +6,18 @@ public class PlayerManager : MonoBehaviour {
 
     public GameObject player;
 
-    public static PlayerManager instance;
+    private static PlayerManager instance = null;
+    public static PlayerManager Instance { get { return instance; } }
 
     private void Start()
     {
         instance = this;
+        player = this.gameObject;
+    }
+
+    void Awake()
+    {
+        instance = this;
+        player = this.gameObject;
     }
 }

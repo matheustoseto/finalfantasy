@@ -7,12 +7,10 @@ public class Target : PlayerManager
     [SerializeField] private List<Transform> distancePoints = new List<Transform>();
 
     private IcarusController icarusPlayer;
-
     public IcarusController IcarusPlayer { get { return icarusPlayer; } }
 
     void Awake()
     {
-        instance = this;
         icarusPlayer = GetComponent<IcarusController>();
     }
 

@@ -8,7 +8,7 @@ public class Map : MonoBehaviour {
     public Text coordenadas;
 
     void Update () {
-		if(PlayerManager.instance.player != null)
-			coordenadas.text = "X: " + Mathf.RoundToInt(PlayerManager.instance.player.transform.position.x) + " Y: " + Mathf.RoundToInt(PlayerManager.instance.player.transform.position.z);
+		if(PlayerManager.Instance.player != null)
+			coordenadas.text = "X: " + Mathf.RoundToInt(PlayerManager.Instance.player.transform.position.x) + " Y: " + Mathf.RoundToInt(PlayerManager.Instance.player.transform.position.z);
     }
 }

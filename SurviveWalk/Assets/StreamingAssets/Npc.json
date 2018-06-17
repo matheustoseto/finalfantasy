@@ -1,0 +1,44 @@
+[
+	{
+		"id": 0,
+		"title": "NPC 1",
+		"isQuest" : false,
+		"isCraft" : false,
+		"intro": [
+			{
+				"id" : 0,
+				"step" : "Seja bem vindo!!!!"
+			},
+			{
+				"id" : 1,
+				"step" : "Colete os recursos espalhados no mundo."
+			},
+			{
+				"id" : 2,
+				"step" : "Lute contra esqueletos para mostrar o seu valor."
+			},
+			{
+				"id" : 3,
+				"step" : "Boa Sorte!"
+			}
+		],
+		"quests": []
+	},
+	{
+		"id": 1,
+		"title": "NPC 2",
+		"isQuest" : true,
+		"isCraft" : true,
+		"intro": [
+			{
+				"id" : 0,
+				"step" : "Seja bem vindo!"
+			}
+		],
+		"quests": [
+			{
+				"id": 0
+			}
+		]
+	}
+]

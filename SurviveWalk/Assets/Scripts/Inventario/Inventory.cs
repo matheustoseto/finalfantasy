@@ -102,6 +102,13 @@ public class Inventory : MonoBehaviour
                 itemObj.GetComponent<ItemData>().item = itemToAdd;
                 itemObj.GetComponent<ItemData>().slotId = slot;
                 itemObj.GetComponent<ItemData>().amount = 1;
+                itemObj.GetComponent<ItemData>().durability = itemToAdd.Durability;
+
+                if(itemToAdd.Durability <= 0)
+                    itemObj.GetComponent<ItemData>().transform.GetChild(0).GetComponent<Text>().text = "1";
+                if (itemToAdd.Durability > 0)
+                    itemObj.GetComponent<ItemData>().transform.GetChild(1).GetComponent<Text>().text = itemToAdd.Durability.ToString();
+
                 itemObj.transform.SetParent(slots[slot].transform);
                 itemObj.transform.position = Vector3.zero;
                 itemObj.GetComponent<Image>().sprite = itemToAdd.Sprite;
@@ -140,6 +147,13 @@ public class Inventory : MonoBehaviour
 					itemObj.GetComponent<ItemData>().item = itemToAdd;
                     itemObj.GetComponent<ItemData>().slotId = i;
                     itemObj.GetComponent<ItemData>().amount = 1;
+                    itemObj.GetComponent<ItemData>().durability = itemToAdd.Durability;
+
+                    if (itemToAdd.Durability <= 0)
+                        itemObj.GetComponent<ItemData>().transform.GetChild(0).GetComponent<Text>().text = "1";
+                    if (itemToAdd.Durability > 0)
+                        itemObj.GetComponent<ItemData>().transform.GetChild(1).GetComponent<Text>().text = itemToAdd.Durability.ToString();
+
                     itemObj.transform.SetParent(slots[i].transform);
                     itemObj.transform.position = Vector3.zero;
                     itemObj.GetComponent<Image>().sprite = itemToAdd.Sprite;
@@ -242,6 +256,9 @@ public class Inventory : MonoBehaviour
             {
                 items[i].DurabilityCount -= 1;
 
+                ItemData data = slots[i].transform.GetChild(0).GetComponent<ItemData>();
+                data.transform.GetChild(1).GetComponent<Text>().text = items[i].DurabilityCount.ToString();
+
                 if (items[i].DurabilityCount <= 0)
                 {
                     RemoveItemDurability(items[i]);
@@ -270,6 +287,12 @@ public class Inventory : MonoBehaviour
             
     }
 
+    public void DisableInventory()
+    {
+        inventoryPanel.SetActive(false);
+        tooltip.SetActive(false);
+    }
+
     public void ActiveDisableInventory()
     {
         if (inventoryPanel.activeSelf)
@@ -290,5 +313,14 @@ public class Inventory : MonoBehaviour
                          select it).FirstOrDefault();
 
         return new Enemy(enemy);
+    }
+
+    public Npc GetNpcData(int id)
+    {
+        Npc npc = (from it in database.GetNpcList()
+                       where it.Id.Equals(id)
+                       select it).FirstOrDefault();
+
+        return npc;
     }
 }

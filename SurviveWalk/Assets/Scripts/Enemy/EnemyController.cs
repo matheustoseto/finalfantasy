@@ -36,7 +36,7 @@ public class EnemyController : MonoBehaviour {
     void Start () {
         originalMaterial = Body.material;
         enemyInitialPos = transform.position;
-        playerTarget = PlayerManager.instance.player.transform;
+        playerTarget = PlayerManager.Instance.player.transform;
         agent = GetComponent<NavMeshAgent>();
         enemy = GetComponent<EnemyAnimator>();
         animator = GetComponent<Animator>();

@@ -21,12 +21,22 @@ public class ItemDatabase : MonoBehaviour {
     private List<Enemy> enemybase = new List<Enemy>();
     private JsonData enemyData;
 
+    // Npc.json
+    private List<Npc> npcbase = new List<Npc>();
+    private JsonData npcData;
+
+    // Quest.json
+    private List<Quest> questbase = new List<Quest>();
+    private JsonData questData;
+
     void Start()
 	{
 		itemData = JsonMapper.ToObject(File.ReadAllText(Application.dataPath + "/StreamingAssets/Items.json"));
         craftData = JsonMapper.ToObject(File.ReadAllText(Application.dataPath + "/StreamingAssets/Crafts.json"));
         houseData = JsonMapper.ToObject(File.ReadAllText(Application.dataPath + "/StreamingAssets/HouseCrafts.json"));
         enemyData = JsonMapper.ToObject(File.ReadAllText(Application.dataPath + "/StreamingAssets/Enemy.json"));
+        npcData = JsonMapper.ToObject(File.ReadAllText(Application.dataPath + "/StreamingAssets/Npc.json"));
+        questData = JsonMapper.ToObject(File.ReadAllText(Application.dataPath + "/StreamingAssets/Quest.json"));
         ConstructItemDatabase();	
 	}
 
@@ -55,6 +65,16 @@ public class ItemDatabase : MonoBehaviour {
     public List<Enemy> GetEnemyList()
     {
         return enemybase;
+    }
+
+    public List<Npc> GetNpcList()
+    {
+        return npcbase;
+    }
+
+    public List<Quest> GetQuestList()
+    {
+        return questbase;
     }
 
     void ConstructItemDatabase()
@@ -133,6 +153,60 @@ public class ItemDatabase : MonoBehaviour {
             enemy.Power = (int)enemyData[i]["power"];
 
             enemybase.Add(enemy);
+        }
+
+        if(npcData != null)
+        {
+            for (int i = 0; i < npcData.Count; i++)
+            {
+                Npc npc = new Npc();
+                npc.Id = (int)npcData[i]["id"];
+                npc.Title = npcData[i]["title"].ToString();
+                npc.IsQuest = (bool)npcData[i]["isQuest"];
+                npc.IsCraft = (bool)npcData[i]["isCraft"];
+
+                for (int j = 0; j < npcData[i]["intro"].Count; j++)
+                {
+                    Intro intro = new Intro();
+                    intro.Id = (int)npcData[i]["intro"][j]["id"];
+                    intro.Step = npcData[i]["intro"][j]["step"].ToString();
+
+                    npc.Intro.Add(intro);
+                }
+
+                for (int j = 0; j < npcData[i]["quests"].Count; j++)
+                {
+                    Quest quest = new Quest();
+                    quest.Id = (int)npcData[i]["quests"][j]["id"];
+
+                    npc.Quest.Add(quest);
+                }
+
+                npcbase.Add(npc);
+            }
+        }
+            
+
+        if(questData != null)
+        {
+            for (int i = 0; i < questData.Count; i++)
+            {
+                Quest quest = new Quest();
+                quest.Id = (int)questData[i]["id"];
+                quest.Title = questData[i]["title"].ToString();
+                quest.Descr = questData[i]["descr"].ToString();
+
+                for (int j = 0; j < questData[i]["tasks"].Count; j++)
+                {
+                    Task task = new Task();
+                    task.Id = (int)questData[i]["tasks"][j]["id"];
+                    task.Title = questData[i]["tasks"][j]["title"].ToString();
+
+                    quest.Task.Add(task);
+                }
+
+                questbase.Add(quest);
+            }
         }
     }
 }
@@ -261,4 +335,34 @@ public class Enemy
         this.Life = enemy.Life;
         this.Power = enemy.Power;
     }
+}
+
+public class Npc
+{
+    public int Id { get; set; }
+    public string Title { get; set; }
+    public bool IsQuest { get; set; }
+    public bool IsCraft { get; set; }
+    public List<Intro> Intro = new List<Intro>();
+    public List<Quest> Quest = new List<Quest>();
+}
+
+public class Intro
+{
+    public int Id { get; set; }
+    public string Step { get; set; }
+}
+
+public class Quest
+{
+    public int Id { get; set; }
+    public string Title { get; set; }
+    public string Descr { get; set; }
+    public List<Task> Task = new List<Task>();
+}
+
+public class Task
+{
+    public int Id { get; set; }
+    public string Title { get; set; }
 }

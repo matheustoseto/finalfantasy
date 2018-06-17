@@ -6,6 +6,7 @@ public class ItemData : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
 {
 	public Item item;
 	public int amount;
+    public int durability;
 	public int slotId;
 
 	private Inventory inv;

@@ -21,7 +21,7 @@
 		"value": 1,
 		"type" : "Machado",
 		"stats": {
-			"power": 4,
+			"power": 0,
 			"defense": 4,
 			"vitality": 2
 		},
@@ -69,7 +69,7 @@
 		"value": 1,
 		"type" : "Picareta",
 		"stats": {
-			"power": 4,
+			"power": 0,
 			"defense": 4,
 			"vitality": 2
 		},
@@ -117,7 +117,7 @@
 		"value": 1,
 		"type" : "Machado",
 		"stats": {
-			"power": 2,
+			"power": 0,
 			"defense": 4,
 			"vitality": 2
 		},
@@ -133,7 +133,7 @@
 		"value": 1,
 		"type" : "Picareta",
 		"stats": {
-			"power": 2,
+			"power": 0,
 			"defense": 4,
 			"vitality": 2
 		},
