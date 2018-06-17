@@ -6,6 +6,8 @@ using UnityEngine.UI;
 
 public class EnemyController : MonoBehaviour {
 
+    public EnemyStateControl enemy;
+    public NavMeshAgent agent;
     public Material OnAttack;
     public Renderer Body;
     public float radius = 10f;
@@ -15,11 +17,7 @@ public class EnemyController : MonoBehaviour {
 
     Vector3 enemyInitialPos;
     Transform playerTarget;
-    NavMeshAgent agent;
-    EnemyAnimator enemy;
-    Animator animator;
-    BoxCollider boxcol;
-
+      
     Enemy enemyStats;
 
     private float timer = 0.5f;
@@ -37,20 +35,14 @@ public class EnemyController : MonoBehaviour {
         originalMaterial = Body.material;
         enemyInitialPos = transform.position;
         playerTarget = PlayerManager.Instance.player.transform;
-        agent = GetComponent<NavMeshAgent>();
-        enemy = GetComponent<EnemyAnimator>();
-        animator = GetComponent<Animator>();
-        boxcol = GetComponent<BoxCollider>();
-
         enemyStats = Inventory.Instance.GetEnemyData(enemyType.GetHashCode());
         lifeTotal = enemyStats.Life;
     }
 	
 	// Update is called once per frame
 	void Update () {
-        if (enemy.realrised)
+        if (!TypeStateCharacter.FakeDead.Equals(enemy.State))
         {
-            boxcol.size = new Vector3(3f, 1f, 3f);
             if (!lifeBar.activeSelf)
                 lifeBar.SetActive(true);
 
@@ -109,7 +101,7 @@ public class EnemyController : MonoBehaviour {
 
     public bool RemoveLife(int life)
     {
-        if (enemy.realrised && !removeLife)
+        if (!TypeStateCharacter.FakeDead.Equals(enemy.State) && !removeLife)
         {
             timer = 0.3f;
             removeLife = true;
@@ -123,7 +115,7 @@ public class EnemyController : MonoBehaviour {
             hit.GetComponent<HitPopUp>().SetText(life.ToString());
 
             if (enemyStats.Life <= 0)
-                Destroy(gameObject);
+                Destroy(agent.gameObject);
 
             return true;
         }
@@ -132,13 +124,23 @@ public class EnemyController : MonoBehaviour {
 
     private void OnTriggerStay(Collider other)
     {
-        if ("Player".Equals(other.tag) && !attack && enemy.realrised)
-        {         
+        if ("Player".Equals(other.tag) && !attack && !TypeStateCharacter.FakeDead.Equals(enemy.State))
+        {
+            print("entrou");
             other.GetComponent<CharacterStatus>().RemoveLife(enemyStats.Power);
             attack = true;
-            animator.SetTrigger("isAttack");
             timerAttack = 0.9f;
         }
+    }
+
+    public void Attack(CharacterStatus status)
+    {
+        if (!attack && TypeStateCharacter.Attack.Equals(enemy.State))
+        {
+            status.RemoveLife(enemyStats.Power);
+            attack = true;
+            timerAttack = 0.9f;
+        }  
     }
 
 }

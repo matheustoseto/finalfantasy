@@ -23,10 +23,15 @@ public class Weapon : MonoBehaviour {
         }
 	}
 
-    public void Attack()
+    public void AttackOn()
     {
         attck = true;
         transform.localPosition += new Vector3(0, 0, 0.6f);
+    }
+
+    public void AttackOff()
+    {
+        attck = false;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -62,7 +67,6 @@ public class Weapon : MonoBehaviour {
             enemyController.RemoveLife(1);
         }
 
-        attck = false;
         transform.localPosition = originalPosition;
     }
 }

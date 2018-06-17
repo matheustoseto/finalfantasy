@@ -107,15 +107,17 @@ public class EnemyStateControl : CharacterState {
         Actions();
 
         // Teste //
-        distancePlayerTest = Distance(playerTarget.position, transform.position);
-        distancewayPoint = Distance(wayPoint.position, transform.position);
+        //distancePlayerTest = Distance(playerTarget.position, transform.position);
+        //distancewayPoint = Distance(wayPoint.position, transform.position);
         // Fim teste // */
 
+        /*
         if (isChangeState)
         {
-            isChangeState = false;
-            EnterState(newState);
+            //isChangeState = false;
+            //EnterState(newState);
         }
+        */
 
         UpdateState();
         aniControl.ExecuteAnimations();

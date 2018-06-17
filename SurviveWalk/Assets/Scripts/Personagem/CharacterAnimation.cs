@@ -36,10 +36,11 @@ public class CharacterAnimation : MonoBehaviour {
     }
 
 	public void AttackOn(){
-		weapon.Attack();
+        weapon.AttackOn();
 	}
 
 	public void AttackOff(){
-		
-	}
+        weapon.AttackOff();
+
+    }
 }

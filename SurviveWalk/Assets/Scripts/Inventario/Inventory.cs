@@ -163,6 +163,8 @@ public class Inventory : MonoBehaviour
 				}
 			}
 		}
+
+        PlayerManager.Instance.player.GetComponent<SlotSelect>().UpdateSelect();
 	}
 
     public void RemoveItem(int id, int qnt)

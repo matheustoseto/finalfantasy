@@ -103,12 +103,13 @@ public class CharacterAnimationControl : MonoBehaviour {
     public void AttackOn()
     {
         if (weapon != null)
-            weapon.Attack();
+            weapon.AttackOn();
     }
 
     public void AttackOff()
     {
-
+        if (weapon != null)
+            weapon.AttackOff();
     }
     #endregion
 }

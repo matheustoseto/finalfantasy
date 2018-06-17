@@ -77,6 +77,11 @@ public class SlotSelect : MonoBehaviour {
             SetWeapon(null);
     }
 
+    public void UpdateSelect()
+    {
+        Select(slotSelect);
+    }
+
     public void SetWeapon(Item item)
     {
         if (item != null)
