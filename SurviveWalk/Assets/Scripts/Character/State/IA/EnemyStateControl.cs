@@ -4,20 +4,22 @@ using UnityEngine;
 using UnityEngine.AI;
 
 public class EnemyStateControl : CharacterState {
+   
+    #region Attributes - Components
     private Transform playerTarget = null;
     private CharacterStatus playerStatus = null;
-    private BoxCollider boxCol = null;
-
-    private EnemyMoveControl moveControl;
-
-    // Way Points //
-    [Header("Patrol:")]
-    [SerializeField] private Vector3 monitoringPoint = Vector3.zero;
-    [SerializeField] private bool isPatrolStart = false;
-    private bool isPatrolCompleted = false;
+    private EnemyAnimationControl aniControl = null;
+    private EnemyMoveControl moveControl = null;
     private Path path = null;
-    private List<Transform> listWayPoints = new List<Transform>();
-    private int actualWp = 0;
+    private BoxCollider boxCol = null;
+    #endregion
+
+    #region Attributes - General
+    [Header("General Settings:")]
+    [SerializeField] private Weapon weapon;
+    [SerializeField] private bool isDestroy = false;
+    [SerializeField] private float timerWait = 3;
+    private float timer = 0;
 
     [Header("Radius Distance Detect:")]
     [SerializeField] private float radiusDetectPlayer    = 10f;
@@ -26,24 +28,23 @@ public class EnemyStateControl : CharacterState {
     [SerializeField] private float radiusLimitMonitoringPoint = 60f;
     [SerializeField] private float radiusAttack = 1f;
 
-    [Header("Timer:")]
-    [SerializeField] private float timerWait = 3;
-    private float timer = 0;
+    [Header("Monitoring:")]
+    // Patrol //
+    [SerializeField] private Vector3 monitoringPoint = Vector3.zero;
+    [SerializeField] private bool isPatrolStart = false;
+    private List<Transform> listWayPoints = new List<Transform>();
+    private bool isPatrolCompleted = false;
+    private int actualWp = 0;
+    #endregion
 
-
-    [Header("Tools / Weapon:")]
-    [SerializeField] private Weapon weapon;
-
-    // Estados //
-
-    
-
-    [Header("Actual Distances:")]
+    #region Attributes - Test
+    // Test //
     [SerializeField] private float distancePlayerTest = 0;
-    [SerializeField] private float distanceMonitoringPoint = 0;
+    [SerializeField] private float distanceMonitoringPointTest = 0;
+    #endregion
 
-    private EnemyAnimationControl aniControl = null;
 
+    #region Unity
     private void Awake()
     {
         gameObject.name = transform.GetInstanceID() + "-" +gameObject.name;
@@ -56,13 +57,6 @@ public class EnemyStateControl : CharacterState {
         {
             weapon = GetComponentInChildren<Weapon>();
             aniControl.Weapon = weapon;
-            //try
-            //{
-            //}catch(Exception e)
-            //{
-            //    Debug.LogError("["+gameObject.name + "][EnemyStateControl][Awake]: " + e.Message);
-            //}
-
         }
     }
 
@@ -128,10 +122,10 @@ public class EnemyStateControl : CharacterState {
 	// Update is called once per frame
 	void Update () {
 
-        // Teste //
+        #region Teste
         distancePlayerTest = Distance(playerTarget.position, transform.position);
-        distanceMonitoringPoint = Distance(monitoringPoint, transform.position);
-        // Fim teste // */
+        distanceMonitoringPointTest = Distance(monitoringPoint, transform.position);
+        #endregion
 
         UpdateState();
         aniControl.ExecuteAnimations();
@@ -144,9 +138,11 @@ public class EnemyStateControl : CharacterState {
             EnterState(TypeStateCharacter.Back);
         }
     }
+    #endregion
+    
+    #region StateMachine
 
-
-    #region EnterState
+    #region StateMachine - EnterState
     protected override void EnterMoveState()
     {
         AnimationMove();
@@ -202,7 +198,7 @@ public class EnemyStateControl : CharacterState {
     }
     #endregion
 
-    #region UpdateState
+    #region StateMachine - UpdateState
 
     protected override void UpdateMoveState()
     {
@@ -457,7 +453,7 @@ public class EnemyStateControl : CharacterState {
 
     #endregion
 
-    #region LeaveState
+    #region StateMachine - LeaveState
     protected override void LeaveState()
     {
         base.LeaveState();
@@ -514,32 +510,15 @@ public class EnemyStateControl : CharacterState {
 
     protected override void LeaveDeadState()
     {
-        //Destroy(gameObject);
+        if (isDestroy)
+            Destroy(gameObject);
     }
 
     #endregion
 
+    #endregion
 
-    //private void OnTriggerStay(Collider other)
-    //{
-    //    if ("Player".Equals(other.tag) && !attack && enemy.realrised)
-    //    {
-    //        other.GetComponent<CharacterStatus>().RemoveLife(enemyStats.Power);
-    //        attack = true;
-    //        animator.SetTrigger("isAttack");
-    //        timerAttack = 0.9f;
-    //    }
-    //}
-
-
-
-    void lookToPlayer()
-    {
-        Vector3 direction = (playerTarget.position - transform.position).normalized;
-        Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
-        transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 5f);
-    }
-
+    #region Util Metholds
     private void AnimationMove()
     {
         aniControl.IsLocomotion = true;
@@ -567,4 +546,5 @@ public class EnemyStateControl : CharacterState {
         isPatrolCompleted = false;
         boxCol.enabled = false;
     }
+    #endregion
 }
