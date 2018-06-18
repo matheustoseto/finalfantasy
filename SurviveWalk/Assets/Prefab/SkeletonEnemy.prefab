@@ -328,7 +328,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4910949593719914}
   - component: {fileID: 95734883844032372}
-  - component: {fileID: 114782050892860228}
   - component: {fileID: 114883812384190198}
   - component: {fileID: 114693016973686806}
   m_Layer: 9
@@ -1542,7 +1541,7 @@ BoxCollider:
   m_GameObject: {fileID: 1823272811843418}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 6, y: 1, z: 6}
   m_Center: {x: 0, y: 0, z: 0}
@@ -1590,8 +1589,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b95859e9680c84d49bd3ce4ea8161fa1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sphereColor: {r: 0, g: 1, b: 0, a: 1}
-  lineColor: {r: 0, g: 1, b: 0, a: 1}
+  sphereColor: {r: 0, g: 0.26206875, b: 1, a: 1}
+  lineColor: {r: 0, g: 0.2627451, b: 1, a: 1}
   wayPoints:
   - {fileID: 0}
   - {fileID: 0}
@@ -1619,11 +1618,8 @@ MonoBehaviour:
   radiusAttack: 2
   timerWait: 5
   weapon: {fileID: 0}
-  newState: 8
-  isChangeState: 0
   distancePlayerTest: 0
-  wayPoint: {fileID: 0}
-  distancewayPoint: 0
+  distanceMonitoringPoint: 0
 --- !u!114 &114435122275946172
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1674,7 +1670,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemy: {fileID: 114373510240488674}
-  agent: {fileID: 195815476217179018}
   OnAttack: {fileID: 2100000, guid: 397e0f071a93d294fae25a8e481df13b, type: 2}
   Body: {fileID: 137089640969359812}
   radius: 15
@@ -1702,19 +1697,6 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
---- !u!114 &114782050892860228
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1484858935279512}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 624af9c3ae073e049bbeed3d4e8cae78, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  realrised: 0
-  timeRising: 2.5
 --- !u!114 &114829215010153830
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -4,8 +4,9 @@ using UnityEngine;
 using UnityEngine.AI;
 
 public class EnemyStateControl : CharacterState {
-
     private Transform playerTarget = null;
+    private CharacterStatus playerStatus = null;
+    private BoxCollider boxCol = null;
 
     private EnemyMoveControl moveControl;
 
@@ -37,19 +38,19 @@ public class EnemyStateControl : CharacterState {
 
     
 
-    [Header("Test")]
-    [SerializeField] private TypeStateCharacter newState = TypeStateCharacter.Rise;
-    [SerializeField] private bool isChangeState = false;
+    [Header("Actual Distances:")]
     [SerializeField] private float distancePlayerTest = 0;
-    [SerializeField] private Transform wayPoint;
-    [SerializeField] private float distancewayPoint = 0;
+    [SerializeField] private float distanceMonitoringPoint = 0;
 
     private EnemyAnimationControl aniControl = null;
 
     private void Awake()
     {
+        gameObject.name = transform.GetInstanceID() + "-" +gameObject.name;
+
         aniControl = GetComponentInChildren<EnemyAnimationControl>();
         moveControl = GetComponentInChildren<EnemyMoveControl>();
+        boxCol = GetComponentInChildren<BoxCollider>();
 
         if (weapon == null)
         {
@@ -72,19 +73,47 @@ public class EnemyStateControl : CharacterState {
         path = GetComponent<Path>();
         if (path != null)
         {
-            if (path.WayPoints != null && path.WayPoints.Count > 0 && path.WayPoints[0] != null)
+            bool isError = false;
+            listWayPoints = path.WayPoints;
+            if (listWayPoints == null)
             {
-                listWayPoints = path.WayPoints;
+                isError = true;
+                Debug.Log("[EnemyState][" + gameObject.name + "]: listWayPoins nula.");
             }
             else
             {
-                listWayPoints.Clear();
+                if (listWayPoints.Count == 0)
+                {
+                    Debug.Log("[EnemyState][" + gameObject.name + "]: listWayPoins vazia.");
+                    isError = true;
+                }
+                else { 
+                    for (int i = 0; i < listWayPoints.Count; i++)
+                    {
+                        if (listWayPoints[i] == null)
+                        {
+                            listWayPoints.Clear();
+                            listWayPoints.Add(transform);
+                            Debug.Log("[EnemyState][" + gameObject.name + "]: A posição ("+i+") da listWayPoins está nula.");
+                            isError = true;
+                            break;
+                        }
+                    }
+                }
+            }
+
+            if(isError)
+            {
+                listWayPoints = new List<Transform>();
                 listWayPoints.Add(transform);
             }
+
         }
+        monitoringPoint = listWayPoints[actualWp].position;
         #endregion
 
         playerTarget = IcarusPlayerController.GetInstance();
+        playerStatus = playerTarget.gameObject.GetComponent<CharacterStatus>();
 
         if (state != TypeStateCharacter.FakeDead)
         {
@@ -96,31 +125,24 @@ public class EnemyStateControl : CharacterState {
             EnterState(state);
     }
 	
-
-    void Actions()
-    {
-
-    }
-
 	// Update is called once per frame
 	void Update () {
-        Actions();
 
         // Teste //
-        //distancePlayerTest = Distance(playerTarget.position, transform.position);
-        //distancewayPoint = Distance(wayPoint.position, transform.position);
+        distancePlayerTest = Distance(playerTarget.position, transform.position);
+        distanceMonitoringPoint = Distance(monitoringPoint, transform.position);
         // Fim teste // */
-
-        /*
-        if (isChangeState)
-        {
-            //isChangeState = false;
-            //EnterState(newState);
-        }
-        */
 
         UpdateState();
         aniControl.ExecuteAnimations();
+    }
+
+    private void LateUpdate()
+    {
+        if(playerStatus.lifeProgress <= 0)
+        {
+            EnterState(TypeStateCharacter.Back);
+        }
     }
 
 
@@ -160,8 +182,8 @@ public class EnemyStateControl : CharacterState {
     protected override void EnterRiseState()
     {
         aniControl.IsRise = true;
-        moveControl.BodyMiniMap.SetActive(true);
 
+        Activated();
     }
     protected override void EnterFakeDeadState()
     {
@@ -170,17 +192,14 @@ public class EnemyStateControl : CharacterState {
     protected override void EnterFallState()
     {
         aniControl.IsFall = true;
-
-        // Reset
-        moveControl.BodyMiniMap.SetActive(false);
-        isPatrolCompleted = false;
+        Desactivated();
     }
 
     protected override void EnterDeadState()
     {
         aniControl.IsDead = true;
+        Desactivated();
     }
-
     #endregion
 
     #region UpdateState
@@ -367,7 +386,7 @@ public class EnemyStateControl : CharacterState {
         #endregion
 
         #region Transtions
-        if (aniControl.IsAnimationCurrentName(state.ToString()) && aniControl.IsAnimationCurrentOver())
+        if (aniControl.IsAnimationFinish(state.ToString()))
         {
             EnterState(TypeStateCharacter.Move);
             return;
@@ -412,7 +431,7 @@ public class EnemyStateControl : CharacterState {
         #endregion
 
         #region Transtions
-        if (aniControl.IsAnimationCurrentName(state.ToString()) && aniControl.IsAnimationCurrentOver())
+        if (aniControl.IsAnimationFinish(state.ToString()))
         {
             EnterState(TypeStateCharacter.FakeDead);
             return;
@@ -428,6 +447,11 @@ public class EnemyStateControl : CharacterState {
 
         #region Transtions
         // No transtions //
+        if (aniControl.IsAnimationFinish(state.ToString()))
+        {
+            EnterState(TypeStateCharacter.FakeDead);
+            return;
+        }
         #endregion
     }
 
@@ -490,7 +514,7 @@ public class EnemyStateControl : CharacterState {
 
     protected override void LeaveDeadState()
     {
-        
+        //Destroy(gameObject);
     }
 
     #endregion
@@ -527,5 +551,20 @@ public class EnemyStateControl : CharacterState {
         pointA.y = 0;
         pointB.y = 0;
         return Vector3.Distance(pointA, pointB);
+    }
+
+
+    private void Activated()
+    {
+        moveControl.BodyMiniMap.SetActive(true);
+        boxCol.enabled = false;
+    }
+
+
+    private void Desactivated()
+    {
+        moveControl.BodyMiniMap.SetActive(false);
+        isPatrolCompleted = false;
+        boxCol.enabled = false;
     }
 }

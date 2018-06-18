@@ -17,10 +17,14 @@ public class CharacterState : MonoBehaviour {
 
     #endregion
 
+    private void Awake()
+    {
+        
+    }
 
     // Use this for initialization
     void Start () {
-		
+
 	}
 	
 	// Update is called once per frame
@@ -139,5 +143,11 @@ public class CharacterState : MonoBehaviour {
     #endregion
 
 
+    #region Events
+    public void EventDead()
+    {
+        EnterState(TypeStateCharacter.Dead);
+    }
+    #endregion
 
 }

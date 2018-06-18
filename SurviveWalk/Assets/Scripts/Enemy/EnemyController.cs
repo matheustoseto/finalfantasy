@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class EnemyController : MonoBehaviour {
 
     public EnemyStateControl enemy;
-    public NavMeshAgent agent;
+    //public NavMeshAgent agent;
     public Material OnAttack;
     public Renderer Body;
     public float radius = 10f;
@@ -69,25 +69,25 @@ public class EnemyController : MonoBehaviour {
 
             float distance = Vector3.Distance(playerTarget.position, transform.position);
 
-            //Player in range = chase!
-            if (distance <= radius)
-            {
-                agent.SetDestination(playerTarget.position);
-                lookToPlayer();
+            ////Player in range = chase!
+            //if (distance <= radius)
+            //{
+            //    agent.SetDestination(playerTarget.position);
+            //    lookToPlayer();
 
-                if (distance <= agent.stoppingDistance)
-                {
-                    //PUT Attack the player HERE!!
-                    lookToPlayer();
-                }
-            }
+            //    if (distance <= agent.stoppingDistance)
+            //    {
+            //        //PUT Attack the player HERE!!
+            //        lookToPlayer();
+            //    }
+            //}
 
-            //Return to original spawn point + put full HP
-            else
-            {
-                agent.SetDestination(enemyInitialPos);
-                //PUT FULL HP HERE!!
-            }
+            ////Return to original spawn point + put full HP
+            //else
+            //{
+            //    agent.SetDestination(enemyInitialPos);
+            //    //PUT FULL HP HERE!!
+            //}
         }          
 	}
 
@@ -115,7 +115,7 @@ public class EnemyController : MonoBehaviour {
             hit.GetComponent<HitPopUp>().SetText(life.ToString());
 
             if (enemyStats.Life <= 0)
-                Destroy(agent.gameObject);
+                enemy.EventDead(); //Destroy(agent.gameObject);
 
             return true;
         }

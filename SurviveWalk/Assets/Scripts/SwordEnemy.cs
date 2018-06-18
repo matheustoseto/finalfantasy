@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SwordEnemy : MonoBehaviour {
+public class SwordEnemy : Weapon {
 
     public EnemyController enemyController;
 
@@ -16,6 +16,12 @@ public class SwordEnemy : MonoBehaviour {
 		
 	}
 
+
+    private void OnTriggerEnter(Collider other)
+    {
+
+    }
+
     private void OnTriggerStay(Collider other)
     {
         if ("Player".Equals(other.tag))
@@ -23,4 +29,26 @@ public class SwordEnemy : MonoBehaviour {
             enemyController.Attack(other.GetComponent<CharacterStatus>());
         }
     }
+
+
+
+    public override  void AttackOn()
+    {
+        
+    }
+
+    public override void AttackOff()
+    {
+        
+    }
+
+
+    public override void Damage(EnemyController enemyController)
+    {
+
+    }
+
+
+
+
 }

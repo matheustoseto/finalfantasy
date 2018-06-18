@@ -6,6 +6,7 @@ using UnityEngine;
 public class IcarusPlayerController : CharacterState {
 
     public static Transform player = null;
+    private CharacterStatus playerStatus = null;
 
     private CharacterMoveControl moveControl = null;
     private CharacterAnimationControl aniControl = null;
@@ -50,6 +51,7 @@ public class IcarusPlayerController : CharacterState {
     }
 
     void Start () {
+        playerStatus = GetComponent<CharacterStatus>();
         EnterState(state);
     }
 
@@ -98,6 +100,11 @@ public class IcarusPlayerController : CharacterState {
         moveControl.Stop();
     }
 
+    protected override void EnterDeadState()
+    {
+        aniControl.IsDead = true;
+    }
+
     #endregion
 
     #region UpdateState
@@ -130,7 +137,7 @@ public class IcarusPlayerController : CharacterState {
 
     protected override void UpdateAttackState()
     {
-        if (aniControl.IsAnimationCurrentName(state.ToString()) && aniControl.IsAnimationCurrentOver())
+        if (aniControl.IsAnimationFinish(state.ToString()))
         {
             EnterState(TypeStateCharacter.Move);
             return;
@@ -139,7 +146,7 @@ public class IcarusPlayerController : CharacterState {
 
     protected override void UpdateDashState()
     {
-        if (aniControl.IsAnimationCurrentName(state.ToString()) && aniControl.IsAnimationCurrentOver())
+        if (aniControl.IsAnimationFinish(state.ToString()))
         {
             EnterState(TypeStateCharacter.Move);
             return;
@@ -148,13 +155,21 @@ public class IcarusPlayerController : CharacterState {
 
     protected override void UpdateActionState()
     {
-        if (aniControl.IsAnimationCurrentName(state.ToString()) && aniControl.IsAnimationCurrentOver())
+        if (aniControl.IsAnimationFinish(state.ToString()))
         {
             EnterState(TypeStateCharacter.Move);
             return;
         }
     }
 
+    protected override void UpdateDeadState()
+    {
+        if (aniControl.IsAnimationFinish(state.ToString()))
+        {
+            EnterState(TypeStateCharacter.Move);
+            return;
+        }
+    }
 
     #endregion
 
@@ -185,6 +200,11 @@ public class IcarusPlayerController : CharacterState {
         
     }
 
+    protected override void LeaveDeadState()
+    {
+        playerStatus.Restart();
+    }
     #endregion
+
 
 }

@@ -24,10 +24,14 @@ public class Path : MonoBehaviour {
     private void OnDrawGizmos()
     {
 
+        #region List Ok
         if (wayPoints.Count == 0)
-        {
             return;
-        }
+
+        for (int i = 0; i < wayPoints.Count; i++)
+            if (wayPoints[i] == null)
+                return;
+        #endregion
 
         float radiusSphere = 1;
 

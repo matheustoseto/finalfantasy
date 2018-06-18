@@ -23,13 +23,13 @@ public class Weapon : MonoBehaviour {
         }
 	}
 
-    public void AttackOn()
+    public virtual void AttackOn()
     {
         attck = true;
         transform.localPosition += new Vector3(0, 0, 0.6f);
     }
 
-    public void AttackOff()
+    public virtual void AttackOff()
     {
         attck = false;
     }
@@ -50,7 +50,7 @@ public class Weapon : MonoBehaviour {
         }
     }
 
-    public void Damage(EnemyController enemyController)
+    public virtual void Damage(EnemyController enemyController)
     {
         if (item != null)
         {

@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class CharacterStatus : MonoBehaviour {
 
+    public CharacterState charState = null;
+
     public GameObject lifeBar;
     public GameObject startPoint;
     public Text lifeText;
@@ -16,6 +18,11 @@ public class CharacterStatus : MonoBehaviour {
     private float a = 170;
     private Color originalColor;
 
+    private void Awake()
+    {
+        charState = GetComponent<CharacterState>();
+    }
+
     private void Start()
     {
         transform.position = startPoint.transform.position;
@@ -23,6 +30,7 @@ public class CharacterStatus : MonoBehaviour {
         lifeBar.transform.localScale = new Vector3(PegarTamanhoBarra(lifeProgress, life), lifeBar.transform.localScale.y, lifeBar.transform.localScale.z);
         lifeText.text = PegarPorcentagemBarra(lifeProgress, life, 100) + "%";
         
+
     }
 
     private void Update()
@@ -67,8 +75,7 @@ public class CharacterStatus : MonoBehaviour {
         if ((lifeProgress - removeLife) <= 0)
         {
             lifeProgress = 0;
-            transform.position = startPoint.transform.position;
-            lifeProgress = 30;
+            charState.EventDead();
         } else
         {
             lifeProgress -= removeLife;
@@ -86,5 +93,13 @@ public class CharacterStatus : MonoBehaviour {
     public int PegarPorcentagemBarra(float min, float max, int fator)
     {
         return Mathf.RoundToInt(PegarTamanhoBarra(min, max) * fator);
+    }
+
+    public void Restart()
+    {
+        transform.position = startPoint.transform.position;
+        lifeProgress = 30;
+        lifeBar.transform.localScale = new Vector3(PegarTamanhoBarra(lifeProgress, life), lifeBar.transform.localScale.y, lifeBar.transform.localScale.z);
+        lifeText.text = PegarPorcentagemBarra(lifeProgress, life, 100) + "%";
     }
 }

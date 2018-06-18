@@ -5,8 +5,6 @@ using UnityEngine;
 
 public class CharacterAnimationControl : MonoBehaviour {
 
-    //const float locomotionAnimationSmoothTime = .1f;
-
     protected Animator animator = null;
 
     private Weapon weapon;
@@ -17,6 +15,7 @@ public class CharacterAnimationControl : MonoBehaviour {
     private bool isAttack     = false;
     private bool isDash       = false;
     private bool isAction     = false;
+    private bool isDead = false;
 
 
     [Header("Smooth:")]
@@ -32,7 +31,7 @@ public class CharacterAnimationControl : MonoBehaviour {
     public bool IsAttack      { get { return isAttack;     } set { isAttack = value;     } }
     public bool IsDash        { get { return isDash;       } set { isDash = value;       } }
     public bool IsAction      { get { return isAction;     } set { isAction = value;     } }
-
+    public bool IsDead        { get { return isDead;       } set { isDead = value;       } }
 
     #endregion
 
@@ -53,6 +52,7 @@ public class CharacterAnimationControl : MonoBehaviour {
         isAttack     = false;
         isDash       = false;
         isAction     = false;
+        isDead       = false;
     }
 
 
@@ -62,6 +62,7 @@ public class CharacterAnimationControl : MonoBehaviour {
         animator.SetBool(TypeStateCharacter.Attack.ToString(), isAttack);
         animator.SetBool(TypeStateCharacter.Dash.ToString()  , isDash  );
         animator.SetBool(TypeStateCharacter.Action.ToString(), isAction);
+        animator.SetBool(TypeStateCharacter.Dead.ToString(),   isDead);
     }
 
 
