@@ -694,7 +694,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1823272811843418}
   m_LocalRotation: {x: -0, y: -0.4690864, z: -0, w: -0.8831523}
-  m_LocalPosition: {x: -1.99, y: 0.35891008, z: 179.07}
+  m_LocalPosition: {x: 2.15, y: 0.35891008, z: 181.87}
   m_LocalScale: {x: 1.7, y: 1.7, z: 1.7}
   m_Children:
   - {fileID: 4113468366817948}
@@ -1211,7 +1211,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1484858935279512}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1.6999998, y: 1.7, z: 1.6999998}
   m_Children:
@@ -1220,7 +1220,7 @@ Transform:
   - {fileID: 224455895477844118}
   m_Father: {fileID: 4113468366817948}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: -304.05, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4928740334463440
 Transform:
   m_ObjectHideFlags: 1
@@ -1609,7 +1609,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   state: 8
-  weapon: {fileID: 0}
+  weapon: {fileID: 114998004296839070}
   isDestroy: 0
   timerWait: 5
   radiusDetectPlayer: 10
@@ -1748,6 +1748,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de21b84f8e088d648a5402da9fcc3d31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  listTools:
+  - name: AxePick
+    typeTool: 1
+    tool: {fileID: 1760890061458384}
+  typeToolActiveTest: 0
+  isMethold_SetActiveTool: 0
   enemyController: {fileID: 114693016973686806}
 --- !u!137 &137089640969359812
 SkinnedMeshRenderer:

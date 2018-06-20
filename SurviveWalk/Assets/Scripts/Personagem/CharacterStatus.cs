@@ -9,7 +9,6 @@ public class CharacterStatus : MonoBehaviour {
 
     [Header("UI:")]
     public GameObject lifeBar;
-    public GameObject startPoint;
     public Text lifeText;
     public GameObject hitPopUp;
 
@@ -34,7 +33,6 @@ public class CharacterStatus : MonoBehaviour {
 
     private void Start()
     {
-        transform.position = startPoint.transform.position;
         originalColor = lifeBar.GetComponent<Image>().color;
         lifeBar.transform.localScale = new Vector3(PegarTamanhoBarra(lifeProgress, life), lifeBar.transform.localScale.y, lifeBar.transform.localScale.z);
         lifeText.text = PegarPorcentagemBarra(lifeProgress, life, 100) + "%";
@@ -106,14 +104,8 @@ public class CharacterStatus : MonoBehaviour {
 
     #region Restart Status
 
-    public void ReturnCheckPoint()
+    public void ResetToInitialLife()
     {
-        transform.position = startPoint.transform.position;
-    }
-
-    public void ReSpawn()
-    {
-        ReturnCheckPoint();
         lifeProgress = initialLife;
         lifeBar.transform.localScale = new Vector3(PegarTamanhoBarra(lifeProgress, life), lifeBar.transform.localScale.y, lifeBar.transform.localScale.z);
         lifeText.text = PegarPorcentagemBarra(lifeProgress, life, 100) + "%";

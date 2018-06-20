@@ -9,17 +9,26 @@ public class CharacterState : MonoBehaviour {
     [SerializeField] protected TypeStateCharacter state = TypeStateCharacter.Move;
     protected TypeStateCharacter prevState = TypeStateCharacter.Move;
 
+    [Header("Tools / Weapon:")]
+    [SerializeField] protected Weapon weapon;
+
 
     #region Properties
     public TypeStateCharacter State     { get { return state;     } }
     public TypeStateCharacter PrevState { get { return prevState; } }
-
+    public Weapon Weapon { get { return weapon; } }
 
     #endregion
 
-    private void Awake()
+    void Awake()
     {
-        
+        InitAwake();
+    }
+
+    protected virtual void InitAwake()
+    {
+        if (weapon == null)
+            weapon = GetComponentInChildren<Weapon>();
     }
 
     // Use this for initialization
@@ -147,6 +156,15 @@ public class CharacterState : MonoBehaviour {
     public void EventDead()
     {
         EnterState(TypeStateCharacter.Dead);
+    }
+    #endregion
+
+    #region Verify
+    protected bool AlertStateActivated()
+    {
+        return state == TypeStateCharacter.Attack
+            || state == TypeStateCharacter.Follow
+            || state == TypeStateCharacter.Move;
     }
     #endregion
 

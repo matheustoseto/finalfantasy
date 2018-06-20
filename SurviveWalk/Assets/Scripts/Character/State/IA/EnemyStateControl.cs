@@ -16,7 +16,7 @@ public class EnemyStateControl : CharacterState {
 
     #region Attributes - General
     [Header("General Settings:")]
-    [SerializeField] private Weapon weapon;
+    //[SerializeField] private Weapon weapon;
     [SerializeField] private bool isDestroy = false;
     [SerializeField] private float timerWait = 3;
     private float timer = 0;
@@ -47,17 +47,25 @@ public class EnemyStateControl : CharacterState {
     #region Unity
     private void Awake()
     {
-        gameObject.name = transform.GetInstanceID() + "-" +gameObject.name;
+        InitAwake();
+    }
+
+    protected override void InitAwake()
+    {
+        base.InitAwake();
+        gameObject.name = transform.GetInstanceID() + "-" + gameObject.name;
 
         aniControl = GetComponentInChildren<EnemyAnimationControl>();
         moveControl = GetComponentInChildren<EnemyMoveControl>();
         boxCol = GetComponentInChildren<BoxCollider>();
 
-        if (weapon == null)
-        {
-            weapon = GetComponentInChildren<Weapon>();
-            aniControl.Weapon = weapon;
-        }
+        if (aniControl == null)
+            aniControl = GetComponentInChildren<EnemyAnimationControl>();
+
+        if (aniControl != null)
+            aniControl.Weapon = Weapon;
+        else
+            Debug.Log("[EnemyStateControl][InitAwake]: EnemyAnimationControl is null!");
     }
 
     // Use this for initialization
@@ -133,7 +141,8 @@ public class EnemyStateControl : CharacterState {
 
     private void LateUpdate()
     {
-        if(playerStatus.lifeProgress <= 0)
+        if(playerStatus.lifeProgress <= 0 
+            && AlertStateActivated())
         {
             EnterState(TypeStateCharacter.Back);
         }

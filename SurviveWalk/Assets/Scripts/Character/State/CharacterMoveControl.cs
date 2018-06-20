@@ -11,6 +11,7 @@ public class CharacterMoveControl : MonoBehaviour {
     [Header("Attributes:")]
     [SerializeField] private float runSpeed        = 10  ;
     [SerializeField] private float speedSmoothTime = 0.1f;
+    [SerializeField] private Transform checkPoint = null;
 
     private float currentSpeed        = 0;
     private float speedSmoothVelocity = 0;
@@ -33,6 +34,7 @@ public class CharacterMoveControl : MonoBehaviour {
     private void Awake()
     {
         charController = GetComponent<CharacterController>();
+        transform.position = checkPoint.position;
     }
 
     // Use this for initialization
@@ -105,4 +107,17 @@ public class CharacterMoveControl : MonoBehaviour {
         else if (inputForward == 0 && inputTurn <  0) body.transform.eulerAngles = new Vector3(0, 270, 0); // Left
         else if (inputForward >  0 && inputTurn <  0) body.transform.eulerAngles = new Vector3(0, 315, 0); // UpLeft
     }
+
+    #region Restat Position
+    public void ReturnCheckPoint()
+    {
+        Vector3 posCheckpoint = checkPoint.position;
+        posCheckpoint.y = 10000;
+
+        navAgent.enabled = false;
+        transform.position = posCheckpoint;
+        transform.position = checkPoint.position;
+        navAgent.enabled = true;
+    }
+    #endregion
 }

@@ -11,10 +11,6 @@ public class IcarusPlayerController : CharacterState {
     private CharacterMoveControl moveControl = null;
     private CharacterAnimationControl aniControl = null;
 
-
-    [Header("Tools / Weapon:")]
-    [SerializeField] private Weapon weapon;
-
     [Header("Methold Test: ")]
     [SerializeField] private bool isAutomaticResurrection = true;
     [SerializeField] private bool isResurrection = false;
@@ -33,13 +29,19 @@ public class IcarusPlayerController : CharacterState {
     public static Transform GetInstance() { return player; }
 
     #region Properties
-    public Weapon Weapon { get { return weapon; } }
+    
     #endregion
 
     // Use this for initialization
 
     private void Awake()
     {
+        InitAwake();
+    }
+
+    protected override void InitAwake()
+    {
+        base.InitAwake();
         if (player == null)
             player = transform;
 
@@ -48,11 +50,11 @@ public class IcarusPlayerController : CharacterState {
         if (aniControl == null)
             aniControl = GetComponentInChildren<CharacterAnimationControl>();
 
-        if (weapon == null)
-        {
-            weapon = GetComponentInChildren<Weapon>();
-            aniControl.Weapon = weapon;
-        }
+        if (aniControl != null)
+            aniControl.Weapon = Weapon;
+        else
+            Debug.Log("[IcarusPlayerController][InitAwake]: CharacterAnimationControl is null!");
+
     }
 
     void Start () {
@@ -217,13 +219,13 @@ public class IcarusPlayerController : CharacterState {
     protected override void LeaveDeadState()
     {
         if(isAutomaticResurrection)
-            playerStatus.ReSpawn();
+            Resurrection();
     }
     #endregion
 
     public void Resurrection()
     {
-        EnterState(TypeStateCharacter.Move);
-        playerStatus.ReSpawn();
+        playerStatus.ResetToInitialLife();
+        moveControl.ReturnCheckPoint();
     }
 }

@@ -6335,15 +6335,6 @@ Prefab:
       propertyPath: wayPoints.Array.data[4]
       value: 
       objectReference: {fileID: 2028937507}
-    - target: {fileID: 65616578914024002, guid: a7b3463669c1c9a48a44ef4f39ae4d64,
-        type: 2}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1823272811843418, guid: a7b3463669c1c9a48a44ef4f39ae4d64, type: 2}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a7b3463669c1c9a48a44ef4f39ae4d64, type: 2}
   m_IsPrefabParent: 0
@@ -8216,7 +8207,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4607683837201702, guid: 907ba6c967bb67e4189cdcd79967aaf2, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0.831
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4607683837201702, guid: 907ba6c967bb67e4189cdcd79967aaf2, type: 2}
       propertyPath: m_LocalPosition.z
@@ -8242,16 +8233,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 114040240111584578, guid: 907ba6c967bb67e4189cdcd79967aaf2,
+    - target: {fileID: 114750838395224932, guid: 907ba6c967bb67e4189cdcd79967aaf2,
         type: 2}
-      propertyPath: inventory
+      propertyPath: checkPoint
       value: 
-      objectReference: {fileID: 1265894708}
-    - target: {fileID: 114101728555108152, guid: 907ba6c967bb67e4189cdcd79967aaf2,
-        type: 2}
-      propertyPath: inventory
-      value: 
-      objectReference: {fileID: 1265894708}
+      objectReference: {fileID: 1929048251}
     - target: {fileID: 114534865585791290, guid: 907ba6c967bb67e4189cdcd79967aaf2,
         type: 2}
       propertyPath: lifeBar
@@ -8259,14 +8245,19 @@ Prefab:
       objectReference: {fileID: 103658841}
     - target: {fileID: 114534865585791290, guid: 907ba6c967bb67e4189cdcd79967aaf2,
         type: 2}
-      propertyPath: startPoint
-      value: 
-      objectReference: {fileID: 1929048250}
-    - target: {fileID: 114534865585791290, guid: 907ba6c967bb67e4189cdcd79967aaf2,
-        type: 2}
       propertyPath: lifeText
       value: 
       objectReference: {fileID: 1437233191}
+    - target: {fileID: 114101728555108152, guid: 907ba6c967bb67e4189cdcd79967aaf2,
+        type: 2}
+      propertyPath: inventory
+      value: 
+      objectReference: {fileID: 1265894708}
+    - target: {fileID: 114040240111584578, guid: 907ba6c967bb67e4189cdcd79967aaf2,
+        type: 2}
+      propertyPath: inventory
+      value: 
+      objectReference: {fileID: 1265894708}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 907ba6c967bb67e4189cdcd79967aaf2, type: 2}
   m_IsPrefabParent: 0
@@ -27075,6 +27066,24 @@ Prefab:
 Transform:
   m_PrefabParentObject: {fileID: 400012, guid: 2d2666fb7c1dc5d48b33f21da4002c63, type: 3}
   m_PrefabInternal: {fileID: 1050293945}
+--- !u!1 &1061233272 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1706345987788442, guid: 907ba6c967bb67e4189cdcd79967aaf2,
+    type: 2}
+  m_PrefabInternal: {fileID: 306196578}
+--- !u!114 &1061233276
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1061233272}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20a2846a348987743bc6b9dbf315c3fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  typeToolActiveTest: 5
+  isMethold_SetActiveTool: 0
 --- !u!1001 &1063290423
 Prefab:
   m_ObjectHideFlags: 0
@@ -46509,6 +46518,24 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b47823e9d0fe3404c89e72def0a845ed, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &1836506029 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1801677821919976, guid: a7b3463669c1c9a48a44ef4f39ae4d64,
+    type: 2}
+  m_PrefabInternal: {fileID: 202299363}
+--- !u!114 &1836506033
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1836506029}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20a2846a348987743bc6b9dbf315c3fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  typeToolActiveTest: 5
+  isMethold_SetActiveTool: 0
 --- !u!4 &1837073604 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4986981255155176, guid: b47823e9d0fe3404c89e72def0a845ed,
