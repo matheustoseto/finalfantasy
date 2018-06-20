@@ -11,14 +11,19 @@ public class IcarusPlayerController : CharacterState {
     private CharacterMoveControl moveControl = null;
     private CharacterAnimationControl aniControl = null;
 
+
     [Header("Tools / Weapon:")]
     [SerializeField] private Weapon weapon;
 
-    [Header("Inputs:")]
-    [SerializeField] private Vector2 btDirection = Vector2.zero;
-    [SerializeField] private float   btAttack    = 0;
-    [SerializeField] private float   btAction    = 0;
-    [SerializeField] private float   btDash      = 0;
+    [Header("Methold Test: ")]
+    [SerializeField] private bool isAutomaticResurrection = true;
+    [SerializeField] private bool isResurrection = false;
+
+    //[Header("Inputs:")]
+    private Vector2 btDirection = Vector2.zero;
+    private float   btAttack    = 0;
+    private float   btAction    = 0;
+    private float   btDash      = 0;
 
 
     [Header("Debug:")]
@@ -72,6 +77,14 @@ public class IcarusPlayerController : CharacterState {
 
         UpdateState();
         aniControl.ExecuteAnimations();
+
+        #region Test
+        if (isResurrection)
+        {
+            isResurrection = false;
+            Resurrection();
+        }
+        #endregion
     }
 
     #region EnterState
@@ -166,7 +179,8 @@ public class IcarusPlayerController : CharacterState {
     {
         if (aniControl.IsAnimationFinish(state.ToString()))
         {
-            EnterState(TypeStateCharacter.Move);
+            if (isAutomaticResurrection)
+                EnterState(TypeStateCharacter.Move);
             return;
         }
     }
@@ -202,9 +216,14 @@ public class IcarusPlayerController : CharacterState {
 
     protected override void LeaveDeadState()
     {
-        playerStatus.Restart();
+        if(isAutomaticResurrection)
+            playerStatus.ReSpawn();
     }
     #endregion
 
-
+    public void Resurrection()
+    {
+        EnterState(TypeStateCharacter.Move);
+        playerStatus.ReSpawn();
+    }
 }

@@ -639,7 +639,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1689443796627116
 GameObject:
   m_ObjectHideFlags: 1
@@ -918,8 +918,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1228501798593092}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.89, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4429785572092300}
@@ -1312,7 +1312,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1327605054124788}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.059, z: 139.6}
+  m_LocalPosition: {x: -4.01, y: 0.831, z: 141.53}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4160820740408740}
@@ -1372,7 +1372,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1665663168658374}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
   m_LocalScale: {x: 5, y: 1, z: 5}
   m_Children:
   - {fileID: 4416161614835420}
@@ -2263,10 +2263,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   state: 0
   weapon: {fileID: 0}
-  btDirection: {x: 0, y: 0}
-  btAttack: 0
-  btAction: 0
-  btDash: 0
+  isAutomaticResurrection: 1
+  isResurrection: 0
   isAttackDb: 0
 --- !u!114 &114524107956431618
 MonoBehaviour:
@@ -2290,12 +2288,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31f97d187fe72e346a5d2b2fc8458eca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  charState: {fileID: 0}
   lifeBar: {fileID: 0}
   startPoint: {fileID: 0}
   lifeText: {fileID: 0}
   hitPopUp: {fileID: 1409074696108854, guid: 3bbc232133bf10540b62da15e0b49d05, type: 2}
   life: 100
+  initialLife: 30
   lifeProgress: 30
 --- !u!114 &114588570005170458
 MonoBehaviour:

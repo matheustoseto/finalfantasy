@@ -5,21 +5,30 @@ using UnityEngine.UI;
 
 public class CharacterStatus : MonoBehaviour {
 
-    public CharacterState charState = null;
+    private CharacterState charState = null;
 
+    [Header("UI:")]
     public GameObject lifeBar;
     public GameObject startPoint;
     public Text lifeText;
     public GameObject hitPopUp;
+
+    [Header("Status:")]
     public float life;
+    public float initialLife = 30;
     public float lifeProgress;
 
     private bool redFlag = true;
     private float a = 170;
     private Color originalColor;
 
+
     private void Awake()
     {
+        if (initialLife > life)
+            initialLife = life;
+        lifeProgress = initialLife;
+
         charState = GetComponent<CharacterState>();
     }
 
@@ -95,11 +104,19 @@ public class CharacterStatus : MonoBehaviour {
         return Mathf.RoundToInt(PegarTamanhoBarra(min, max) * fator);
     }
 
-    public void Restart()
+    #region Restart Status
+
+    public void ReturnCheckPoint()
     {
         transform.position = startPoint.transform.position;
-        lifeProgress = 30;
+    }
+
+    public void ReSpawn()
+    {
+        ReturnCheckPoint();
+        lifeProgress = initialLife;
         lifeBar.transform.localScale = new Vector3(PegarTamanhoBarra(lifeProgress, life), lifeBar.transform.localScale.y, lifeBar.transform.localScale.z);
         lifeText.text = PegarPorcentagemBarra(lifeProgress, life, 100) + "%";
     }
+    #endregion
 }
