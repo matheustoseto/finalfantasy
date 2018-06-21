@@ -85,7 +85,7 @@ GameObject:
   - component: {fileID: 4403218801233258}
   - component: {fileID: 33895331702978568}
   - component: {fileID: 23210451087812978}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: Quad
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -207,7 +207,7 @@ GameObject:
   - component: {fileID: 4593165787477230}
   - component: {fileID: 33464286674737520}
   - component: {fileID: 23502036816741370}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: Quad (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -487,7 +487,7 @@ GameObject:
   - component: {fileID: 4325604669119324}
   - component: {fileID: 33521904565818362}
   - component: {fileID: 23558799788981978}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: Quad (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -521,6 +521,7 @@ GameObject:
   - component: {fileID: 4271437247583680}
   - component: {fileID: 65616578914024002}
   - component: {fileID: 114998004296839070}
+  - component: {fileID: 114668883570658414}
   m_Layer: 9
   m_Name: RightFinger
   m_TagString: Untagged
@@ -648,7 +649,7 @@ GameObject:
   - component: {fileID: 4402740705909570}
   - component: {fileID: 33034144855988164}
   - component: {fileID: 23624340192225022}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: Quad (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1659,6 +1660,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyController: {fileID: 114693016973686806}
+--- !u!114 &114668883570658414
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1801677821919976}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20a2846a348987743bc6b9dbf315c3fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  typeToolActiveTest: 5
+  isMethold_SetActiveTool: 0
 --- !u!114 &114693016973686806
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1752,8 +1766,6 @@ MonoBehaviour:
   - name: AxePick
     typeTool: 1
     tool: {fileID: 1760890061458384}
-  typeToolActiveTest: 0
-  isMethold_SetActiveTool: 0
   enemyController: {fileID: 114693016973686806}
 --- !u!137 &137089640969359812
 SkinnedMeshRenderer:

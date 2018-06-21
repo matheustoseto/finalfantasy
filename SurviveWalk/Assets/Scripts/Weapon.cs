@@ -2,10 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum TypeTool
-{
-    Axe, AxePick, AxeStone, Pick, Sword, None
-}
+
 public class Weapon : MonoBehaviour {
 
     [Serializable]
@@ -102,6 +99,12 @@ public class Weapon : MonoBehaviour {
         transform.localPosition = originalPosition;
     }
 
+    public void SetActiveTool(int idItem)
+    {
+        TypeTool typeTool = GetTypeTool(idItem);
+        SetActiveTool(typeTool);
+    }
+
     public void SetActiveTool(TypeTool typeToolActive)
     {
         for (int i = 0; i < listTools.Count; i++)
@@ -111,6 +114,28 @@ public class Weapon : MonoBehaviour {
             else
                 listTools[i].Tool.SetActive(false);
         }
+    }
+
+    public TypeTool GetTypeTool(int idItem)
+    {
+        TypeTool typeTool = (TypeTool)idItem;
+
+        switch (typeTool)
+        {
+            case TypeTool.AxePrimitive : typeTool = TypeTool.AxePrimitive ; break;
+            case TypeTool.Axe          : typeTool = TypeTool.Axe          ; break;
+            case TypeTool.AxeMetal     : typeTool = TypeTool.AxeMetal     ; break;
+            case TypeTool.PickPrimitive: typeTool = TypeTool.PickPrimitive; break;
+            case TypeTool.Pick         : typeTool = TypeTool.Pick         ; break;
+            case TypeTool.PickMetal    : typeTool = TypeTool.PickMetal    ; break;
+            case TypeTool.SwordWood    : typeTool = TypeTool.SwordWood    ; break;
+            case TypeTool.Sword        : typeTool = TypeTool.Sword        ; break;
+            case TypeTool.SwordMetal   : typeTool = TypeTool.SwordMetal   ; break;
+            default:
+                typeTool = TypeTool.None;
+                break;
+        }
+        return typeTool;
     }
 
 }

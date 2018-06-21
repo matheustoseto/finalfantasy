@@ -10,6 +10,11 @@ public class WeaponTest : MonoBehaviour {
     [SerializeField] private TypeTool typeToolActiveTest = TypeTool.None;
     [SerializeField] private bool isMethold_SetActiveTool = false;
 
+    [SerializeField] private int idItem = 0;
+    [SerializeField] private TypeTool returnTypeTool = TypeTool.None;
+    [SerializeField] private bool isMethold_GetTypeTool = false;
+
+
     // Use this for initialization
     void Start () {
         weapon = GetComponent<Weapon>();
@@ -22,6 +27,14 @@ public class WeaponTest : MonoBehaviour {
         {
             isMethold_SetActiveTool = false;
             weapon.SetActiveTool(typeToolActiveTest);
+        }
+
+        if (isMethold_GetTypeTool)
+        {
+            isMethold_GetTypeTool = false;
+            returnTypeTool = weapon.GetTypeTool(idItem);
+
+            returnTypeTool = returnTypeTool;
         }
         #endregion
     }
