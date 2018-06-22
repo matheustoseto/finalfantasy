@@ -13,7 +13,7 @@
 		"stackable": true,
 		"rarity": 1,
 		"durability" : 0,
-		"slug":  "apple"
+		"slug":  "icon_Fruta"
 	},
 	{
 		"id": 1,
@@ -29,7 +29,7 @@
 		"stackable": false,
 		"rarity": 1,
 		"durability" : 20,
-		"slug":  "iron_axe"
+		"slug":  "icon_MachadoMetal"
 	},
 	{
 		"id": 2,
@@ -45,7 +45,7 @@
 		"stackable": true,
 		"rarity": 1,
 		"durability" : 0,
-		"slug": "madeira"
+		"slug": "icon_Madeira"
 	},
 	{
 		"id": 3,
@@ -61,7 +61,7 @@
 		"stackable": true,
 		"rarity": 1,
 		"durability" : 0,
-		"slug":  "ferro"
+		"slug":  "icon_Metal"
 	},
 	{
 		"id": 4,
@@ -77,7 +77,7 @@
 		"stackable": false,
 		"rarity": 1,
 		"durability" : 12,
-		"slug":  "iron_pick"
+		"slug":  "icon_PicaretaMetal"
 	},
 	{
 		"id": 5,
@@ -93,7 +93,7 @@
 		"stackable": true,
 		"rarity": 1,
 		"durability" : 0,
-		"slug":  "galho"
+		"slug":  "icon_Graveto"
 	},
 	{
 		"id": 6,
@@ -109,7 +109,7 @@
 		"stackable": true,
 		"rarity": 1,
 		"durability" : 0,
-		"slug":  "pedra"
+		"slug":  "icon_Pedra"
 	},
 	{
 		"id": 7,
@@ -125,7 +125,7 @@
 		"stackable": false,
 		"rarity": 1,
 		"durability" : 10,
-		"slug":  "stone_axe"
+		"slug":  "icon_MachadoPedra"
 	},
 	{
 		"id": 8,
@@ -141,7 +141,7 @@
 		"stackable": false,
 		"rarity": 1,
 		"durability" : 8,
-		"slug":  "stone_pick"
+		"slug":  "icon_PicaretaPedra"
 	},
 	{
 		"id": 9,
@@ -157,7 +157,7 @@
 		"stackable": false,
 		"rarity": 1,
 		"durability" : 10,
-		"slug":  "wood_sword"
+		"slug":  "icon_EspadaMadeira"
 	},
 	{
 		"id": 10,
@@ -173,6 +173,6 @@
 		"stackable": false,
 		"rarity": 1,
 		"durability" : 20,
-		"slug":  "iron_sword"
+		"slug":  "icon_EspadaMetal"
 	}
 ]

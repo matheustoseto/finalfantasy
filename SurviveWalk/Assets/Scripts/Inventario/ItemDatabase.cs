@@ -95,7 +95,7 @@ public class ItemDatabase : MonoBehaviour {
 			newItem.Slug = itemData[i]["slug"].ToString();
             newItem.Durability = (int)itemData[i]["durability"];
             newItem.DurabilityCount = (int)itemData[i]["durability"];
-            newItem.Sprite = Resources.Load<Sprite>("Sprites/Items/" + newItem.Slug);
+            newItem.Sprite = Resources.Load<Sprite>("Sprites/Items/New/" + newItem.Slug);
 
 			database.Add(newItem);
 		}

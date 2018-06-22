@@ -94,9 +94,11 @@ public class SlotSelect : MonoBehaviour {
             {
                 weapon.item = null;
             }
+			weapon.SetActiveTool(item.Id);
         } else
         {
             weapon.item = null;
+			weapon.SetActiveTool(-1);
         }    
     }
 
