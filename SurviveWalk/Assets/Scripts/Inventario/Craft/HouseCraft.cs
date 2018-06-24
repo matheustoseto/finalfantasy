@@ -8,20 +8,16 @@ public class HouseCraft : MonoBehaviour {
     public Utils.HouseType houseType;   
     public Inventory inventory;
     public ItemDatabase itemDatabase;
-
+    public QuestNpc questNpc;
     public GameObject inventoryPanel;
     public GameObject housePanel;
     public GameObject houseItem;
+    public GameObject item;
     public GameObject level0;
     public List<GameObject> levels;
 
-    private GameObject slotPanel;
     private int houseLevel = 0;
 
-    void Start () {
-        slotPanel = housePanel.transform.Find("SlotPanel").gameObject;   
-    }
-	
 	void Update () {
 		
 	}
@@ -32,26 +28,30 @@ public class HouseCraft : MonoBehaviour {
         {
             if (houseType.GetHashCode() == ct.Id)
             {
-                Text title = slotPanel.transform.Find("Title").gameObject.transform.Find("Text").gameObject.GetComponent<Text>();
+                Text title = housePanel.transform.Find("Tabs").Find("HouseTab").Find("Text").gameObject.GetComponent<Text>();
                 title.text = ct.Title;
 
                 foreach (HouseLevel houseLevel in ct.houseLevel)
                 {
-                    GameObject slot = Instantiate(houseItem, slotPanel.transform);
+                    GameObject slot = Instantiate(houseItem, housePanel.transform.Find("HousePanel").Find("HouseList").transform);
                     slot.GetComponent<HouseItem>().Id = ct.Id;
                     slot.GetComponent<HouseItem>().IdLevel = houseLevel.IdLevel;
                     slot.GetComponent<HouseItem>().Combination = houseLevel.Combination;
 
-                    Button btn = slot.transform.Find("Craft").gameObject.GetComponent<Button>();
+                    Button btn = slot.GetComponent<Button>();
                     btn.onClick.AddListener(delegate { UpdateLevel(slot.GetComponent<HouseItem>()); });
 
-                    Text tx = slot.transform.Find("Craft").gameObject.transform.Find("Text").gameObject.GetComponent<Text>();
-                    tx.text = houseLevel.Title;
+                    slot.transform.Find("TilePanel").gameObject.transform.Find("Title").gameObject.GetComponent<Text>().text = houseLevel.Title;
 
-                    Text text = slot.transform.Find("Combination").gameObject.transform.Find("Text").gameObject.GetComponent<Text>();
                     foreach (Combination cb in houseLevel.Combination)
-                        text.text += inventory.FindItem(cb.Id).Title + ": " + cb.Qt + " \n";
-                }         
+                    {
+                        Item itCb = inventory.FindItem(cb.Id);
+                        GameObject slotItem = Instantiate(item, slot.transform.Find("ItemPanel"));
+
+                        slotItem.transform.Find("Icon").gameObject.GetComponent<Image>().sprite = itCb.Sprite;
+                        slotItem.transform.Find("Title").gameObject.GetComponent<Text>().text = cb.Qt + "x " + itCb.Title;
+                    }
+                } 
             }
         }
     }
@@ -73,16 +73,12 @@ public class HouseCraft : MonoBehaviour {
 
                         houseLevel++;
                         RemoveItems(houseItem.Combination);
-                        if ("HouseItem(Clone)".Equals(slotPanel.transform.GetChild(i+1).name))
-                        {
-                            Text tx = slotPanel.transform.GetChild(i+1).gameObject.transform.Find("Craft").gameObject.transform.Find("Text").gameObject.GetComponent<Text>();
-                            tx.color = Color.green;
 
-                            if ("HouseItem(Clone)".Equals(slotPanel.transform.GetChild(i).name))
-                            {
-                                Text tex = slotPanel.transform.GetChild(i).gameObject.transform.Find("Craft").gameObject.transform.Find("Text").gameObject.GetComponent<Text>();
-                                tex.color = new Color(0.196f, 0.196f, 0.196f, 1.000f);
-                            }
+                        if ("House(Clone)".Equals(housePanel.transform.Find("HousePanel").Find("HouseList").transform.GetChild(i).name))
+                        {
+                            Image img = housePanel.transform.Find("HousePanel").Find("HouseList").transform.GetChild(i).gameObject.transform.Find("Icon").gameObject.GetComponent<Image>();
+                            img.color = Color.green;
+                            questNpc.CompletTaskQuest(houseType.GetHashCode());
                         }
                         break;
                     }
@@ -142,10 +138,10 @@ public class HouseCraft : MonoBehaviour {
             {
                 if(houseLevel == i)
                 {
-                    if ("HouseItem(Clone)".Equals(slotPanel.transform.GetChild(i).name))
+                    if ("House(Clone)".Equals(housePanel.transform.Find("HousePanel").Find("HouseList").transform.GetChild(i-1).name))
                     {
-                        Text tx = slotPanel.transform.GetChild(i).gameObject.transform.Find("Craft").gameObject.transform.Find("Text").gameObject.GetComponent<Text>();
-                        tx.color = Color.green;
+                        Image img = housePanel.transform.Find("HousePanel").Find("HouseList").transform.GetChild(i-1).gameObject.transform.Find("Icon").gameObject.GetComponent<Image>();
+                        img.color = Color.green;
                     }
                 }
             }
@@ -160,11 +156,11 @@ public class HouseCraft : MonoBehaviour {
                 inventory.ActiveDisableInventory();
             housePanel.SetActive(false);
 
-            for (int i = 0; i < slotPanel.transform.childCount; i++)
+            for (int i = 0; i < housePanel.transform.Find("HousePanel").Find("HouseList").transform.childCount; i++)
             {
-                if ("HouseItem(Clone)".Equals(slotPanel.transform.GetChild(i).name))
+                if ("House(Clone)".Equals(housePanel.transform.Find("HousePanel").Find("HouseList").transform.GetChild(i).name))
                 {
-                    Destroy(slotPanel.transform.GetChild(i).gameObject);
+                    Destroy(housePanel.transform.Find("HousePanel").Find("HouseList").transform.GetChild(i).gameObject);
                 }       
             }
         }

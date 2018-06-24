@@ -704,6 +704,8 @@ MonoBehaviour:
   speed: 0.008
   timer: 120
   item: {fileID: 1993325973734462, guid: ec6f2c1bb43c91546aef41c8dda42d6d, type: 2}
-  objRender: {fileID: 1343147663197950}
+  objRender:
+  - {fileID: 1343147663197950}
+  - {fileID: 1819862154944432}
   active: {fileID: 1220794882784528}
   onMouseOver: {fileID: 2100000, guid: 985d003ded8831e4ca51fa57858f0621, type: 2}

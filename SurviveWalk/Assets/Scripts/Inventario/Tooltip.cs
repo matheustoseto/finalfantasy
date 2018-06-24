@@ -7,6 +7,7 @@ public class Tooltip : MonoBehaviour
 	private Item item;
 	private string data;
 	private GameObject tooltip;
+    private Vector3 pos;
 
 	void Start()
 	{
@@ -18,16 +19,25 @@ public class Tooltip : MonoBehaviour
 	{
 		if (tooltip.activeSelf)
 		{
-			tooltip.transform.position = Input.mousePosition + new Vector3(0,70,0);
-		}
+            tooltip.transform.position = Input.mousePosition + pos;
+        }
 	}
 
-	public void Activate(Item item)
+    public void Activate(string txt)
+    {
+        tooltip.transform.GetChild(0).GetComponent<Text>().text = txt;
+        tooltip.SetActive(true);
+        pos = new Vector3(-270, 0, 0);
+    }
+
+
+    public void Activate(Item item)
 	{
 		this.item = item;
 		ConstructDataString();
 		tooltip.SetActive(true);
-	}
+        pos = new Vector3(0, 70, 0);
+    }
 
 	public void Deactivate()
 	{

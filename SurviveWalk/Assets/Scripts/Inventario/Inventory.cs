@@ -59,13 +59,7 @@ public class Inventory : MonoBehaviour
 
         //Add item
         AddItemInSlot(9,15);
-        //AddItem(10);
-        //AddItem(2);
-        //AddItem(2);
-        //AddItem(3);
-        //AddItem(3);
-        //AddItem(3);
-        //AddItem(3);
+        AddItemQnt(2,20);
     }
 
     void Update()
@@ -115,6 +109,14 @@ public class Inventory : MonoBehaviour
                 itemObj.name = "Item: " + itemToAdd.Title;
                 //slots[i].name = "Slot: " + itemToAdd.Title;
             }
+        }
+    }
+
+    public void AddItemQnt(int id, int qnt)
+    {
+        for (int i = 1; i <= qnt; i++)
+        {
+            AddItem(id);
         }
     }
 

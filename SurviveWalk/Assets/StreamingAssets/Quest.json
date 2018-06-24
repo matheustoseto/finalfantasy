@@ -6,19 +6,31 @@
 		"tasks": [
 			{
 				"id" : 0,
-				"title": "Reconstrua a casa 1"
+				"complet" : false,
+				"title": "Reconstrua a casa 1",
+				"info" : "Procure em X:0 Y:0",
+				"descr" : "A muito tempo atras caiu algo em X:0 Y:0, de uma olhada."
 			},
 			{
 				"id" : 1,
-				"title": "Reconstrua a casa 2"
+				"complet" : false,
+				"title": "Reconstrua a casa 2",
+				"info" : "Procure em X:0 Y:0",
+				"descr" : "A muito tempo atras caiu algo em X:0 Y:0, de uma olhada."
 			},
 			{
 				"id" : 2,
-				"title": "Reconstrua a casa 3"
+				"complet" : false,
+				"title": "Reconstrua a casa 3",
+				"info" : "Procure em X:0 Y:0",
+				"descr" : "A muito tempo atras caiu algo em X:0 Y:0, de uma olhada."
 			},
 			{
 				"id" : 3,
-				"title": "Reconstrua a casa 4"
+				"complet" : false,
+				"title": "Reconstrua a casa 4",
+				"info" : "Procure em X:0 Y:0",
+				"descr" : "A muito tempo atras caiu algo em X:0 Y:0, de uma olhada."
 			}
 		]
 	}

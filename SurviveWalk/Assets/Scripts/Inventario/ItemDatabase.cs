@@ -201,6 +201,9 @@ public class ItemDatabase : MonoBehaviour {
                     Task task = new Task();
                     task.Id = (int)questData[i]["tasks"][j]["id"];
                     task.Title = questData[i]["tasks"][j]["title"].ToString();
+                    task.Info = questData[i]["tasks"][j]["info"].ToString();
+                    task.Descr = questData[i]["tasks"][j]["descr"].ToString();
+                    task.Complet = (bool)questData[i]["tasks"][j]["complet"];
 
                     quest.Task.Add(task);
                 }
@@ -365,4 +368,7 @@ public class Task
 {
     public int Id { get; set; }
     public string Title { get; set; }
+    public string Info { get; set; }
+    public string Descr { get; set; }
+    public bool Complet { get; set; }
 }

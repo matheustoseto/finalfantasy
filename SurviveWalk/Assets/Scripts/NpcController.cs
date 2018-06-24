@@ -10,14 +10,6 @@ public class NpcController : MonoBehaviour {
 
     private bool playerEnter = false;
 
-	void Start () {
-		
-	}
-	
-	void Update () {
-		
-	}
-
     private void OnMouseOver()
     {
         if (playerEnter && !dialogPanel.activeSelf)

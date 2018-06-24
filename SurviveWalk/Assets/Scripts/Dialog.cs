@@ -8,6 +8,7 @@ public class Dialog : MonoBehaviour {
 
     public GameObject npcPanel;
     public GameObject inventoryPanel;
+    public GameObject questPlayerList;
     public Inventory inventory;
 
     private Npc npc = new Npc();
@@ -28,40 +29,69 @@ public class Dialog : MonoBehaviour {
 
     public void NextStep()
     {
-        step++;
-        if (step < npc.Intro.Count)
+        if (!VerifyCompletQuest())
         {
-            this.gameObject.transform.Find("Text").GetComponent<Text>().text = npc.Intro[step].Step;
-        } else
-        {
-            CloseDialog();
-            if (npc.IsCraft || npc.IsQuest)
+            step++;
+            if (step < npc.Intro.Count)
             {
-                if (npc.IsQuest)
-                {
-                    npcPanel.transform.Find("Tabs").Find("QuestTab").gameObject.SetActive(true);
-                    npcPanel.GetComponent<NpcPanel>().OpenQuestPanel();
-                }
-                else
-                {
-                    npcPanel.transform.Find("Tabs").Find("QuestTab").gameObject.SetActive(false);
-                }
-
-                if (npc.IsCraft)
-                {
-                    npcPanel.transform.Find("Tabs").Find("CraftTab").gameObject.SetActive(true);
-                    npcPanel.GetComponent<NpcPanel>().OpenCraftPanel();
-                } else
-                {
-                    npcPanel.transform.Find("Tabs").Find("CraftTab").gameObject.SetActive(false);
-                }
-
-                if (!inventoryPanel.activeSelf)
-                    inventory.ActiveDisableInventory();
-
-                npcPanel.SetActive(true);
+                this.gameObject.transform.Find("Text").GetComponent<Text>().text = npc.Intro[step].Step;
             }
-        }      
+            else
+            {
+                CloseDialog();
+                if (npc.IsCraft || npc.IsQuest)
+                {
+                    if (npc.IsQuest)
+                    {
+                        npcPanel.transform.Find("Tabs").Find("QuestTab").gameObject.SetActive(true);
+                        npcPanel.GetComponent<NpcPanel>().OpenQuestPanel();
+                    }
+                    else
+                    {
+                        npcPanel.transform.Find("Tabs").Find("QuestTab").gameObject.SetActive(false);
+                    }
+
+                    if (npc.IsCraft)
+                    {
+                        npcPanel.transform.Find("Tabs").Find("CraftTab").gameObject.SetActive(true);
+                        npcPanel.GetComponent<NpcPanel>().OpenCraftPanel();
+                    }
+                    else
+                    {
+                        npcPanel.transform.Find("Tabs").Find("CraftTab").gameObject.SetActive(false);
+                    }
+
+                    if (!inventoryPanel.activeSelf)
+                        inventory.ActiveDisableInventory();
+
+                    npcPanel.SetActive(true);
+                }
+            }
+        }         
+    }
+
+    private bool VerifyCompletQuest()
+    {
+        if (questPlayerList.transform.childCount > 0)
+        {
+            for (int i = 0; i < questPlayerList.transform.GetChild(0).childCount; i++)
+            {
+                GameObject task = questPlayerList.transform.GetChild(0).GetChild(i).gameObject;
+                if ("Task(Clone)".Equals(task.name))
+                {
+                    PlayerTask playerTask = task.GetComponent<PlayerTask>();
+
+                    if (playerTask.task.Complet && !playerTask.speakNpc)
+                    {
+                        playerTask.speakNpc = true;
+                        playerTask.ChangeText();
+                        this.gameObject.transform.Find("Text").GetComponent<Text>().text = playerTask.task.Descr;
+                        return true;
+                    }
+                }
+            }
+        }       
+        return false;
     }
 
     public void CloseDialog()
