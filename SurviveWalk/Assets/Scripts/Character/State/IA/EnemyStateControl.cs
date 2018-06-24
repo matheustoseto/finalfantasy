@@ -12,6 +12,7 @@ public class EnemyStateControl : CharacterState {
     private EnemyMoveControl moveControl = null;
     private Path path = null;
     private BoxCollider boxCol = null;
+    private EnemyController enemyStatus = null;
     #endregion
 
     #region Attributes - General
@@ -53,6 +54,7 @@ public class EnemyStateControl : CharacterState {
     protected override void InitAwake()
     {
         base.InitAwake();
+        enemyStatus = GetComponent<EnemyController>();
         gameObject.name = transform.GetInstanceID() + "-" + gameObject.name;
 
         aniControl = GetComponentInChildren<EnemyAnimationControl>();
@@ -181,7 +183,7 @@ public class EnemyStateControl : CharacterState {
     protected override void EnterBackState()
     {
         AnimationMove();
-        
+        enemyStatus.ResetLife();
     }
 
     protected override void EnterRiseState()

@@ -28,8 +28,9 @@ public class EnemyController : MonoBehaviour {
     private bool attack = false;
     private float timerAttack = 0.9f;
 
-    private float lifeTotal;
-   
+    private int lifeTotal;
+    
+
     // Use this for initialization
     void Start () {
         originalMaterial = Body.material;
@@ -143,4 +144,9 @@ public class EnemyController : MonoBehaviour {
         }  
     }
 
+    public void ResetLife()
+    {
+        enemyStats.Life = lifeTotal;
+        lifeBar.GetComponent<Image>().fillAmount = enemyStats.Life / lifeTotal;
+    }
 }
