@@ -1615,7 +1615,7 @@ Animator:
   m_GameObject: {fileID: 1899540548434700}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 48ecdc11b8e74e842beb3a1eb96ff357, type: 3}
-  m_Controller: {fileID: 9100000, guid: f3cb15ea613bc6248be9f0958ea23f1c, type: 2}
+  m_Controller: {fileID: 9100000, guid: c913521f6c24851479c93078a3f98f33, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -1726,7 +1726,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c96fd783325b0604ab000f1febc3031d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  state: 4
+  state: 8
   weapon: {fileID: 114750508700716436}
   isDestroy: 1
   timerWait: 5

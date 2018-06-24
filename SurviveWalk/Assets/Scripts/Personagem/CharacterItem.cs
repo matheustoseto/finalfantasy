@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CharacterItem : MonoBehaviour {
 
@@ -18,4 +19,14 @@ public class CharacterItem : MonoBehaviour {
         }   
     }
 
+    public void GetItem(int idItem, int qnt)
+    {
+        for (int i = 1; i <= qnt; i++)
+        {
+            inventory.AddItem(idItem);
+            GameObject item = Instantiate(getItem, gameObject.transform.position + new Vector3(0, 5, 0), Quaternion.identity);
+            item.GetComponent<SpriteRenderer>().sprite = inventory.FindItem(idItem).Sprite;
+            item.gameObject.transform.GetChild(0).GetComponent<TextMesh>().text = "+" + qnt;
+        }       
+    }
 }

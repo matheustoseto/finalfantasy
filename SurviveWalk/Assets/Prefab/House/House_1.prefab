@@ -2336,8 +2336,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1891359709094936}
-  m_LocalRotation: {x: -0, y: -0.92387956, z: -0, w: 0.38268343}
-  m_LocalPosition: {x: 158, y: 556.5, z: -472}
+  m_LocalRotation: {x: -0.008434572, y: -0.92412317, z: 0.020292709, w: 0.38146237}
+  m_LocalPosition: {x: -10.4, y: 3.7, z: 156.3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4567670707246354}
@@ -7363,9 +7363,11 @@ MonoBehaviour:
   houseType: 0
   inventory: {fileID: 0}
   itemDatabase: {fileID: 0}
+  questNpc: {fileID: 0}
   inventoryPanel: {fileID: 0}
   housePanel: {fileID: 0}
-  houseItem: {fileID: 1961529577840948, guid: 95a51f2e2894e704a9789a8c8837d109, type: 2}
+  houseItem: {fileID: 1912188293142030, guid: b1a0be596f0dbbc49b7ed6bcd7aa05e4, type: 2}
+  item: {fileID: 1796751562657906, guid: ff52a3d5a792a9942ad5b4d8e7897696, type: 2}
   level0: {fileID: 1789222361134814}
   levels:
   - {fileID: 1798905936554492}

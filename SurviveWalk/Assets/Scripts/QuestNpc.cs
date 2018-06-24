@@ -11,10 +11,13 @@ public class QuestNpc : MonoBehaviour {
 
     public GameObject inventoryPanel;
     public GameObject questPanel;
+    public GameObject questPlayerList;
     public GameObject emptyPanel;
 
     private GameObject slotPanel;
     public GameObject quest;
+    public GameObject questPlayer;
+    public GameObject questTask;
 
     private void Start()
     {
@@ -37,6 +40,26 @@ public class QuestNpc : MonoBehaviour {
 
     public void GetQuest(QuestItem questItem)
     {
+        GameObject quest = Instantiate(questPlayer, questPlayerList.transform);
+        quest.transform.GetChild(0).GetComponent<Text>().text = questItem.quest.Title;
 
-    }  
+        foreach (Task task in questItem.quest.Task)
+        {
+            GameObject tk = Instantiate(questTask, quest.transform);
+            tk.transform.GetChild(0).GetComponent<Text>().text = task.Title;
+            tk.GetComponent<PlayerTask>().task = task;
+        }
+
+        Destroy(questItem.gameObject);
+    }
+    
+    public void CompletTaskQuest(int id)
+    {
+        questPlayerList.transform.GetChild(0).GetChild(id + 1).GetComponent<Image>().color = Color.green;
+        Text text = questPlayerList.transform.GetChild(0).GetChild(id + 1).GetChild(0).GetComponent<Text>();
+        text.color = Color.white;
+        text.text = "Fale com o NPC na cidade.";
+
+        questPlayerList.transform.GetChild(0).GetChild(id + 1).GetComponent<PlayerTask>().task.Complet = true;        
+    }
 }

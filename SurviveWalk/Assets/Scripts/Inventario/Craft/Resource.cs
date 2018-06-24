@@ -10,10 +10,10 @@ public class Resource : MonoBehaviour {
     public float timer = 1f;
 
     public GameObject item;
-    public GameObject objRender;
+    public GameObject[] objRender;
     public GameObject active;
     public Material onMouseOver;
-    private Material onMouseExit;
+    private Material[][] onMouseExit;
 
     private GameObject player;
     private GameObject alert;
@@ -23,12 +23,20 @@ public class Resource : MonoBehaviour {
     private bool create = false;
 
     private Item selectItem;
-    //private Vector3 originalScale;
 
     private void Start()
     {
-        //originalScale = this.gameObject.transform.localScale;
-        onMouseExit = objRender.GetComponent<Renderer>().material;
+        onMouseExit = new Material[objRender.Length][];
+
+        for (int i = 0; i < objRender.Length; i++)
+        {
+            if (objRender[i].GetComponent<Renderer>() != null)
+            {
+                onMouseExit[i] = new Material[objRender[i].GetComponent<Renderer>().materials.Length];
+                onMouseExit[i] = objRender[i].GetComponent<Renderer>().materials;
+            }         
+        }
+            
         player = GameObject.FindGameObjectWithTag("Player");
         alert = GameObject.FindGameObjectWithTag("Alerta");
     }
@@ -51,7 +59,8 @@ public class Resource : MonoBehaviour {
         if ("Player".Equals(other.tag) && !create)
         {
             playerEnter = true;
-            objRender.GetComponent<Renderer>().material = onMouseOver;
+
+            setEnterMaterial();
         }
     }
 
@@ -59,7 +68,8 @@ public class Resource : MonoBehaviour {
     {
         if ("Player".Equals(other.tag) && !create)
         {
-            objRender.GetComponent<Renderer>().material = onMouseOver;
+            setEnterMaterial();
+
             if (Input.GetKeyDown(KeyCode.E))
             {
                 CraftItem();
@@ -72,7 +82,7 @@ public class Resource : MonoBehaviour {
         if ("Player".Equals(other.tag))
         {
             playerEnter = false;
-            objRender.GetComponent<Renderer>().material = onMouseExit;
+            setExitMaterial();
             Progress.Instance.DisableProgressBar();
         }
     }
@@ -122,13 +132,18 @@ public class Resource : MonoBehaviour {
         {
             Inventory.Instance.RemoveDurability(selectItem);
         }
-            
-        item.GetComponent<ItemResource>().idItem = idItem;
+
+        /*
         for (int i = 1; i <= qnt; i++)
         {
             Vector3 pos = player.transform.position + new Vector3(UnityEngine.Random.Range(-2f, 2f), 0, UnityEngine.Random.Range(-2f, 2f));
             Instantiate(item, pos, transform.rotation);
+            item.GetComponent<ItemResource>().idItem = idItem;
         }
+        */
+
+        PlayerManager.Instance.player.GetComponent<CharacterItem>().GetItem(idItem, qnt);
+
         DisableItem();
     }
 
@@ -138,6 +153,31 @@ public class Resource : MonoBehaviour {
         //this.gameObject.transform.localScale = new Vector3(0.5F, this.gameObject.transform.localScale.y, 0.5F);
         active.SetActive(false);
         create = true;
-        objRender.GetComponent<Renderer>().material = onMouseExit;
+        setExitMaterial();
+    }
+
+    private void setEnterMaterial()
+    {
+        for (int j = 0; j < objRender.Length; j++)
+        {
+            if (objRender[j].GetComponent<Renderer>() != null)
+            {
+                Material[] mat = new Material[objRender[j].GetComponent<Renderer>().materials.Length];
+                for (int i = 0; i < objRender[j].GetComponent<Renderer>().materials.Length; i++)
+                {
+                    mat[i] = onMouseOver;
+                }
+
+                objRender[j].GetComponent<Renderer>().materials = mat;
+            }       
+        }     
+    }
+
+    private void setExitMaterial()
+    {
+        for (int i = 0; i < objRender.Length; i++)
+            if (objRender[i].GetComponent<Renderer>() != null)
+                if(onMouseExit[i] != null)
+                    objRender[i].GetComponent<Renderer>().materials = onMouseExit[i];
     }
 }
