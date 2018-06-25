@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class CharacterAnimationControl : MonoBehaviour {
+public class CharacterAnimationControl : AnimationControl {
 
-    protected Animator animator = null;
 
     private Weapon weapon;
 
@@ -36,17 +35,8 @@ public class CharacterAnimationControl : MonoBehaviour {
     #endregion
 
 
-    // Use this for initialization
-    void Start()
-    {
-        animator = GetComponent<Animator>();
-        
-    }
 
-
-
-
-    public virtual void Release()
+    public override void Release()
     {
         isLocomotion = false;
         isAttack     = false;
@@ -56,7 +46,7 @@ public class CharacterAnimationControl : MonoBehaviour {
     }
 
 
-    public virtual void ExecuteAnimations()
+    public override void ExecuteAnimations()
     {
         animator.SetFloat("Speed", speedPercent, locomotionTime, Time.deltaTime);
         animator.SetBool(TypeStateCharacter.Attack.ToString(), isAttack);
@@ -68,34 +58,7 @@ public class CharacterAnimationControl : MonoBehaviour {
 
 
 
-    #region VerifyState
-    public bool IsAnimationCurrentName(string animCurrent)
-    {
-        return animator.GetCurrentAnimatorStateInfo(0).IsName(animCurrent);
-    }
-
-    public bool IsAnimationCurrentOver()
-    {
-        return animator.GetCurrentAnimatorStateInfo(0).normalizedTime
-            > animator.GetCurrentAnimatorStateInfo(0).length;
-    }
-
-    public bool IsAnimationFinish(string animCurrent)
-    {
-        return animator.GetCurrentAnimatorStateInfo(0).IsName(animCurrent) &&
-               animator.GetCurrentAnimatorStateInfo(0).normalizedTime
-            > animator.GetCurrentAnimatorStateInfo(0).length;
-    }
-
-    public float AnimationCurrentTime()
-    {
-        return animator.GetCurrentAnimatorStateInfo(0).normalizedTime
-            / animator.GetCurrentAnimatorStateInfo(0).length;
-    }
-    #endregion
-
-    
-    #region Event
+       #region Event
     public void EventAnimation(string nameEvent, int type, bool eventActive)
     {
 

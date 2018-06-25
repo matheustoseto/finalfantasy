@@ -27,7 +27,7 @@ public class CharacterMoveControl : MonoBehaviour {
     public Transform  Body        { get { return body;        } }
     public GameObject BodyMiniMap { get { return bodyMiniMap; } }
     public float Magnitude { get { return charController.velocity.magnitude; } }
-
+    public Transform CheckPoint { get { return checkPoint; } set { checkPoint = value; } }
     #endregion
 
 

@@ -32,6 +32,9 @@ public class EnemyMoveControl : MonoBehaviour {
     private void Awake()
     {
         navAgent = GetComponent<NavMeshAgent>();
+
+        if (bodyMiniMap != null)
+            bodyMiniMap.SetActive(true);
     }
 
     // Use this for initialization
@@ -40,8 +43,7 @@ public class EnemyMoveControl : MonoBehaviour {
         enemyInitialPos = transform.position;
         Stop();
 
-        if (bodyMiniMap != null)
-            bodyMiniMap.SetActive(false);
+
     }
 	
 	// Update is called once per frame
@@ -73,6 +75,11 @@ public class EnemyMoveControl : MonoBehaviour {
         transform.LookAt(wordPosition);
     }
 
-    
+    public void RotatePosition(Transform stopPoint)
+    {
+        navAgent.enabled = false;
+        transform.rotation = stopPoint.rotation;
+        navAgent.enabled = true;
+    }
 
 }

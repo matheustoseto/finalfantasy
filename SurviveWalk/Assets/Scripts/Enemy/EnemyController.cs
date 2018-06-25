@@ -28,7 +28,7 @@ public class EnemyController : MonoBehaviour {
     private bool attack = false;
     private float timerAttack = 0.9f;
 
-    private int lifeTotal;
+    [SerializeField] private int lifeTotal;
     
 
     // Use this for initialization
@@ -110,7 +110,7 @@ public class EnemyController : MonoBehaviour {
             Body.material = OnAttack;
 
             enemyStats.Life -= life;
-            lifeBar.GetComponent<Image>().fillAmount = enemyStats.Life / lifeTotal;
+            lifeBar.GetComponent<Image>().fillAmount = (float) enemyStats.Life / (float) lifeTotal;
    
             GameObject hit = Instantiate(hitPopUp, transform.position + new Vector3(0,6,0), hitPopUp.transform.rotation);
             hit.GetComponent<HitPopUp>().SetText(life.ToString());

@@ -42,11 +42,17 @@ public class EnemyStateControl : CharacterState {
     // Test //
     [SerializeField] private float distancePlayerTest = 0;
     [SerializeField] private float distanceMonitoringPointTest = 0;
+
+    [Header("State Test:")]
+    [SerializeField] private bool isNewStateTest = false;
+    [SerializeField] private TypeStateCharacter stateTest = TypeStateCharacter.Rise;
+    [SerializeField] private bool isAnaliseStateTest = false;
     #endregion
 
 
+
     #region Unity
-    private void Awake()
+    void Awake()
     {
         InitAwake();
     }
@@ -54,15 +60,11 @@ public class EnemyStateControl : CharacterState {
     protected override void InitAwake()
     {
         base.InitAwake();
-        enemyStatus = GetComponent<EnemyController>();
+        enemyStatus = GetComponentInChildren<EnemyController>();
         gameObject.name = transform.GetInstanceID() + "-" + gameObject.name;
-
         aniControl = GetComponentInChildren<EnemyAnimationControl>();
         moveControl = GetComponentInChildren<EnemyMoveControl>();
         boxCol = GetComponentInChildren<BoxCollider>();
-
-        if (aniControl == null)
-            aniControl = GetComponentInChildren<EnemyAnimationControl>();
 
         if (aniControl != null)
             aniControl.Weapon = Weapon;
@@ -116,6 +118,7 @@ public class EnemyStateControl : CharacterState {
         monitoringPoint = listWayPoints[actualWp].position;
         #endregion
 
+        moveControl.BodyMiniMap.gameObject.SetActive(false);
         playerTarget = IcarusPlayerController.GetInstance();
         playerStatus = playerTarget.gameObject.GetComponent<CharacterStatus>();
 
@@ -135,6 +138,21 @@ public class EnemyStateControl : CharacterState {
         #region Teste
         distancePlayerTest = Distance(playerTarget.position, transform.position);
         distanceMonitoringPointTest = Distance(monitoringPoint, transform.position);
+
+        if (isNewStateTest)
+        {
+            // Test //
+            aniControl.StateTest = stateTest;
+            isNewStateTest = false;
+            EnterState(stateTest);
+        }
+
+        if (isAnaliseStateTest)
+        {
+            // Test //
+            aniControl.StateTest = stateTest;
+        }
+
         #endregion
 
         UpdateState();
@@ -170,7 +188,7 @@ public class EnemyStateControl : CharacterState {
 
     protected override void EnterFollowState()
     {
-        AnimationMove();
+        //AnimationMove();
     }
 
 
@@ -393,6 +411,7 @@ public class EnemyStateControl : CharacterState {
         #endregion
 
         #region Transtions
+        
         if (aniControl.IsAnimationFinish(state.ToString()))
         {
             EnterState(TypeStateCharacter.Move);
@@ -536,7 +555,7 @@ public class EnemyStateControl : CharacterState {
         aniControl.SpeedPercent = moveControl.Magnitude / 2;
     }
 
-    private float Distance(Vector3 pointA, Vector3 pointB)
+    protected float Distance(Vector3 pointA, Vector3 pointB)
     {
         pointA.y = 0;
         pointB.y = 0;
@@ -557,5 +576,14 @@ public class EnemyStateControl : CharacterState {
         isPatrolCompleted = false;
         boxCol.enabled = false;
     }
+    #endregion
+
+    #region Events
+
+    public override void EventPatrol()
+    {
+        
+    }
+
     #endregion
 }

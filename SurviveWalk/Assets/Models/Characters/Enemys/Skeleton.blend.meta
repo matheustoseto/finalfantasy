@@ -93,6 +93,8 @@ ModelImporter:
     7400012: Rise
     7400014: Attack2
     7400016: Attack3
+    7400018: Dead2
+    7400020: Rise2
     9500000: //RootNode
     13700000: Cube
     13700002: Body

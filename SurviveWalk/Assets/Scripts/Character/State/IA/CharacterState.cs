@@ -153,10 +153,16 @@ public class CharacterState : MonoBehaviour {
 
 
     #region Events
-    public void EventDead()
+    public virtual void EventDead()
     {
         EnterState(TypeStateCharacter.Dead);
     }
+
+    public virtual void EventPatrol()
+    {
+        EnterState(TypeStateCharacter.Patrol);
+    }
+
     #endregion
 
     #region Verify

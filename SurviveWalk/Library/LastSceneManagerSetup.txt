@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Scene/Vertical.unity
+- path: Assets/Scene/Paulo - Vertical 1.unity
   isLoaded: 1
   isActive: 1
