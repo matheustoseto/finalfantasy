@@ -97,7 +97,7 @@ public class NPCStateControl : CharacterState {
         stopPoint = listWayPoints[actualWp].position;
         #endregion
 
-        moveControl.BodyMiniMap.gameObject.SetActive(false);
+        moveControl.BodyMiniMap.gameObject.SetActive(true);
         //playerTarget = IcarusPlayerController.GetInstance();
         //playerStatus = playerTarget.gameObject.GetComponent<CharacterStatus>();
 

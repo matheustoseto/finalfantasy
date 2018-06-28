@@ -17,7 +17,8 @@ public class GateStateControl : DeviceState {
 
     void Awake()
     {
-        aniControl = GetComponentInChildren<DeviceAnimationControl>();
+        aniControl = GetComponent<DeviceAnimationControl>();
+
     }
 
     // Use this for initialization
