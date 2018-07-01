@@ -1,8 +1,4 @@
 sceneSetups:
-<<<<<<< Updated upstream
-- path: Assets/Scene/Vertical-Paths.unity
-=======
 - path: Assets/Scene/VerticalIntro.unity
->>>>>>> Stashed changes
   isLoaded: 1
   isActive: 1
