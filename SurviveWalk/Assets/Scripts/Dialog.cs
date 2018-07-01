@@ -176,6 +176,7 @@ public class Dialog : MonoBehaviour {
             moveNpcTutorial = false;
             CloseDialog();
             npcGameObject.GetComponent<NpcController>().seta.SetActive(true);
+            alert.GetComponent<Alerta>().SetText("Use a tecla 'I' para Abrir/Fechar o inventário.");
         }
 
         if (NpcController.Instance.npcType.Equals(Utils.NpcType.Npc6))
@@ -186,7 +187,7 @@ public class Dialog : MonoBehaviour {
             moveNpcTutorial = false;
             CloseDialog();
             npcGameObject.GetComponent<NpcController>().seta.SetActive(false);
-            alert.GetComponent<Alerta>().SetText("Use a tecla I para Abrir/Fechar o inventário.");
+            alert.GetComponent<Alerta>().SetText("Busque recursos e contrua equipamentos mais fortes.");
         }
     }
 }
