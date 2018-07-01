@@ -597,7 +597,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4408173151544140}
   m_Layer: 9
-  m_Name: Seta
+  m_Name: SetaSkeleton
   m_TagString: Minimap
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -928,7 +928,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1646912937811234}
   m_LocalRotation: {x: -0, y: -0.4690864, z: -0, w: -0.8831523}
-  m_LocalPosition: {x: 2.33, y: 2.83, z: 188.58}
+  m_LocalPosition: {x: 0.42000008, y: 0.2136751, z: 241.45}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 4764161626849778}
@@ -1129,7 +1129,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1819486048751158}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalPosition: {x: 0, y: 2, z: 0}
   m_LocalScale: {x: 5.8823547, y: 1.1764705, z: 5.8823547}
   m_Children:
   - {fileID: 4830907090305238}
@@ -1739,6 +1739,9 @@ MonoBehaviour:
   isPatrolStart: 0
   distancePlayerTest: 0
   distanceMonitoringPointTest: 0
+  isNewStateTest: 0
+  stateTest: 7
+  isAnaliseStateTest: 0
 --- !u!114 &114712281006967204
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1803,6 +1806,7 @@ MonoBehaviour:
   lifeBar: {fileID: 1292234044906052}
   hitPopUp: {fileID: 1409074696108854, guid: 3bbc232133bf10540b62da15e0b49d05, type: 2}
   enemyType: 0
+  lifeTotal: 0
 --- !u!114 &114971929952288150
 MonoBehaviour:
   m_ObjectHideFlags: 1

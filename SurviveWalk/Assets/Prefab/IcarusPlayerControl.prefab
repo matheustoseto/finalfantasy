@@ -105,7 +105,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1110163306840168
 GameObject:
   m_ObjectHideFlags: 1
@@ -685,7 +685,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4664958748363872}
   m_Layer: 9
-  m_Name: Seta
+  m_Name: SetaIcarus
   m_TagString: Minimap
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2494,8 +2494,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20a2846a348987743bc6b9dbf315c3fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  typeToolActiveTest: 5
+  typeToolActiveTest: -1
   isMethold_SetActiveTool: 0
+  idItem: 0
+  returnTypeTool: -1
+  isMethold_GetTypeTool: 0
 --- !u!114 &114040240111584578
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2602,6 +2605,7 @@ MonoBehaviour:
   lifeBar: {fileID: 0}
   lifeText: {fileID: 0}
   hitPopUp: {fileID: 1409074696108854, guid: 3bbc232133bf10540b62da15e0b49d05, type: 2}
+  damage: {fileID: 0}
   life: 100
   initialLife: 30
   lifeProgress: 30

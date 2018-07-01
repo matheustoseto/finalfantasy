@@ -3,6 +3,7 @@ using UnityEngine;
 
 public enum TypeSound { PlayerAttack, EnemyAttack}
 
+[RequireComponent(typeof(AudioListener))]
 public class SoundControl : MonoBehaviour {
     [System.Serializable]
     private class AudioStruct {
