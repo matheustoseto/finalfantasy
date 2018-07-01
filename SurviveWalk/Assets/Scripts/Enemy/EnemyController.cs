@@ -102,7 +102,7 @@ public class EnemyController : MonoBehaviour {
 
     public bool RemoveLife(int life)
     {
-        if (!TypeStateCharacter.FakeDead.Equals(enemy.State) && !removeLife)
+        if (!TypeStateCharacter.FakeDead.Equals(enemy.State) && !removeLife && enemyStats.Life > 0)
         {
             timer = 0.3f;
             removeLife = true;
@@ -116,8 +116,19 @@ public class EnemyController : MonoBehaviour {
             hit.GetComponent<HitPopUp>().SetText(life.ToString());
 
             if (enemyStats.Life <= 0)
-                enemy.EventDead(); //Destroy(agent.gameObject);
+            {
+                enemy.EventDead();
 
+                if (NpcController.Instance.npcType.Equals(Utils.NpcType.Npc5))
+                {
+                    CompletQuest completQuest = new CompletQuest();
+                    completQuest.questId = 2;
+                    completQuest.taskId = 0;
+
+                    NpcController.Instance.questNpc.CompletTaskQuest(completQuest);
+                }
+            }
+                
             return true;
         }
         return false;

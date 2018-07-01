@@ -5,10 +5,20 @@ using UnityEngine.UI;
 
 public class NpcController : MonoBehaviour {
 
-    public GameObject dialogPanel;
     public Utils.NpcType npcType;
+    public GameObject dialogPanel;
+    public QuestNpc questNpc;
+    public GameObject seta;
 
     private bool playerEnter = false;
+
+    private static NpcController instance = null;
+    public static NpcController Instance { get { return instance; } }
+
+    private void Start()
+    {
+        instance = this;
+    }
 
     private void OnMouseOver()
     {

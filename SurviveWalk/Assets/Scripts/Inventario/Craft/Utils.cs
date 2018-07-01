@@ -7,7 +7,7 @@ public class Utils {
     public enum ResourceType { Comida, Madeira, Ferro, Machado , Picareta, Pedra, Galho };
     public enum HouseType { House1 = 0, House2 = 1, House3 = 2, House4 = 3 };
     public enum EnemyType { Skeleton = 0 };
-    public enum NpcType { Npc1 = 0, Npc2 = 1, Npc3 = 2, Npc4 = 3, Npc5 = 4, Npc6 = 5};
+    public enum NpcType { Npc0 = 0, Npc1 = 1, Npc2 = 2, Npc3 = 3, Npc4= 4, Npc5 = 5, Npc6 = 6 };
 
     public static bool PodeCraftar(ResourceType resourceType, Item item)
     {

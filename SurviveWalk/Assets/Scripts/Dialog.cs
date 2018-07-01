@@ -6,6 +6,9 @@ using UnityEngine.UI;
 
 public class Dialog : MonoBehaviour {
 
+    public GateStateControl gateControl;
+    public GameObject npcGameObject;
+    public GameObject enemy;
     public GameObject npcPanel;
     public GameObject inventoryPanel;
     public GameObject questPlayerList;
@@ -13,6 +16,7 @@ public class Dialog : MonoBehaviour {
 
     private Npc npc = new Npc();
     private int step = 0;
+    private bool moveNpcTutorial = false;
 
     public void SetNpc(Npc npc)
     {
@@ -24,26 +28,33 @@ public class Dialog : MonoBehaviour {
     {
         step = 0;
         this.gameObject.transform.Find("Title").Find("Text").GetComponent<Text>().text = npc.Title;
-        this.gameObject.transform.Find("Text").GetComponent<Text>().text = npc.Intro[step].Step;
+        if (!VerifyCompletQuest())
+        {
+            NextStep();
+        }         
     }
 
     public void NextStep()
     {
-        if (!VerifyCompletQuest())
+        if (!VerifyCompletQuest() && !verifyTuto())
         {
-            step++;
             if (step < npc.Intro.Count)
             {
                 this.gameObject.transform.Find("Text").GetComponent<Text>().text = npc.Intro[step].Step;
+                step++;
             }
             else
             {
                 CloseDialog();
+
+                SetMovimentAfterStep();
+
                 if (npc.IsCraft || npc.IsQuest)
                 {
                     if (npc.IsQuest)
                     {
                         npcPanel.transform.Find("Tabs").Find("QuestTab").gameObject.SetActive(true);
+                        npcPanel.GetComponent<NpcPanel>().LoadQuest(npc.Quest);
                         npcPanel.GetComponent<NpcPanel>().OpenQuestPanel();
                     }
                     else
@@ -54,6 +65,7 @@ public class Dialog : MonoBehaviour {
                     if (npc.IsCraft)
                     {
                         npcPanel.transform.Find("Tabs").Find("CraftTab").gameObject.SetActive(true);
+                        npcPanel.GetComponent<NpcPanel>().LoadCraft(npc.Crafts);
                         npcPanel.GetComponent<NpcPanel>().OpenCraftPanel();
                     }
                     else
@@ -66,31 +78,41 @@ public class Dialog : MonoBehaviour {
 
                     npcPanel.SetActive(true);
                 }
+
+                if (npc.Quest.Count > 0)
+                {
+                    npcPanel.GetComponent<NpcPanel>().GetQuest(npc.Quest);
+                }
             }
-        }         
+        } 
     }
 
     private bool VerifyCompletQuest()
     {
-        if (questPlayerList.transform.childCount > 0)
+        foreach (Transform go in questPlayerList.transform)
         {
-            for (int i = 0; i < questPlayerList.transform.GetChild(0).childCount; i++)
+            foreach (Transform gameObj in go.transform)
             {
-                GameObject task = questPlayerList.transform.GetChild(0).GetChild(i).gameObject;
-                if ("Task(Clone)".Equals(task.name))
+                if ("Task(Clone)".Equals(gameObj.name))
                 {
-                    PlayerTask playerTask = task.GetComponent<PlayerTask>();
+                    PlayerTask playerTask = gameObj.GetComponent<PlayerTask>();
 
                     if (playerTask.task.Complet && !playerTask.speakNpc)
                     {
                         playerTask.speakNpc = true;
                         playerTask.ChangeText();
                         this.gameObject.transform.Find("Text").GetComponent<Text>().text = playerTask.task.Descr;
+                        if (inventory.GetQuest(go.GetComponent<IdQuest>().questId).IsDelete)
+                        {
+                            Destroy(go.gameObject);
+                        }
+
+                        moveNpcTutorial = true;
                         return true;
                     }
                 }
             }
-        }       
+        }
         return false;
     }
 
@@ -103,5 +125,63 @@ public class Dialog : MonoBehaviour {
     {
         npcPanel.GetComponent<NpcPanel>().ClosePanel();
         inventory.DisableInventory();
+    }
+
+    public bool verifyTuto()
+    {
+        if (moveNpcTutorial && NpcController.Instance.npcType.Equals(Utils.NpcType.Npc3))
+        {
+            npcGameObject.GetComponent<NPCStateControl>().EventPatrol();
+            NpcController.Instance.npcType = Utils.NpcType.Npc4;
+            moveNpcTutorial = false;
+            CloseDialog();
+            enemy.SetActive(true);
+            npcGameObject.GetComponent<NpcController>().seta.SetActive(true);
+            return true;
+        }
+
+        if (moveNpcTutorial && NpcController.Instance.npcType.Equals(Utils.NpcType.Npc4))
+        {
+            npcGameObject.GetComponent<NPCStateControl>().EventPatrol();
+            NpcController.Instance.npcType = Utils.NpcType.Npc5;
+            moveNpcTutorial = false;
+            CloseDialog();
+            npcGameObject.GetComponent<NpcController>().seta.SetActive(true);
+            return true;
+        }
+
+        if (moveNpcTutorial && NpcController.Instance.npcType.Equals(Utils.NpcType.Npc5))
+        {
+            npcGameObject.GetComponent<NPCStateControl>().EventPatrol();
+            NpcController.Instance.npcType = Utils.NpcType.Npc6;
+            moveNpcTutorial = false;
+            CloseDialog();
+            npcGameObject.GetComponent<NpcController>().seta.SetActive(true);
+            return true;
+        }
+
+        return false;
+    }
+
+    public void SetMovimentAfterStep()
+    {
+        if (NpcController.Instance.npcType.Equals(Utils.NpcType.Npc2))
+        {
+            npcGameObject.GetComponent<NPCStateControl>().EventPatrol();
+            NpcController.Instance.npcType = Utils.NpcType.Npc3;
+            moveNpcTutorial = false;
+            CloseDialog();
+            npcGameObject.GetComponent<NpcController>().seta.SetActive(true);
+        }
+
+        if (NpcController.Instance.npcType.Equals(Utils.NpcType.Npc6))
+        {
+            gateControl.EventDevice(TypeStateDevice.Open);
+            npcGameObject.GetComponent<NPCStateControl>().EventPatrol();
+            NpcController.Instance.npcType = Utils.NpcType.Npc1;
+            moveNpcTutorial = false;
+            CloseDialog();
+            npcGameObject.GetComponent<NpcController>().seta.SetActive(false);
+        }
     }
 }

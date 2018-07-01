@@ -3,6 +3,8 @@
     "id": 0,
     "title": "Reconstrua a vila",
     "descr": "Recupere todas as casas destruidas.",
+	"isGet" : false,
+	"isDelet" : false,
     "tasks": [
       {
         "id": 0,
@@ -38,6 +40,8 @@
     "id": 1,
     "title": "Fazendo armas",
     "descr": "Colete materiais próximos e construa uma espada",
+	"isGet" : false,
+	"isDelet" : true,
     "tasks": [
       {
         "id": 0,
@@ -52,6 +56,8 @@
     "id": 2,
     "title": "Ameaça crescente",
     "descr": "Derrote o inimigo a sua frente",
+	"isGet" : false,
+	"isDelet" : true,
     "tasks": [
       {
         "id": 0,
@@ -60,6 +66,22 @@
         "info": "Vamos avançar!",
         "descr": "Você realmente ficou mais forte, se fosse 2 anos atrás teria caído no segundo inimigo."
       }
+    ]
+  },
+  {
+    "id": 3,
+    "title": "Vida em perigo",
+    "descr": "Colete frutas para aumentar sua vida.",
+	"isGet" : false,
+	"isDelet" : true,
+    "tasks": [
+		{
+			"id": 0,
+			"complet": false,
+			"title": "Colete uma fruta",
+			"info": "Vamos avançar!",
+			"descr": "Ótimo! Use a fruta em seu inventario."
+		}
     ]
   }
 ]

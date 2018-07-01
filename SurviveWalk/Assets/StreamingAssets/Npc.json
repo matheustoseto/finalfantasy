@@ -22,24 +22,41 @@
         "step": "Boa Sorte!"
       }
     ],
+	"crafts": [],
     "quests": []
   },
   {
     "id": 1,
     "title": "NPC 2",
-    "isQuest": true,
+    "isQuest": false,
     "isCraft": true,
     "intro": [
-      {
-        "id": 0,
-        "step": "Seja bem vindo!"
-      }
+		{
+			"id": 0,
+			"step": "Colete recursos espalhados no mapa para construir equipamentos."
+		}
     ],
-    "quests": [
-      {
-        "id": 0
-      }
-    ]
+	"crafts": [
+		{
+			"id": 7
+		},
+		{
+			"id": 8
+		},
+		{
+			"id": 1
+		},
+		{
+			"id": 4
+		},
+		{
+			"id": 9
+		},
+		{
+			"id": 10
+		}
+	],
+    "quests": []
   },
   {
     "id": 2,
@@ -64,13 +81,13 @@
         "step": "Vamos seguir adiante, talvez achemos algo que possamos utilizar mais a frente."
       }
     ],
-    "quests": [
-    ]
+	"crafts": [],
+    "quests": []
   },
   {
     "id": 3,
     "title": "Intro NPC 2",
-    "isQuest": true,
+    "isQuest": false,
     "isCraft": true,
     "intro": [
       {
@@ -86,16 +103,47 @@
         "step": "(Aproxime-se do objeto de coleta e pressione o botão E)"
       }
     ],
+	"crafts": [
+		{
+			"id" : 9
+		}
+	],
     "quests": [
       {
         "id": 1
       }
     ]
   },
-  {
+    {
     "id": 4,
     "title": "Intro NPC 3",
-    "isQuest": true,
+    "isQuest": false,
+    "isCraft": false,
+    "intro": [
+      {
+        "id": 0,
+        "step": "Parece que você não está com toda sua forma fisica."
+      },
+      {
+        "id": 1,
+        "step": "Colete algumas frutas espalhadas pelo mapa."
+      },
+      {
+        "id": 2,
+        "step": "(Aproxime-se do objeto de coleta e pressione o botão E)"
+      }
+    ],
+	"crafts": [],
+    "quests": [
+      {
+        "id": 3
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "title": "Intro NPC 4",
+    "isQuest": false,
     "isCraft": false,
     "intro": [
       {
@@ -111,16 +159,17 @@
         "step": "Não se preocupe, a espada que fiz não irá quebrar com essas pilhas de ossos."
       }
     ],
+	"crafts": [],
     "quests": [
-      {
-        "id": 2
-      }
+		{
+			"id": 2
+		}
     ]
   },
   {
-    "id": 5,
-    "title": "Intro NPC 4",
-    "isQuest": true,
+    "id": 6,
+    "title": "Intro NPC 5",
+    "isQuest": false,
     "isCraft": false,
     "intro": [
       {
@@ -140,10 +189,11 @@
         "step": "Salve-nos! Você é nossa última esperança."
       }
     ],
+	"crafts": [],
     "quests": [
-      {
-        "id": 0
-      }
+		{
+			"id": 0
+		}
     ]
   }
 ]

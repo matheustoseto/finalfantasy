@@ -39,6 +39,7 @@ GameObject:
   - component: {fileID: 222433994312550186}
   - component: {fileID: 114747075289090764}
   - component: {fileID: 114489056494886076}
+  - component: {fileID: 114891402440649302}
   m_Layer: 5
   m_Name: Task
   m_TagString: Untagged
@@ -90,6 +91,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3d02f68c6344ee4589313294fe0d0ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speakNpc: 0
 --- !u!114 &114747075289090764
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -117,6 +119,18 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114891402440649302
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1873470215668238}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dfddfd7434724dc4f90d9714a9a7fe4e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  taskId: 0
 --- !u!222 &222433994312550186
 CanvasRenderer:
   m_ObjectHideFlags: 1

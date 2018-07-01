@@ -53,7 +53,7 @@ public class Tooltip : MonoBehaviour
 
         data += "\n\n" + item.Description;
 
-        if ("Weapon".Equals(item.Type))
+        if ("Weapon".Equals(item.Type) || "Machado".Equals(item.Type) || "Picareta".Equals(item.Type))
         {
             data+= "\n<color=#FFEC58FF><b>Power:</b></color> " + item.Power;
         } else if ("Food".Equals(item.Type))
