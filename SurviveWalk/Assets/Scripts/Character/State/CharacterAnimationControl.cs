@@ -75,5 +75,11 @@ public class CharacterAnimationControl : AnimationControl {
         if (weapon != null)
             weapon.AttackOff();
     }
+
+    public void SoundAttack()
+    {
+        SoundControl.GetInstance().ExecuteEffect(TypeSound.PlayerAttack);
+    }
+
     #endregion
 }
