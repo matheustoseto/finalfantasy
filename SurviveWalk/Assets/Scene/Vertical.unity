@@ -21853,24 +21853,6 @@ Transform:
   m_PrefabParentObject: {fileID: 4571398781458642, guid: 5de5d97ca152dac4faf54c6f66aa5fc2,
     type: 2}
   m_PrefabInternal: {fileID: 714901292}
---- !u!1 &714969329 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1284949726174074, guid: 2f5edfe8d46e1134581042307d8698fd,
-    type: 2}
-  m_PrefabInternal: {fileID: 1014592996}
---- !u!114 &714969334
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 714969329}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 013549608061ef8409c27f797f37c821, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  newStateDevice: 0
-  isEventDevice: 0
 --- !u!1001 &715024604
 Prefab:
   m_ObjectHideFlags: 0
@@ -43539,14 +43521,6 @@ Prefab:
       propertyPath: m_Name
       value: Gate-South
       objectReference: {fileID: 0}
-    - target: {fileID: 1285902151093208, guid: 0a17ac11274fa414db1ef4fd8993ce7d, type: 2}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1363087796691810, guid: 0a17ac11274fa414db1ef4fd8993ce7d, type: 2}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0a17ac11274fa414db1ef4fd8993ce7d, type: 2}
   m_IsPrefabParent: 0
@@ -54755,7 +54729,9 @@ Prefab:
       propertyPath: m_Name
       value: Gate-North
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 23011701184102054, guid: 2f5edfe8d46e1134581042307d8698fd, type: 2}
+    - {fileID: 23976099648316916, guid: 2f5edfe8d46e1134581042307d8698fd, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 2f5edfe8d46e1134581042307d8698fd, type: 2}
   m_IsPrefabParent: 0
 --- !u!1001 &1846137745
