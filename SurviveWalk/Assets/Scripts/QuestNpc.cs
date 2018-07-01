@@ -18,6 +18,7 @@ public class QuestNpc : MonoBehaviour {
     public GameObject quest;
     public GameObject questPlayer;
     public GameObject questTask;
+    public GameObject alert;
 
     public void Load(List<Quest> quests)
     {
@@ -69,7 +70,12 @@ public class QuestNpc : MonoBehaviour {
         }
 
         try{    Destroy(questItem.gameObject);  }
-        catch (System.Exception){   }          
+        catch (System.Exception){   }
+
+        if (2 == questItem.quest.Id)
+        {
+            alert.GetComponent<Alerta>().SetText("Use 1,2,3 ou 4 para alternar entre os itens.");
+        }
     }
     
     public void CompletTaskQuest(CompletQuest completQuest)

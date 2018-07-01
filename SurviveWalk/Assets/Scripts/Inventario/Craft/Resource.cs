@@ -61,6 +61,11 @@ public class Resource : MonoBehaviour {
             playerEnter = true;
 
             setEnterMaterial();
+
+            if (NpcController.Instance.npcType.Equals(Utils.NpcType.Npc2) || NpcController.Instance.npcType.Equals(Utils.NpcType.Npc3) || NpcController.Instance.npcType.Equals(Utils.NpcType.Npc4))
+            {
+                alert.GetComponent<Alerta>().SetText("Aperte a tecla E para coletar.");
+            }
         }
     }
 
@@ -94,7 +99,7 @@ public class Resource : MonoBehaviour {
             //GetComponent<Renderer>().material = onMouseOver;
 
             if (Input.GetMouseButtonDown(0)){
-                CraftItem();
+                //CraftItem();
             }
             else if (Input.GetMouseButtonUp(0))
             {

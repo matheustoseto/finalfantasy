@@ -48,9 +48,9 @@ public class Utils {
     public static string PodeCraftarDS(ResourceType resourceType)
     {
         if (ResourceType.Madeira == resourceType)
-            return "Você precisa equipar um Machado para poder craftar esse item.";
+            return "Você precisa equipar um Machado para poder coletar esse item.";
         if (ResourceType.Ferro == resourceType)
-            return "Você precisa equipar uma Picareta para poder craftar esse item.";
+            return "Você precisa equipar uma Picareta para poder coletar esse item.";
         return "Item não encontrado.";
     }
 }

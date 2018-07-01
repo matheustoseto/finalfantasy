@@ -134,22 +134,11 @@ public class EnemyController : MonoBehaviour {
         return false;
     }
 
-    private void OnTriggerStay(Collider other)
-    {
-        if ("Player".Equals(other.tag) && !attack && !TypeStateCharacter.FakeDead.Equals(enemy.State))
-        {
-            print("entrou");
-            other.GetComponent<CharacterStatus>().RemoveLife(enemyStats.Power);
-            attack = true;
-            timerAttack = 0.9f;
-        }
-    }
-
-    public void Attack(CharacterStatus status)
+    public void Attack()
     {
         if (!attack && TypeStateCharacter.Attack.Equals(enemy.State))
         {
-            status.RemoveLife(enemyStats.Power);
+            PlayerManager.Instance.player.GetComponent<CharacterStatus>().RemoveLife(enemyStats.Power);
             attack = true;
             timerAttack = 0.9f;
         }  

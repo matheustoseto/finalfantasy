@@ -126,9 +126,9 @@ public class HouseCraft : MonoBehaviour {
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
-        if ("Player".Equals(other.tag))
+        if ("Player".Equals(other.tag) && Input.GetKeyDown(KeyCode.E))
         {
             LoadHousePanel();
             if (!inventoryPanel.activeSelf)

@@ -9,8 +9,7 @@ public class NpcController : MonoBehaviour {
     public GameObject dialogPanel;
     public QuestNpc questNpc;
     public GameObject seta;
-
-    private bool playerEnter = false;
+    public GameObject alert;
 
     private static NpcController instance = null;
     public static NpcController Instance { get { return instance; } }
@@ -20,23 +19,29 @@ public class NpcController : MonoBehaviour {
         instance = this;
     }
 
-    private void OnMouseOver()
-    {
-        if (playerEnter && !dialogPanel.activeSelf)
-        {
-            if (Input.GetMouseButtonDown(0))
-            {
-                dialogPanel.GetComponent<Dialog>().SetNpc(Inventory.Instance.GetNpcData(npcType.GetHashCode()));
-                dialogPanel.SetActive(true);
-            }
-        }
-    }
-
     private void OnTriggerEnter(Collider other)
     {
         if ("Player".Equals(other.gameObject.tag))
         {
-            playerEnter = true;
+            if (npcType.Equals(Utils.NpcType.Npc2))
+            {
+                alert.GetComponent<Alerta>().SetText("Aperte a tecla E para conversar.");
+            }
+        }
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if ("Player".Equals(other.gameObject.tag))
+        {
+            if (!dialogPanel.activeSelf)
+            {
+                if (Input.GetKeyDown(KeyCode.E))
+                {
+                    dialogPanel.GetComponent<Dialog>().SetNpc(Inventory.Instance.GetNpcData(npcType.GetHashCode()));
+                    dialogPanel.SetActive(true);
+                }
+            }
         }
     }
 
@@ -44,7 +49,6 @@ public class NpcController : MonoBehaviour {
     {
         if ("Player".Equals(other.gameObject.tag))
         {
-            playerEnter = false;
             dialogPanel.GetComponent<Dialog>().CloseDialog();
             dialogPanel.GetComponent<Dialog>().CloseNpcPanel();
         }

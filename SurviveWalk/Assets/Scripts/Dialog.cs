@@ -13,6 +13,7 @@ public class Dialog : MonoBehaviour {
     public GameObject inventoryPanel;
     public GameObject questPlayerList;
     public Inventory inventory;
+    public GameObject alert;
 
     private Npc npc = new Npc();
     private int step = 0;
@@ -124,7 +125,7 @@ public class Dialog : MonoBehaviour {
     public void CloseNpcPanel()
     {
         npcPanel.GetComponent<NpcPanel>().ClosePanel();
-        inventory.DisableInventory();
+        //inventory.DisableInventory();
     }
 
     public bool verifyTuto()
@@ -137,6 +138,7 @@ public class Dialog : MonoBehaviour {
             CloseDialog();
             enemy.SetActive(true);
             npcGameObject.GetComponent<NpcController>().seta.SetActive(true);
+            alert.GetComponent<Alerta>().SetText("Arraste um item no slot rapido para equipa-lo.");
             return true;
         }
 
@@ -147,6 +149,7 @@ public class Dialog : MonoBehaviour {
             moveNpcTutorial = false;
             CloseDialog();
             npcGameObject.GetComponent<NpcController>().seta.SetActive(true);
+            alert.GetComponent<Alerta>().SetText("Clique com o botão direito para usar um item.");
             return true;
         }
 
@@ -157,6 +160,7 @@ public class Dialog : MonoBehaviour {
             moveNpcTutorial = false;
             CloseDialog();
             npcGameObject.GetComponent<NpcController>().seta.SetActive(true);
+            alert.GetComponent<Alerta>().SetText("Itens possuem durabilidade. Fique ligado!");
             return true;
         }
 
@@ -182,6 +186,7 @@ public class Dialog : MonoBehaviour {
             moveNpcTutorial = false;
             CloseDialog();
             npcGameObject.GetComponent<NpcController>().seta.SetActive(false);
+            alert.GetComponent<Alerta>().SetText("Use a tecla I para Abrir/Fechar o inventário.");
         }
     }
 }
