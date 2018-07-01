@@ -1,44 +1,199 @@
 [
-	{
-		"id": 0,
-		"title": "NPC 1",
-		"isQuest" : false,
-		"isCraft" : false,
-		"intro": [
-			{
-				"id" : 0,
-				"step" : "Seja bem vindo!!!!"
-			},
-			{
-				"id" : 1,
-				"step" : "Colete os recursos espalhados no mundo."
-			},
-			{
-				"id" : 2,
-				"step" : "Lute contra esqueletos para mostrar o seu valor."
-			},
-			{
-				"id" : 3,
-				"step" : "Boa Sorte!"
-			}
-		],
-		"quests": []
-	},
-	{
-		"id": 1,
-		"title": "NPC 2",
-		"isQuest" : true,
-		"isCraft" : true,
-		"intro": [
-			{
-				"id" : 0,
-				"step" : "Seja bem vindo!"
-			}
-		],
-		"quests": [
-			{
-				"id": 0
-			}
-		]
-	}
+  {
+    "id": 0,
+    "title": "NPC 1",
+    "isQuest": false,
+    "isCraft": false,
+    "intro": [
+      {
+        "id": 0,
+        "step": "Seja bem vindo!!!!"
+      },
+      {
+        "id": 1,
+        "step": "Colete os recursos espalhados no mundo."
+      },
+      {
+        "id": 2,
+        "step": "Lute contra esqueletos para mostrar o seu valor."
+      },
+      {
+        "id": 3,
+        "step": "Boa Sorte!"
+      }
+    ],
+	"crafts": [],
+    "quests": []
+  },
+  {
+    "id": 1,
+    "title": "NPC 2",
+    "isQuest": false,
+    "isCraft": true,
+    "intro": [
+		{
+			"id": 0,
+			"step": "Colete recursos espalhados no mapa para construir equipamentos."
+		}
+    ],
+	"crafts": [
+		{
+			"id": 7
+		},
+		{
+			"id": 8
+		},
+		{
+			"id": 1
+		},
+		{
+			"id": 4
+		},
+		{
+			"id": 9
+		},
+		{
+			"id": 10
+		}
+	],
+    "quests": []
+  },
+  {
+    "id": 2,
+    "title": "Intro NPC 1",
+    "isQuest": false,
+    "isCraft": false,
+    "intro": [
+      {
+        "id": 0,
+        "step": "Ainda bem que você voltou."
+      },
+      {
+        "id": 1,
+        "step": "Temos que voltar para a vila, pois está tendo um ataque de demônios novamente."
+      },
+      {
+        "id": 2,
+        "step": "Oque?!!! Você perdeu a espada que lhe dei?"
+      },
+      {
+        "id": 3,
+        "step": "Vamos seguir adiante, talvez achemos algo que possamos utilizar mais a frente."
+      }
+    ],
+	"crafts": [],
+    "quests": []
+  },
+  {
+    "id": 3,
+    "title": "Intro NPC 2",
+    "isQuest": false,
+    "isCraft": true,
+    "intro": [
+      {
+        "id": 0,
+        "step": "Não aprece ter nada que possa ajudar aqui."
+      },
+      {
+        "id": 1,
+        "step": "Vamos ter que improvisar, pegue alguns galhos e pedras pelo chão, irei montar algo que você possa usar para lutar."
+      },
+      {
+        "id": 2,
+        "step": "(Aproxime-se do objeto de coleta e pressione o botão E)"
+      }
+    ],
+	"crafts": [
+		{
+			"id" : 9
+		}
+	],
+    "quests": [
+      {
+        "id": 1
+      }
+    ]
+  },
+    {
+    "id": 4,
+    "title": "Intro NPC 3",
+    "isQuest": false,
+    "isCraft": false,
+    "intro": [
+      {
+        "id": 0,
+        "step": "Parece que você não está com toda sua forma fisica."
+      },
+      {
+        "id": 1,
+        "step": "Colete algumas frutas espalhadas pelo mapa."
+      },
+      {
+        "id": 2,
+        "step": "(Aproxime-se do objeto de coleta e pressione o botão E)"
+      }
+    ],
+	"crafts": [],
+    "quests": [
+      {
+        "id": 3
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "title": "Intro NPC 4",
+    "isQuest": false,
+    "isCraft": false,
+    "intro": [
+      {
+        "id": 0,
+        "step": "Tem alguns inimigos a frente, hora de ver o quanto você cresceu no seu treinamento."
+      },
+      {
+        "id": 1,
+        "step": "Mate aqueles demônios e então poderemos voltar para a vila em segurança."
+      },
+      {
+        "id": 2,
+        "step": "Não se preocupe, a espada que fiz não irá quebrar com essas pilhas de ossos."
+      }
+    ],
+	"crafts": [],
+    "quests": [
+		{
+			"id": 2
+		}
+    ]
+  },
+  {
+    "id": 6,
+    "title": "Intro NPC 5",
+    "isQuest": false,
+    "isCraft": false,
+    "intro": [
+      {
+        "id": 0,
+        "step": "Antes de abrir o portão devo lhe avisar que a vila não é mais como você lembra."
+      },
+      {
+        "id": 1,
+        "step": "Durante sua ausência fomos atacados várias vezes, tudo o que restou foram algumas casas destruídas."
+      },
+      {
+        "id": 2,
+        "step": "Há um exército de esqueletos do grande Rei Caveira."
+      },
+      {
+        "id": 3,
+        "step": "Salve-nos! Você é nossa última esperança."
+      }
+    ],
+	"crafts": [],
+    "quests": [
+		{
+			"id": 0
+		}
+    ]
+  }
 ]

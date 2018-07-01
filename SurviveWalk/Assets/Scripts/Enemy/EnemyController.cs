@@ -102,7 +102,7 @@ public class EnemyController : MonoBehaviour {
 
     public bool RemoveLife(int life)
     {
-        if (!TypeStateCharacter.FakeDead.Equals(enemy.State) && !removeLife)
+        if (!TypeStateCharacter.FakeDead.Equals(enemy.State) && !removeLife && enemyStats.Life > 0)
         {
             timer = 0.3f;
             removeLife = true;
@@ -116,29 +116,29 @@ public class EnemyController : MonoBehaviour {
             hit.GetComponent<HitPopUp>().SetText(life.ToString());
 
             if (enemyStats.Life <= 0)
-                enemy.EventDead(); //Destroy(agent.gameObject);
+            {
+                enemy.EventDead();
 
+                if (NpcController.Instance.npcType.Equals(Utils.NpcType.Npc5))
+                {
+                    CompletQuest completQuest = new CompletQuest();
+                    completQuest.questId = 2;
+                    completQuest.taskId = 0;
+
+                    NpcController.Instance.questNpc.CompletTaskQuest(completQuest);
+                }
+            }
+                
             return true;
         }
         return false;
     }
 
-    private void OnTriggerStay(Collider other)
-    {
-        if ("Player".Equals(other.tag) && !attack && !TypeStateCharacter.FakeDead.Equals(enemy.State))
-        {
-            print("entrou");
-            other.GetComponent<CharacterStatus>().RemoveLife(enemyStats.Power);
-            attack = true;
-            timerAttack = 0.9f;
-        }
-    }
-
-    public void Attack(CharacterStatus status)
+    public void Attack()
     {
         if (!attack && TypeStateCharacter.Attack.Equals(enemy.State))
         {
-            status.RemoveLife(enemyStats.Power);
+            PlayerManager.Instance.player.GetComponent<CharacterStatus>().RemoveLife(enemyStats.Power);
             attack = true;
             timerAttack = 0.9f;
         }  

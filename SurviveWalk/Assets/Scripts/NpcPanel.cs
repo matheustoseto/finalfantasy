@@ -17,6 +17,17 @@ public class NpcPanel : MonoBehaviour {
     public GameObject craftTab;
     public GameObject questTab;
 
+    public QuestNpc questNpc;
+    public CraftNpc craftNpc;
+
+    public GameObject stickSeta;
+    public GameObject appleSeta;
+
+    public void LoadCraft(List<CraftItem> crafts)
+    {
+        craftNpc.Load(crafts);
+    }
+
     public void OpenCraftPanel()
     {
         craftPanel.SetActive(true);
@@ -26,6 +37,11 @@ public class NpcPanel : MonoBehaviour {
         questTab.GetComponent<Image>().sprite = disableTad;
     }
 
+    public void LoadQuest(List<Quest> quests)
+    {
+        questNpc.Load(quests);
+    }
+
     public void OpenQuestPanel()
     {
         questPanel.SetActive(true);
@@ -33,6 +49,30 @@ public class NpcPanel : MonoBehaviour {
 
         questTab.GetComponent<Image>().sprite = activeTab;
         craftTab.GetComponent<Image>().sprite = disableTad;
+    }
+
+    public void GetQuest(List<Quest> quests)
+    {
+        foreach (Quest quest in quests)
+        {
+            if (!quest.IsGet)
+            {
+                QuestItem questItem = new QuestItem();
+                questItem.quest = quest;
+
+                questNpc.GetQuest(questItem);
+
+                if (1 == quest.Id)
+                {
+                    stickSeta.SetActive(true);
+                }
+
+                if (3 == quest.Id)
+                {
+                    appleSeta.SetActive(true);
+                }
+            }    
+        }
     }
 
     public void ClosePanel()

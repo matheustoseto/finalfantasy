@@ -29,7 +29,7 @@ public class Alerta : MonoBehaviour {
         {
             float a = image.color.a - 10 * Time.deltaTime;
             image.color = new Color(image.color.r, image.color.g, image.color.b, a);
-            if(image.color.a < 100)
+            if(image.color.a < 1)
                 text.text = "";
         }
 	}

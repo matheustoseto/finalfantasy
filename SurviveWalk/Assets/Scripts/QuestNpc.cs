@@ -18,21 +18,36 @@ public class QuestNpc : MonoBehaviour {
     public GameObject quest;
     public GameObject questPlayer;
     public GameObject questTask;
+    public GameObject alert;
 
-    private void Start()
+    public void Load(List<Quest> quests)
     {
         slotPanel = questPanel.transform.Find("QuestList").gameObject;
 
+        if (slotPanel.transform.childCount > 0)
+        {
+            foreach (Transform child in slotPanel.transform)
+            {
+                Destroy(child.gameObject);
+            }
+        }
+
         foreach (Quest ct in itemDatabase.GetQuestList())
         {
-            GameObject slot = Instantiate(quest, slotPanel.transform);
-            slot.GetComponent<QuestItem>().quest = ct;
+            foreach (Quest qst in quests)
+            {
+                if (ct.Id.Equals(qst.Id) && !ct.IsGet)
+                {
+                    GameObject slot = Instantiate(quest, slotPanel.transform);
+                    slot.GetComponent<QuestItem>().quest = ct;
 
-            Button btn = slot.GetComponent<Button>();
-            btn.onClick.AddListener(delegate { GetQuest(slot.GetComponent<QuestItem>()); });
+                    Button btn = slot.GetComponent<Button>();
+                    btn.onClick.AddListener(delegate { GetQuest(slot.GetComponent<QuestItem>()); });
 
-            slot.transform.Find("TilePanel").gameObject.transform.Find("Title").gameObject.GetComponent<Text>().text = ct.Title;
-            slot.transform.Find("TilePanel").gameObject.transform.Find("Descr").gameObject.GetComponent<Text>().text = ct.Descr;
+                    slot.transform.Find("TilePanel").gameObject.transform.Find("Title").gameObject.GetComponent<Text>().text = ct.Title;
+                    slot.transform.Find("TilePanel").gameObject.transform.Find("Descr").gameObject.GetComponent<Text>().text = ct.Descr;
+                }
+            }     
         }
 
         Instantiate(emptyPanel, slotPanel.transform);
@@ -40,26 +55,47 @@ public class QuestNpc : MonoBehaviour {
 
     public void GetQuest(QuestItem questItem)
     {
+        questItem.quest.IsGet = true;
+
         GameObject quest = Instantiate(questPlayer, questPlayerList.transform);
         quest.transform.GetChild(0).GetComponent<Text>().text = questItem.quest.Title;
+        quest.GetComponent<IdQuest>().questId = questItem.quest.Id;
 
         foreach (Task task in questItem.quest.Task)
         {
             GameObject tk = Instantiate(questTask, quest.transform);
             tk.transform.GetChild(0).GetComponent<Text>().text = task.Title;
             tk.GetComponent<PlayerTask>().task = task;
+            tk.GetComponent<IdTask>().taskId = task.Id;
         }
 
-        Destroy(questItem.gameObject);
+        try{    Destroy(questItem.gameObject);  }
+        catch (System.Exception){   }
+
+        if (2 == questItem.quest.Id)
+        {
+            alert.GetComponent<Alerta>().SetText("Use 1,2,3 ou 4 para alternar entre os itens.");
+        }
     }
     
-    public void CompletTaskQuest(int id)
+    public void CompletTaskQuest(CompletQuest completQuest)
     {
-        questPlayerList.transform.GetChild(0).GetChild(id + 1).GetComponent<Image>().color = Color.green;
-        Text text = questPlayerList.transform.GetChild(0).GetChild(id + 1).GetChild(0).GetComponent<Text>();
-        text.color = Color.white;
-        text.text = "Fale com o NPC na cidade.";
-
-        questPlayerList.transform.GetChild(0).GetChild(id + 1).GetComponent<PlayerTask>().task.Complet = true;        
+        foreach (Transform go in questPlayerList.transform)
+        {
+            if (go.GetComponent<IdQuest>().questId.Equals(completQuest.questId))
+            {
+                foreach (Transform gameObj in go.transform)
+                {
+                    if ("Task(Clone)".Equals(gameObj.name) && gameObj.GetComponent<IdTask>().taskId.Equals(completQuest.taskId) && !gameObj.GetComponent<PlayerTask>().task.Complet)
+                    {
+                        gameObj.GetComponent<Image>().color = Color.green;
+                        gameObj.GetComponent<PlayerTask>().task.Complet = true;
+                        Text text = gameObj.transform.GetChild(0).GetComponent<Text>();
+                        text.color = Color.white;
+                        text.text = "Fale com o NPC.";
+                    }
+                }
+            }
+        }
     }
 }

@@ -19,6 +19,9 @@ public class Inventory : MonoBehaviour
 	public List<Item> items = new List<Item>();
     public List<GameObject> slots = new List<GameObject>();
 
+    public GameObject stickSeta;
+    public GameObject appleSeta;
+
     private Item addItem;
 
     private static Inventory instance = null;
@@ -58,8 +61,8 @@ public class Inventory : MonoBehaviour
         slots[18].GetComponent<RectTransform>().anchoredPosition = new Vector2(520, 30);
 
         //Add item
-        AddItemInSlot(9,15);
-        AddItemQnt(2,20);
+        //AddItemInSlot(7,15);
+        //AddItemQnt(2,20);
     }
 
     void Update()
@@ -110,6 +113,9 @@ public class Inventory : MonoBehaviour
                 //slots[i].name = "Slot: " + itemToAdd.Title;
             }
         }
+
+        PlayerManager.Instance.player.GetComponent<SlotSelect>().UpdateSelect();
+        CheckQuest(id);
     }
 
     public void AddItemQnt(int id, int qnt)
@@ -167,7 +173,33 @@ public class Inventory : MonoBehaviour
 		}
 
         PlayerManager.Instance.player.GetComponent<SlotSelect>().UpdateSelect();
-	}
+        CheckQuest(id);
+    }
+
+    private void CheckQuest(int id)
+    {
+        if (id == 0)
+        {
+            if (NpcController.Instance.npcType.Equals(Utils.NpcType.Npc4))
+            {
+                CompletQuest completQuest = new CompletQuest();
+                completQuest.questId = 3;
+                completQuest.taskId = 0;
+
+                NpcController.Instance.questNpc.CompletTaskQuest(completQuest);
+            }
+        }
+
+        if (id == 5)
+        {
+            stickSeta.SetActive(false);
+        }
+
+        if (id == 0)
+        {
+            appleSeta.SetActive(false);
+        }
+    }
 
     public void RemoveItem(int id, int qnt)
     {
@@ -266,6 +298,7 @@ public class Inventory : MonoBehaviour
                 if (items[i].DurabilityCount <= 0)
                 {
                     RemoveItemDurability(items[i]);
+                    PlayerManager.Instance.player.GetComponent<SlotSelect>().UpdateSelect();
                     return true;
                 }
             }
@@ -326,5 +359,10 @@ public class Inventory : MonoBehaviour
                        select it).FirstOrDefault();
 
         return npc;
+    }
+
+    public Quest GetQuest(int id)
+    {
+        return database.GetQuestList(id);
     }
 }

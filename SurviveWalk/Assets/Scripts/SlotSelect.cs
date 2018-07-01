@@ -86,7 +86,7 @@ public class SlotSelect : MonoBehaviour {
     {
         if (item != null)
         {
-            if ("Weapon".Equals(item.Type))
+            if ("Weapon".Equals(item.Type) || "Picareta".Equals(item.Type) || "Machado".Equals(item.Type))
             {
                 weapon.item = item;
             }

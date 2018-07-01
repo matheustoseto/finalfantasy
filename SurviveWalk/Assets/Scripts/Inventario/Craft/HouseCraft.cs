@@ -5,7 +5,8 @@ using UnityEngine.UI;
 
 public class HouseCraft : MonoBehaviour {
 
-    public Utils.HouseType houseType;   
+    public Utils.HouseType houseType;
+    public CompletQuest completQuest;
     public Inventory inventory;
     public ItemDatabase itemDatabase;
     public QuestNpc questNpc;
@@ -78,7 +79,7 @@ public class HouseCraft : MonoBehaviour {
                         {
                             Image img = housePanel.transform.Find("HousePanel").Find("HouseList").transform.GetChild(i).gameObject.transform.Find("Icon").gameObject.GetComponent<Image>();
                             img.color = Color.green;
-                            questNpc.CompletTaskQuest(houseType.GetHashCode());
+                            questNpc.CompletTaskQuest(completQuest);
                         }
                         break;
                     }
@@ -125,9 +126,9 @@ public class HouseCraft : MonoBehaviour {
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
-        if ("Player".Equals(other.tag))
+        if ("Player".Equals(other.tag) && Input.GetKeyDown(KeyCode.E))
         {
             LoadHousePanel();
             if (!inventoryPanel.activeSelf)

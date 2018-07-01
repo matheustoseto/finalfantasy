@@ -1,37 +1,87 @@
 [
-	{
-		"id": 0,
-		"title": "Reconstrua a vila",
-		"descr": "Recupere todas as casas destruidas.",
-		"tasks": [
-			{
-				"id" : 0,
-				"complet" : false,
-				"title": "Reconstrua a casa 1",
-				"info" : "Procure em X:0 Y:0",
-				"descr" : "A muito tempo atras caiu algo em X:0 Y:0, de uma olhada."
-			},
-			{
-				"id" : 1,
-				"complet" : false,
-				"title": "Reconstrua a casa 2",
-				"info" : "Procure em X:0 Y:0",
-				"descr" : "A muito tempo atras caiu algo em X:0 Y:0, de uma olhada."
-			},
-			{
-				"id" : 2,
-				"complet" : false,
-				"title": "Reconstrua a casa 3",
-				"info" : "Procure em X:0 Y:0",
-				"descr" : "A muito tempo atras caiu algo em X:0 Y:0, de uma olhada."
-			},
-			{
-				"id" : 3,
-				"complet" : false,
-				"title": "Reconstrua a casa 4",
-				"info" : "Procure em X:0 Y:0",
-				"descr" : "A muito tempo atras caiu algo em X:0 Y:0, de uma olhada."
-			}
-		]
-	}
+  {
+    "id": 0,
+    "title": "Reconstrua a vila",
+    "descr": "Recupere todas as casas destruidas.",
+	"isGet" : false,
+	"isDelet" : false,
+    "tasks": [
+      {
+        "id": 0,
+        "complet": false,
+        "title": "Reconstrua a casa 1",
+        "info": "Procure em X:0 Y:0",
+        "descr": "A muito tempo atras caiu algo em X:0 Y:0, de uma olhada."
+      },
+      {
+        "id": 1,
+        "complet": false,
+        "title": "Reconstrua a casa 2",
+        "info": "Procure em X:0 Y:0",
+        "descr": "A muito tempo atras caiu algo em X:0 Y:0, de uma olhada."
+      },
+      {
+        "id": 2,
+        "complet": false,
+        "title": "Reconstrua a casa 3",
+        "info": "Procure em X:0 Y:0",
+        "descr": "A muito tempo atras caiu algo em X:0 Y:0, de uma olhada."
+      },
+      {
+        "id": 3,
+        "complet": false,
+        "title": "Reconstrua a casa 4",
+        "info": "Procure em X:0 Y:0",
+        "descr": "A muito tempo atras caiu algo em X:0 Y:0, de uma olhada."
+      }
+    ]
+  },
+  {
+    "id": 1,
+    "title": "Fazendo armas",
+    "descr": "Colete materiais próximos e construa uma espada",
+	"isGet" : false,
+	"isDelet" : true,
+    "tasks": [
+      {
+        "id": 0,
+        "complet": false,
+        "title": "Construa uma espada",
+        "info": "Vamos avançar!",
+        "descr": "Ótimo! Isso ja servem para fazer algum estrago."
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "title": "Ameaça crescente",
+    "descr": "Derrote o inimigo a sua frente",
+	"isGet" : false,
+	"isDelet" : true,
+    "tasks": [
+      {
+        "id": 0,
+        "complet": false,
+        "title": "Pilha de ossos",
+        "info": "Vamos avançar!",
+        "descr": "Você realmente ficou mais forte, se fosse 2 anos atrás teria caído no segundo inimigo."
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "title": "Vida em perigo",
+    "descr": "Colete frutas para aumentar sua vida.",
+	"isGet" : false,
+	"isDelet" : true,
+    "tasks": [
+		{
+			"id": 0,
+			"complet": false,
+			"title": "Colete uma fruta",
+			"info": "Vamos avançar!",
+			"descr": "Ótimo! Use a fruta em seu inventario."
+		}
+    ]
+  }
 ]

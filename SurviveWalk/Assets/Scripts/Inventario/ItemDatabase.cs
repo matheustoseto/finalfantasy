@@ -77,6 +77,19 @@ public class ItemDatabase : MonoBehaviour {
         return questbase;
     }
 
+    public Quest GetQuestList(int id)
+    {
+        for (int i = 0; i < questbase.Count; i++)
+        {
+            if (questbase[i].Id.Equals(id))
+            {
+                return questbase[i];
+            }
+        }
+
+        return null;
+    }
+
     void ConstructItemDatabase()
 	{
 		for (int i = 0; i < itemData.Count; i++)
@@ -155,7 +168,34 @@ public class ItemDatabase : MonoBehaviour {
             enemybase.Add(enemy);
         }
 
-        if(npcData != null)
+        if (questData != null)
+        {
+            for (int i = 0; i < questData.Count; i++)
+            {
+                Quest quest = new Quest();
+                quest.Id = (int)questData[i]["id"];
+                quest.Title = questData[i]["title"].ToString();
+                quest.Descr = questData[i]["descr"].ToString();
+                quest.IsGet = (bool)questData[i]["isGet"];
+                quest.IsDelete = (bool)questData[i]["isDelet"];
+
+                for (int j = 0; j < questData[i]["tasks"].Count; j++)
+                {
+                    Task task = new Task();
+                    task.Id = (int)questData[i]["tasks"][j]["id"];
+                    task.Title = questData[i]["tasks"][j]["title"].ToString();
+                    task.Info = questData[i]["tasks"][j]["info"].ToString();
+                    task.Descr = questData[i]["tasks"][j]["descr"].ToString();
+                    task.Complet = (bool)questData[i]["tasks"][j]["complet"];
+
+                    quest.Task.Add(task);
+                }
+
+                questbase.Add(quest);
+            }
+        }
+
+        if (npcData != null)
         {
             for (int i = 0; i < npcData.Count; i++)
             {
@@ -176,39 +216,18 @@ public class ItemDatabase : MonoBehaviour {
 
                 for (int j = 0; j < npcData[i]["quests"].Count; j++)
                 {
-                    Quest quest = new Quest();
-                    quest.Id = (int)npcData[i]["quests"][j]["id"];
+                    npc.Quest.Add(GetQuestList((int)npcData[i]["quests"][j]["id"]));
+                }
 
-                    npc.Quest.Add(quest);
+                for (int j = 0; j < npcData[i]["crafts"].Count; j++)
+                {
+                    CraftItem craft = new CraftItem();
+                    craft.Id = (int)npcData[i]["crafts"][j]["id"];
+
+                    npc.Crafts.Add(craft);
                 }
 
                 npcbase.Add(npc);
-            }
-        }
-            
-
-        if(questData != null)
-        {
-            for (int i = 0; i < questData.Count; i++)
-            {
-                Quest quest = new Quest();
-                quest.Id = (int)questData[i]["id"];
-                quest.Title = questData[i]["title"].ToString();
-                quest.Descr = questData[i]["descr"].ToString();
-
-                for (int j = 0; j < questData[i]["tasks"].Count; j++)
-                {
-                    Task task = new Task();
-                    task.Id = (int)questData[i]["tasks"][j]["id"];
-                    task.Title = questData[i]["tasks"][j]["title"].ToString();
-                    task.Info = questData[i]["tasks"][j]["info"].ToString();
-                    task.Descr = questData[i]["tasks"][j]["descr"].ToString();
-                    task.Complet = (bool)questData[i]["tasks"][j]["complet"];
-
-                    quest.Task.Add(task);
-                }
-
-                questbase.Add(quest);
             }
         }
     }
@@ -347,6 +366,7 @@ public class Npc
     public bool IsQuest { get; set; }
     public bool IsCraft { get; set; }
     public List<Intro> Intro = new List<Intro>();
+    public List<CraftItem> Crafts = new List<CraftItem>();
     public List<Quest> Quest = new List<Quest>();
 }
 
@@ -361,6 +381,8 @@ public class Quest
     public int Id { get; set; }
     public string Title { get; set; }
     public string Descr { get; set; }
+    public bool IsGet { get; set; }
+    public bool IsDelete { get; set; }
     public List<Task> Task = new List<Task>();
 }
 

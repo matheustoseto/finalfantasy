@@ -11,6 +11,7 @@ public class CharacterStatus : MonoBehaviour {
     public GameObject lifeBar;
     public Text lifeText;
     public GameObject hitPopUp;
+    public GameObject damage;
 
     [Header("Status:")]
     public float life;
@@ -78,6 +79,7 @@ public class CharacterStatus : MonoBehaviour {
         GameObject hit = Instantiate(hitPopUp, transform.position + new Vector3(0, 6, 0), hitPopUp.transform.rotation);
         hit.GetComponent<HitPopUp>().SetText(removeLife.ToString());
         hit.GetComponent<HitPopUp>().text.color = Color.yellow;
+        damage.SetActive(true);
 
         if ((lifeProgress - removeLife) <= 0)
         {
