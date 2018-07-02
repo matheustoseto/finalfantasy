@@ -33,11 +33,17 @@ public class CharacterState : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+        InitStart();
 
-	}
-	
-	// Update is called once per frame
-	void Update () {
+    }
+
+    protected virtual void InitStart()
+    {
+
+    }
+
+    // Update is called once per frame
+    void Update () {
 		
 	}
 

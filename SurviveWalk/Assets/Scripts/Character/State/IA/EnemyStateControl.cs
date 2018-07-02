@@ -22,6 +22,12 @@ public class EnemyStateControl : CharacterState {
     [SerializeField] private float timerWait = 3;
     private float timer = 0;
 
+    [Header("Resurrection:")]
+    //[SerializeField] private Weapon weapon;
+    [SerializeField] private bool isAutomaticResurrection = false;
+    [SerializeField] private float timeToResurrection = 20;
+
+
     [Header("Radius Distance Detect:")]
     [SerializeField] private float radiusDetectPlayer    = 10f;
     [SerializeField] private float radiusPlayerDistance  = 40f;
@@ -49,7 +55,9 @@ public class EnemyStateControl : CharacterState {
     [SerializeField] private bool isAnaliseStateTest = false;
     #endregion
 
-
+    #region Properties
+    protected EnemyAnimationControl AniControl { get { return aniControl; } set { aniControl = value; } }
+    #endregion
 
     #region Unity
     void Awake()
@@ -75,6 +83,12 @@ public class EnemyStateControl : CharacterState {
     // Use this for initialization
     void Start()
     {
+        InitStart();
+    }
+
+    protected override void InitStart()
+    {
+        base.InitStart();
         #region WayPoints
         path = GetComponent<Path>();
         if (path != null)
@@ -93,14 +107,15 @@ public class EnemyStateControl : CharacterState {
                     Debug.Log("[EnemyState][" + gameObject.name + "]: listWayPoins vazia.");
                     isError = true;
                 }
-                else { 
+                else
+                {
                     for (int i = 0; i < listWayPoints.Count; i++)
                     {
                         if (listWayPoints[i] == null)
                         {
                             listWayPoints.Clear();
                             listWayPoints.Add(transform);
-                            Debug.Log("[EnemyState][" + gameObject.name + "]: A posição ("+i+") da listWayPoins está nula.");
+                            Debug.Log("[EnemyState][" + gameObject.name + "]: A posição (" + i + ") da listWayPoins está nula.");
                             isError = true;
                             break;
                         }
@@ -108,7 +123,7 @@ public class EnemyStateControl : CharacterState {
                 }
             }
 
-            if(isError)
+            if (isError)
             {
                 listWayPoints = new List<Transform>();
                 listWayPoints.Add(transform);
@@ -224,6 +239,7 @@ public class EnemyStateControl : CharacterState {
     {
         aniControl.IsDead = true;
         Desactivated();
+        timer = 0;
     }
     #endregion
 
@@ -475,8 +491,14 @@ public class EnemyStateControl : CharacterState {
         // No transtions //
         if (aniControl.IsAnimationFinish(state.ToString()))
         {
-            EnterState(TypeStateCharacter.FakeDead);
-            return;
+            if (isAutomaticResurrection)
+            {
+                timer += Time.deltaTime;
+                if (timer >= timeToResurrection)
+                    EnterState(TypeStateCharacter.Rise);
+            }
+            else
+                EnterState(TypeStateCharacter.Dead);
         }
         #endregion
     }
@@ -541,7 +563,13 @@ public class EnemyStateControl : CharacterState {
     protected override void LeaveDeadState()
     {
         if (isDestroy)
+        {
             Destroy(gameObject);
+            return;
+        }
+
+        enemyStatus.ResetLife();
+        timer = 0;
     }
 
     #endregion

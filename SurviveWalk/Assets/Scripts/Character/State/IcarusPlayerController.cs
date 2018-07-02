@@ -69,7 +69,7 @@ public class IcarusPlayerController : CharacterState {
         btDirection.y = Input.GetAxisRaw   ("Vertical"  );
         btAttack      = Input.GetButtonDown("Fire1"     ) ? 1 : 0;
         btAction      = Input.GetButtonDown("Action"    ) ? 1 : 0;
-        btDash        = Input.GetButtonDown("Fire2"     ) ? 1 : 0;
+        //btDash        = Input.GetButtonDown("Fire2"     ) ? 1 : 0;
     }
 
     // Update is called once per frame
