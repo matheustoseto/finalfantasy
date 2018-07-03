@@ -52373,58 +52373,6 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 114197512690499528, guid: c1d83963049a4a845b27efc946154cf2,
-        type: 2}
-      propertyPath: m_Color.a
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114197512690499528, guid: c1d83963049a4a845b27efc946154cf2,
-        type: 2}
-      propertyPath: m_Color.r
-      value: 0.4509804
-      objectReference: {fileID: 0}
-    - target: {fileID: 114197512690499528, guid: c1d83963049a4a845b27efc946154cf2,
-        type: 2}
-      propertyPath: m_Color.g
-      value: 0.4627451
-      objectReference: {fileID: 0}
-    - target: {fileID: 114197512690499528, guid: c1d83963049a4a845b27efc946154cf2,
-        type: 2}
-      propertyPath: m_Color.b
-      value: 0.5137255
-      objectReference: {fileID: 0}
-    - target: {fileID: 114999640392432228, guid: c1d83963049a4a845b27efc946154cf2,
-        type: 2}
-      propertyPath: m_Color.a
-      value: 0.6666667
-      objectReference: {fileID: 0}
-    - target: {fileID: 114197512690499528, guid: c1d83963049a4a845b27efc946154cf2,
-        type: 2}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: f8f919528929444d38fb2c14ee234bb1,
-        type: 3}
-    - target: {fileID: 114053799785730268, guid: c1d83963049a4a845b27efc946154cf2,
-        type: 2}
-      propertyPath: m_Color.r
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114053799785730268, guid: c1d83963049a4a845b27efc946154cf2,
-        type: 2}
-      propertyPath: m_Color.g
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114053799785730268, guid: c1d83963049a4a845b27efc946154cf2,
-        type: 2}
-      propertyPath: m_Color.b
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114053799785730268, guid: c1d83963049a4a845b27efc946154cf2,
-        type: 2}
-      propertyPath: m_FontData.m_Font
-      value: 
-      objectReference: {fileID: 12800000, guid: 4506bf6ca285b494ab0993e12703d5e6,
-        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c1d83963049a4a845b27efc946154cf2, type: 2}
   m_IsPrefabParent: 0
