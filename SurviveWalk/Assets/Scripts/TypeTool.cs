@@ -15,5 +15,5 @@
 
     Axe           = 20, // 20 - Machado  comum: Feito com madeira e metal
     Pick          = 30, // 30 - Picareta comum: Feita com madeira e metal
-    Sword         = 40  // 40 - Estada   comum: Feito com madeira e metal
+    SwordLegend         = 40  // 40 - Estada   comum: Feito com madeira e metal
 }
