@@ -173,6 +173,22 @@
 		"stackable": false,
 		"rarity": 1,
 		"durability" : 20,
+		"slug":  "icon_Espada"
+	},
+	{
+		"id": 40,
+		"title": "Espada de Ferro",
+		"value": 1,
+		"type" : "Weapon",
+		"stats": {
+			"power": 15,
+			"defense": 1,
+			"vitality": 1
+		},
+		"description": "Uma espada feita com a fé de muitos homens.",
+		"stackable": false,
+		"rarity": 1,
+		"durability" : -1,
 		"slug":  "icon_EspadaMetal"
 	}
 ]

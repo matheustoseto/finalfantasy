@@ -129,7 +129,7 @@ public class Weapon : MonoBehaviour {
             case TypeTool.Pick         : typeTool = TypeTool.Pick         ; break;
             case TypeTool.PickMetal    : typeTool = TypeTool.PickMetal    ; break;
             case TypeTool.SwordWood    : typeTool = TypeTool.SwordWood    ; break;
-            case TypeTool.Sword        : typeTool = TypeTool.Sword        ; break;
+            case TypeTool.SwordLegend  : typeTool = TypeTool.SwordLegend  ; break;
             case TypeTool.SwordMetal   : typeTool = TypeTool.SwordMetal   ; break;
             default:
                 typeTool = TypeTool.None;

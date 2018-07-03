@@ -4,5 +4,17 @@
 		"name": "Skeleton",
 		"life": 10,
 		"power" : 2
+	},
+	{
+		"id": 0,
+		"name": "ShieldSkeleton",
+		"life": 10,
+		"power" : 2
+	},
+	{
+		"id": 0,
+		"name": "TwoHandSkeleton",
+		"life": 10,
+		"power" : 2
 	}
 ]
