@@ -64,19 +64,19 @@ public class CharacterAnimationControl : AnimationControl {
 
     }
 
-    public void AttackOn()
+    public virtual void AttackOn()
     {
         if (weapon != null)
             weapon.AttackOn();
     }
 
-    public void AttackOff()
+    public virtual void AttackOff()
     {
         if (weapon != null)
             weapon.AttackOff();
     }
 
-    public void SoundAttack()
+    public virtual void SoundAttack()
     {
         SoundControl.GetInstance().ExecuteEffect(TypeSound.PlayerAttack);
     }

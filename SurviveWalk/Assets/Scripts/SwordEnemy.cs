@@ -11,11 +11,11 @@ public class SwordEnemy : Weapon {
     {
         if ("Player".Equals(other.tag))
         {
-            enemyController.Attack();
+            //enemyController.Attack();
         }
     }
 
-    public override  void AttackOn()
+    public override void AttackOn()
     {
         enemyController.Attack();
     }

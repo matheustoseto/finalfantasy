@@ -41,5 +41,26 @@ public class EnemyAnimationControl : CharacterAnimationControl {
         animator.SetBool(TypeStateCharacter.Dead.ToString(),     IsDead);
     }
 
+    #region Event
+    public void EventAnimation(string nameEvent, int type, bool eventActive)
+    {
 
+    }
+
+    public override void AttackOn()
+    {
+        Weapon.AttackOn();
+    }
+
+    public override void AttackOff()
+    {
+        
+    }
+
+    public override void SoundAttack()
+    {
+        //SoundControl.GetInstance().ExecuteEffect(TypeSound.EnemyAttack);
+    }
+
+    #endregion
 }
