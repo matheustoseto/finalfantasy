@@ -18,13 +18,11 @@ public class HouseCraft : MonoBehaviour {
     public List<GameObject> levels;
 
     private int houseLevel = 0;
-
-	void Update () {
-		
-	}
+    private bool isLoad = false;
 
     private void LoadHousePanel()
     {
+        isLoad = true;
         foreach (CraftHouse ct in itemDatabase.GetHouseList())
         {
             if (houseType.GetHashCode() == ct.Id)
@@ -54,7 +52,7 @@ public class HouseCraft : MonoBehaviour {
                     }
                 } 
             }
-        }
+        }        
     }
 
     public void UpdateLevel(HouseItem houseItem)
@@ -128,7 +126,7 @@ public class HouseCraft : MonoBehaviour {
 
     private void OnTriggerStay(Collider other)
     {
-        if ("Player".Equals(other.tag) && Input.GetKeyDown(KeyCode.E))
+        if ("Player".Equals(other.tag) && Input.GetKeyDown(KeyCode.E) && !isLoad)
         {
             LoadHousePanel();
             if (!inventoryPanel.activeSelf)
@@ -164,6 +162,7 @@ public class HouseCraft : MonoBehaviour {
                     Destroy(housePanel.transform.Find("HousePanel").Find("HouseList").transform.GetChild(i).gameObject);
                 }       
             }
+            isLoad = false;
         }
     }
 }
