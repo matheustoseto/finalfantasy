@@ -34,12 +34,14 @@ public class EnemyStateControl : CharacterState {
     [SerializeField] private float radiusMonitoringPoint = 1f;
     [SerializeField] private float radiusLimitMonitoringPoint = 60f;
     [SerializeField] private float radiusAttack = 1f;
+    [SerializeField] private float radiusVillage = 50f;
 
     [Header("Monitoring:")]
     // Patrol //
     [SerializeField] private Vector3 monitoringPoint = Vector3.zero;
     [SerializeField] private bool isPatrolStart = false;
     private List<Transform> listWayPoints = new List<Transform>();
+    private Transform villagePoint = null;
     private bool isPatrolCompleted = false;
     private int actualWp = 0;
     #endregion
@@ -48,6 +50,7 @@ public class EnemyStateControl : CharacterState {
     // Test //
     [SerializeField] private float distancePlayerTest = 0;
     [SerializeField] private float distanceMonitoringPointTest = 0;
+    [SerializeField] private float distanceVillagePointTest = 0;
 
     [Header("State Test:")]
     [SerializeField] private bool isNewStateTest = false;
@@ -73,6 +76,7 @@ public class EnemyStateControl : CharacterState {
         aniControl = GetComponentInChildren<EnemyAnimationControl>();
         moveControl = GetComponentInChildren<EnemyMoveControl>();
         boxCol = GetComponentInChildren<BoxCollider>();
+        villagePoint = GameObject.Find("VillagePoint").GetComponent<Transform>();
 
         if (aniControl != null)
             aniControl.Weapon = Weapon;
@@ -153,6 +157,7 @@ public class EnemyStateControl : CharacterState {
         #region Teste
         distancePlayerTest = Distance(playerTarget.position, transform.position);
         distanceMonitoringPointTest = Distance(monitoringPoint, transform.position);
+        distanceVillagePointTest = Distance(villagePoint.position, transform.position);
 
         if (isNewStateTest)
         {
@@ -172,6 +177,11 @@ public class EnemyStateControl : CharacterState {
 
         UpdateState();
         aniControl.ExecuteAnimations();
+
+        if (Distance(villagePoint.position, transform.position) < radiusVillage)
+        {
+            EnterState(TypeStateCharacter.Back);
+        }
     }
 
     private void LateUpdate()
@@ -611,6 +621,11 @@ public class EnemyStateControl : CharacterState {
     public override void EventPatrol()
     {
         
+    }
+
+    public override void EventBack()
+    {
+        //EnterState(TypeStateCharacter.Back);
     }
 
     #endregion

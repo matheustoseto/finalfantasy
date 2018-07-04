@@ -11,8 +11,14 @@ public class IcarusPlayerController : CharacterState {
     private CharacterMoveControl moveControl = null;
     private CharacterAnimationControl aniControl = null;
 
-    [Header("Methold Test: ")]
+    [Header("General Settings:")]
     [SerializeField] private bool isAutomaticResurrection = true;
+    [SerializeField] private bool isBlockInputs = false;
+    [SerializeField] private float timerRespawn = 3;
+    [SerializeField] private float timer = 0;
+    private bool isDead = false;
+
+    [Header("Methold Test: ")]
     [SerializeField] private bool isResurrection = false;
 
     //[Header("Inputs:")]
@@ -22,14 +28,10 @@ public class IcarusPlayerController : CharacterState {
     private float   btDash      = 0;
 
 
-    [Header("Debug:")]
-    [SerializeField] private bool isAttackDb = false;
-
-
+     #region Properties
     public static Transform GetInstance() { return player; }
 
-    #region Properties
-    
+    public bool IsBlockInputs { get { return isBlockInputs; } set { isBlockInputs = value; } }
     #endregion
 
     // Use this for initialization
@@ -65,11 +67,14 @@ public class IcarusPlayerController : CharacterState {
 
     private void GetInput()
     {
-        btDirection.x = Input.GetAxisRaw   ("Horizontal");
-        btDirection.y = Input.GetAxisRaw   ("Vertical"  );
-        btAttack      = Input.GetButtonDown("Fire1"     ) ? 1 : 0;
-        btAction      = Input.GetButtonDown("Action"    ) ? 1 : 0;
-        //btDash        = Input.GetButtonDown("Fire2"     ) ? 1 : 0;
+        if (!isBlockInputs)
+        {
+            btDirection.x = Input.GetAxisRaw("Horizontal");
+            btDirection.y = Input.GetAxisRaw("Vertical");
+            btAttack = Input.GetButtonDown("Fire1") ? 1 : 0;
+            btAction = Input.GetButtonDown("Action") ? 1 : 0;
+            //btDash        = Input.GetButtonDown("Fire2"     ) ? 1 : 0;
+        }
     }
 
     // Update is called once per frame
@@ -117,7 +122,9 @@ public class IcarusPlayerController : CharacterState {
 
     protected override void EnterDeadState()
     {
+        isDead = true;
         aniControl.IsDead = true;
+        timer = 0;
     }
 
     #endregion
@@ -182,8 +189,15 @@ public class IcarusPlayerController : CharacterState {
         if (aniControl.IsAnimationFinish(state.ToString()))
         {
             if (isAutomaticResurrection)
-                EnterState(TypeStateCharacter.Move);
-            return;
+            {
+
+                timer += Time.deltaTime;
+                if (timer >= timerRespawn)
+                {
+                    EnterState(TypeStateCharacter.Move);
+                }
+
+            }
         }
     }
 
@@ -218,14 +232,36 @@ public class IcarusPlayerController : CharacterState {
 
     protected override void LeaveDeadState()
     {
-        if(isAutomaticResurrection)
+        if (isAutomaticResurrection)
             Resurrection();
     }
     #endregion
+
+
+    #region Events
+    public override void EventDead()
+    {
+        if (!isDead)
+            EnterState(TypeStateCharacter.Dead);
+    }
+
+    public override void EventPatrol()
+    {
+        
+    }
+
+    public override void EventBack()
+    {
+
+    }
+
+    #endregion
+
 
     public void Resurrection()
     {
         playerStatus.ResetToInitialLife();
         moveControl.ReturnCheckPoint();
+        isDead = false;
     }
 }

@@ -169,6 +169,11 @@ public class CharacterState : MonoBehaviour {
         EnterState(TypeStateCharacter.Patrol);
     }
 
+    public virtual void EventBack()
+    {
+
+    }
+
     #endregion
 
     #region Verify

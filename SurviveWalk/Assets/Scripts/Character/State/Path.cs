@@ -7,6 +7,7 @@ public class Path : MonoBehaviour {
     [SerializeField] private Color sphereColor = new Color(1, 1, 0);
     [SerializeField] private Color lineColor   = new Color(1, 1, 0);
     [SerializeField] private List<Transform> wayPoints = new List<Transform>();
+    [SerializeField] private bool isNoCicleWay = true;
 
     public List<Transform> WayPoints { get { return wayPoints; } }
 
@@ -45,7 +46,7 @@ public class Path : MonoBehaviour {
             Gizmos.DrawLine(wayPoints[i-1].position, wayPoints[i].position);
         }
 
-        if (wayPoints.Count > 2)
+        if (wayPoints.Count > 2 && isNoCicleWay)
         {
             Gizmos.color = lineColor;
             Gizmos.DrawLine(wayPoints[0].position, wayPoints[wayPoints.Count-1].position);
