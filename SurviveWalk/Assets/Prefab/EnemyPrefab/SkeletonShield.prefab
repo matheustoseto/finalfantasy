@@ -966,14 +966,14 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1754949915381346}
-  m_LocalRotation: {x: -0, y: -0.4690864, z: -0, w: -0.8831523}
-  m_LocalPosition: {x: 2.33, y: 0.2136751, z: 188.58}
+  m_LocalRotation: {x: 0, y: 0.72115594, z: 0, w: 0.69277275}
+  m_LocalPosition: {x: 13.2, y: 64.31, z: 79.62}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 4703732792331510}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: -304.05, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -627.7, z: 0}
 --- !u!4 &4528134865715990
 Transform:
   m_ObjectHideFlags: 1
@@ -1637,16 +1637,20 @@ MonoBehaviour:
   state: 8
   weapon: {fileID: 114161869200683322}
   isDestroy: 1
-  timerWait: 5
+  timerWait: 10
+  isAutomaticResurrection: 0
+  timeToResurrection: 20
   radiusDetectPlayer: 10
   radiusPlayerDistance: 30
   radiusMonitoringPoint: 2
   radiusLimitMonitoringPoint: 60
   radiusAttack: 3
+  radiusVillage: 50
   monitoringPoint: {x: 0, y: 0, z: 0}
   isPatrolStart: 0
   distancePlayerTest: 0
   distanceMonitoringPointTest: 0
+  distanceVillagePointTest: 0
   isNewStateTest: 0
   stateTest: 7
   isAnaliseStateTest: 0
@@ -1685,6 +1689,8 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  - {fileID: 0}
+  isNoCicleWay: 1
 --- !u!114 &114403950028414430
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2071,7 +2077,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 12
+  m_Speed: 10
   m_Acceleration: 25
   avoidancePriority: 50
   m_AngularSpeed: 2000
