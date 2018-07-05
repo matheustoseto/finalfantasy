@@ -38,7 +38,7 @@ public class EnemyStateControl : CharacterState {
 
     [Header("Monitoring:")]
     // Patrol //
-    [SerializeField] private Vector3 monitoringPoint = Vector3.zero;
+    [SerializeField] private Transform monitoringPoint = null;
     [SerializeField] private bool isPatrolStart = false;
     private List<Transform> listWayPoints = new List<Transform>();
     private Transform villagePoint = null;
@@ -134,7 +134,7 @@ public class EnemyStateControl : CharacterState {
             }
 
         }
-        monitoringPoint = listWayPoints[actualWp].position;
+        monitoringPoint = listWayPoints[actualWp];
         #endregion
 
         moveControl.BodyMiniMap.gameObject.SetActive(false);
@@ -156,7 +156,7 @@ public class EnemyStateControl : CharacterState {
 
         #region Teste
         distancePlayerTest = Distance(playerTarget.position, transform.position);
-        distanceMonitoringPointTest = Distance(monitoringPoint, transform.position);
+        distanceMonitoringPointTest = Distance(monitoringPoint.position, transform.position);
         distanceVillagePointTest = Distance(villagePoint.position, transform.position);
 
         if (isNewStateTest)
@@ -220,7 +220,7 @@ public class EnemyStateControl : CharacterState {
     protected override void EnterPatrolState()
     {
         AnimationMove();
-        monitoringPoint = listWayPoints[actualWp].position;
+        monitoringPoint = listWayPoints[actualWp];
     }
 
     protected override void EnterBackState()
