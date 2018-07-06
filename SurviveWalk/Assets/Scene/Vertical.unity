@@ -70850,11 +70850,6 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 644580277}
     m_Modifications:
-    - target: {fileID: 114776073845952688, guid: ff87e771c4a88364788b5febeb35bd32,
-        type: 2}
-      propertyPath: wayPoints.Array.size
-      value: 7
-      objectReference: {fileID: 0}
     - target: {fileID: 4247934018509890, guid: ff87e771c4a88364788b5febeb35bd32, type: 2}
       propertyPath: m_LocalPosition.x
       value: -179.73552
@@ -70894,11 +70889,6 @@ Prefab:
       objectReference: {fileID: 1956264477}
     - target: {fileID: 114776073845952688, guid: ff87e771c4a88364788b5febeb35bd32,
         type: 2}
-      propertyPath: wayPoints.Array.data[4]
-      value: 
-      objectReference: {fileID: 698621632}
-    - target: {fileID: 114776073845952688, guid: ff87e771c4a88364788b5febeb35bd32,
-        type: 2}
       propertyPath: wayPoints.Array.data[1]
       value: 
       objectReference: {fileID: 2101510894}
@@ -70914,6 +70904,11 @@ Prefab:
       objectReference: {fileID: 625218873}
     - target: {fileID: 114776073845952688, guid: ff87e771c4a88364788b5febeb35bd32,
         type: 2}
+      propertyPath: wayPoints.Array.data[4]
+      value: 
+      objectReference: {fileID: 698621632}
+    - target: {fileID: 114776073845952688, guid: ff87e771c4a88364788b5febeb35bd32,
+        type: 2}
       propertyPath: wayPoints.Array.data[5]
       value: 
       objectReference: {fileID: 197221386}
@@ -70925,15 +70920,6 @@ Prefab:
     - target: {fileID: 1928720064379992, guid: ff87e771c4a88364788b5febeb35bd32, type: 2}
       propertyPath: m_Name
       value: SkeletonTwoHanded (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 4247934018509890, guid: ff87e771c4a88364788b5febeb35bd32, type: 2}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: -409.83
-      objectReference: {fileID: 0}
-    - target: {fileID: 114131251717717542, guid: ff87e771c4a88364788b5febeb35bd32,
-        type: 2}
-      propertyPath: state
-      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ff87e771c4a88364788b5febeb35bd32, type: 2}
@@ -99940,11 +99926,6 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 644580277}
     m_Modifications:
-    - target: {fileID: 114278087568597054, guid: 84b479016ca683546bea874a7e192649,
-        type: 2}
-      propertyPath: wayPoints.Array.size
-      value: 5
-      objectReference: {fileID: 0}
     - target: {fileID: 4515060071847784, guid: 84b479016ca683546bea874a7e192649, type: 2}
       propertyPath: m_LocalPosition.x
       value: -242.99
@@ -99987,11 +99968,6 @@ Prefab:
       propertyPath: wayPoints.Array.data[1]
       value: 
       objectReference: {fileID: 1772818019}
-    - target: {fileID: 114129723329331158, guid: 84b479016ca683546bea874a7e192649,
-        type: 2}
-      propertyPath: state
-      value: 4
-      objectReference: {fileID: 0}
     - target: {fileID: 114278087568597054, guid: 84b479016ca683546bea874a7e192649,
         type: 2}
       propertyPath: wayPoints.Array.data[2]
@@ -100007,31 +99983,9 @@ Prefab:
       propertyPath: wayPoints.Array.data[4]
       value: 
       objectReference: {fileID: 1510138285}
-    - target: {fileID: 114278087568597054, guid: 84b479016ca683546bea874a7e192649,
-        type: 2}
-      propertyPath: wayPoints.Array.data[5]
-      value: 
-      objectReference: {fileID: 251254072}
     - target: {fileID: 1754949915381346, guid: 84b479016ca683546bea874a7e192649, type: 2}
       propertyPath: m_Name
       value: SkeletonShield (2)
-      objectReference: {fileID: 0}
-    - target: {fileID: 4515060071847784, guid: 84b479016ca683546bea874a7e192649, type: 2}
-      propertyPath: m_LocalScale.x
-      value: 2.0000005
-      objectReference: {fileID: 0}
-    - target: {fileID: 4515060071847784, guid: 84b479016ca683546bea874a7e192649, type: 2}
-      propertyPath: m_LocalScale.z
-      value: 2.0000005
-      objectReference: {fileID: 0}
-    - target: {fileID: 4515060071847784, guid: 84b479016ca683546bea874a7e192649, type: 2}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: -304.4
-      objectReference: {fileID: 0}
-    - target: {fileID: 114129723329331158, guid: 84b479016ca683546bea874a7e192649,
-        type: 2}
-      propertyPath: timerWait
-      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 84b479016ca683546bea874a7e192649, type: 2}

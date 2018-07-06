@@ -955,14 +955,14 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1928720064379992}
-  m_LocalRotation: {x: -0, y: -0.4690864, z: -0, w: -0.8831523}
-  m_LocalPosition: {x: 1.9842911, y: 19.686558, z: 335.65778}
+  m_LocalRotation: {x: 0, y: 0.42127287, z: -0, w: -0.90693396}
+  m_LocalPosition: {x: -179.73552, y: 39.908245, z: 433.55994}
   m_LocalScale: {x: 2.2000003, y: 2.2, z: 2.2000003}
   m_Children:
   - {fileID: 4439847781952760}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: -304.05, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -409.83, z: 0}
 --- !u!4 &4270414281295550
 Transform:
   m_ObjectHideFlags: 1
@@ -1892,7 +1892,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c96fd783325b0604ab000f1febc3031d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  state: 8
+  state: 4
   weapon: {fileID: 114732713492071494}
   isDestroy: 1
   timerWait: 5
@@ -1904,7 +1904,7 @@ MonoBehaviour:
   radiusLimitMonitoringPoint: 60
   radiusAttack: 3
   radiusVillage: 50
-  monitoringPoint: {x: 0, y: 0, z: 0}
+  monitoringPoint: {fileID: 0}
   isPatrolStart: 0
   distancePlayerTest: 0
   distanceMonitoringPointTest: 0
@@ -1941,7 +1941,7 @@ MonoBehaviour:
   radius: 10
   lifeBar: {fileID: 1231114703797926}
   hitPopUp: {fileID: 1409074696108854, guid: 3bbc232133bf10540b62da15e0b49d05, type: 2}
-  enemyType: 0
+  enemyType: 2
   lifeTotal: 0
 --- !u!114 &114604882378937754
 MonoBehaviour:

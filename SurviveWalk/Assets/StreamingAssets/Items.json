@@ -149,14 +149,14 @@
 		"value": 1,
 		"type" : "Weapon",
 		"stats": {
-			"power": 2,
+			"power": 5,
 			"defense": 1,
 			"vitality": 1
 		},
 		"description": "Uma espada feita de madeira.",
 		"stackable": false,
 		"rarity": 1,
-		"durability" : 10,
+		"durability" : 25,
 		"slug":  "icon_EspadaMadeira"
 	},
 	{
@@ -165,14 +165,14 @@
 		"value": 1,
 		"type" : "Weapon",
 		"stats": {
-			"power": 5,
+			"power": 10,
 			"defense": 1,
 			"vitality": 1
 		},
 		"description": "Uma espada feita de ferro.",
 		"stackable": false,
 		"rarity": 1,
-		"durability" : 20,
+		"durability" : 30,
 		"slug":  "icon_Espada"
 	},
 	{
@@ -181,7 +181,7 @@
 		"value": 1,
 		"type" : "Weapon",
 		"stats": {
-			"power": 15,
+			"power": 20,
 			"defense": 1,
 			"vitality": 1
 		},
