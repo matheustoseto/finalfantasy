@@ -21,6 +21,8 @@ public class IcarusPlayerController : CharacterState {
     [Header("Methold Test: ")]
     [SerializeField] private bool isResurrection = false;
 
+    private bool isAction = false;
+
     //[Header("Inputs:")]
     private Vector2 btDirection = Vector2.zero;
     private float   btAttack    = 0;
@@ -32,6 +34,7 @@ public class IcarusPlayerController : CharacterState {
     public static Transform GetInstance() { return player; }
 
     public bool IsBlockInputs { get { return isBlockInputs; } set { isBlockInputs = value; } }
+    public bool IsAction { get { return isAction; } set { isAction = value; } }
     #endregion
 
     // Use this for initialization
@@ -72,8 +75,13 @@ public class IcarusPlayerController : CharacterState {
             btDirection.x = Input.GetAxisRaw("Horizontal");
             btDirection.y = Input.GetAxisRaw("Vertical");
             btAttack = Input.GetButtonDown("Fire1") ? 1 : 0;
-            btAction = Input.GetButtonDown("Action") ? 1 : 0;
-            //btDash        = Input.GetButtonDown("Fire2"     ) ? 1 : 0;
+
+            if (isAction)
+                btAction = 1;
+            else btAction = 0;
+
+                //btAction = Input.GetButtonDown("Action") ? 1 : 0;
+                //btDash        = Input.GetButtonDown("Fire2"     ) ? 1 : 0;
         }
     }
 
@@ -177,7 +185,13 @@ public class IcarusPlayerController : CharacterState {
 
     protected override void UpdateActionState()
     {
-        if (aniControl.IsAnimationFinish(state.ToString()))
+        //if (aniControl.IsAnimationFinish(state.ToString()))
+        //{
+        //    EnterState(TypeStateCharacter.Move);
+        //    return;
+        //}
+
+        if (!isAction)
         {
             EnterState(TypeStateCharacter.Move);
             return;
@@ -227,7 +241,7 @@ public class IcarusPlayerController : CharacterState {
 
     protected override void LeaveActionState()
     {
-        
+        btAction = 0;
     }
 
     protected override void LeaveDeadState()
