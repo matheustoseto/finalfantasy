@@ -315,9 +315,10 @@ public class Inventory : MonoBehaviour
             Destroy(itemData.gameObject);
             for (int i = 0; i < items.Count; i++)
             {
-                if (items[i].Id.Equals(itemData.item.Id))
+                if (items[i].Id.Equals(item.Id))
                 {
                     items[i] = new Item();
+                    break;
                 }
             }
         }

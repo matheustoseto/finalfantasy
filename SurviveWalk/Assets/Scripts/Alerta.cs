@@ -36,6 +36,7 @@ public class Alerta : MonoBehaviour {
 
     public void SetText(string txt)
     {
+        gameObject.SetActive(true);
         text.text = txt;
         DeltaTime = Timer;
     }

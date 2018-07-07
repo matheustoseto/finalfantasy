@@ -20,8 +20,11 @@ public class NpcPanel : MonoBehaviour {
     public QuestNpc questNpc;
     public CraftNpc craftNpc;
 
+    public GameObject stick;
     public GameObject stickSeta;
+    public GameObject apple;
     public GameObject appleSeta;
+    public GameObject enemy;
 
     public void LoadCraft(List<CraftItem> crafts)
     {
@@ -64,12 +67,19 @@ public class NpcPanel : MonoBehaviour {
 
                 if (1 == quest.Id)
                 {
+                    stick.GetComponent<Resource>().isActive = true;
                     stickSeta.SetActive(true);
                 }
 
                 if (3 == quest.Id)
                 {
+                    apple.GetComponent<Resource>().isActive = true;
                     appleSeta.SetActive(true);
+                }
+
+                if (2 == quest.Id)
+                {
+                    enemy.SetActive(true);
                 }
             }    
         }

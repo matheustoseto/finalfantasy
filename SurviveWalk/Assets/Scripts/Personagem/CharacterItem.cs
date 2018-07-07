@@ -23,10 +23,11 @@ public class CharacterItem : MonoBehaviour {
     {
         for (int i = 1; i <= qnt; i++)
         {
-            inventory.AddItem(idItem);
-            GameObject item = Instantiate(getItem, gameObject.transform.position + new Vector3(0, 5, 0), Quaternion.identity);
-            item.GetComponent<SpriteRenderer>().sprite = inventory.FindItem(idItem).Sprite;
-            item.gameObject.transform.GetChild(0).GetComponent<TextMesh>().text = "+" + qnt;
-        }       
+            inventory.AddItem(idItem);           
+        }
+
+        GameObject item = Instantiate(getItem, gameObject.transform.position + new Vector3(0, 5, 0), Quaternion.identity);
+        item.GetComponent<SpriteRenderer>().sprite = inventory.FindItem(idItem).Sprite;
+        item.gameObject.transform.GetChild(0).GetComponent<TextMesh>().text = "+" + qnt;
     }
 }

@@ -38,8 +38,9 @@ public class NpcController : MonoBehaviour {
             {
                 if (Input.GetKeyDown(KeyCode.E))
                 {
-                    dialogPanel.GetComponent<Dialog>().SetNpc(Inventory.Instance.GetNpcData(npcType.GetHashCode()));
                     dialogPanel.SetActive(true);
+                    dialogPanel.GetComponent<Dialog>().SetNpc(Inventory.Instance.GetNpcData(npcType.GetHashCode()));     
+                    IcarusPlayerController.Instance.IsBlockInputs = true;
                 }
             }
         }
@@ -51,6 +52,7 @@ public class NpcController : MonoBehaviour {
         {
             dialogPanel.GetComponent<Dialog>().CloseDialog();
             dialogPanel.GetComponent<Dialog>().CloseNpcPanel();
+            IcarusPlayerController.Instance.IsBlockInputs = false;
         }
     }
 }

@@ -4,6 +4,7 @@ using UnityEngine;
 public class Resource : MonoBehaviour {
 
     public Utils.ResourceType type;
+    public bool isActive = true;
     public int idItem;
     public int qnt;
     public float speed;
@@ -56,7 +57,7 @@ public class Resource : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other)
     {
-        if ("Player".Equals(other.tag) && !create)
+        if ("Player".Equals(other.tag) && !create && isActive)
         {
             playerEnter = true;
 
@@ -71,7 +72,7 @@ public class Resource : MonoBehaviour {
 
     private void OnTriggerStay(Collider other)
     {
-        if ("Player".Equals(other.tag) && !create)
+        if ("Player".Equals(other.tag) && !create && isActive)
         {
             setEnterMaterial();
 
@@ -84,7 +85,7 @@ public class Resource : MonoBehaviour {
 
     private void OnTriggerExit(Collider other)
     {
-        if ("Player".Equals(other.tag))
+        if ("Player".Equals(other.tag) && isActive)
         {
             playerEnter = false;
             setExitMaterial();
@@ -111,6 +112,8 @@ public class Resource : MonoBehaviour {
 
     private void CraftItem()
     {
+        IcarusPlayerController.Instance.IsAction = true;
+
         selectItem = player.GetComponent<SlotSelect>().GetSelectItemBySlot();
         if (Utils.PodeCraftar(type, selectItem))
         {
@@ -133,6 +136,8 @@ public class Resource : MonoBehaviour {
 
     public void CreateItem()
     {
+        IcarusPlayerController.Instance.IsAction = false;
+
         if (!Utils.PodeCraftarSemMaterial(type))
         {
             Inventory.Instance.RemoveDurability(selectItem);

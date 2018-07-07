@@ -52,14 +52,14 @@ public class SlotSelect : MonoBehaviour {
         if (redFlag)
         {
             inventory.slots[slotSelect].GetComponent<Image>().color = new Color(0, a / 255, 0, 255);
-            a -= 5;
+            a -= 4;
             if (a <= 200)
                 redFlag = false;
         }
         else if (!redFlag)
         {
             inventory.slots[slotSelect].GetComponent<Image>().color = new Color(0, a / 255, 0, 255);
-            a += 5;
+            a += 4;
             if (a >= 255)
                 redFlag = true;
         }

@@ -7,8 +7,7 @@ using UnityEngine.UI;
 public class Dialog : MonoBehaviour {
 
     public GateStateControl gateControl;
-    public GameObject npcGameObject;
-    public GameObject enemy;
+    public GameObject npcGameObject;  
     public GameObject npcPanel;
     public GameObject inventoryPanel;
     public GameObject questPlayerList;
@@ -18,6 +17,9 @@ public class Dialog : MonoBehaviour {
     private Npc npc = new Npc();
     private int step = 0;
     private bool moveNpcTutorial = false;
+
+    private string message;
+    private IEnumerator coroutine;
 
     public void SetNpc(Npc npc)
     {
@@ -41,7 +43,8 @@ public class Dialog : MonoBehaviour {
         {
             if (step < npc.Intro.Count)
             {
-                this.gameObject.transform.Find("Text").GetComponent<Text>().text = npc.Intro[step].Step;
+                //gameObject.transform.Find("Text").GetComponent<Text>().text = npc.Intro[step].Step;
+                SetTxt(npc.Intro[step].Step);
                 step++;
             }
             else
@@ -78,6 +81,8 @@ public class Dialog : MonoBehaviour {
                         inventory.ActiveDisableInventory();
 
                     npcPanel.SetActive(true);
+
+                    IcarusPlayerController.Instance.IsBlockInputs = true;
                 }
 
                 if (npc.Quest.Count > 0)
@@ -102,7 +107,8 @@ public class Dialog : MonoBehaviour {
                     {
                         playerTask.speakNpc = true;
                         playerTask.ChangeText();
-                        this.gameObject.transform.Find("Text").GetComponent<Text>().text = playerTask.task.Descr;
+                        //this.gameObject.transform.Find("Text").GetComponent<Text>().text = playerTask.task.Descr;
+                        SetTxt(playerTask.task.Descr);
                         if (inventory.GetQuest(go.GetComponent<IdQuest>().questId).IsDelete)
                         {
                             Destroy(go.gameObject);
@@ -136,7 +142,6 @@ public class Dialog : MonoBehaviour {
             NpcController.Instance.npcType = Utils.NpcType.Npc4;
             moveNpcTutorial = false;
             CloseDialog();
-            enemy.SetActive(true);
             npcGameObject.GetComponent<NpcController>().seta.SetActive(true);
             alert.GetComponent<Alerta>().SetText("Arraste um item no slot rapido para equipa-lo.");
             return true;
@@ -189,5 +194,25 @@ public class Dialog : MonoBehaviour {
             npcGameObject.GetComponent<NpcController>().seta.SetActive(false);
             alert.GetComponent<Alerta>().SetText("Busque recursos e contrua equipamentos mais fortes.");
         }
+    }
+
+    private void SetTxt(string text)
+    {
+        //StopAllCoroutines();
+        if(coroutine != null)
+            StopCoroutine(coroutine);
+
+        message = text;
+        gameObject.transform.Find("Text").GetComponent<Text>().text = "";
+        coroutine = TypeText(0.0001f);
+        StartCoroutine(coroutine);
+    }
+
+    public IEnumerator TypeText(float waitTime) {
+        foreach (char letter in message.ToCharArray())
+        {
+            gameObject.transform.Find("Text").GetComponent<Text>().text += letter;
+            yield return new WaitForSeconds(waitTime);
+        }      
     }
 }

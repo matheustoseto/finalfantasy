@@ -35,6 +35,10 @@ public class IcarusPlayerController : CharacterState {
 
     public bool IsBlockInputs { get { return isBlockInputs; } set { isBlockInputs = value; } }
     public bool IsAction { get { return isAction; } set { isAction = value; } }
+
+    private static IcarusPlayerController instance = null;
+    public static IcarusPlayerController Instance { get { return instance; } }
+
     #endregion
 
     // Use this for initialization
@@ -51,6 +55,8 @@ public class IcarusPlayerController : CharacterState {
             player = transform;
 
         moveControl = GetComponent<CharacterMoveControl>();
+
+        instance = this;
 
         if (aniControl == null)
             aniControl = GetComponentInChildren<CharacterAnimationControl>();
