@@ -1,7 +1,7 @@
 [
   {
     "id": 0,
-    "title": "NPC 1",
+    "title": "Ferreiro",
     "isQuest": false,
     "isCraft": false,
     "intro": [
@@ -60,7 +60,7 @@
   },
   {
     "id": 2,
-    "title": "Intro NPC 1",
+    "title": "Ferreiro",
     "isQuest": false,
     "isCraft": false,
     "intro": [
@@ -74,7 +74,7 @@
       },
       {
         "id": 2,
-        "step": "Oque?!!! Você perdeu a espada que lhe dei?"
+        "step": "O que?!!! Você perdeu a espada que lhe dei?"
       },
       {
         "id": 3,
@@ -86,13 +86,13 @@
   },
   {
     "id": 3,
-    "title": "Intro NPC 2",
+    "title": "Ferreiro",
     "isQuest": false,
     "isCraft": true,
     "intro": [
       {
         "id": 0,
-        "step": "Não aprece ter nada que possa ajudar aqui."
+        "step": "Não parece ter nada que possa ajudar aqui."
       },
       {
         "id": 1,
@@ -114,15 +114,15 @@
       }
     ]
   },
-    {
+  {
     "id": 4,
-    "title": "Intro NPC 3",
+    "title": "Ferreiro",
     "isQuest": false,
     "isCraft": false,
     "intro": [
       {
         "id": 0,
-        "step": "Parece que você não está com toda sua forma fisica."
+        "step": "Parece que você não está com toda sua forma física."
       },
       {
         "id": 1,
@@ -142,7 +142,7 @@
   },
   {
     "id": 5,
-    "title": "Intro NPC 4",
+    "title": "Ferreiro",
     "isQuest": false,
     "isCraft": false,
     "intro": [
@@ -168,17 +168,17 @@
   },
   {
     "id": 6,
-    "title": "Intro NPC 5",
+    "title": "Ferreiro",
     "isQuest": false,
     "isCraft": false,
     "intro": [
       {
         "id": 0,
-        "step": "Antes de abrir o portão devo lhe avisar que a vila não é mais como você lembra."
+        "step": "Antes de abrir o portão, devo lhe avisar que a vila não é mais como você lembra."
       },
       {
         "id": 1,
-        "step": "Durante sua ausência fomos atacados várias vezes, tudo o que restou foram algumas casas destruídas."
+        "step": "Durante sua ausência fomos atacados várias vezes. Tudo o que restou foram algumas casas destruídas."
       },
       {
         "id": 2,
@@ -204,7 +204,15 @@
     "intro": [
 		{
 			"id": 0,
-			"step": "Colete recursos espalhados no mapa para construir equipamentos."
+			"step": "Colete recursos espalhados pelo mundo e reconstrua a vila"
+		},
+		{
+		  "id": 1,
+			"step": "Eu posso lhe ajudar a fazer alguns equipamentos"
+		},
+		{
+		  "id": 2,
+			"step": "Pode ser que sejam de alguma ajuda."
 		}
     ],
 	"crafts": [
@@ -240,7 +248,7 @@
     "intro": [
 		{
 			"id": 0,
-			"step": "Colete recursos espalhados no mapa para construir equipamentos."
+			"step": "Pegou os meteriais que pedi?"
 		}
     ],
 	"crafts": [
