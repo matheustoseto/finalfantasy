@@ -126,7 +126,7 @@ public class HouseCraft : MonoBehaviour {
 
     private void OnTriggerStay(Collider other)
     {
-        if ("Player".Equals(other.tag) && Input.GetKeyDown(KeyCode.E) && !isLoad)
+        if ("Player".Equals(other.tag) && Input.GetKey(KeyCode.E) && !isLoad)
         {
             IcarusPlayerController.Instance.IsBlockInputs = true;
             LoadHousePanel();

@@ -63,7 +63,8 @@ public class Inventory : MonoBehaviour
 
         //Add item
         //AddItemInSlot(40,15);
-        AddItemQnt(2, 50);
+        //AddItemQnt(2, 50);
+        //AddItemQnt(9, 2);
         //AddItemQnt(40, 1);
     }
 
@@ -182,7 +183,7 @@ public class Inventory : MonoBehaviour
     {
         if (id == 0)
         {
-            if (NpcController.Instance.npcType.Equals(Utils.NpcType.Npc4))
+            if (NpcController.Instance != null && NpcController.Instance.npcType.Equals(Utils.NpcType.Npc4))
             {
                 CompletQuest completQuest = new CompletQuest();
                 completQuest.questId = 3;
@@ -194,7 +195,7 @@ public class Inventory : MonoBehaviour
 
         if (id == 9)
         {
-            if (NpcController.Instance.npcType.Equals(Utils.NpcType.Npc3))
+            if (NpcController.Instance != null && NpcController.Instance.npcType.Equals(Utils.NpcType.Npc3))
             {
                 CompletQuest completQuest = new CompletQuest();
                 completQuest.questId = 1;
@@ -217,7 +218,7 @@ public class Inventory : MonoBehaviour
 
         if (id == 40)
         {
-            if (NpcController.Instance.npcType.Equals(Utils.NpcType.Npc7))
+            if (NpcController.Instance != null && NpcController.Instance.npcType.Equals(Utils.NpcType.Npc7))
             {
                 CompletQuest completQuest = new CompletQuest();
                 completQuest.questId = 4;
@@ -332,7 +333,7 @@ public class Inventory : MonoBehaviour
 
                 if (items[i].DurabilityCount <= 0)
                 {
-                    RemoveItemDurability(items[i]);
+                    RemoveItemDurability(data);
                     PlayerManager.Instance.player.GetComponent<SlotSelect>().UpdateSelect();
                     return true;
                 }
@@ -341,23 +342,12 @@ public class Inventory : MonoBehaviour
         return false;
     }
 
-    public void RemoveItemDurability(Item item)
+    public void RemoveItemDurability(ItemData itemData)
     {
         tooltip.SetActive(false);
-        ItemData itemData = FindDurabilityItemData(item);
-        if(itemData != null)
-        {
-            Destroy(itemData.gameObject);
-            for (int i = 0; i < items.Count; i++)
-            {
-                if (items[i].Id.Equals(item.Id))
-                {
-                    items[i] = new Item();
-                    break;
-                }
-            }
-        }
-            
+
+        Destroy(itemData.gameObject);
+        items[itemData.slotId] = new Item();
     }
 
     public void DisableInventory()

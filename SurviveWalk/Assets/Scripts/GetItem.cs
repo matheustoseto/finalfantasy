@@ -14,7 +14,7 @@ public class GetItem : MonoBehaviour {
         } else
         {
             timer -= Time.deltaTime;
-            transform.position += new Vector3(0, 0.09F, 0);
+            transform.position += new Vector3(0, Time.deltaTime, 0);
         }        
 	}
 }

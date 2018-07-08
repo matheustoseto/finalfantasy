@@ -36,7 +36,7 @@ public class NpcController : MonoBehaviour {
         {
             if (!dialogPanel.activeSelf)
             {
-                if (Input.GetKeyDown(KeyCode.E))
+                if (Input.GetKey(KeyCode.E))
                 {
                     dialogPanel.SetActive(true);
                     dialogPanel.GetComponent<Dialog>().SetNpc(Inventory.Instance.GetNpcData(npcType.GetHashCode()));     

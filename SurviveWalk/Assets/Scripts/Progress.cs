@@ -23,7 +23,7 @@ public class Progress : MonoBehaviour {
         if (activeBar && progressBar.transform.localScale.x <= 1.2F)
         {
             progressBar.transform.position = PlayerManager.Instance.transform.position + new Vector3(0,4,0);
-            progressBar.transform.localScale += new Vector3(speed, 0, 0);
+            progressBar.transform.localScale += new Vector3(speed * 50 * Time.deltaTime, 0, 0);
             if (progressBar.transform.localScale.x >= 1.2F)
             {
                 DisableProgressBar();

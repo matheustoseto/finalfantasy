@@ -225,15 +225,17 @@ public class Dialog : MonoBehaviour {
 
         message = text;
         gameObject.transform.Find("Text").GetComponent<Text>().text = "";
-        coroutine = TypeText(0.0001f);
+
+        coroutine = TypeText();
+
         StartCoroutine(coroutine);
     }
 
-    public IEnumerator TypeText(float waitTime) {
+    public IEnumerator TypeText() {
         foreach (char letter in message.ToCharArray())
         {
             gameObject.transform.Find("Text").GetComponent<Text>().text += letter;
-            yield return new WaitForSeconds(waitTime);
+            yield return new WaitForSeconds(Time.deltaTime * 2f);
         }      
     }
 }

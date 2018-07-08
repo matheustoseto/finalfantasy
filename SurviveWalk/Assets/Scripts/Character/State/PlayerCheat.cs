@@ -55,7 +55,7 @@ public class PlayerCheat : MonoBehaviour {
         // Pular Tutorial
         if (LeftAlt && Input.GetKeyDown(KeyCode.Alpha1))
         {
-            if (!NpcController.Instance.npcType.Equals(Utils.NpcType.Npc6))
+            if (NpcController.Instance.npcType.Equals(Utils.NpcType.Npc2))
             {
                 npcGameObject.GetComponent<NavMeshAgent>().speed = 60;
                 npcGameObject.GetComponent<NPCStateControl>().EventPatrol();
@@ -74,7 +74,7 @@ public class PlayerCheat : MonoBehaviour {
         // Add life 100
         if (LeftAlt && Input.GetKeyDown(KeyCode.Alpha2))
         {
-            Inventory.Instance.AddLife(100);
+            Inventory.Instance.AddLife(100);          
         }
 
         // Add espada
@@ -91,5 +91,23 @@ public class PlayerCheat : MonoBehaviour {
             else
                 gameObject.GetComponent<CharacterMoveControl>().runSpeed = 50;
         }
+
+        // Add galho
+        if (LeftAlt && Input.GetKeyDown(KeyCode.Alpha5))
+        {
+            Inventory.Instance.AddItemQnt(5, 100);
+        }
+
+        if (LeftAlt && Input.GetKeyDown(KeyCode.Alpha6))
+        {
+            if (GetComponent<CharacterStatus>().noDamage)
+            {
+                GetComponent<CharacterStatus>().noDamage = false;
+            } else
+            {
+                GetComponent<CharacterStatus>().noDamage = true;
+            }          
+        }
+       
     }
 }

@@ -18,7 +18,7 @@ public class MoveSeta : MonoBehaviour {
 
         if (up)
         {
-            transform.localPosition += new Vector3(0, 0.04F, 0);
+            transform.localPosition += new Vector3(0, Time.deltaTime, 0);
 
             if (transform.localPosition.y >= yMax)
             {
@@ -27,7 +27,7 @@ public class MoveSeta : MonoBehaviour {
         }
         else
         {       
-            transform.localPosition -= new Vector3(0, 0.04F, 0);
+            transform.localPosition -= new Vector3(0, Time.deltaTime, 0);
 
             if (transform.localPosition.y <= yMin)
             {
