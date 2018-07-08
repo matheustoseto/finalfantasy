@@ -6,10 +6,11 @@ public class EffectCamera : MonoBehaviour {
 
     public GameObject target;
 
-	void Update () {
+    private void Update()
+    {
+        gameObject.transform.position -= new Vector3(Time.deltaTime, 0, 0);
+        gameObject.transform.position += new Vector3(0, 0, Time.deltaTime);
         lookToTarget();
-        transform.position -= new Vector3(0.03f,0,0);
-        transform.position += new Vector3(0, 0, 0.03f);
     }
 
     void lookToTarget()

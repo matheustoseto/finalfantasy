@@ -76,7 +76,7 @@ public class Resource : MonoBehaviour {
         {
             setEnterMaterial();
 
-            if (Input.GetKeyDown(KeyCode.E))
+            if (Input.GetKey(KeyCode.E))
             {
                 CraftItem();
             }

@@ -22,6 +22,7 @@ public class CharacterStatus : MonoBehaviour {
     private float a = 170;
     private Color originalColor;
 
+    public bool noDamage = false;
 
     private void Awake()
     {
@@ -48,13 +49,13 @@ public class CharacterStatus : MonoBehaviour {
             if (redFlag)
             {
                 lifeBar.GetComponent<Image>().color = new Color(255, 0, 0, a / 255);
-                a -= 5;
+                a -= 150 * Time.deltaTime;
                 if (a <= 100)
                     redFlag = false;
             } else if(!redFlag)
             {
                 lifeBar.GetComponent<Image>().color = new Color(255, 0, 0, a / 255);
-                a += 5;
+                a += 150 * Time.deltaTime;
                 if (a >= 200)
                     redFlag = true;
             }
@@ -76,22 +77,26 @@ public class CharacterStatus : MonoBehaviour {
 
     public void RemoveLife(float removeLife)
     {
-        GameObject hit = Instantiate(hitPopUp, transform.position + new Vector3(0, 6, 0), hitPopUp.transform.rotation);
-        hit.GetComponent<HitPopUp>().SetText(removeLife.ToString());
-        hit.GetComponent<HitPopUp>().text.color = Color.yellow;
-        damage.SetActive(true);
+        if (!noDamage)
+        {
+            GameObject hit = Instantiate(hitPopUp, transform.position + new Vector3(Random.Range(-1,1), 6, 0), hitPopUp.transform.rotation);
+            hit.GetComponent<HitPopUp>().SetText(removeLife.ToString());
+            hit.GetComponent<HitPopUp>().text.color = Color.yellow;
+            damage.SetActive(true);
 
-        if ((lifeProgress - removeLife) <= 0)
-        {
-            lifeProgress = 0;
-            charState.EventDead();
-        } else
-        {
-            lifeProgress -= removeLife;
-        }
-            
-        lifeBar.transform.localScale = new Vector3(PegarTamanhoBarra(lifeProgress, life), lifeBar.transform.localScale.y, lifeBar.transform.localScale.z);
-        lifeText.text = PegarPorcentagemBarra(lifeProgress, life, 100) + "%";
+            if ((lifeProgress - removeLife) <= 0)
+            {
+                lifeProgress = 0;
+                charState.EventDead();
+            }
+            else
+            {
+                lifeProgress -= removeLife;
+            }
+
+            lifeBar.transform.localScale = new Vector3(PegarTamanhoBarra(lifeProgress, life), lifeBar.transform.localScale.y, lifeBar.transform.localScale.z);
+            lifeText.text = PegarPorcentagemBarra(lifeProgress, life, 100) + "%";
+        }      
     }
 
     public float PegarTamanhoBarra(float min, float max)

@@ -115,7 +115,7 @@ public class EnemyController : MonoBehaviour {
             enemyStats.Life -= life;
             lifeBar.GetComponent<Image>().fillAmount = (float) enemyStats.Life / (float) lifeTotal;
    
-            GameObject hit = Instantiate(hitPopUp, transform.position + new Vector3(0,6,0), hitPopUp.transform.rotation);
+            GameObject hit = Instantiate(hitPopUp, transform.position + new Vector3(Random.Range(-1, 1), 6,0), hitPopUp.transform.rotation);
             hit.GetComponent<HitPopUp>().SetText(life.ToString());
 
             if (enemyStats.Life <= 0)
