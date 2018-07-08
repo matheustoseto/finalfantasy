@@ -27,7 +27,7 @@ public class CharacterItem : MonoBehaviour {
         }   
     }
 
-    public void GetItem(ItemResource itemResource, int qnt)
+    public bool GetItem(ItemResource itemResource, int qnt)
     {
         for (int i = 1; i <= qnt; i++)
         {
@@ -38,10 +38,10 @@ public class CharacterItem : MonoBehaviour {
         item.GetComponent<SpriteRenderer>().sprite = inventory.FindItem(itemResource.idItem).Sprite;
         item.gameObject.transform.GetChild(0).GetComponent<TextMesh>().text = "+" + qnt;
 
-        VerifyQuest(itemResource);
+        return VerifyQuest(itemResource);
     }
 
-    private void VerifyQuest(ItemResource itemResource)
+    private bool VerifyQuest(ItemResource itemResource)
     {
         foreach (Transform go in questPlayerList.transform)
         {
@@ -70,11 +70,17 @@ public class CharacterItem : MonoBehaviour {
 
                                     NpcController.Instance.npcType = Utils.NpcType.Npc7;
                                 }                                
-                            }    
+                            }
+
+                            if (0 == itemResource.idQuest)
+                            {
+                                return true;
+                            }
                         }
                     }
                 }
             }
         }
+        return false;
     }
 }

@@ -151,7 +151,10 @@ public class Resource : MonoBehaviour {
         }
         */
 
-        PlayerManager.Instance.player.GetComponent<CharacterItem>().GetItem(itemResource, qnt);
+        if(PlayerManager.Instance.player.GetComponent<CharacterItem>().GetItem(itemResource, qnt))
+        {
+            isActive = false;
+        }
 
         DisableItem();
     }
