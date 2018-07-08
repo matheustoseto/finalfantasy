@@ -9,30 +9,30 @@
       {
         "id": 0,
         "complet": false,
-        "title": "Reconstrua a casa 1",
+        "title": "Reconstrua a ferraria",
         "info": "Procure em X:-64 Y:698",
-        "descr": "A muito tempo atras caiu algo em X:-64 Y:698, de uma olhada."
+        "descr": "A muito tempo atrás caiu algo em (X:-64 Y:698), de uma olhada."
       },
       {
         "id": 1,
         "complet": false,
-        "title": "Reconstrua a casa 2",
+        "title": "Reconstrua a casa dos aldeões",
         "info": "Procure em X:-181 Y:679",
-        "descr": "A muito tempo atras caiu algo em X:-181 Y:679, de uma olhada."
+        "descr": "A muito tempo atrás caiu algo em X:-181 Y:679, de uma olhada."
       },
       {
         "id": 2,
         "complet": false,
-        "title": "Reconstrua a casa 3",
+        "title": "Reconstrua a loja de alquimia",
         "info": "Procure em X:-236 Y:995",
-        "descr": "A muito tempo atras caiu algo em X:-236 Y:995, de uma olhada."
+        "descr": "A muito tempo atrás caiu algo em X:-236 Y:995, de uma olhada."
       },
       {
         "id": 3,
         "complet": false,
-        "title": "Reconstrua a casa 4",
+        "title": "Reconstrua sua casa",
         "info": "Procure em X:-108 Y:991",
-        "descr": "A muito tempo atras caiu algo em X:-108 Y:991, de uma olhada."
+        "descr": "A muito tempo atrás caiu algo em X:-108 Y:991, de uma olhada."
       }
     ]
   },
@@ -48,7 +48,7 @@
         "complet": false,
         "title": "Construa uma espada",
         "info": "Vamos avançar!",
-        "descr": "Ótimo! Isso ja servem para fazer algum estrago."
+        "descr": "Ótimo! Isso já serve para fazer algum estrago."
       }
     ]
   },
@@ -64,7 +64,7 @@
         "complet": false,
         "title": "Pilha de ossos",
         "info": "Vamos avançar!",
-        "descr": "Você realmente ficou mais forte, se fosse 2 anos atrás teria caído no segundo inimigo."
+        "descr": "Você realmente ficou mais forte, se fosse dois anos atrás teria caído no segundo inimigo."
       }
     ]
   },
@@ -80,23 +80,23 @@
 			"complet": false,
 			"title": "Colete uma fruta",
 			"info": "Vamos avançar!",
-			"descr": "Ótimo! Use a fruta em seu inventario."
+			"descr": "Ótimo! Essas frutas devem recuperar um pouco sua energia."
 		}
     ]
   },
   {
     "id": 4,
-    "title": "Espada Lendaria",
-    "descr": "Reconstrua a espada lendaria.",
+    "title": "Espada Lendária",
+    "descr": "Forje uma espada lendária.",
 	"isGet" : false,
 	"isDelet" : true,
     "tasks": [
 		{
 			"id": 0,
 			"complet": false,
-			"title": "Reconstrua a espada lendaria.",
+			"title": "Forje uma espada lendária.",
 			"info": "Vamos avançar!",
-			"descr": "Ótimo! use essa espada para matar o chefão."
+			"descr": "Ótimo! Use essa espada para matar o chefão."
 		}
     ]
   },
@@ -112,7 +112,7 @@
 			"complet": false,
 			"title": "Mate o rei caveira.",
 			"info": "Vamos avançar!",
-			"descr": "Ótimo! você realmente é um guerreiro lendario."
+			"descr": "Ótimo! Você realmente é um guerreiro lendário."
 		}
     ]
   }
