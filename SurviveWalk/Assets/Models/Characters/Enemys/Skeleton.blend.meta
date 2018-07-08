@@ -95,6 +95,7 @@ ModelImporter:
     7400016: Attack3
     7400018: Dead2
     7400020: Rise2
+    7400022: Dead
     9500000: //RootNode
     13700000: Cube
     13700002: Body
@@ -129,9 +130,9 @@ ModelImporter:
     clipAnimations:
     - serializedVersion: 16
       name: Dead
-      takeName: Default Take
+      takeName: Dead
       firstFrame: 0
-      lastFrame: 0
+      lastFrame: 50
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
