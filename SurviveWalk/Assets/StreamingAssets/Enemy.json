@@ -2,19 +2,19 @@
 	{
 		"id": 0,
 		"name": "Skeleton",
-		"life": 25,
+		"life": 17,
 		"power" : 2
 	},
 	{
 		"id": 1,
 		"name": "ShieldSkeleton",
-		"life": 60,
+		"life": 42,
 		"power" : 5
 	},
 	{
 		"id": 2,
 		"name": "TwoHandSkeleton",
-		"life": 120,
-		"power" : 10
+		"life": 84,
+		"power" : 7
 	}
 ]

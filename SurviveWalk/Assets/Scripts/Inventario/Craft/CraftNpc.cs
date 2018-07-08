@@ -92,22 +92,12 @@ public class CraftNpc : MonoBehaviour {
         if (craftSize == i && isCraft)
         {
             Item it = inventory.FindItem(craftItem.Id);
-            inventory.AddItem(it.Id);
-            alert.GetComponent<Alerta>().SetText("Item '" + it.Title + "' criado com sucesso.");
+            inventory.AddItem(it.Id); 
+            alert.GetComponent<Alerta>().SetText("Item " + "<color=#FF0000AA><b>" + it.Title + "</b></color>" + " criado com sucesso.");
 
             foreach (Combination combination in craftItem.Combination)
             {
                 inventory.RemoveItem(combination.Id, combination.Qt);
-            }
-
-            if (NpcController.Instance.npcType.Equals(Utils.NpcType.Npc3))
-            {
-                CompletQuest completQuest = new CompletQuest();
-                completQuest.questId = 1;
-                completQuest.taskId = 0;
-
-                NpcController.Instance.questNpc.CompletTaskQuest(completQuest);
-                npcPanel.ClosePanel();
             }
         }
     }

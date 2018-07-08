@@ -6,13 +6,17 @@ using UnityEngine.UI;
 
 public class Dialog : MonoBehaviour {
 
-    public GateStateControl gateControl;
+    public GateStateControl gateSouth;
+    public GateStateControl gateNorth;
+    public GateStateControl gateEast;
     public GameObject npcGameObject;  
     public GameObject npcPanel;
     public GameObject inventoryPanel;
     public GameObject questPlayerList;
     public Inventory inventory;
     public GameObject alert;
+
+    public GameObject[] itensBoss;
 
     private Npc npc = new Npc();
     private int step = 0;
@@ -107,11 +111,26 @@ public class Dialog : MonoBehaviour {
                     {
                         playerTask.speakNpc = true;
                         playerTask.ChangeText();
-                        //this.gameObject.transform.Find("Text").GetComponent<Text>().text = playerTask.task.Descr;
                         SetTxt(playerTask.task.Descr);
+
                         if (inventory.GetQuest(go.GetComponent<IdQuest>().questId).IsDelete)
                         {
                             Destroy(go.gameObject);
+                        }
+
+                        if (0 == go.GetComponent<IdQuest>().questId)
+                        {
+                            itensBoss[playerTask.task.Id].SetActive(true);
+
+                            if (3 == playerTask.task.Id || 4 == playerTask.task.Id)
+                            {
+                                gateNorth.EventDevice(TypeStateDevice.Open);
+                            }
+                        }
+
+                        if (5 == go.GetComponent<IdQuest>().questId)
+                        {
+                            gateEast.EventDevice(TypeStateDevice.Open);
                         }
 
                         moveNpcTutorial = true;
@@ -126,11 +145,13 @@ public class Dialog : MonoBehaviour {
     public void CloseDialog()
     {
         this.gameObject.SetActive(false);
+        IcarusPlayerController.Instance.IsBlockInputs = false;
     }
 
     public void CloseNpcPanel()
     {
         npcPanel.GetComponent<NpcPanel>().ClosePanel();
+        IcarusPlayerController.Instance.IsBlockInputs = false;
         //inventory.DisableInventory();
     }
 
@@ -186,7 +207,7 @@ public class Dialog : MonoBehaviour {
 
         if (NpcController.Instance.npcType.Equals(Utils.NpcType.Npc6))
         {
-            gateControl.EventDevice(TypeStateDevice.Open);
+            gateSouth.EventDevice(TypeStateDevice.Open);
             npcGameObject.GetComponent<NPCStateControl>().EventPatrol();
             NpcController.Instance.npcType = Utils.NpcType.Npc1;
             moveNpcTutorial = false;

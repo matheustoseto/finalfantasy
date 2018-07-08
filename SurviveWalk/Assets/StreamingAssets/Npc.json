@@ -27,7 +27,7 @@
   },
   {
     "id": 1,
-    "title": "NPC 2",
+    "title": "Ferreiro",
     "isQuest": false,
     "isCraft": true,
     "intro": [
@@ -193,6 +193,79 @@
     "quests": [
 		{
 			"id": 0
+		}
+    ]
+  },
+  {
+    "id": 7,
+    "title": "Ferreiro",
+    "isQuest": false,
+    "isCraft": true,
+    "intro": [
+		{
+			"id": 0,
+			"step": "Colete recursos espalhados no mapa para construir equipamentos."
+		}
+    ],
+	"crafts": [
+		{
+			"id": 7
+		},
+		{
+			"id": 8
+		},
+		{
+			"id": 1
+		},
+		{
+			"id": 4
+		},
+		{
+			"id": 9
+		},
+		{
+			"id": 10
+		},
+		{
+			"id": 40
+		}
+	],
+    "quests": []
+  },
+  {
+    "id": 8,
+    "title": "Ferreiro",
+    "isQuest": false,
+    "isCraft": true,
+    "intro": [
+		{
+			"id": 0,
+			"step": "Colete recursos espalhados no mapa para construir equipamentos."
+		}
+    ],
+	"crafts": [
+		{
+			"id": 7
+		},
+		{
+			"id": 8
+		},
+		{
+			"id": 1
+		},
+		{
+			"id": 4
+		},
+		{
+			"id": 9
+		},
+		{
+			"id": 10
+		}
+	],
+    "quests": [
+		{
+			"id": 5
 		}
     ]
   }

@@ -10,29 +10,29 @@
         "id": 0,
         "complet": false,
         "title": "Reconstrua a casa 1",
-        "info": "Procure em X:0 Y:0",
-        "descr": "A muito tempo atras caiu algo em X:0 Y:0, de uma olhada."
+        "info": "Procure em X:-64 Y:698",
+        "descr": "A muito tempo atras caiu algo em X:-64 Y:698, de uma olhada."
       },
       {
         "id": 1,
         "complet": false,
         "title": "Reconstrua a casa 2",
-        "info": "Procure em X:0 Y:0",
-        "descr": "A muito tempo atras caiu algo em X:0 Y:0, de uma olhada."
+        "info": "Procure em X:-181 Y:679",
+        "descr": "A muito tempo atras caiu algo em X:-181 Y:679, de uma olhada."
       },
       {
         "id": 2,
         "complet": false,
         "title": "Reconstrua a casa 3",
-        "info": "Procure em X:0 Y:0",
-        "descr": "A muito tempo atras caiu algo em X:0 Y:0, de uma olhada."
+        "info": "Procure em X:-236 Y:995",
+        "descr": "A muito tempo atras caiu algo em X:-236 Y:995, de uma olhada."
       },
       {
         "id": 3,
         "complet": false,
         "title": "Reconstrua a casa 4",
-        "info": "Procure em X:0 Y:0",
-        "descr": "A muito tempo atras caiu algo em X:0 Y:0, de uma olhada."
+        "info": "Procure em X:-108 Y:991",
+        "descr": "A muito tempo atras caiu algo em X:-108 Y:991, de uma olhada."
       }
     ]
   },
@@ -81,6 +81,38 @@
 			"title": "Colete uma fruta",
 			"info": "Vamos avançar!",
 			"descr": "Ótimo! Use a fruta em seu inventario."
+		}
+    ]
+  },
+  {
+    "id": 4,
+    "title": "Espada Lendaria",
+    "descr": "Reconstrua a espada lendaria.",
+	"isGet" : false,
+	"isDelet" : true,
+    "tasks": [
+		{
+			"id": 0,
+			"complet": false,
+			"title": "Reconstrua a espada lendaria.",
+			"info": "Vamos avançar!",
+			"descr": "Ótimo! use essa espada para matar o chefão."
+		}
+    ]
+  },
+  {
+    "id": 5,
+    "title": "Rei Caveira",
+    "descr": "Mate o rei caveira.",
+	"isGet" : false,
+	"isDelet" : true,
+    "tasks": [
+		{
+			"id": 0,
+			"complet": false,
+			"title": "Mate o rei caveira.",
+			"info": "Vamos avançar!",
+			"descr": "Ótimo! você realmente é um guerreiro lendario."
 		}
     ]
   }

@@ -36,4 +36,5 @@ sysinfo.txt
 /Library/
 /.vs/
 SurviveWalk/Library/
-/UnityPackageManager/
+*/UnityPackageManager/
+*.vs

@@ -418,7 +418,7 @@ public class EnemyStateControl : CharacterState {
 
         #region Transtions
         float pointDistance = Distance(listWayPoints[actualWp].position, transform.position);
-        Debug.Log("pointDistance: " + pointDistance);
+        //Debug.Log("pointDistance: " + pointDistance);
         if (pointDistance <= radiusMonitoringPoint)
         {
             // Chegou a ponto de origem //

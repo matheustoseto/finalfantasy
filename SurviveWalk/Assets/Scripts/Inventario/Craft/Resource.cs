@@ -112,11 +112,10 @@ public class Resource : MonoBehaviour {
 
     private void CraftItem()
     {
-        IcarusPlayerController.Instance.IsAction = true;
-
         selectItem = player.GetComponent<SlotSelect>().GetSelectItemBySlot();
         if (Utils.PodeCraftar(type, selectItem))
         {
+            IcarusPlayerController.Instance.IsAction = true;
             Progress.Instance.ProgressBar(speed, new Action(CreateItem));
         }
         else

@@ -9,7 +9,7 @@ public class CharacterMoveControl : MonoBehaviour {
     private NavMeshAgent navAgent = null;
 
     [Header("Attributes:")]
-    [SerializeField] private float runSpeed        = 10  ;
+    [SerializeField] public float runSpeed        = 10  ;
     [SerializeField] private float speedSmoothTime = 0.1f;
     [SerializeField] private Transform checkPoint = null;
 

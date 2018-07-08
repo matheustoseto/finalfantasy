@@ -6,4 +6,6 @@ public class ItemResource : MonoBehaviour {
 
     public int idItem;
 
+    public int idQuest;
+    public int idTask;
 }
