@@ -64,7 +64,7 @@ public class EnemyMoveControl : MonoBehaviour {
 
     public void Stop()
     {
-
+        navAgent.SetDestination(transform.position);
         navAgent.isStopped = true;
     }
 

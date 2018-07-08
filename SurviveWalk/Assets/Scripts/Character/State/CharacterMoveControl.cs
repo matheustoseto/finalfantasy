@@ -119,5 +119,15 @@ public class CharacterMoveControl : MonoBehaviour {
         transform.position = checkPoint.position;
         navAgent.enabled = true;
     }
+
+    public void ReturnCheckPoint(Vector3 posCheckpoint)
+    {
+        //posCheckpoint.y = 10000;
+
+        navAgent.enabled = false;
+        transform.position = posCheckpoint;
+        navAgent.enabled = true;
+    }
+
     #endregion
 }

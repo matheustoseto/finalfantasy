@@ -59,10 +59,6 @@ public class CharacterAnimationControl : AnimationControl {
 
 
        #region Event
-    public void EventAnimation(string nameEvent, int type, bool eventActive)
-    {
-
-    }
 
     public virtual void AttackOn()
     {

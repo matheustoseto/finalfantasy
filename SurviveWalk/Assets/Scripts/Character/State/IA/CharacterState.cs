@@ -60,6 +60,7 @@ public class CharacterState : MonoBehaviour {
 
         switch (state)
         {
+            case TypeStateCharacter.Idle    : EnterIdleState();     break;
             case TypeStateCharacter.Move    : EnterMoveState();     break;
             case TypeStateCharacter.Attack  : EnterAttackState();   break;
             case TypeStateCharacter.Dash    : EnterDashState();     break;
@@ -71,22 +72,31 @@ public class CharacterState : MonoBehaviour {
             case TypeStateCharacter.FakeDead: EnterFakeDeadState(); break;
             case TypeStateCharacter.Fall    : EnterFallState();     break;
             case TypeStateCharacter.Dead    : EnterDeadState();     break;
+
+            case TypeStateCharacter.SpecialAttack1Start : EnterSpecialAttack1StartState(); break;
+            case TypeStateCharacter.SpecialAttack1Mid   : EnterSpecialAttack1MidState();   break;
+            case TypeStateCharacter.SpecialAttack1End   : EnterSpecialAttack1EndState();   break;
             default: break;
         }
 
     }
 
-    protected virtual void EnterMoveState() { }
-    protected virtual void EnterAttackState() { }
-    protected virtual void EnterDashState() { }
-    protected virtual void EnterActionState() { }
-    protected virtual void EnterPatrolState() { }
-    protected virtual void EnterFollowState() { }
-    protected virtual void EnterBackState() { }
-    protected virtual void EnterRiseState() { }
+    protected virtual void EnterIdleState()     { }
+    protected virtual void EnterMoveState()     { }
+    protected virtual void EnterAttackState()   { }
+    protected virtual void EnterDashState()     { }
+    protected virtual void EnterActionState()   { }
+    protected virtual void EnterPatrolState()   { }
+    protected virtual void EnterFollowState()   { }
+    protected virtual void EnterBackState()     { }
+    protected virtual void EnterRiseState()     { }
     protected virtual void EnterFakeDeadState() { }
-    protected virtual void EnterFallState() { }
-    protected virtual void EnterDeadState() { }
+    protected virtual void EnterFallState()     { }
+    protected virtual void EnterDeadState()     { }
+
+    protected virtual void EnterSpecialAttack1StartState() { }
+    protected virtual void EnterSpecialAttack1MidState()   { }
+    protected virtual void EnterSpecialAttack1EndState()   { }
     #endregion
 
 
@@ -95,6 +105,7 @@ public class CharacterState : MonoBehaviour {
     {
         switch (state)
         {
+            case TypeStateCharacter.Idle     : UpdateIdleState();     break;
             case TypeStateCharacter.Move     : UpdateMoveState();     break;
             case TypeStateCharacter.Attack   : UpdateAttackState();   break;
             case TypeStateCharacter.Dash     : UpdateDashState();     break;
@@ -106,21 +117,30 @@ public class CharacterState : MonoBehaviour {
             case TypeStateCharacter.FakeDead : UpdateFakeDeadState(); break;
             case TypeStateCharacter.Fall     : UpdateFallState();     break;
             case TypeStateCharacter.Dead     : UpdateDeadState();     break;
+
+            case TypeStateCharacter.SpecialAttack1Start : UpdateSpecialAttack1StartState(); break;
+            case TypeStateCharacter.SpecialAttack1Mid   : UpdateSpecialAttack1MidState();   break;
+            case TypeStateCharacter.SpecialAttack1End   : UpdateSpecialAttack1EndState();   break;
             default: break;
         }
     }
 
-    protected virtual void UpdateMoveState() { }
-    protected virtual void UpdateAttackState() { }
-    protected virtual void UpdateDashState() { }
-    protected virtual void UpdateActionState() { }
-    protected virtual void UpdatePatrolState() { }
-    protected virtual void UpdateFollowState() { }
-    protected virtual void UpdateBackState() { }
-    protected virtual void UpdateRiseState() { }
+    protected virtual void UpdateIdleState()     { }
+    protected virtual void UpdateMoveState()     { }
+    protected virtual void UpdateAttackState()   { }
+    protected virtual void UpdateDashState()     { }
+    protected virtual void UpdateActionState()   { }
+    protected virtual void UpdatePatrolState()   { }
+    protected virtual void UpdateFollowState()   { }
+    protected virtual void UpdateBackState()     { }
+    protected virtual void UpdateRiseState()     { }
     protected virtual void UpdateFakeDeadState() { }
-    protected virtual void UpdateFallState() { }
-    protected virtual void UpdateDeadState() { }
+    protected virtual void UpdateFallState()     { }
+    protected virtual void UpdateDeadState()     { }
+
+    protected virtual void UpdateSpecialAttack1StartState() { }
+    protected virtual void UpdateSpecialAttack1MidState()   { }
+    protected virtual void UpdateSpecialAttack1EndState()   { }
     #endregion
 
 
@@ -129,6 +149,7 @@ public class CharacterState : MonoBehaviour {
     {
         switch (state)
         {
+            case TypeStateCharacter.Idle    : LeaveIdleState();     break;
             case TypeStateCharacter.Move    : LeaveMoveState();     break;
             case TypeStateCharacter.Attack  : LeaveAttackState();   break;
             case TypeStateCharacter.Dash    : LeaveDashState();     break;
@@ -140,21 +161,31 @@ public class CharacterState : MonoBehaviour {
             case TypeStateCharacter.FakeDead: LeaveFakeDeadState(); break;
             case TypeStateCharacter.Fall    : LeaveFallState();     break;
             case TypeStateCharacter.Dead    : LeaveDeadState();     break;
+
+            case TypeStateCharacter.SpecialAttack1Start : LeaveSpecialAttack1StartState(); break;
+            case TypeStateCharacter.SpecialAttack1Mid   : LeaveSpecialAttack1MidState();   break;
+            case TypeStateCharacter.SpecialAttack1End   : LeaveSpecialAttack1EndState();   break;
             default: break;
         }
     }
 
-    protected virtual void LeaveMoveState() { }
-    protected virtual void LeaveAttackState() { }
-    protected virtual void LeaveDashState() { }
-    protected virtual void LeaveActionState() { }
-    protected virtual void LeavePatrolState() { }
-    protected virtual void LeaveFollowState() { }
-    protected virtual void LeaveBackState() { }
-    protected virtual void LeaveRiseState() { }
+    protected virtual void LeaveIdleState()     { }
+    protected virtual void LeaveMoveState()     { }
+    protected virtual void LeaveAttackState()   { }
+    protected virtual void LeaveDashState()     { }
+    protected virtual void LeaveActionState()   { }
+    protected virtual void LeavePatrolState()   { }
+    protected virtual void LeaveFollowState()   { }
+    protected virtual void LeaveBackState()     { }
+    protected virtual void LeaveRiseState()     { }
     protected virtual void LeaveFakeDeadState() { }
-    protected virtual void LeaveFallState() { }
-    protected virtual void LeaveDeadState() { }
+    protected virtual void LeaveFallState()     { }
+    protected virtual void LeaveDeadState()     { }
+
+    protected virtual void LeaveSpecialAttack1StartState() { }
+    protected virtual void LeaveSpecialAttack1MidState()   { }
+    protected virtual void LeaveSpecialAttack1EndState()   { }
+
     #endregion
 
 

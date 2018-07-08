@@ -67,7 +67,9 @@ public class Weapon : MonoBehaviour {
     {
         if ("Enemy".Equals(other.tag) && attack)
         {
-            Damage(other.GetComponent<Skeleton>().enemyController);
+            Skeleton skeleton = other.GetComponent<Skeleton>();
+            EnemyController skeletonController = skeleton.enemyController;
+            Damage(skeletonController);
         }
     }
 

@@ -42,11 +42,6 @@ public class EnemyAnimationControl : CharacterAnimationControl {
     }
 
     #region Event
-    public void EventAnimation(string nameEvent, int type, bool eventActive)
-    {
-
-    }
-
     public override void AttackOn()
     {
         Weapon.AttackOn();

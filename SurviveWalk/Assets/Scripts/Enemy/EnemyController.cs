@@ -29,6 +29,9 @@ public class EnemyController : MonoBehaviour {
     private float timerAttack = 0.9f;
 
     [SerializeField] private int lifeTotal;
+
+
+    public float HPPercent { get { return (float)enemyStats.Life / (float)lifeTotal; } }
     
 
     // Use this for initialization
@@ -149,4 +152,6 @@ public class EnemyController : MonoBehaviour {
         enemyStats.Life = lifeTotal;
         lifeBar.GetComponent<Image>().fillAmount = enemyStats.Life / lifeTotal;
     }
+
+
 }

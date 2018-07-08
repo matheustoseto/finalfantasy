@@ -80,8 +80,14 @@ public class IcarusPlayerController : CharacterState {
                 btAction = 1;
             else btAction = 0;
 
-                //btAction = Input.GetButtonDown("Action") ? 1 : 0;
-                //btDash        = Input.GetButtonDown("Fire2"     ) ? 1 : 0;
+            //btAction = Input.GetButtonDown("Action") ? 1 : 0;
+            //btDash        = Input.GetButtonDown("Fire2"     ) ? 1 : 0;
+        }
+        else
+        {
+
+            if (state != TypeStateCharacter.Idle)
+                EnterState(TypeStateCharacter.Idle);
         }
     }
 
@@ -103,6 +109,12 @@ public class IcarusPlayerController : CharacterState {
     }
 
     #region EnterState
+    protected override void EnterIdleState()
+    {
+        aniControl.IsLocomotion = true;
+        moveControl.Stop();
+    }
+
     protected override void EnterMoveState()
     {
         // ANIMATION //
@@ -138,6 +150,15 @@ public class IcarusPlayerController : CharacterState {
     #endregion
 
     #region UpdateState
+
+    protected override void UpdateIdleState()
+    {
+        //moveControl.Move(Vector2.zero);
+        aniControl.SpeedPercent = moveControl.Magnitude / 2;
+
+        if (!IsBlockInputs)
+            EnterState(TypeStateCharacter.Move);
+    }
 
     protected override void UpdateMoveState()
     {
@@ -222,6 +243,11 @@ public class IcarusPlayerController : CharacterState {
     {
         base.LeaveState();
         aniControl.Release();
+    }
+
+    protected override void LeaveIdleState()
+    {
+
     }
 
     protected override void LeaveMoveState()

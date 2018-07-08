@@ -20,7 +20,7 @@ public class EnemyStateControl : CharacterState {
     //[SerializeField] private Weapon weapon;
     [SerializeField] private bool isDestroy = false;
     [SerializeField] private float timerWait = 3;
-    private float timer = 0;
+    protected float timer = 0;
 
     [Header("Resurrection:")]
     //[SerializeField] private Weapon weapon;
@@ -59,7 +59,43 @@ public class EnemyStateControl : CharacterState {
     #endregion
 
     #region Properties
-    protected EnemyAnimationControl AniControl { get { return aniControl; } set { aniControl = value; } }
+    protected Transform             PlayerTarget {get{return playerTarget;} set{playerTarget = value;} }
+    protected CharacterStatus       PlayerStatus {get{return playerStatus;} set{playerStatus = value;} }
+    protected EnemyAnimationControl AniControl   {get{return aniControl  ;} set{aniControl   = value;} }
+    protected EnemyMoveControl      MoveControl  {get{return moveControl ;} set{moveControl  = value;} }
+    protected Path                  Path         {get{return path        ;} set{path         = value;} }
+    protected BoxCollider           BoxCol       {get{return boxCol      ;} set{boxCol       = value;} }
+    protected EnemyController       EnemyStatus  {get{ return enemyStatus;} set { enemyStatus = value; } }
+
+    protected bool IsDestroy {get{return isDestroy;} set{isDestroy = value;}}
+    protected float TimerWait{get{return timerWait;} set{timerWait = value;}}
+
+    protected bool  IsAutomaticResurrection { get {return isAutomaticResurrection; } set { isAutomaticResurrection = value; } }
+    protected float TimeToResurrection      { get {return timeToResurrection     ; } set { timeToResurrection      = value; } }
+
+
+    protected float RadiusDetectPlayer         { get { return radiusDetectPlayer        ; } set { radiusDetectPlayer         = value; } }
+    protected float RadiusPlayerDistance       { get { return radiusPlayerDistance      ; } set { radiusPlayerDistance       = value; } }
+    protected float RadiusMonitoringPoint      { get { return radiusMonitoringPoint     ; } set {radiusMonitoringPoint       = value; } }
+    protected float RadiusLimitMonitoringPoint { get { return radiusLimitMonitoringPoint; } set {radiusLimitMonitoringPoint  = value; } }
+    protected float RadiusAttack               { get { return radiusAttack              ; } set {radiusAttack                = value; } }
+    protected float RadiusVillage              { get { return radiusVillage             ; } set {radiusVillage               = value; } }
+
+    protected Transform       MonitoringPoint   {get{return monitoringPoint  ;} set{monitoringPoint   = value;}}
+    protected bool            IsPatrolStart     {get{return isPatrolStart    ;} set{isPatrolStart     = value;}}
+    protected List<Transform> ListWayPoints     {get{return listWayPoints    ;} set{listWayPoints     = value;}}
+    protected Transform       VillagePoint      {get{return villagePoint     ;} set{villagePoint      = value;}}
+    protected bool            IsPatrolCompleted {get{return isPatrolCompleted;} set{isPatrolCompleted = value;}}
+    protected int             ActualWp          {get{return actualWp         ;} set{actualWp          = value;}}
+
+
+    protected float              DistancePlayerTest          {get{return distancePlayerTest         ;} set{distancePlayerTest         = value;}}
+    protected float              DistanceMonitoringPointTest {get{return distanceMonitoringPointTest;} set{distanceMonitoringPointTest= value;}}
+    protected float              DistanceVillagePointTest    {get{return distanceVillagePointTest   ;} set{distanceVillagePointTest   = value;}}
+    protected bool               IsNewStateTest              {get{return isNewStateTest             ;} set{isNewStateTest             = value;}}
+    protected TypeStateCharacter StateTest                   {get{return stateTest                  ;} set{stateTest                  = value;}}
+    protected bool               IsAnaliseStateTest          {get{return isAnaliseStateTest         ;} set{isAnaliseStateTest         = value;}}
+
     #endregion
 
     #region Unity
@@ -73,15 +109,20 @@ public class EnemyStateControl : CharacterState {
         base.InitAwake();
         enemyStatus = GetComponentInChildren<EnemyController>();
         gameObject.name = transform.GetInstanceID() + "-" + gameObject.name;
-        aniControl = GetComponentInChildren<EnemyAnimationControl>();
         moveControl = GetComponentInChildren<EnemyMoveControl>();
         boxCol = GetComponentInChildren<BoxCollider>();
         villagePoint = GameObject.Find("VillagePoint").GetComponent<Transform>();
 
+        GetComponentAniControl();
+    }
+
+    protected virtual void GetComponentAniControl()
+    {
+        aniControl = GetComponentInChildren<EnemyAnimationControl>();
         if (aniControl != null)
             aniControl.Weapon = Weapon;
         else
-            Debug.Log("[EnemyStateControl][InitAwake]: EnemyAnimationControl is null!");
+            Debug.Log("[EnemyStateControl][GetComponentAniControl]: EnemyAnimationControl is null!");
     }
 
     // Use this for initialization
@@ -90,6 +131,17 @@ public class EnemyStateControl : CharacterState {
         InitStart();
     }
 
+    protected virtual void IniState()
+    {
+        if (state != TypeStateCharacter.FakeDead)
+        {
+            if (state == TypeStateCharacter.Patrol)
+                isPatrolStart = true;
+            EnterState(TypeStateCharacter.Rise);
+        }
+        else
+            EnterState(state);
+    }
     protected override void InitStart()
     {
         base.InitStart();
@@ -141,20 +193,12 @@ public class EnemyStateControl : CharacterState {
         playerTarget = IcarusPlayerController.GetInstance();
         playerStatus = playerTarget.gameObject.GetComponent<CharacterStatus>();
 
-        if (state != TypeStateCharacter.FakeDead)
-        {
-            if (state == TypeStateCharacter.Patrol)
-                isPatrolStart = true;
-            EnterState(TypeStateCharacter.Rise);
-        }
-        else
-            EnterState(state);
+        IniState();
     }
 	
-	// Update is called once per frame
-	void Update () {
 
-        #region Teste
+    protected virtual void TestMethold()
+    {
         distancePlayerTest = Distance(playerTarget.position, transform.position);
         distanceMonitoringPointTest = Distance(monitoringPoint.position, transform.position);
         distanceVillagePointTest = Distance(villagePoint.position, transform.position);
@@ -173,7 +217,12 @@ public class EnemyStateControl : CharacterState {
             aniControl.StateTest = stateTest;
         }
 
-        #endregion
+    }
+
+    // Update is called once per frame
+    void Update () {
+
+        TestMethold();
 
         UpdateState();
         aniControl.ExecuteAnimations();
@@ -332,8 +381,8 @@ public class EnemyStateControl : CharacterState {
                 EnterState(TypeStateCharacter.Move);
                 return;
             }
-
-            if (playerDistance <= radiusPlayerDistance)
+            else
+            //if (playerDistance <= radiusPlayerDistance)
             {
                 // Detectou o jogador //
                 EnterState(TypeStateCharacter.Follow);
@@ -418,7 +467,7 @@ public class EnemyStateControl : CharacterState {
 
         #region Transtions
         float pointDistance = Distance(listWayPoints[actualWp].position, transform.position);
-        Debug.Log("pointDistance: " + pointDistance);
+        //Debug.Log("pointDistance: " + pointDistance);
         if (pointDistance <= radiusMonitoringPoint)
         {
             // Chegou a ponto de origem //
@@ -535,7 +584,7 @@ public class EnemyStateControl : CharacterState {
     
     protected override void LeaveFollowState()
     {
-        
+        MoveControl.Stop();
     }
 
     protected override void LeavePatrolState()
@@ -601,14 +650,13 @@ public class EnemyStateControl : CharacterState {
     }
 
 
-    private void Activated()
+    protected virtual void Activated()
     {
         moveControl.BodyMiniMap.SetActive(true);
         boxCol.enabled = false;
     }
 
-
-    private void Desactivated()
+    protected virtual void Desactivated()
     {
         moveControl.BodyMiniMap.SetActive(false);
         isPatrolCompleted = false;
