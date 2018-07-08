@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-public enum TypeSound { PlayerAttack, EnemyAttack}
+public enum TypeSound { PlayerAttack, EnemyAttack, ArmaFinal, Cidade, Coleta, ColetaMetais, Desolação, Erro, Floresta, ForjaItens, RisadaBoos}
 
 [RequireComponent(typeof(AudioListener))]
 public class SoundControl : MonoBehaviour {
