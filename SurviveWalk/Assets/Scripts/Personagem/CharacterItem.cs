@@ -12,34 +12,40 @@ public class CharacterItem : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.GetComponent<ItemResource>() != null)
+        if (other.GetComponent<ItemResourceSet>() != null)
         {
-            Destroy(other.gameObject);
-            inventory.AddItem(other.GetComponent<ItemResource>().idItem);
-            GameObject item = Instantiate(getItem, other.gameObject.transform.position + new Vector3(0,1,0), Quaternion.identity);
-            item.GetComponent<SpriteRenderer>().sprite = inventory.FindItem(other.GetComponent<ItemResource>().idItem).Sprite;
+            ItemResourceSet itemResourceSet = other.GetComponent<ItemResourceSet>();
 
-            VerifyQuest(other.GetComponent<ItemResource>());
+            Destroy(other.gameObject);
+            inventory.AddItem(itemResourceSet.idItem);
+            GameObject item = Instantiate(getItem, other.gameObject.transform.position + new Vector3(0,1,0), Quaternion.identity);
+            item.GetComponent<SpriteRenderer>().sprite = inventory.FindItem(itemResourceSet.idItem).Sprite;
+
+            ItemResource itemRes = new ItemResource(itemResourceSet.idItem, itemResourceSet.idQuest, itemResourceSet.idTask);
+
+            VerifyQuest(itemRes);
         }   
     }
 
-    public void GetItem(int idItem, int qnt)
+    public bool GetItem(ItemResource itemResource, int qnt)
     {
         for (int i = 1; i <= qnt; i++)
         {
-            inventory.AddItem(idItem);           
+            inventory.AddItem(itemResource.idItem);           
         }
 
         GameObject item = Instantiate(getItem, gameObject.transform.position + new Vector3(0, 5, 0), Quaternion.identity);
-        item.GetComponent<SpriteRenderer>().sprite = inventory.FindItem(idItem).Sprite;
+        item.GetComponent<SpriteRenderer>().sprite = inventory.FindItem(itemResource.idItem).Sprite;
         item.gameObject.transform.GetChild(0).GetComponent<TextMesh>().text = "+" + qnt;
+
+        return VerifyQuest(itemResource);
     }
 
-    private void VerifyQuest(ItemResource itemResource)
+    private bool VerifyQuest(ItemResource itemResource)
     {
         foreach (Transform go in questPlayerList.transform)
         {
-            if(itemResource.idQuest == go.GetComponent<IdQuest>().questId)
+            if(!inventory.GetQuest(go.GetComponent<IdQuest>().questId).IsDelete && itemResource.idQuest == go.GetComponent<IdQuest>().questId)
             {
                 foreach (Transform gameObj in go.transform)
                 {
@@ -64,11 +70,17 @@ public class CharacterItem : MonoBehaviour {
 
                                     NpcController.Instance.npcType = Utils.NpcType.Npc7;
                                 }                                
-                            }    
+                            }
+
+                            if (0 == itemResource.idQuest)
+                            {
+                                return true;
+                            }
                         }
                     }
                 }
             }
         }
+        return false;
     }
 }

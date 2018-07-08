@@ -5,7 +5,7 @@ public class Resource : MonoBehaviour {
 
     public Utils.ResourceType type;
     public bool isActive = true;
-    public int idItem;
+    public ItemResource itemResource;
     public int qnt;
     public float speed;
     public float timer = 1f;
@@ -151,7 +151,10 @@ public class Resource : MonoBehaviour {
         }
         */
 
-        PlayerManager.Instance.player.GetComponent<CharacterItem>().GetItem(idItem, qnt);
+        if(PlayerManager.Instance.player.GetComponent<CharacterItem>().GetItem(itemResource, qnt))
+        {
+            isActive = false;
+        }
 
         DisableItem();
     }
