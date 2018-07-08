@@ -13,6 +13,7 @@ public class Inventory : MonoBehaviour
 	public GameObject inventoryItem;
     public GameObject tooltip;
     public GameObject slotLifePanel;
+    public NpcPanel npcPanel;
     private CharacterStatus characterStatus;
 
     public int slotAmount;
@@ -61,8 +62,9 @@ public class Inventory : MonoBehaviour
         slots[18].GetComponent<RectTransform>().anchoredPosition = new Vector2(520, 30);
 
         //Add item
-        //AddItemInSlot(7,15);
-        //AddItemQnt(2,20);
+        //AddItemInSlot(40,15);
+        AddItemQnt(2, 50);
+        //AddItemQnt(40, 1);
     }
 
     void Update()
@@ -102,7 +104,7 @@ public class Inventory : MonoBehaviour
                 itemObj.GetComponent<ItemData>().durability = itemToAdd.Durability;
 
                 if(itemToAdd.Durability <= 0)
-                    itemObj.GetComponent<ItemData>().transform.GetChild(0).GetComponent<Text>().text = "1";
+                    itemObj.GetComponent<ItemData>().transform.GetChild(0).GetComponent<Text>().text = "";
                 if (itemToAdd.Durability > 0)
                     itemObj.GetComponent<ItemData>().transform.GetChild(1).GetComponent<Text>().text = itemToAdd.Durability.ToString();
 
@@ -158,7 +160,7 @@ public class Inventory : MonoBehaviour
                     itemObj.GetComponent<ItemData>().durability = itemToAdd.Durability;
 
                     if (itemToAdd.Durability <= 0)
-                        itemObj.GetComponent<ItemData>().transform.GetChild(0).GetComponent<Text>().text = "1";
+                        itemObj.GetComponent<ItemData>().transform.GetChild(0).GetComponent<Text>().text = "";
                     if (itemToAdd.Durability > 0)
                         itemObj.GetComponent<ItemData>().transform.GetChild(1).GetComponent<Text>().text = itemToAdd.Durability.ToString();
 
@@ -190,6 +192,19 @@ public class Inventory : MonoBehaviour
             }
         }
 
+        if (id == 9)
+        {
+            if (NpcController.Instance.npcType.Equals(Utils.NpcType.Npc3))
+            {
+                CompletQuest completQuest = new CompletQuest();
+                completQuest.questId = 1;
+                completQuest.taskId = 0;
+
+                NpcController.Instance.questNpc.CompletTaskQuest(completQuest);
+                npcPanel.ClosePanel();
+            }
+        }
+
         if (id == 5)
         {
             stickSeta.SetActive(false);
@@ -198,6 +213,21 @@ public class Inventory : MonoBehaviour
         if (id == 0)
         {
             appleSeta.SetActive(false);
+        }
+
+        if (id == 40)
+        {
+            if (NpcController.Instance.npcType.Equals(Utils.NpcType.Npc7))
+            {
+                CompletQuest completQuest = new CompletQuest();
+                completQuest.questId = 4;
+                completQuest.taskId = 0;
+
+                NpcController.Instance.questNpc.CompletTaskQuest(completQuest);
+                npcPanel.ClosePanel();
+
+                NpcController.Instance.npcType = Utils.NpcType.Npc8;
+            }
         }
     }
 
@@ -284,11 +314,16 @@ public class Inventory : MonoBehaviour
         addItem = null;
     }
 
+    public void AddLife(float life)
+    {
+        characterStatus.addLife(life);
+    }
+
     public bool RemoveDurability(Item item)
     {    
         for (int i = 0; i < items.Count; i++)
         {
-            if (items[i].Id.Equals(item.Id) && items[i].Slot.Equals(item.Slot))
+            if (items[i].Id.Equals(item.Id) && items[i].Slot.Equals(item.Slot) && items[i].DurabilityCount > 0)
             {
                 items[i].DurabilityCount -= 1;
 
@@ -315,9 +350,10 @@ public class Inventory : MonoBehaviour
             Destroy(itemData.gameObject);
             for (int i = 0; i < items.Count; i++)
             {
-                if (items[i].Id.Equals(itemData.item.Id))
+                if (items[i].Id.Equals(item.Id))
                 {
                     items[i] = new Item();
+                    break;
                 }
             }
         }

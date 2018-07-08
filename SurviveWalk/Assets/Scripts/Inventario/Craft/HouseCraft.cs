@@ -128,6 +128,7 @@ public class HouseCraft : MonoBehaviour {
     {
         if ("Player".Equals(other.tag) && Input.GetKeyDown(KeyCode.E) && !isLoad)
         {
+            IcarusPlayerController.Instance.IsBlockInputs = true;
             LoadHousePanel();
             if (!inventoryPanel.activeSelf)
                 inventory.ActiveDisableInventory();
@@ -151,8 +152,7 @@ public class HouseCraft : MonoBehaviour {
     {
         if ("Player".Equals(other.tag))
         {
-            if(inventoryPanel.activeSelf)
-                inventory.ActiveDisableInventory();
+            IcarusPlayerController.Instance.IsBlockInputs = false;
             housePanel.SetActive(false);
 
             for (int i = 0; i < housePanel.transform.Find("HousePanel").Find("HouseList").transform.childCount; i++)

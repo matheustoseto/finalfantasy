@@ -17,6 +17,7 @@ public class CraftNpc : MonoBehaviour {
     private GameObject slotPanel;
     public GameObject craft;
     public GameObject item;
+    public GameObject alert;
 
     public void Load(List<CraftItem> crafts)
     {
@@ -90,20 +91,13 @@ public class CraftNpc : MonoBehaviour {
         }
         if (craftSize == i && isCraft)
         {
-            inventory.AddItem(inventory.FindItem(craftItem.Id).Id);
+            Item it = inventory.FindItem(craftItem.Id);
+            inventory.AddItem(it.Id); 
+            alert.GetComponent<Alerta>().SetText("Item " + "<color=#FF0000AA><b>" + it.Title + "</b></color>" + " criado com sucesso.");
+
             foreach (Combination combination in craftItem.Combination)
             {
                 inventory.RemoveItem(combination.Id, combination.Qt);
-            }
-
-            if (NpcController.Instance.npcType.Equals(Utils.NpcType.Npc3))
-            {
-                CompletQuest completQuest = new CompletQuest();
-                completQuest.questId = 1;
-                completQuest.taskId = 0;
-
-                NpcController.Instance.questNpc.CompletTaskQuest(completQuest);
-                npcPanel.ClosePanel();
             }
         }
     }

@@ -176,8 +176,40 @@
 		"slug":  "icon_Espada"
 	},
 	{
+		"id": 11,
+		"title": "Pedra Magica",
+		"value": 1,
+		"type" : "Material",
+		"stats": {
+			"power": 0,
+			"defense": 0,
+			"vitality": 0
+		},
+		"description": "Uma pedra magica.",
+		"stackable": true,
+		"rarity": 1,
+		"durability" : 0,
+		"slug": "icon_Stone"
+	},
+	{
+		"id": 12,
+		"title": "Mithril",
+		"value": 1,
+		"type" : "Material",
+		"stats": {
+			"power": 0,
+			"defense": 0,
+			"vitality": 0
+		},
+		"description": "Um minério raro.",
+		"stackable": true,
+		"rarity": 1,
+		"durability" : 0,
+		"slug": "icon_Mithril"
+	},
+	{
 		"id": 40,
-		"title": "Espada de Ferro",
+		"title": "Espada Lendaria",
 		"value": 1,
 		"type" : "Weapon",
 		"stats": {
@@ -190,5 +222,21 @@
 		"rarity": 1,
 		"durability" : -1,
 		"slug":  "icon_EspadaMetal"
+	},
+	{
+		"id": 1001,
+		"title": "Espada de Madeira",
+		"value": 1,
+		"type" : "Weapon",
+		"stats": {
+			"power": 100,
+			"defense": 1,
+			"vitality": 1
+		},
+		"description": "Uma espada feita de madeira.",
+		"stackable": false,
+		"rarity": 1,
+		"durability" : -1,
+		"slug":  "icon_EspadaMadeira"
 	}
 ]

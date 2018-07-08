@@ -7,6 +7,7 @@ public class SwordEnemy : Weapon {
     public EnemyController enemyController;
     public IcarusPlayerController player = null;
 
+    private bool attackOnOff = false;
 
     private void Start()
     {
@@ -25,8 +26,9 @@ public class SwordEnemy : Weapon {
 
     private void OnTriggerStay(Collider other)
     {
-        if ("Player".Equals(other.tag))
+        if ("Player".Equals(other.tag) && attackOnOff)
         {
+            enemyController.Attack();
             player = null;
         }
     }
@@ -42,11 +44,14 @@ public class SwordEnemy : Weapon {
     public override void AttackOn()
     {
         //enemyController.Attack();
+        attackOnOff = true;
+        //enemyController.Attack();
         boxCol.enabled = true;
     }
 
     public override void AttackOff()
     {
+        attackOnOff = false;
         boxCol.enabled = false;
     }
 }

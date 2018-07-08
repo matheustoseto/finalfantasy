@@ -6,18 +6,24 @@ using UnityEngine.UI;
 
 public class Dialog : MonoBehaviour {
 
-    public GateStateControl gateControl;
-    public GameObject npcGameObject;
-    public GameObject enemy;
+    public GateStateControl gateSouth;
+    public GateStateControl gateNorth;
+    public GateStateControl gateEast;
+    public GameObject npcGameObject;  
     public GameObject npcPanel;
     public GameObject inventoryPanel;
     public GameObject questPlayerList;
     public Inventory inventory;
     public GameObject alert;
 
+    public GameObject[] itensBoss;
+
     private Npc npc = new Npc();
     private int step = 0;
     private bool moveNpcTutorial = false;
+
+    private string message;
+    private IEnumerator coroutine;
 
     public void SetNpc(Npc npc)
     {
@@ -41,7 +47,8 @@ public class Dialog : MonoBehaviour {
         {
             if (step < npc.Intro.Count)
             {
-                this.gameObject.transform.Find("Text").GetComponent<Text>().text = npc.Intro[step].Step;
+                //gameObject.transform.Find("Text").GetComponent<Text>().text = npc.Intro[step].Step;
+                SetTxt(npc.Intro[step].Step);
                 step++;
             }
             else
@@ -78,6 +85,8 @@ public class Dialog : MonoBehaviour {
                         inventory.ActiveDisableInventory();
 
                     npcPanel.SetActive(true);
+
+                    IcarusPlayerController.Instance.IsBlockInputs = true;
                 }
 
                 if (npc.Quest.Count > 0)
@@ -102,10 +111,26 @@ public class Dialog : MonoBehaviour {
                     {
                         playerTask.speakNpc = true;
                         playerTask.ChangeText();
-                        this.gameObject.transform.Find("Text").GetComponent<Text>().text = playerTask.task.Descr;
+                        SetTxt(playerTask.task.Descr);
+
                         if (inventory.GetQuest(go.GetComponent<IdQuest>().questId).IsDelete)
                         {
                             Destroy(go.gameObject);
+                        }
+
+                        if (0 == go.GetComponent<IdQuest>().questId)
+                        {
+                            itensBoss[playerTask.task.Id].SetActive(true);
+
+                            if (3 == playerTask.task.Id || 4 == playerTask.task.Id)
+                            {
+                                gateNorth.EventDevice(TypeStateDevice.Open);
+                            }
+                        }
+
+                        if (5 == go.GetComponent<IdQuest>().questId)
+                        {
+                            gateEast.EventDevice(TypeStateDevice.Open);
                         }
 
                         moveNpcTutorial = true;
@@ -120,11 +145,13 @@ public class Dialog : MonoBehaviour {
     public void CloseDialog()
     {
         this.gameObject.SetActive(false);
+        IcarusPlayerController.Instance.IsBlockInputs = false;
     }
 
     public void CloseNpcPanel()
     {
         npcPanel.GetComponent<NpcPanel>().ClosePanel();
+        IcarusPlayerController.Instance.IsBlockInputs = false;
         //inventory.DisableInventory();
     }
 
@@ -136,7 +163,6 @@ public class Dialog : MonoBehaviour {
             NpcController.Instance.npcType = Utils.NpcType.Npc4;
             moveNpcTutorial = false;
             CloseDialog();
-            enemy.SetActive(true);
             npcGameObject.GetComponent<NpcController>().seta.SetActive(true);
             alert.GetComponent<Alerta>().SetText("Arraste um item no slot rapido para equipa-lo.");
             return true;
@@ -181,7 +207,7 @@ public class Dialog : MonoBehaviour {
 
         if (NpcController.Instance.npcType.Equals(Utils.NpcType.Npc6))
         {
-            gateControl.EventDevice(TypeStateDevice.Open);
+            gateSouth.EventDevice(TypeStateDevice.Open);
             npcGameObject.GetComponent<NPCStateControl>().EventPatrol();
             NpcController.Instance.npcType = Utils.NpcType.Npc1;
             moveNpcTutorial = false;
@@ -189,5 +215,25 @@ public class Dialog : MonoBehaviour {
             npcGameObject.GetComponent<NpcController>().seta.SetActive(false);
             alert.GetComponent<Alerta>().SetText("Busque recursos e contrua equipamentos mais fortes.");
         }
+    }
+
+    private void SetTxt(string text)
+    {
+        //StopAllCoroutines();
+        if(coroutine != null)
+            StopCoroutine(coroutine);
+
+        message = text;
+        gameObject.transform.Find("Text").GetComponent<Text>().text = "";
+        coroutine = TypeText(0.0001f);
+        StartCoroutine(coroutine);
+    }
+
+    public IEnumerator TypeText(float waitTime) {
+        foreach (char letter in message.ToCharArray())
+        {
+            gameObject.transform.Find("Text").GetComponent<Text>().text += letter;
+            yield return new WaitForSeconds(waitTime);
+        }      
     }
 }
