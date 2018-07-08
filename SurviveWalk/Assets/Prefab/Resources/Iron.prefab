@@ -699,7 +699,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 2
-  idItem: 3
+  isActive: 1
+  itemResource:
+    idItem: 3
+    idQuest: -1
+    idTask: -1
   qnt: 2
   speed: 0.008
   timer: 120

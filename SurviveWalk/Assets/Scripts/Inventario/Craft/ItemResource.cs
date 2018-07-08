@@ -2,10 +2,24 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ItemResource : MonoBehaviour {
+[System.Serializable]
+public class ItemResource : System.Object
+{
+    public int idItem   = -1;
+    public int idQuest  = -1;
+    public int idTask   = -1;
 
-    public int idItem;
+    public ItemResource()
+    {
+        this.idItem   = -1;
+        this.idQuest  = -1;
+        this.idTask   = -1;
+    }
 
-    public int idQuest;
-    public int idTask;
+    public ItemResource(int idItem, int idQuest, int idTask)
+    {
+        this.idItem = idItem;
+        this.idQuest = idQuest;
+        this.idTask = idTask;
+    }
 }
