@@ -1994,14 +1994,22 @@ MonoBehaviour:
   listAttacks:
   - name: '1: Attack'
     type: 0
+    isSpecialAttack: 0
     percentMin: 1
     percentMax: 0.6
+    cooldown: 2
+    hpPercentActivated: 1
   - name: '2: SpecialAttack1'
     type: 1
+    isSpecialAttack: 1
     percentMin: 0.6
     percentMax: 0
+    cooldown: 2
+    hpPercentActivated: 0.5
   isRandomAttack: 0
   HpPercentTest: 0
+  isDescending: 0
+  typeSort: 1
 --- !u!114 &114326456288686868
 MonoBehaviour:
   m_ObjectHideFlags: 1

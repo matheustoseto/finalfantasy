@@ -3,36 +3,84 @@
 public enum TypeAttack { Attack, SpecialAttack1, Random}
 
 public class BossStateControl : EnemyStateControl {
+    public enum TypeSortBossAttackt { HpPercent, RandomPercentMin, RandomPercentMax }
 
     [System.Serializable]
     private class BossAttack : System.Collections.Generic.IComparer<BossAttack>
     {
         public static bool IsDescending = false;
+        public static TypeSortBossAttackt typeSort = TypeSortBossAttackt.RandomPercentMin;
+
+        [Header("Attack Settings:")]
         public string name = "";
         public TypeAttack type;
-        [Range(0,1)]
-        public float percentMin;
-        [Range(0, 1)]
-        public float percentMax;
+        public bool isSpecialAttack = false;
+
+        [Header("Random Range:")]
+        [Range(0, 1)] public float percentMin;
+        [Range(0, 1)] public float percentMax;
+
+        [Header("Activate:")]
+        public float cooldown = 2;
+        public float hpPercentActivated = 1;
         //public bool activated = true;
 
+        private float timer = 0;
+
+        #region Timer
+        public void ResetTimer()
+        {
+            timer = cooldown+1;
+        }
+
+        public bool VerifyTimer()
+        {
+            timer += Time.deltaTime;
+            if (timer > cooldown)
+            {
+                timer = 0;
+                return true;
+            }
+            return false;
+        }
+
+        #endregion
+
+        #region Sort
         public int Compare(BossAttack x, BossAttack y)
         {
-            if (!IsDescending)
-                return compareNumbers(x.percentMin, y.percentMin);
-            else
-                return compareNumbers(y.percentMin, x.percentMin);
-
+            switch (typeSort)
+            {
+                case TypeSortBossAttackt.HpPercent:
+                    return compareNumbers(IsDescending, x.hpPercentActivated, y.hpPercentActivated);
+                case TypeSortBossAttackt.RandomPercentMin:
+                    return compareNumbers(IsDescending, x.percentMin, y.percentMin);
+                case TypeSortBossAttackt.RandomPercentMax:
+                    return compareNumbers(IsDescending, x.percentMax, y.percentMax);
+                default:
+                    return compareNumbers(IsDescending, x.percentMin, y.percentMin);
+            }
         }
 
-        private int compareNumbers(float x, float y)
+        private int compareNumbers(bool isDesc, float x, float y)
         {
-            if (x > y)
-                return 1;
-            else if (x < y)
-                return -1;
+            if (!isDesc)
+            {
+                if (x > y)
+                    return 1;
+                else if (x < y)
+                    return -1;
+            }
+            else
+            {
+                if (y > x)
+                   return 1;
+                else if (y < x)
+                    return -1;
+            }
             return 0;
         }
+        #endregion
     }
 
 
@@ -42,6 +90,10 @@ public class BossStateControl : EnemyStateControl {
     [SerializeField] private System.Collections.Generic.List<BossAttack> listAttacks = new System.Collections.Generic.List<BossAttack>();
     [SerializeField] private bool isRandomAttack = false;
     [SerializeField] private float HpPercentTest = 0;
+
+    [Header("Boss Settings - Sort Attacks:")]
+    [SerializeField] private bool isDescending = false;
+    [SerializeField] private TypeSortBossAttackt typeSort = TypeSortBossAttackt.RandomPercentMin;
 
     private bool isPlayerHere = false;
 
@@ -93,62 +145,6 @@ public class BossStateControl : EnemyStateControl {
     protected override void InitStart()
     {
         base.InitStart();
-        #region WayPoints
-        //path = GetComponent<Path>();
-        //if (path != null)
-        //{
-        //    bool isError = false;
-        //    listWayPoints = path.WayPoints;
-        //    if (listWayPoints == null)
-        //    {
-        //        isError = true;
-        //        Debug.Log("[EnemyState][" + gameObject.name + "]: listWayPoins nula.");
-        //    }
-        //    else
-        //    {
-        //        if (listWayPoints.Count == 0)
-        //        {
-        //            Debug.Log("[EnemyState][" + gameObject.name + "]: listWayPoins vazia.");
-        //            isError = true;
-        //        }
-        //        else
-        //        {
-        //            for (int i = 0; i < listWayPoints.Count; i++)
-        //            {
-        //                if (listWayPoints[i] == null)
-        //                {
-        //                    listWayPoints.Clear();
-        //                    listWayPoints.Add(transform);
-        //                    Debug.Log("[EnemyState][" + gameObject.name + "]: A posição (" + i + ") da listWayPoins está nula.");
-        //                    isError = true;
-        //                    break;
-        //                }
-        //            }
-        //        }
-        //    }
-
-        //    if (isError)
-        //    {
-        //        listWayPoints = new List<Transform>();
-        //        listWayPoints.Add(transform);
-        //    }
-
-        //}
-        //monitoringPoint = listWayPoints[actualWp].position;
-        #endregion
-
-        //moveControl.BodyMiniMap.gameObject.SetActive(false);
-        //playerTarget = IcarusPlayerController.GetInstance();
-        //playerStatus = playerTarget.gameObject.GetComponent<CharacterStatus>();
-
-        //if (state != TypeStateCharacter.FakeDead)
-        //{
-        //    if (state == TypeStateCharacter.Patrol)
-        //        isPatrolStart = true;
-        //    EnterState(TypeStateCharacter.Rise);
-        //}
-        //else
-        //    EnterState(state);
 
         Activated();
 
@@ -163,11 +159,13 @@ public class BossStateControl : EnemyStateControl {
                 listAttacks[i].percentMax = aux;
             }
         }
-        BossAttack.IsDescending = true;
+        BossAttack.IsDescending = isDescending;
+        BossAttack.typeSort = typeSort;
         listAttacks.Sort(listAttacks[0]);
         for (int i = 0; i < listAttacks.Count; i++)
         {
             listAttacks[i].name = (i + 1) + ": " + listAttacks[i].type.ToString();
+            listAttacks[i].ResetTimer();
         }
         #endregion
     }
@@ -291,6 +289,8 @@ public class BossStateControl : EnemyStateControl {
 
     private void AttacksVerification()
     {
+        TypeStateCharacter typeState = TypeStateCharacter.Attack;
+        BossAttack bossAttack = null;
         if (isRandomAttack)
         {
             if (listAttacks.Count > 1)
@@ -298,12 +298,20 @@ public class BossStateControl : EnemyStateControl {
                 float rand = Random.Range(0f, 1f);
                 Debug.Log("Ramdom: " + rand);
 
-                TypeStateCharacter typeState = VerifyAttackState(rand);
+                //TypeStateCharacter typeState = VerifyAttackState(rand);
+                //EnterState(typeState);
+
+
+                bossAttack = GetAttackBoss(TypeSortBossAttackt.RandomPercentMin, rand);
+                if (bossAttack != null && bossAttack.isSpecialAttack && bossAttack.VerifyTimer())
+                    typeState = AttackToState(bossAttack.type);
+
                 EnterState(typeState);
+
             }
             else if (listAttacks.Count == 1)
             {
-                TypeStateCharacter typeState = AttackToState(listAttacks[0].type);
+                typeState = AttackToState(listAttacks[0].type);
                 EnterState(typeState);
             }
             else
@@ -312,7 +320,13 @@ public class BossStateControl : EnemyStateControl {
         else
         {
             float hpPercent = EnemyStatus.HPPercent;
-            TypeStateCharacter typeState = VerifyAttackState(hpPercent);
+            //TypeStateCharacter typeState = VerifyAttackState(hpPercent);
+
+            typeState = TypeStateCharacter.Attack;
+            bossAttack = GetAttackBoss(TypeSortBossAttackt.HpPercent, hpPercent);
+            if (bossAttack.isSpecialAttack && bossAttack.VerifyTimer())
+                typeState = AttackToState(bossAttack.type);
+
             EnterState(typeState);
         }
 
@@ -328,7 +342,7 @@ public class BossStateControl : EnemyStateControl {
         }
     }
 
-    private TypeStateCharacter VerifyAttackState(float percent)
+    private TypeStateCharacter VerifyAttackStateeee(float percent)
     {
         for (int i = 0; i < listAttacks.Count; i++)
         {
@@ -338,12 +352,39 @@ public class BossStateControl : EnemyStateControl {
         return TypeStateCharacter.Attack;
     }
 
+    private BossAttack GetAttackBoss(TypeSortBossAttackt typeSort, float percent)
+    {
+        for (int i = 0; i < listAttacks.Count; i++)
+        {
+            switch (typeSort)
+            {
+                case TypeSortBossAttackt.HpPercent:
+                    if (percent <= listAttacks[i].hpPercentActivated)
+                        return listAttacks[i];
+                    break;
+                case TypeSortBossAttackt.RandomPercentMin:
+                    if (percent >= listAttacks[i].percentMin && percent < listAttacks[i].percentMax)
+                        return listAttacks[i];
+                    break;
+                case TypeSortBossAttackt.RandomPercentMax:
+                    if (percent >= listAttacks[i].percentMin && percent < listAttacks[i].percentMax)
+                        return listAttacks[i];
+                    break;
+                default:
+                    break;
+            }
+        }
+        return null;
+    }
+
+
     #region AttackState
 
     protected override void EnterAttackState()
     {
         aniControlBoss.IsAttack = true;
         MoveControl.Stop();
+        MoveControl.LookAt(PlayerTarget.position);
     }
 
     protected override void UpdateAttackState()
@@ -400,6 +441,7 @@ public class BossStateControl : EnemyStateControl {
     {
         aniControlBoss.IsSpecialAttack1Start = true;
         MoveControl.Stop();
+        MoveControl.LookAt(PlayerTarget.position);
     }
 
     protected override void UpdateSpecialAttack1StartState()
