@@ -96,6 +96,8 @@ public class BossStateControl : EnemyStateControl {
     [SerializeField] private TypeSortBossAttackt typeSort = TypeSortBossAttackt.RandomPercentMin;
 
     private bool isPlayerHere = false;
+    private Transform startPointAttack = null;
+    private bool isStartPointAttack = false;
 
     #region Unity
     void Awake()
@@ -473,37 +475,89 @@ public class BossStateControl : EnemyStateControl {
         aniControlBoss.IsSpecialAttack1Mid = true;
         aniControlBoss.SpeedPercent = MoveControl.Magnitude / 2;
         timer = 0;
-
+        startPointAttack = ListWayPoints[ActualWp];
+        isStartPointAttack = false;
     }
 
     protected override void UpdateSpecialAttack1MidState()
     {
-        #region Action
+        #region Action Old
         //// Olhar para o player //
-        //moveControl.LookAt(playerTarget.position);
-        MoveControl.Move(PlayerTarget.position);
-        MoveControl.LookAt(PlayerTarget.position);
-        aniControlBoss.SpeedPercent = MoveControl.Magnitude / 2;
+        //MoveControl.Move(PlayerTarget.position);
+        //MoveControl.LookAt(PlayerTarget.position);
+        //aniControlBoss.SpeedPercent = MoveControl.Magnitude / 2;
+        #endregion
+
+        #region Transtions Old
+        //timer += Time.deltaTime;
+        //if (timer >= 5)
+        //{
+        //    timer = 0;
+        //    EnterState(TypeStateCharacter.SpecialAttack1End);
+        //    return;
+        //}
+
+        // Enter //
+        #endregion
+
+
+        #region Action
+        MoveControl.Move(ListWayPoints[ActualWp].position);
+        MoveControl.LookAt(ListWayPoints[ActualWp].position);
+        //aniControlBoss.SpeedPercent = MoveControl.Magnitude / 2;
         #endregion
 
         #region Transtions
-        timer += Time.deltaTime;
-        if (timer >= 5)
+        //float playerDistance = Distance(playerTarget.position, transform.position);
+        //if (playerDistance <= radiusPlayerDistance)
+        //{
+        //    // Detectou o jogador //
+        //    EnterState(TypeStateCharacter.Follow);
+        //    return;
+        //}
+
+        float pointDistance = Distance(ListWayPoints[ActualWp].position, transform.position);
+        if (pointDistance <= RadiusMonitoringPoint)
         {
-            //if (aniControlBoss.IsAnimationFinish(state.ToString()))
-            //{
-            //TransitionsAttack();
-            timer = 0;
-            EnterState(TypeStateCharacter.SpecialAttack1End);
-            return;
-            //}
+            // Chegou no destino //
+            //EnterState(TypeStateCharacter.Move);
+            //return;
+            if (ActualWp + 1 >= ListWayPoints.Count)
+                ActualWp = 0;
+            else
+                ActualWp++;
+
+            if (!isStartPointAttack)
+            {
+                isStartPointAttack = true;
+            }
+            else
+            {
+                if (ListWayPoints[ActualWp].position.Equals(startPointAttack.position))
+                    EnterState(TypeStateCharacter.SpecialAttack1End);
+            }
+
+
         }
         #endregion
+
+
+        // Leave //
+
+        //ActualWp++;
+        //if (ActualWp >= ListWayPoints.Count)
+        //{
+        //    ActualWp = 0;
+        //    if (!IsPatrolStart)
+        //        IsPatrolCompleted = true;
+        //}
+
     }
 
     protected override void LeaveSpecialAttack1MidState()
     {
         timer = 0;
+        isStartPointAttack = false;
     }
     #endregion
 

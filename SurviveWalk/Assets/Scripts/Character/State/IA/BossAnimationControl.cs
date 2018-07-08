@@ -47,11 +47,12 @@ public class BossAnimationControl : CharacterAnimationControl
     public override void AttackOn()
     {
         Weapon.AttackOn();
+        Weapon.TrailRenderActivated(true);
     }
 
     public override void AttackOff()
     {
-
+        Weapon.TrailRenderActivated(false);
     }
 
     public override void SoundAttack()

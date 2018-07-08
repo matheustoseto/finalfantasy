@@ -259,12 +259,10 @@ public class EnemyStateControl : CharacterState {
         moveControl.Stop();
     }
 
-
     protected override void EnterFollowState()
     {
         //AnimationMove();
     }
-
 
     protected override void EnterPatrolState()
     {
@@ -284,10 +282,12 @@ public class EnemyStateControl : CharacterState {
 
         Activated();
     }
+
     protected override void EnterFakeDeadState()
     {
         aniControl.IsFakeDead = true;
     }
+
     protected override void EnterFallState()
     {
         aniControl.IsFall = true;

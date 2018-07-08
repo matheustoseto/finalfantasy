@@ -17,6 +17,7 @@ public class Weapon : MonoBehaviour {
         public TypeTool TypeTool { get { return typeTool; } }
         public GameObject Tool   { get { return tool; } }
     }
+    public TrailRenderer trailRender = null;
 
     public Item item;
     private bool attack = false;
@@ -33,6 +34,9 @@ public class Weapon : MonoBehaviour {
             if (listTools[i].Name == "")
                 listTools[i].Name = listTools[i].TypeTool.ToString();
         }
+
+        if (trailRender != null)
+            trailRender.gameObject.SetActive(false);
     }
 
     void Start () {
@@ -138,6 +142,12 @@ public class Weapon : MonoBehaviour {
                 break;
         }
         return typeTool;
+    }
+
+    public void TrailRenderActivated(bool isActivatedTrailRender)
+    {
+        if (trailRender != null)
+            trailRender.gameObject.SetActive(isActivatedTrailRender);
     }
 
 }
