@@ -1,7 +1,7 @@
 [
 	{
 		"id": 0,
-		"title": "House 1",
+		"title": "Ferraria",
 		"levels": [
 			{
 				"idLevel" : 0,
@@ -17,7 +17,7 @@
 	},
 	{
 		"id": 1,
-		"title": "House 2",
+		"title": "Casa dos Aldeões",
 		"levels": [
 			{
 				"idLevel" : 0,
@@ -33,7 +33,7 @@
 	},
 	{
 		"id": 2,
-		"title": "House 3",
+		"title": "Loja de Alquimia",
 		"levels": [
 			{
 				"idLevel" : 0,
@@ -49,7 +49,7 @@
 	},
 	{
 		"id": 3,
-		"title": "House 4",
+		"title": "Casa",
 		"levels": [
 			{
 				"idLevel" : 0,

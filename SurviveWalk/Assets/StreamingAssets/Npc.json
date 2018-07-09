@@ -33,7 +33,11 @@
     "intro": [
 		{
 			"id": 0,
-			"step": "Colete recursos espalhados no mapa para construir equipamentos."
+			"step": "Colete recursos espalhados pelo mundo" 
+		},
+		{
+			"id": 1,
+			"step": "Eu posso lhe ajudar a contruir algumas ferramentas para ajudar em sua tarefa" 
 		}
     ],
 	"crafts": [
@@ -186,6 +190,14 @@
       },
       {
         "id": 3,
+        "step": "Estamos procurando materiais para construir uma espada forte o suficiente para derrotá-lo."
+      },
+      {
+        "id": 4,
+        "step": "Ajude-nos a reconstruir a cidade, assim que encontramos alguma pista iremos avisa-lo."
+      },
+      {
+        "id": 5,
         "step": "Salve-nos! Você é nossa última esperança."
       }
     ],
@@ -204,7 +216,7 @@
     "intro": [
 		{
 			"id": 0,
-			"step": "Colete recursos espalhados pelo mundo e reconstrua a vila"
+			"step": "Enquanto você"
 		},
 		{
 		  "id": 1,
