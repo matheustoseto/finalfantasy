@@ -1,7 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
-public enum TypeSound { PlayerAttack, EnemyAttack, ArmaFinal, Cidade, Coleta, ColetaMetais, Desolação, Erro, Floresta, ForjaItens, RisadaBoos}
+public enum TypeSound {None, PlayerAttack, EnemyAttack, ArmaFinal, Cidade, Coleta, ColetaMetais, Desolacao, Erro, Floresta, ForjaItens, RisadaBoss}
 
 [RequireComponent(typeof(AudioListener))]
 public class SoundControl : MonoBehaviour {
@@ -12,15 +14,22 @@ public class SoundControl : MonoBehaviour {
         public AudioClip audioClip;
     }
 
+
+    
+
     private static SoundControl instance = null;
     private AudioSource ambient;
     private AudioSource background;
     private AudioSource[] effects;
     private AudioSource audioSourceCurrent;
 
+
+    [Header("Audio Settings:")]
     [SerializeField] private List<AudioStruct> listAudios;
 
     private const int firstOfTheList = 0;
+    private TypeSound actualAmbientSound = TypeSound.None;
+
 
     public static SoundControl GetInstance()
     {
@@ -54,6 +63,7 @@ public class SoundControl : MonoBehaviour {
         }
         #endregion
 
+        ExecuteAmbient(TypeSound.Desolacao,1f);
 
     }
 
@@ -66,7 +76,6 @@ public class SoundControl : MonoBehaviour {
 
     public void ExecuteEffect(TypeSound audioEffect)
     {
-
         audioSourceCurrent = EffectsFree();
         audioSourceCurrent.clip = listAudios.Find(audio => audio.name == audioEffect.ToString()).audioClip;
         audioSourceCurrent.Play();
@@ -85,4 +94,49 @@ public class SoundControl : MonoBehaviour {
         effects[firstOfTheList].Stop();
         return effects[firstOfTheList];
     }
+
+    public void ExecuteAmbient(TypeSound audioAmbient, float fadeoutVolumeSpeed)
+    {
+        if(actualAmbientSound == TypeSound.None)
+        {
+            if (audioAmbient != TypeSound.None)
+            {
+                actualAmbientSound = audioAmbient;
+                ambient.clip = listAudios.Find(audio => audio.name == audioAmbient.ToString()).audioClip;
+                ambient.Play();
+            }
+            return;
+        }
+
+        if (actualAmbientSound == audioAmbient && ambient.isPlaying)
+            return;
+
+        if(audioAmbient == TypeSound.None)
+        {
+            actualAmbientSound = TypeSound.None;
+            ambient.Stop();
+            ambient.clip = null;
+
+            ExecuteEffect(TypeSound.None);
+            return;
+        }
+
+        actualAmbientSound = audioAmbient;
+        StartCoroutine(Fadeout(audioAmbient, fadeoutVolumeSpeed));
+    }
+
+    IEnumerator Fadeout(TypeSound audioAmbient, float fadeoutVolumeSpeed)
+    {
+        float vol = ambient.volume;
+        while (ambient.volume > 0.01f)
+        {
+            ambient.volume -= fadeoutVolumeSpeed;
+            yield return new WaitForSeconds(fadeoutVolumeSpeed);
+        }
+
+        ambient.clip = listAudios.Find(audio => audio.name == audioAmbient.ToString()).audioClip;
+        ambient.Play();
+        ambient.volume = vol;
+    }
+
 }
