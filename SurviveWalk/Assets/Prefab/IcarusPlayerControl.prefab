@@ -460,7 +460,7 @@ GameObject:
   - component: {fileID: 114534865585791290}
   - component: {fileID: 114101728555108152}
   - component: {fileID: 114524107956431618}
-  - component: {fileID: 114233120722979348}
+  - component: {fileID: 114107636461213288}
   m_Layer: 0
   m_Name: IcarusPlayerControl
   m_TagString: Player
@@ -2758,7 +2758,7 @@ Transform:
   m_GameObject: {fileID: 1461807914671326}
   m_LocalRotation: {x: -0.17713268, y: -0.028786497, z: -0.041655213, w: 0.98288363}
   m_LocalPosition: {x: -0.5970024, y: 0.5422182, z: 0.85952336}
-  m_LocalScale: {x: 0.9999912, y: 0.9999913, z: 0.9999897}
+  m_LocalScale: {x: 1.7, y: 1.7, z: 1.7}
   m_Children: []
   m_Father: {fileID: 4735196043094488}
   m_RootOrder: 8
@@ -4342,7 +4342,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1327605054124788}
-  npcGameObject: {fileID: 0}
 --- !u!114 &114101728555108152
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4358,6 +4357,24 @@ MonoBehaviour:
   getItem: {fileID: 1667461407893088, guid: 873b7be637eb1534a9f46c964159185b, type: 2}
   questPlayerList: {fileID: 0}
   questNpc: {fileID: 0}
+--- !u!114 &114107636461213288
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1327605054124788}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5824efc539c37dc4ba7bd4d8b197eea8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  listCheckPoints:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  actualCheckPoint: 0
+  npcGameObject: {fileID: 0}
 --- !u!114 &114168286530904516
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4383,24 +4400,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   progressBar: {fileID: 1547074137185364}
   activeBar: 0
---- !u!114 &114233120722979348
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1327605054124788}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5824efc539c37dc4ba7bd4d8b197eea8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveControl: {fileID: 0}
-  listCheckPoints:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  actualCheckPoint: 0
 --- !u!114 &114297857431721828
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4429,7 +4428,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1327605054124788}
-  npcGameObject: {fileID: 0}
   distancePoints: []
 --- !u!114 &114391991664047432
 MonoBehaviour:
@@ -4442,6 +4440,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2750d4064624a04dad64df6779c118a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  trailRender: {fileID: 0}
   listTools:
   - name: 
     typeTool: 7
@@ -4517,6 +4516,7 @@ MonoBehaviour:
   life: 100
   initialLife: 30
   lifeProgress: 30
+  noDamage: 0
 --- !u!114 &114588570005170458
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4528,6 +4528,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2750d4064624a04dad64df6779c118a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  trailRender: {fileID: 0}
   listTools:
   - name: 
     typeTool: 7
@@ -5818,13 +5819,13 @@ CharacterController:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Height: 3.5
+  m_Height: 2.68
   m_Radius: 0.77
   m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 1.7, z: 0}
+  m_Center: {x: 0, y: 1.36, z: 0}
 --- !u!195 &195081328510952278
 NavMeshAgent:
   m_ObjectHideFlags: 1
