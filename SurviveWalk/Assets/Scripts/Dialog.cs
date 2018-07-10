@@ -160,6 +160,9 @@ public class Dialog : MonoBehaviour {
                         taskCount = 0;
 
                         return true;
+                    } else
+                    {
+                        playerTask = null;
                     }
                 }
             }

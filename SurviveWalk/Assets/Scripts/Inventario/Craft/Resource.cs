@@ -79,10 +79,21 @@ public class Resource : MonoBehaviour {
         {
             setEnterMaterial();
 
-            if (Input.GetKey(KeyCode.E) && !isCraft)
+            if (Input.GetKey(KeyCode.E))
             {
-                isCraft = true;
-                CraftItem();
+                if (!isCraft)
+                {
+                    isCraft = true;
+                    CraftItem();
+                } else
+                {
+                    /*
+                        SoundControl.GetInstance().ExecuteStop(audio);
+                        Progress.Instance.DisableProgressBar();
+                        isCraft = false;
+                        IcarusPlayerController.Instance.IsAction = false;
+                    */
+                }           
             }
         }
     }
@@ -92,6 +103,9 @@ public class Resource : MonoBehaviour {
         if ("Player".Equals(other.tag) && isActive)
         {
             playerEnter = false;
+            IcarusPlayerController.Instance.IsAction = false;
+            SoundControl.GetInstance().ExecuteStop(audio);
+            isCraft = false;
             setExitMaterial();
             Progress.Instance.DisableProgressBar();
         }
@@ -141,23 +155,10 @@ public class Resource : MonoBehaviour {
 
     public void CreateItem()
     {
-        IcarusPlayerController.Instance.IsAction = false;
-
-        SoundControl.GetInstance().ExecuteStop(audio);
-
         if (!Utils.PodeCraftarSemMaterial(type))
         {
             Inventory.Instance.RemoveDurability(selectItem);
         }
-
-        /*
-        for (int i = 1; i <= qnt; i++)
-        {
-            Vector3 pos = player.transform.position + new Vector3(UnityEngine.Random.Range(-2f, 2f), 0, UnityEngine.Random.Range(-2f, 2f));
-            Instantiate(item, pos, transform.rotation);
-            item.GetComponent<ItemResource>().idItem = idItem;
-        }
-        */
 
         if(PlayerManager.Instance.player.GetComponent<CharacterItem>().GetItem(itemResource, qnt))
         {
@@ -182,6 +183,8 @@ public class Resource : MonoBehaviour {
         active.SetActive(false);
         create = true;
         isCraft = false;
+        IcarusPlayerController.Instance.IsAction = false;
+        SoundControl.GetInstance().ExecuteStop(audio);
         setExitMaterial();
     }
 

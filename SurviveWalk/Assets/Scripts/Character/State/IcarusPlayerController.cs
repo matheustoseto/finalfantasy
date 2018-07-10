@@ -223,6 +223,12 @@ public class IcarusPlayerController : CharacterState {
             EnterState(TypeStateCharacter.Move);
             return;
         }
+
+        if (btDirection.x != 0 || btDirection.y != 0)
+        {
+            EnterState(TypeStateCharacter.Move);
+            return;
+        }
     }
 
     protected override void UpdateDeadState()
