@@ -100,7 +100,7 @@
       },
       {
         "id": 1,
-        "step": "Vamos ter que improvisar, pegue alguns galhos e pedras pelo chão, irei montar algo que você possa usar para lutar."
+        "step": "Vamos ter que improvisar, pegue alguns galhos, irei montar algo que você possa usar para lutar."
       },
       {
         "id": 2,
@@ -182,15 +182,15 @@
       },
       {
         "id": 1,
-        "step": "Durante sua ausência fomos atacados várias vezes. Tudo o que restou foram algumas casas destruídas."
+        "step": "Durante sua ausência fomos atacados várias vezes pelo exército do Rei Caveira"
       },
       {
         "id": 2,
-        "step": "Há um exército de esqueletos do grande Rei Caveira."
+        "step": "Estamos em busca de uma arma forte suficiente para derrotar essa ameaça."
       },
       {
         "id": 3,
-        "step": "Estamos procurando materiais para construir uma espada forte o suficiente para derrotá-lo."
+        "step": "Mas os recursos para construir tal arma são difíceis de encontrar."
       },
       {
         "id": 4,
@@ -198,7 +198,7 @@
       },
       {
         "id": 5,
-        "step": "Salve-nos! Você é nossa última esperança."
+        "step": "Você é nossa última esperança."
       }
     ],
 	"crafts": [],
@@ -215,15 +215,11 @@
     "isCraft": true,
     "intro": [
 		{
-			"id": 0,
-			"step": "Enquanto você"
-		},
-		{
-		  "id": 1,
+		  "id": 0,
 			"step": "Eu posso lhe ajudar a fazer alguns equipamentos"
 		},
 		{
-		  "id": 2,
+		  "id": 1,
 			"step": "Pode ser que sejam de alguma ajuda."
 		}
     ],

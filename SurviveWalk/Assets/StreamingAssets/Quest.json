@@ -10,29 +10,29 @@
         "id": 0,
         "complet": false,
         "title": "Reconstrua a ferraria",
-        "info": "Procure em X:-64 Y:698",
-        "descr": "Existe um material que precisamos em ___(X:-64 Y:698), mas ele está muito bem protegido. Tente recuperá-lo."
+        "info": "Procure em X:-268 Y:1078",
+        "descr": "Existe um material que precisamos que está ao norte(X:-268 Y:1078), mas ele está muito bem protegido. Tente recuperá-lo."
       },
       {
         "id": 1,
         "complet": false,
         "title": "Reconstrua a casa dos aldeões",
-        "info": "Procure em X:-181 Y:679",
-        "descr": "Encontramos algo próximo a ___ (X:-181 Y:679), de uma olhada e se poss[ivel traga para a vila."
+        "info": "Procure em X:-52 Y:941",
+        "descr": "Encontramos algo próximo a ___ (X:-52 Y:941), de uma olhada e se possível traga para a vila."
       },
       {
         "id": 2,
         "complet": false,
         "title": "Reconstrua a loja de alquimia",
-        "info": "Procure em X:-236 Y:995",
-        "descr": "A área ____ (X:-236 Y:995) está fortemente protegida por demônios, deve haver algo de importante la."
+        "info": "Procure em X:-195 Y:684",
+        "descr": "A área ____ (X:-195 Y:684) está fortemente protegida por demônios, deve haver algo de importante la."
       },
       {
         "id": 3,
         "complet": false,
         "title": "Reconstrua sua casa",
-        "info": "Procure em X:-108 Y:991",
-        "descr": "Parece haver algo em ___(X:-108 Y:991),você pode dar uma olhada por aquela área?."
+        "info": "Procure em X:38 Y:683",
+        "descr": "Parece haver algo em ___(X:38 Y:683),você pode dar uma olhada por aquela área?"
       }
     ]
   },
