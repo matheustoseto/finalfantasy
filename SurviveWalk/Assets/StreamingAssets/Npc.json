@@ -255,8 +255,12 @@
     "isCraft": true,
     "intro": [
 		{
-			"id": 0,
-			"step": "Pegou os meteriais que pedi?"
+		  "id": 0,
+			"step": "Eu posso lhe ajudar a fazer alguns equipamentos"
+		},
+		{
+		  "id": 1,
+			"step": "Pode ser que sejam de alguma ajuda."
 		}
     ],
 	"crafts": [
