@@ -3,13 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum TypeSound {None, PlayerAttack, EnemyAttack, ArmaFinal, Cidade, Coleta, ColetaMetais, Desolacao, Erro, Floresta, ForjaItens, RisadaBoss}
+public enum TypeSound {None, PlayerAttack, EnemyAttack, ArmaFinal, Cidade, Coleta, ColetaMetais, Desolacao, Erro, Floresta, ForjaItens, RisadaBoss , ColetaArvore , ColetaDefault }
 
 [RequireComponent(typeof(AudioListener))]
 public class SoundControl : MonoBehaviour {
     [System.Serializable]
     private class AudioStruct {
         public string name;
+        public bool isLoop;
         public TypeSound typeSound;
         public AudioClip audioClip;
     }
@@ -67,18 +68,23 @@ public class SoundControl : MonoBehaviour {
 
     }
 
-    // Update is called once per frame
-    void Update () {
-		
-	}
-
-
-
-    public void ExecuteEffect(TypeSound audioEffect)
+    public AudioSource ExecuteEffect(TypeSound audioEffect)
     {
+        AudioStruct clip = listAudios.Find(audio => audio.name == audioEffect.ToString()); 
         audioSourceCurrent = EffectsFree();
-        audioSourceCurrent.clip = listAudios.Find(audio => audio.name == audioEffect.ToString()).audioClip;
+        audioSourceCurrent.clip = clip.audioClip;
+        audioSourceCurrent.loop = clip.isLoop;
         audioSourceCurrent.Play();
+
+        return audioSourceCurrent;
+    }
+
+    public void ExecuteStop(AudioSource audio)
+    {
+        if (audio != null)
+        {
+            audio.Stop();
+        }
     }
 
     private AudioSource EffectsFree()

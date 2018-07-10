@@ -14,7 +14,6 @@ public class GateStateControl : DeviceState {
     [SerializeField] private int idItem = -1;
     #endregion
 
-
     void Awake()
     {
         aniControl = GetComponent<DeviceAnimationControl>();
@@ -69,10 +68,7 @@ public class GateStateControl : DeviceState {
 
     protected override void UpdateOpenState()
     {
-        //if (aniControl.IsAnimationFinish(state.ToString()))
-        //{
-        //    EnterState(TypeStateDevice.Idle);
-        //}
+        
     }
 
     protected override void LeaveOpenState()

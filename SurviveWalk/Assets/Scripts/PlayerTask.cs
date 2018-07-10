@@ -19,8 +19,8 @@ public class PlayerTask : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
 	
     public void OnPointerEnter(PointerEventData eventData)
     {
-        if(task.Complet && speakNpc)
-            tooltip.Activate(task.Descr);
+        //if(task.Complet && speakNpc)
+            //tooltip.Activate(task.Descr);
     }
 
     public void OnPointerExit(PointerEventData eventData)

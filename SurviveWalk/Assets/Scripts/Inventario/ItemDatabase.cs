@@ -165,6 +165,11 @@ public class ItemDatabase : MonoBehaviour {
             enemy.Life = (int)enemyData[i]["life"];
             enemy.Power = (int)enemyData[i]["power"];
 
+            for (int j = 0; j < enemyData[i]["special"].Count; j++)
+            {
+                enemy.special.Add((int)enemyData[i]["special"][j]);
+            }
+
             enemybase.Add(enemy);
         }
 
@@ -185,8 +190,12 @@ public class ItemDatabase : MonoBehaviour {
                     task.Id = (int)questData[i]["tasks"][j]["id"];
                     task.Title = questData[i]["tasks"][j]["title"].ToString();
                     task.Info = questData[i]["tasks"][j]["info"].ToString();
-                    task.Descr = questData[i]["tasks"][j]["descr"].ToString();
                     task.Complet = (bool)questData[i]["tasks"][j]["complet"];
+
+                    for (int k = 0; k < questData[i]["tasks"][j]["descr"].Count; k++)
+                    {
+                        task.Descr.Add(questData[i]["tasks"][j]["descr"][k].ToString());
+                    }
 
                     quest.Task.Add(task);
                 }
@@ -344,6 +353,7 @@ public class Enemy
     public string Name { get; set; }
     public int Life { get; set; }
     public int Power { get; set; }
+    public List<int> special = new List<int>();
 
     public Enemy()
     {
@@ -356,6 +366,7 @@ public class Enemy
         this.Name = enemy.Name;
         this.Life = enemy.Life;
         this.Power = enemy.Power;
+        this.special = enemy.special;
     }
 }
 
@@ -391,6 +402,6 @@ public class Task
     public int Id { get; set; }
     public string Title { get; set; }
     public string Info { get; set; }
-    public string Descr { get; set; }
+    public List<string> Descr = new List<string>();
     public bool Complet { get; set; }
 }

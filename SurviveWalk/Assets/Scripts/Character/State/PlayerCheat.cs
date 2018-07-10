@@ -77,10 +77,14 @@ public class PlayerCheat : MonoBehaviour {
             Inventory.Instance.AddLife(100);          
         }
 
-        // Add espada
+        // Add Item
         if (LeftAlt && Input.GetKeyDown(KeyCode.Alpha3))
         {
             Inventory.Instance.AddItem(1001);
+            Inventory.Instance.AddItemQnt(2, 500);
+            Inventory.Instance.AddItemQnt(3, 500);
+            Inventory.Instance.AddItemQnt(5, 500);
+            Inventory.Instance.AddItemQnt(6, 500);
         }
 
         // Move Speed
@@ -92,13 +96,7 @@ public class PlayerCheat : MonoBehaviour {
                 gameObject.GetComponent<CharacterMoveControl>().runSpeed = 50;
         }
 
-        // Add galho
         if (LeftAlt && Input.GetKeyDown(KeyCode.Alpha5))
-        {
-            Inventory.Instance.AddItemQnt(5, 100);
-        }
-
-        if (LeftAlt && Input.GetKeyDown(KeyCode.Alpha6))
         {
             if (GetComponent<CharacterStatus>().noDamage)
             {
@@ -108,6 +106,5 @@ public class PlayerCheat : MonoBehaviour {
                 GetComponent<CharacterStatus>().noDamage = true;
             }          
         }
-       
     }
 }
