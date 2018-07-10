@@ -60,5 +60,15 @@ public class BossAnimationControl : CharacterAnimationControl
         //SoundControl.GetInstance().ExecuteEffect(TypeSound.EnemyAttack);
     }
 
+    public void SpecialAttackOn()
+    {
+        Weapon.AttackOn();
+    }
+
+    public void SpecialAttackOff()
+    {
+        Weapon.AttackOff();
+    }
+
     #endregion
 }

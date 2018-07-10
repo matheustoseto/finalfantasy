@@ -26,6 +26,9 @@ public class BossStateControl : EnemyStateControl {
         //public bool activated = true;
 
         private float timer = 0;
+        private bool isCooldownActive = false;
+
+        public bool IsCooldownActive { get { return isCooldownActive; } set { isCooldownActive = value; } }
 
         #region Timer
         public void ResetTimer()
@@ -35,11 +38,15 @@ public class BossStateControl : EnemyStateControl {
 
         public bool VerifyTimer()
         {
-            timer += Time.deltaTime;
-            if (timer > cooldown)
+            if (isCooldownActive)
             {
-                timer = 0;
-                return true;
+                timer += Time.deltaTime;
+                if (timer > cooldown)
+                {
+                    isCooldownActive = false;
+                    timer = 0;
+                    return true;
+                }
             }
             return false;
         }
@@ -83,6 +90,7 @@ public class BossStateControl : EnemyStateControl {
         #endregion
     }
 
+    
 
     private BossAnimationControl aniControlBoss = null;
 
@@ -98,6 +106,7 @@ public class BossStateControl : EnemyStateControl {
     private bool isPlayerHere = false;
     private Transform startPointAttack = null;
     private bool isStartPointAttack = false;
+    private BossAttack actualBossAttackSpecial = null;
 
     #region Unity
     void Awake()
@@ -211,6 +220,13 @@ public class BossStateControl : EnemyStateControl {
         //    EnterState(TypeStateCharacter.Back);
         //}
     }
+    private void LateUpdate()
+    {
+        for (int i = 0; i < listAttacks.Count; i++)
+        {
+            listAttacks[i].VerifyTimer();
+        }
+    }
     #endregion
 
 
@@ -305,8 +321,11 @@ public class BossStateControl : EnemyStateControl {
 
 
                 bossAttack = GetAttackBoss(TypeSortBossAttackt.RandomPercentMin, rand);
-                if (bossAttack != null && bossAttack.isSpecialAttack && bossAttack.VerifyTimer())
+                if (bossAttack != null && bossAttack.isSpecialAttack && !bossAttack.IsCooldownActive)
+                {
                     typeState = AttackToState(bossAttack.type);
+                    actualBossAttackSpecial = bossAttack;
+                }
 
                 EnterState(typeState);
 
@@ -326,9 +345,13 @@ public class BossStateControl : EnemyStateControl {
 
             typeState = TypeStateCharacter.Attack;
             bossAttack = GetAttackBoss(TypeSortBossAttackt.HpPercent, hpPercent);
-            if (bossAttack.isSpecialAttack && bossAttack.VerifyTimer())
+            if (bossAttack.isSpecialAttack && !bossAttack.IsCooldownActive)
+            {
                 typeState = AttackToState(bossAttack.type);
+                actualBossAttackSpecial = bossAttack;
+            }
 
+            
             EnterState(typeState);
         }
 
@@ -558,6 +581,7 @@ public class BossStateControl : EnemyStateControl {
     {
         timer = 0;
         isStartPointAttack = false;
+        actualBossAttackSpecial.IsCooldownActive = true;
     }
     #endregion
 

@@ -67,6 +67,17 @@ public class Weapon : MonoBehaviour {
         attack = false;
     }
 
+    public virtual void SpecialAttackOn()
+    {
+
+    }
+
+    public virtual void SpecialAttackOff()
+    {
+
+    }
+
+
     private void OnTriggerEnter(Collider other)
     {
         if ("Enemy".Equals(other.tag) && attack)
