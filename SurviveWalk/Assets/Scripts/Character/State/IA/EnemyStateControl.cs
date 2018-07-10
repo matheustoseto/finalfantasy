@@ -568,7 +568,8 @@ public class EnemyStateControl : CharacterState {
     protected override void LeaveState()
     {
         base.LeaveState();
-        aniControl.Release();
+        if (aniControl != null)
+            aniControl.Release();
     }
 
     protected override void LeaveMoveState()

@@ -25,15 +25,15 @@ public class BossStateControl : EnemyStateControl {
         public float hpPercentActivated = 1;
         //public bool activated = true;
 
-        private float timer = 0;
-        private bool isCooldownActive = false;
+        public float timer = 0;
+        public bool isCooldownActive = false;
 
         public bool IsCooldownActive { get { return isCooldownActive; } set { isCooldownActive = value; } }
 
         #region Timer
         public void ResetTimer()
         {
-            timer = cooldown+1;
+            timer = 0;
         }
 
         public bool VerifyTimer()
@@ -233,6 +233,7 @@ public class BossStateControl : EnemyStateControl {
     #region StateMachine
     protected override void LeaveState()
     {
+        base.LeaveState();
         aniControlBoss.Release();
     }
 

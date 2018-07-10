@@ -52,6 +52,7 @@ public class BossAnimationControl : CharacterAnimationControl
 
     public override void AttackOff()
     {
+        Weapon.AttackOff();
         Weapon.TrailRenderActivated(false);
     }
 

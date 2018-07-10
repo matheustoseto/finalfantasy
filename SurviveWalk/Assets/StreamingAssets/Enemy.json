@@ -16,5 +16,11 @@
 		"name": "TwoHandSkeleton",
 		"life": 84,
 		"power" : 7
+	},
+	{
+		"id": 3,
+		"name": "BossSkeletonWarrior",
+		"life": 84,
+		"power" : 10
 	}
 ]

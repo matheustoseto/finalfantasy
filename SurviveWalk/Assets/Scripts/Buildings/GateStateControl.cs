@@ -69,10 +69,10 @@ public class GateStateControl : DeviceState {
 
     protected override void UpdateOpenState()
     {
-        if (aniControl.IsAnimationFinish(state.ToString()))
-        {
-            EnterState(TypeStateDevice.Idle);
-        }
+        //if (aniControl.IsAnimationFinish(state.ToString()))
+        //{
+        //    EnterState(TypeStateDevice.Idle);
+        //}
     }
 
     protected override void LeaveOpenState()

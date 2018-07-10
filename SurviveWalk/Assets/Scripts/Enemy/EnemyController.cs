@@ -144,7 +144,13 @@ public class EnemyController : MonoBehaviour {
             PlayerManager.Instance.player.GetComponent<CharacterStatus>().RemoveLife(enemyStats.Power);
             attack = true;
             timerAttack = 0.9f;
-        }  
+        }else if (!attack && TypeStateCharacter.SpecialAttack1Mid.Equals(enemy.State))
+        {
+            PlayerManager.Instance.player.GetComponent<CharacterStatus>().RemoveLife(enemyStats.Power);
+            attack = true;
+            timerAttack = 0.9f;
+        }
+
     }
 
     public void ResetLife()
