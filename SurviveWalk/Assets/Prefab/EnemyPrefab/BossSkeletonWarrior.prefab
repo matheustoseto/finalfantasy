@@ -200,7 +200,7 @@ GameObject:
   - component: {fileID: 65968326288734520}
   - component: {fileID: 114857992528888802}
   m_Layer: 0
-  m_Name: SwordBoss (1)
+  m_Name: SwordBoss
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2033,8 +2033,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.035852242, y: 0.06064055, z: 0.30347553}
-  m_Center: {x: 0.00000048184194, y: 0.0029894228, z: 0.06630269}
+  m_Size: {x: 0.035852242, y: 0.09, z: 0.30347553}
+  m_Center: {x: 0, y: 0, z: 0.06630294}
 --- !u!95 &95267758214413476
 Animator:
   serializedVersion: 3

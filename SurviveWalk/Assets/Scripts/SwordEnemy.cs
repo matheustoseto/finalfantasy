@@ -8,7 +8,7 @@ public class SwordEnemy : Weapon {
     public IcarusPlayerController player = null;
 
     private bool attackOnOff = false;
-
+    private bool isSpecialAttack = false;
     private void Start()
     {
         boxCol = GetComponent<BoxCollider>();
@@ -52,6 +52,18 @@ public class SwordEnemy : Weapon {
     public override void AttackOff()
     {
         attackOnOff = false;
+        boxCol.enabled = false;
+    }
+
+    public override void SpecialAttackOn()
+    {
+        isSpecialAttack = true;
+        boxCol.enabled = true;
+    }
+
+    public override void SpecialAttackOff()
+    {
+        isSpecialAttack = false;
         boxCol.enabled = false;
     }
 }
