@@ -25,6 +25,9 @@ public class Resource : MonoBehaviour {
 
     private Item selectItem;
 
+    private AudioSource audio;
+    private bool isCraft = false;
+
     private void Start()
     {
         onMouseExit = new Material[objRender.Length][];
@@ -76,8 +79,9 @@ public class Resource : MonoBehaviour {
         {
             setEnterMaterial();
 
-            if (Input.GetKey(KeyCode.E))
+            if (Input.GetKey(KeyCode.E) && !isCraft)
             {
+                isCraft = true;
                 CraftItem();
             }
         }
@@ -115,12 +119,14 @@ public class Resource : MonoBehaviour {
         selectItem = player.GetComponent<SlotSelect>().GetSelectItemBySlot();
         if (Utils.PodeCraftar(type, selectItem))
         {
+            Sound(itemResource.idItem);
             IcarusPlayerController.Instance.IsAction = true;
             Progress.Instance.ProgressBar(speed, new Action(CreateItem));
         }
         else
         {
             alert.GetComponent<Alerta>().SetText(Utils.PodeCraftarDS(type));
+            isCraft = false;
         }
     }
 
@@ -136,6 +142,8 @@ public class Resource : MonoBehaviour {
     public void CreateItem()
     {
         IcarusPlayerController.Instance.IsAction = false;
+
+        SoundControl.GetInstance().ExecuteStop(audio);
 
         if (!Utils.PodeCraftarSemMaterial(type))
         {
@@ -154,6 +162,14 @@ public class Resource : MonoBehaviour {
         if(PlayerManager.Instance.player.GetComponent<CharacterItem>().GetItem(itemResource, qnt))
         {
             isActive = false;
+
+            foreach (Transform trans in transform)
+            {
+                if ("Seta".Equals(trans.name))
+                {
+                    trans.gameObject.SetActive(false);
+                }
+            }
         }
 
         DisableItem();
@@ -165,6 +181,7 @@ public class Resource : MonoBehaviour {
         //this.gameObject.transform.localScale = new Vector3(0.5F, this.gameObject.transform.localScale.y, 0.5F);
         active.SetActive(false);
         create = true;
+        isCraft = false;
         setExitMaterial();
     }
 
@@ -191,5 +208,19 @@ public class Resource : MonoBehaviour {
             if (objRender[i].GetComponent<Renderer>() != null)
                 if(onMouseExit[i] != null)
                     objRender[i].GetComponent<Renderer>().materials = onMouseExit[i];
+    }
+
+    public void Sound(int id)
+    {
+        if (2 == id)
+        {
+            audio = SoundControl.GetInstance().ExecuteEffect(TypeSound.ColetaArvore);
+        } else if (3 == id || 6 == id || 12 == id)
+        {
+            audio = SoundControl.GetInstance().ExecuteEffect(TypeSound.ColetaMetais);
+        } else
+        {
+            audio = SoundControl.GetInstance().ExecuteEffect(TypeSound.ColetaDefault);
+        }
     }
 }

@@ -177,6 +177,7 @@ public class Inventory : MonoBehaviour
 
         PlayerManager.Instance.player.GetComponent<SlotSelect>().UpdateSelect();
         CheckQuest(id);
+        Sound(id);
     }
 
     private void CheckQuest(int id)
@@ -390,5 +391,10 @@ public class Inventory : MonoBehaviour
     public Quest GetQuest(int id)
     {
         return database.GetQuestList(id);
+    }
+
+    public void Sound(int id)
+    {
+        SoundControl.GetInstance().ExecuteEffect(TypeSound.Coleta);
     }
 }

@@ -25,6 +25,9 @@ public class Dialog : MonoBehaviour {
     private string message;
     private IEnumerator coroutine;
 
+    private PlayerTask playerTask;
+    private int taskCount;
+
     public void SetNpc(Npc npc)
     {
         this.npc = npc;
@@ -105,13 +108,27 @@ public class Dialog : MonoBehaviour {
             {
                 if ("Task(Clone)".Equals(gameObj.name))
                 {
-                    PlayerTask playerTask = gameObj.GetComponent<PlayerTask>();
+                    if (playerTask == null)
+                    {
+                        playerTask = gameObj.GetComponent<PlayerTask>();
+                    }
 
                     if (playerTask.task.Complet && !playerTask.speakNpc)
                     {
+                        if (taskCount < playerTask.task.Descr.Count)
+                        {
+                            SetTxt(playerTask.task.Descr[taskCount]);
+                            taskCount++;
+
+                            if (taskCount < playerTask.task.Descr.Count)
+                            {
+                                return true;
+                            }
+
+                        }
+
                         playerTask.speakNpc = true;
                         playerTask.ChangeText();
-                        SetTxt(playerTask.task.Descr);
 
                         if (inventory.GetQuest(go.GetComponent<IdQuest>().questId).IsDelete)
                         {
@@ -122,18 +139,26 @@ public class Dialog : MonoBehaviour {
                         {
                             itensBoss[playerTask.task.Id].SetActive(true);
 
-                            if (3 == playerTask.task.Id || 4 == playerTask.task.Id)
+                            if (!gateNorth.State.Equals(TypeStateDevice.Open))
                             {
                                 gateNorth.EventDevice(TypeStateDevice.Open);
+                                alert.GetComponent<Alerta>().SetText("Portão Norte aberto.");
                             }
                         }
 
                         if (5 == go.GetComponent<IdQuest>().questId)
                         {
-                            gateEast.EventDevice(TypeStateDevice.Open);
+                            if (!gateEast.State.Equals(TypeStateDevice.Open))
+                            {
+                                gateEast.EventDevice(TypeStateDevice.Open);
+                                alert.GetComponent<Alerta>().SetText("Portão Leste aberto.");
+                            }
                         }
 
                         moveNpcTutorial = true;
+                        playerTask = null;
+                        taskCount = 0;
+
                         return true;
                     }
                 }
