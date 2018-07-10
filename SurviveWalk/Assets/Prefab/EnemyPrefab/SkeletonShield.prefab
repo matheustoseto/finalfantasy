@@ -1738,10 +1738,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   state: 4
   weapon: {fileID: 114161869200683322}
-  isDestroy: 1
+  isDestroy: 0
   timerWait: 8
-  isAutomaticResurrection: 0
-  timeToResurrection: 20
+  isAutomaticResurrection: 1
+  timeToResurrection: 30
   radiusDetectPlayer: 10
   radiusPlayerDistance: 30
   radiusMonitoringPoint: 2
@@ -1767,11 +1767,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de21b84f8e088d648a5402da9fcc3d31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  trailRender: {fileID: 0}
   listTools:
   - name: 
     typeTool: 1
     tool: {fileID: 1593662370197958}
+  boxCol: {fileID: 0}
+  sphereCol: {fileID: 0}
   enemyController: {fileID: 114686600171297552}
+  player: {fileID: 0}
 --- !u!114 &114278087568597054
 MonoBehaviour:
   m_ObjectHideFlags: 1

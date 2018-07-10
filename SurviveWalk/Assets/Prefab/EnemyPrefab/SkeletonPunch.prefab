@@ -811,9 +811,9 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1643413613175592}
-  m_LocalRotation: {x: -0, y: -0.8819624, z: -0, w: -0.4713198}
-  m_LocalPosition: {x: -12.707751, y: 20.904865, z: 340.65088}
-  m_LocalScale: {x: 2.000001, y: 2, z: 2.000001}
+  m_LocalRotation: {x: -0, y: -0.8819624, z: 0, w: -0.4713198}
+  m_LocalPosition: {x: -229.78552, y: 65.55112, z: 74.99994}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 4467049609337738}
   m_Father: {fileID: 0}
@@ -1723,11 +1723,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c96fd783325b0604ab000f1febc3031d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  state: 8
+  state: 4
   weapon: {fileID: 114585094582451020}
-  isDestroy: 1
-  timerWait: 20
-  isAutomaticResurrection: 0
+  isDestroy: 0
+  timerWait: 7
+  isAutomaticResurrection: 1
   timeToResurrection: 20
   radiusDetectPlayer: 10
   radiusPlayerDistance: 30
@@ -1735,7 +1735,7 @@ MonoBehaviour:
   radiusLimitMonitoringPoint: 60
   radiusAttack: 3
   radiusVillage: 50
-  monitoringPoint: {x: 0, y: 0, z: 0}
+  monitoringPoint: {fileID: 0}
   isPatrolStart: 0
   distancePlayerTest: 0
   distanceMonitoringPointTest: 0
@@ -1781,11 +1781,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de21b84f8e088d648a5402da9fcc3d31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  trailRender: {fileID: 0}
   listTools:
   - name: 
     typeTool: 1
     tool: {fileID: 1119944108439264}
+  boxCol: {fileID: 0}
+  sphereCol: {fileID: 0}
   enemyController: {fileID: 114870037633381352}
+  player: {fileID: 0}
 --- !u!114 &114617491199988324
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1828,7 +1832,6 @@ MonoBehaviour:
   sphereColor: {r: 0, g: 0.26206875, b: 1, a: 1}
   lineColor: {r: 0, g: 0.2627451, b: 1, a: 1}
   wayPoints:
-  - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
