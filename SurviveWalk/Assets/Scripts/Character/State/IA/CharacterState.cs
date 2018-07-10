@@ -76,6 +76,7 @@ public class CharacterState : MonoBehaviour {
             case TypeStateCharacter.SpecialAttack1Start : EnterSpecialAttack1StartState(); break;
             case TypeStateCharacter.SpecialAttack1Mid   : EnterSpecialAttack1MidState();   break;
             case TypeStateCharacter.SpecialAttack1End   : EnterSpecialAttack1EndState();   break;
+            case TypeStateCharacter.SpecialAttack2      : EnterSpecialAttack2State(); break;
             default: break;
         }
 
@@ -97,6 +98,7 @@ public class CharacterState : MonoBehaviour {
     protected virtual void EnterSpecialAttack1StartState() { }
     protected virtual void EnterSpecialAttack1MidState()   { }
     protected virtual void EnterSpecialAttack1EndState()   { }
+    protected virtual void EnterSpecialAttack2State()      { }
     #endregion
 
 
@@ -121,6 +123,7 @@ public class CharacterState : MonoBehaviour {
             case TypeStateCharacter.SpecialAttack1Start : UpdateSpecialAttack1StartState(); break;
             case TypeStateCharacter.SpecialAttack1Mid   : UpdateSpecialAttack1MidState();   break;
             case TypeStateCharacter.SpecialAttack1End   : UpdateSpecialAttack1EndState();   break;
+            case TypeStateCharacter.SpecialAttack2      : UpdateSpecialAttack2State();      break;
             default: break;
         }
     }
@@ -141,6 +144,7 @@ public class CharacterState : MonoBehaviour {
     protected virtual void UpdateSpecialAttack1StartState() { }
     protected virtual void UpdateSpecialAttack1MidState()   { }
     protected virtual void UpdateSpecialAttack1EndState()   { }
+    protected virtual void UpdateSpecialAttack2State()      { }
     #endregion
 
 
@@ -165,6 +169,7 @@ public class CharacterState : MonoBehaviour {
             case TypeStateCharacter.SpecialAttack1Start : LeaveSpecialAttack1StartState(); break;
             case TypeStateCharacter.SpecialAttack1Mid   : LeaveSpecialAttack1MidState();   break;
             case TypeStateCharacter.SpecialAttack1End   : LeaveSpecialAttack1EndState();   break;
+            case TypeStateCharacter.SpecialAttack2      : LeaveSpecialAttack2State();      break;
             default: break;
         }
     }
@@ -185,6 +190,7 @@ public class CharacterState : MonoBehaviour {
     protected virtual void LeaveSpecialAttack1StartState() { }
     protected virtual void LeaveSpecialAttack1MidState()   { }
     protected virtual void LeaveSpecialAttack1EndState()   { }
+    protected virtual void LeaveSpecialAttack2State()      { }
 
     #endregion
 

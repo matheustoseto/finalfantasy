@@ -77,6 +77,15 @@ public class Weapon : MonoBehaviour {
 
     }
 
+    public virtual void SpecialAttackOn_2()
+    {
+
+    }
+
+    public virtual void SpecialAttackOff_2()
+    {
+
+    }
 
     private void OnTriggerEnter(Collider other)
     {

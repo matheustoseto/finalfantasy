@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class SwordEnemy : Weapon {
     public BoxCollider boxCol = null;
+    public SphereCollider sphereCol = null;
     public EnemyController enemyController;
     public IcarusPlayerController player = null;
 
     private bool attackOnOff = false;
-    private bool isSpecialAttack = false;
+    
     private void Start()
     {
         boxCol = GetComponent<BoxCollider>();
@@ -57,13 +58,24 @@ public class SwordEnemy : Weapon {
 
     public override void SpecialAttackOn()
     {
-        isSpecialAttack = true;
+        attackOnOff = true;
         boxCol.enabled = true;
     }
 
     public override void SpecialAttackOff()
     {
-        isSpecialAttack = false;
+        attackOnOff = false;
         boxCol.enabled = false;
     }
+
+    public virtual void SpecialAttackOn_2()
+    {
+        sphereCol.gameObject.SetActive(true);
+    }
+
+    public virtual void SpecialAttackOff_2()
+    {
+        sphereCol.gameObject.SetActive(false);
+    }
+
 }

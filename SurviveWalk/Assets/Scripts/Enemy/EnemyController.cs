@@ -150,6 +150,12 @@ public class EnemyController : MonoBehaviour {
             attack = true;
             timerAttack = 0.9f;
         }
+        else if (!attack && TypeStateCharacter.SpecialAttack2.Equals(enemy.State))
+        {
+            PlayerManager.Instance.player.GetComponent<CharacterStatus>().RemoveLife(enemyStats.Power);
+            attack = true;
+            timerAttack = 0.9f;
+        }
 
     }
 
