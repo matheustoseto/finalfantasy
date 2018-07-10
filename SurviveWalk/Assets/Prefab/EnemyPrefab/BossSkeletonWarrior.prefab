@@ -413,7 +413,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1518475210956254
 GameObject:
   m_ObjectHideFlags: 1
@@ -893,13 +893,14 @@ GameObject:
   - component: {fileID: 33507505236225546}
   - component: {fileID: 135528726669012216}
   - component: {fileID: 23241853095661726}
+  - component: {fileID: 114842450497915712}
   m_Layer: 0
   m_Name: Explosion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1968519615197886
 GameObject:
   m_ObjectHideFlags: 1
@@ -1830,7 +1831,7 @@ MeshRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1952794026619826}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -2289,12 +2290,12 @@ MonoBehaviour:
   - name: '2: SpecialAttack1'
     type: 1
     isSpecialAttack: 1
-    cooldown: 2
-    hpPercentActivated: 0.5
+    cooldown: 6
+    hpPercentActivated: 0.8
   - name: '3: SpecialAttack2'
     type: 2
     isSpecialAttack: 1
-    cooldown: 2
+    cooldown: 4
     hpPercentActivated: 0.9
   bossHpPercentTest: 0
 --- !u!114 &114326456288686868
@@ -2403,6 +2404,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 224476838302251448}
+--- !u!114 &114842450497915712
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1952794026619826}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3662c71b514e4274498610d27d0f5b92, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyStatus: {fileID: 0}
 --- !u!114 &114857992528888802
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -562,7 +562,8 @@ public class BossStateControl : EnemyStateControl {
 
             if (!isStartPointAttack)
             {
-                isStartPointAttack = true;
+                if (ListWayPoints[ActualWp].position.Equals(startPointAttack.position))
+                    isStartPointAttack = true;
             }
             else
             {
@@ -609,13 +610,13 @@ public class BossStateControl : EnemyStateControl {
         #endregion
 
         #region Transtions
-        //if (aniControlBoss.IsAnimationFinish(state.ToString()))
-        //{
-        //    //TransitionsAttack();
-        //    EnterState(TypeStateCharacter.Move);
-        //    return;
-        //}
-        TransitionsAttack();
+        if (aniControlBoss.IsAnimationFinish(state.ToString()))
+        {
+            //TransitionsAttack();
+            EnterState(TypeStateCharacter.Move);
+            return;
+        }
+        //TransitionsAttack();
         #endregion
     }
 
@@ -626,7 +627,7 @@ public class BossStateControl : EnemyStateControl {
 
     #endregion
 
-    #region AttackState
+    #region SpecialAttack2
 
     protected override void EnterSpecialAttack2State()
     {
@@ -673,7 +674,6 @@ public class BossStateControl : EnemyStateControl {
         aniControlBoss.SpeedPercent = MoveControl.Magnitude / 2;
     }
 
-
     protected override void UpdateFollowState()
     {
         #region Action
@@ -709,7 +709,6 @@ public class BossStateControl : EnemyStateControl {
         }
         #endregion
     }
-
 
     protected override void LeaveFollowState()
     {
@@ -767,7 +766,6 @@ public class BossStateControl : EnemyStateControl {
         Desactivated();
         timer = 0;
     }
-
 
     protected override void UpdateDeadState()
     {

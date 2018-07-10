@@ -24,7 +24,7 @@
 		"id": 3,
 		"name": "BossSkeletonWarrior",
 		"life": 84,
-		"power" : 10,
-		"special" : [ 10, 10 ]
+		"power" : 2,
+		"special" : [ 4, 6 ]
 	}
 ]
