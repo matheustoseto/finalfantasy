@@ -152,7 +152,8 @@ public class BossStateControl : EnemyStateControl {
     // Use this for initialization
     void Start () {
         InitStart();
-	}
+        EnemyStatus.lifeBar.SetActive(false);
+    }
 
     protected override void IniState()
     {
@@ -184,6 +185,8 @@ public class BossStateControl : EnemyStateControl {
             listAttacks[i].name = (i + 1) + ": " + listAttacks[i].type.ToString();
             listAttacks[i].ResetTimer();
         }
+
+        EnemyStatus.lifeBar.SetActive(false);
         #endregion
     }
 
@@ -236,8 +239,17 @@ public class BossStateControl : EnemyStateControl {
         if (PlayerStatus.lifeProgress <= 0
             && AlertStateActivated())
         {
-            EnterState(TypeStateCharacter.Back);
+            if (state == TypeStateCharacter.SpecialAttack1Mid)
+                EnterState(TypeStateCharacter.SpecialAttack1End);
+            else
+                EnterState(TypeStateCharacter.Back);
         }
+
+        //float playerDistance = Distance(PlayerTarget.position, transform.position);
+        //if (playerDistance <= RadiusDetectPlayer)
+        //{
+        //    EnemyStatus.lifeBar.SetActive(true);
+        //}
     }
     #endregion
 
@@ -665,6 +677,7 @@ public class BossStateControl : EnemyStateControl {
         MoveControl.Stop();
         timer = 0;
         actualBossAttackSpecial.IsCooldownActive = true;
+        Weapon.SpecialAttackOff_2();
     }
 
     #endregion
@@ -678,6 +691,7 @@ public class BossStateControl : EnemyStateControl {
     {
         aniControlBoss.IsLocomotion = true;
         aniControlBoss.SpeedPercent = MoveControl.Magnitude / 2;
+        EnemyStatus.lifeBar.SetActive(true);
     }
 
     protected override void UpdateFollowState()
@@ -730,6 +744,7 @@ public class BossStateControl : EnemyStateControl {
         aniControlBoss.IsLocomotion = true;
         aniControlBoss.SpeedPercent = MoveControl.Magnitude / 2;
         EnemyStatus.ResetLife();
+        EnemyStatus.lifeBar.SetActive(false);
     }
 
     protected override void UpdateBackState()
@@ -771,6 +786,7 @@ public class BossStateControl : EnemyStateControl {
         aniControlBoss.IsDead = true;
         Desactivated();
         timer = 0;
+        EnemyStatus.lifeBar.SetActive(false);
     }
 
     protected override void UpdateDeadState()

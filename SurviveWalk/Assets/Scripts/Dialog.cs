@@ -156,13 +156,15 @@ public class Dialog : MonoBehaviour {
                             }
                         }
 
+                        // Abre o portão leste //
+                        // Termina aqui a versão demo //
                         if (5 == go.GetComponent<IdQuest>().questId)
                         {
-                            if (!gateEast.State.Equals(TypeStateDevice.Open))
-                            {
-                                gateEast.EventDevice(TypeStateDevice.Open);
-                                alert.GetComponent<Alerta>().SetText("Portão Leste aberto.");
-                            }
+                            //if (!gateEast.State.Equals(TypeStateDevice.Open))
+                            //{
+                            //    gateEast.EventDevice(TypeStateDevice.Open);
+                            //    alert.GetComponent<Alerta>().SetText("Portão Leste aberto.");
+                            //}
                         }
 
                         moveNpcTutorial = true;
