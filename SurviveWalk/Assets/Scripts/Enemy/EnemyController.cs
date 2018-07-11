@@ -124,10 +124,20 @@ public class EnemyController : MonoBehaviour {
             if (enemyStats.Life <= 0)
             {
                 enemy.EventDead();
+
                 if (NpcController.Instance.npcType.Equals(Utils.NpcType.Npc5))
                 {
                     CompletQuest completQuest = new CompletQuest();
                     completQuest.questId = 2;
+                    completQuest.taskId = 0;
+
+                    NpcController.Instance.questNpc.CompletTaskQuest(completQuest);
+                }
+
+                if (enemyType.Equals(Utils.EnemyType.BossSkeletonWarrior) && NpcController.Instance.npcType.Equals(Utils.NpcType.Npc0))
+                {
+                    CompletQuest completQuest = new CompletQuest();
+                    completQuest.questId = 5;
                     completQuest.taskId = 0;
 
                     NpcController.Instance.questNpc.CompletTaskQuest(completQuest);
