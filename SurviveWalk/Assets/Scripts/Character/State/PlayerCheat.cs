@@ -11,10 +11,8 @@ public class PlayerCheat : MonoBehaviour {
     [SerializeField] private int actualCheckPoint = 0;
 
     public GameObject npcGameObject;
+    public GameObject alert;
 
-    private bool LeftAlt = false;
-
-    // Use this for initialization
     void Start () {
         moveControl = GetComponent<CharacterMoveControl>();
 
@@ -35,7 +33,6 @@ public class PlayerCheat : MonoBehaviour {
         }
 	}
 	
-	// Update is called once per frame
 	void Update () {
 
         if (Input.GetKeyDown(KeyCode.Tab))
@@ -47,13 +44,8 @@ public class PlayerCheat : MonoBehaviour {
             moveControl.ReturnCheckPoint(listCheckPoints[actualCheckPoint].position);
         }
 
-        if (Input.GetKeyDown(KeyCode.LeftAlt))
-            LeftAlt = true;
-        if (Input.GetKeyUp(KeyCode.LeftAlt))
-            LeftAlt = false;
-
         // Pular Tutorial
-        if (LeftAlt && Input.GetKeyDown(KeyCode.Alpha1))
+        if (Input.GetKeyDown(KeyCode.F1))
         {
             if (NpcController.Instance.npcType.Equals(Utils.NpcType.Npc2))
             {
@@ -64,46 +56,53 @@ public class PlayerCheat : MonoBehaviour {
                 npcGameObject.GetComponent<NPCStateControl>().EventPatrol();
 
                 NpcController.Instance.npcType = Utils.NpcType.Npc6;
+
+                alert.GetComponent<Alerta>().SetText("Pular Tutorial.");
             } else
             {
                 npcGameObject.GetComponent<NavMeshAgent>().speed = 6;
-            }
-            
+            }           
         }
 
         // Add life 100
-        if (LeftAlt && Input.GetKeyDown(KeyCode.Alpha2))
+        if (Input.GetKeyDown(KeyCode.F2))
         {
-            Inventory.Instance.AddLife(100);          
+            Inventory.Instance.AddLife(100);
+            alert.GetComponent<Alerta>().SetText("100 life.");
         }
 
         // Add Item
-        if (LeftAlt && Input.GetKeyDown(KeyCode.Alpha3))
+        if (Input.GetKeyDown(KeyCode.F3))
         {
-            Inventory.Instance.AddItem(1001);
+            Inventory.Instance.AddItem(40);
             Inventory.Instance.AddItemQnt(2, 500);
             Inventory.Instance.AddItemQnt(3, 500);
             Inventory.Instance.AddItemQnt(5, 500);
             Inventory.Instance.AddItemQnt(6, 500);
+            alert.GetComponent<Alerta>().SetText("Adicionado itens.");
         }
 
         // Move Speed
-        if (LeftAlt && Input.GetKeyDown(KeyCode.Alpha4))
+        if (Input.GetKeyDown(KeyCode.F4))
         {
             if (gameObject.GetComponent<CharacterMoveControl>().runSpeed == 50)
                 gameObject.GetComponent<CharacterMoveControl>().runSpeed = 10;
             else
                 gameObject.GetComponent<CharacterMoveControl>().runSpeed = 50;
+
+            alert.GetComponent<Alerta>().SetText("Player Speed.");
         }
 
-        if (LeftAlt && Input.GetKeyDown(KeyCode.Alpha5))
+        if (Input.GetKeyDown(KeyCode.F5))
         {
             if (GetComponent<CharacterStatus>().noDamage)
             {
                 GetComponent<CharacterStatus>().noDamage = false;
+                alert.GetComponent<Alerta>().SetText("No Damage False.");
             } else
             {
                 GetComponent<CharacterStatus>().noDamage = true;
+                alert.GetComponent<Alerta>().SetText("No Damage True.");
             }          
         }
     }

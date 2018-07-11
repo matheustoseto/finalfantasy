@@ -30,7 +30,11 @@ public class PlayerTask : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
 
     public void ChangeText()
     {
-        if(speakNpc)
+        if (speakNpc)
+        {
             gameObject.transform.GetChild(0).GetComponent<Text>().text = task.Info;
+            SoundControl.GetInstance().ExecuteEffect(TypeSound.Create);
+        }
+            
     }
 }

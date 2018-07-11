@@ -74,11 +74,11 @@ public class SlotSelect : MonoBehaviour {
         if (inventory.slots[slotSelect].transform.childCount > 0)
             SetWeapon(inventory.items[slotSelect]);
         else
-            SetWeapon(null);
+            SetWeapon(null);    
     }
 
     public void UpdateSelect()
-    {
+    {     
         Select(slotSelect);
     }
 
@@ -87,7 +87,7 @@ public class SlotSelect : MonoBehaviour {
         if (item != null)
         {
             if ("Weapon".Equals(item.Type) || "Picareta".Equals(item.Type) || "Machado".Equals(item.Type))
-            {
+            {             
                 weapon.item = item;
             }
             else

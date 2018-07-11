@@ -43,6 +43,7 @@ public class MenuController : MonoBehaviour {
         }
         else
         {
+            SoundControl.GetInstance().ExecuteEffect(TypeSound.Pause);
             IcarusPlayerController.Instance.IsBlockInputs = true;
             PauseMenu.SetActive(true);
             Time.timeScale = 0;
