@@ -1,4 +1,8 @@
-# finalfantasy
+# Icarus - The Hero Returns
+
+Especialização em Desenvolvimento de Jogos Digitais
+
+Trabalho de Conclusão do Curso - 2018/1
 
 # Conceito/Estilo de Arte
 - https://jovemnerd.com.br/nerdnews/no-place-for-bravery-e-um-jogo-que-troca-bravura-por-arte-e-mecanicas-minimalistas/
@@ -8,38 +12,14 @@
 
 # Conceito/Estilo de Gameplay
 - Craft
-- Sistema de Inventario
-- Drop Itens
-- Sistema de survive
+- Inventario
 - Battle
-- Elementos de RPG (Exp/Lvl) (?)
-- Hack and Slash (?)
-
-# Gameplay
-- Viajante no espaço por algum motivo cai na terra na era dos dinossauros. 
-- Objetivo é sobreviver no planeta com os recursos da época.
-- Sua unica ajuda é sua impressora 3D futuristica.
-
-# Prototipação
-- Sistema de survive
-- Movimentação estilo Cubers
-- Inventario 
-- Craft
-- Interação com os Materiais
-
-# Tilha Sonora
--
--
--
--
+- Quest
+- Boss Fight
+- NPC
 
 # Material de Referência
 - Hero Siege - https://www.youtube.com/watch?v=-3NIV1yYQo0
 - Relic Hunter Zero - https://github.com/mventurelli/relichunterszero
-- Trello Relic Hunter Zero - https://trello.com/b/nM8TWNBR/relic-hunters-zero-open-source
 - Cubers - https://www.youtube.com/watch?v=DiNWjsuiwpU
 - Surviveland - https://www.youtube.com/watch?v=PC2mjd8su3I
-
-# More
-- Itens para aumentar vida
-- Quest
