@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class SwordEnemy : Weapon {
+    
     public BoxCollider boxCol = null;
-    public SphereCollider sphereCol = null;
+    public ExplodeDamage explodeDamage = null;
     public EnemyController enemyController;
     public IcarusPlayerController player = null;
 
@@ -68,14 +69,22 @@ public class SwordEnemy : Weapon {
         boxCol.enabled = false;
     }
 
-    public virtual void SpecialAttackOn_2()
+    public override void SpecialAttackOn_2()
     {
-        sphereCol.gameObject.SetActive(true);
+        if (explodeDamage != null)
+        {
+            explodeDamage.gameObject.SetActive(true);
+            explodeDamage.EnableParticle();
+        }
     }
 
-    public virtual void SpecialAttackOff_2()
+    public override void SpecialAttackOff_2()
     {
-        sphereCol.gameObject.SetActive(false);
+        if (explodeDamage != null)
+        {
+            explodeDamage.DisableParticle();
+            explodeDamage.gameObject.SetActive(false);
+        }
     }
 
 }

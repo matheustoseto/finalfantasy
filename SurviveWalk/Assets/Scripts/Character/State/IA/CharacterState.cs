@@ -217,6 +217,10 @@ public class CharacterState : MonoBehaviour {
     protected bool AlertStateActivated()
     {
         return state == TypeStateCharacter.Attack
+            || state == TypeStateCharacter.SpecialAttack1Start
+            || state == TypeStateCharacter.SpecialAttack1Mid
+            || state == TypeStateCharacter.SpecialAttack1End
+            || state == TypeStateCharacter.SpecialAttack2
             || state == TypeStateCharacter.Follow
             || state == TypeStateCharacter.Move;
     }
