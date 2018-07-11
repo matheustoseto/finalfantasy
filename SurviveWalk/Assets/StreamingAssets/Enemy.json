@@ -23,8 +23,8 @@
 	{
 		"id": 3,
 		"name": "BossSkeletonWarrior",
-		"life": 84,
-		"power" : 2,
-		"special" : [ 4, 6 ]
+		"life": 250,
+		"power" : 10,
+		"special" : [ 5, 20 ]
 	}
 ]

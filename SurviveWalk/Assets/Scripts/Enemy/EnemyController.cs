@@ -50,7 +50,7 @@ public class EnemyController : MonoBehaviour {
 	void Update () {
         if (!TypeStateCharacter.FakeDead.Equals(enemy.State))
         {
-            if (!lifeBar.activeSelf)
+            if (!lifeBar.activeSelf && !enemyType.Equals(Utils.EnemyType.BossSkeletonWarrior))
                 lifeBar.SetActive(true);
 
             if (removeLife)
@@ -123,6 +123,8 @@ public class EnemyController : MonoBehaviour {
 
             if (enemyStats.Life <= 0)
             {
+                if (!enemyType.Equals(Utils.EnemyType.BossSkeletonWarrior))
+                    lifeBar.SetActive(false);
                 enemy.EventDead();
 
                 if (NpcController.Instance.npcType.Equals(Utils.NpcType.Npc5))
@@ -134,7 +136,9 @@ public class EnemyController : MonoBehaviour {
                     NpcController.Instance.questNpc.CompletTaskQuest(completQuest);
                 }
 
-                if (enemyType.Equals(Utils.EnemyType.BossSkeletonWarrior) && NpcController.Instance.npcType.Equals(Utils.NpcType.Npc0))
+                if (enemyType.Equals(Utils.EnemyType.BossSkeletonWarrior)
+                    //&& NpcController.Instance.npcType.Equals(Utils.NpcType.Npc0)
+                    )
                 {
                     CompletQuest completQuest = new CompletQuest();
                     completQuest.questId = 5;
@@ -175,6 +179,9 @@ public class EnemyController : MonoBehaviour {
     {
         enemyStats.Life = lifeTotal;
         lifeBar.GetComponent<Image>().fillAmount = enemyStats.Life / lifeTotal;
+
+        if (!enemyType.Equals(Utils.EnemyType.BossSkeletonWarrior))
+            lifeBar.SetActive(true);
     }
 
 
