@@ -38,6 +38,7 @@ public class NpcController : MonoBehaviour {
             {
                 if (Input.GetKey(KeyCode.E))
                 {
+                    SoundControl.GetInstance().ExecuteEffect(TypeSound.Question);
                     dialogPanel.SetActive(true);
                     dialogPanel.GetComponent<Dialog>().SetNpc(Inventory.Instance.GetNpcData(npcType.GetHashCode()));     
                     IcarusPlayerController.Instance.IsBlockInputs = true;

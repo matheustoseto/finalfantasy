@@ -60,6 +60,7 @@ public class Weapon : MonoBehaviour {
     {
         attack = true;
         transform.localPosition += new Vector3(0, 0, 0.6f);
+        SoundControl.GetInstance().ExecuteEffect(TypeSound.PlayerAttack);
     }
 
     public virtual void AttackOff()

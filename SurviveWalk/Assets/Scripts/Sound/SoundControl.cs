@@ -3,7 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum TypeSound {None, PlayerAttack, EnemyAttack, ArmaFinal, Cidade, Coleta, ColetaMetais, Desolacao, Erro, Floresta, ForjaItens, RisadaBoss , ColetaArvore , ColetaDefault }
+public enum TypeSound { None, PlayerAttack, EnemyAttack, ArmaFinal, Cidade, Coleta, ColetaMetais, Desolacao, Erro, Floresta, ForjaItens,
+                        RisadaBoss , ColetaArvore , ColetaDefault , Button, Close, Create, Cursor, Delete, Open, Pause, Question, Touch }
 
 [RequireComponent(typeof(AudioListener))]
 public class SoundControl : MonoBehaviour {
@@ -77,6 +78,15 @@ public class SoundControl : MonoBehaviour {
         audioSourceCurrent.Play();
 
         return audioSourceCurrent;
+    }
+
+    public void ExecuteEffect(string audioEffect)
+    {
+        AudioStruct clip = listAudios.Find(audio => audio.name == audioEffect);
+        audioSourceCurrent = EffectsFree();
+        audioSourceCurrent.clip = clip.audioClip;
+        audioSourceCurrent.loop = clip.isLoop;
+        audioSourceCurrent.Play();
     }
 
     public void ExecuteStop(AudioSource audio)

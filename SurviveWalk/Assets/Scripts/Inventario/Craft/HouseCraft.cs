@@ -78,6 +78,8 @@ public class HouseCraft : MonoBehaviour {
                             Image img = housePanel.transform.Find("HousePanel").Find("HouseList").transform.GetChild(i).gameObject.transform.Find("Icon").gameObject.GetComponent<Image>();
                             img.color = Color.green;
                             questNpc.CompletTaskQuest(completQuest);
+
+                            SoundControl.GetInstance().ExecuteEffect(TypeSound.Create);
                         }
                         break;
                     }

@@ -9,6 +9,7 @@ public class Dialog : MonoBehaviour {
     public GateStateControl gateSouth;
     public GateStateControl gateNorth;
     public GateStateControl gateEast;
+    public GateStateControl gateBoss;
     public GameObject npcGameObject;  
     public GameObject npcPanel;
     public GameObject inventoryPanel;
@@ -146,6 +147,15 @@ public class Dialog : MonoBehaviour {
                             }
                         }
 
+                        if (4 == go.GetComponent<IdQuest>().questId)
+                        {
+                            if (!gateBoss.State.Equals(TypeStateDevice.Open))
+                            {
+                                gateBoss.EventDevice(TypeStateDevice.Open);
+                                alert.GetComponent<Alerta>().SetText("Portão das Ruinas aberto.");
+                            }
+                        }
+
                         if (5 == go.GetComponent<IdQuest>().questId)
                         {
                             if (!gateEast.State.Equals(TypeStateDevice.Open))
@@ -241,7 +251,7 @@ public class Dialog : MonoBehaviour {
             moveNpcTutorial = false;
             CloseDialog();
             npcGameObject.GetComponent<NpcController>().seta.SetActive(false);
-            alert.GetComponent<Alerta>().SetText("Busque recursos e contrua equipamentos mais fortes.");
+            alert.GetComponent<Alerta>().SetText("Colete recursos e Forje itens mais fortes.");
         }
     }
 

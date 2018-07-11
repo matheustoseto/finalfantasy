@@ -303,6 +303,7 @@ public class Inventory : MonoBehaviour
             {
                 addItem = new Item(item);
                 Progress.Instance.ProgressBar(0.09F, AddLife);
+                SoundControl.GetInstance().ExecuteEffect(TypeSound.Create);
                 return true;
             }                     
         }
@@ -349,6 +350,8 @@ public class Inventory : MonoBehaviour
 
         Destroy(itemData.gameObject);
         items[itemData.slotId] = new Item();
+
+        SoundControl.GetInstance().ExecuteEffect(TypeSound.Delete);
     }
 
     public void DisableInventory()
@@ -395,6 +398,6 @@ public class Inventory : MonoBehaviour
 
     public void Sound(int id)
     {
-        SoundControl.GetInstance().ExecuteEffect(TypeSound.Coleta);
+        SoundControl.GetInstance().ExecuteEffect(TypeSound.Create);
     }
 }
