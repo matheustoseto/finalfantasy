@@ -19,6 +19,7 @@ public class EnemyStateControl : CharacterState {
     [Header("General Settings:")]
     //[SerializeField] private Weapon weapon;
     [SerializeField] private bool isDestroy = false;
+    [SerializeField] private float timeToDestroy = 5;
     [SerializeField] private float timerWait = 3;
     protected float timer = 0;
 
@@ -68,10 +69,11 @@ public class EnemyStateControl : CharacterState {
     protected EnemyController       EnemyStatus  {get{ return enemyStatus;} set { enemyStatus = value; } }
 
     protected bool IsDestroy {get{return isDestroy;} set{isDestroy = value;}}
+    protected float TimerDestroy { get { return timeToDestroy; } set { timeToDestroy = value; }  }
     protected float TimerWait{get{return timerWait;} set{timerWait = value;}}
 
     protected bool  IsAutomaticResurrection { get {return isAutomaticResurrection; } set { isAutomaticResurrection = value; } }
-    protected float TimeToResurrection      { get {return timeToResurrection     ; } set { timeToResurrection      = value; } }
+    protected float TimeToDestroy      { get {return timeToResurrection     ; } set { timeToResurrection      = value; } }
 
 
     protected float RadiusDetectPlayer         { get { return radiusDetectPlayer        ; } set { radiusDetectPlayer         = value; } }
@@ -192,7 +194,7 @@ public class EnemyStateControl : CharacterState {
         moveControl.BodyMiniMap.gameObject.SetActive(false);
         playerTarget = IcarusPlayerController.GetInstance();
         playerStatus = playerTarget.gameObject.GetComponent<CharacterStatus>();
-
+        enemyStatus.BoxCollider.enabled = true;
         IniState();
     }
 	
@@ -557,7 +559,19 @@ public class EnemyStateControl : CharacterState {
                     EnterState(TypeStateCharacter.Rise);
             }
             else
-                EnterState(TypeStateCharacter.Dead);
+            {
+                if (IsDestroy)
+                {
+                    timer += Time.deltaTime;
+                    if (timer >= TimeToDestroy)
+                    {
+                        EnterState(TypeStateCharacter.Rise);
+                        return;
+                    }
+                }
+                else
+                    EnterState(TypeStateCharacter.Dead);
+            }
         }
         #endregion
     }
@@ -655,6 +669,7 @@ public class EnemyStateControl : CharacterState {
     {
         moveControl.BodyMiniMap.SetActive(true);
         boxCol.enabled = false;
+        enemyStatus.BoxCollider.enabled = true;
     }
 
     protected virtual void Desactivated()
@@ -662,6 +677,7 @@ public class EnemyStateControl : CharacterState {
         moveControl.BodyMiniMap.SetActive(false);
         isPatrolCompleted = false;
         boxCol.enabled = false;
+        enemyStatus.BoxCollider.enabled = false;
     }
     #endregion
 

@@ -6,6 +6,8 @@ using UnityEngine.UI;
 
 public class EnemyController : MonoBehaviour {
 
+    private BoxCollider boxColl = null;
+
     public EnemyStateControl enemy;
     //public NavMeshAgent agent;
     public Material OnAttack;
@@ -32,7 +34,7 @@ public class EnemyController : MonoBehaviour {
 
 
     public float HPPercent { get { return (float)enemyStats.Life / (float)lifeTotal; } }
-    
+    public BoxCollider BoxCollider { get { return boxColl; } set { boxColl = value; } }
 
     // Use this for initialization
     void Start () {
@@ -41,6 +43,7 @@ public class EnemyController : MonoBehaviour {
         playerTarget = PlayerManager.Instance.player.transform;
         enemyStats = Inventory.Instance.GetEnemyData(enemyType.GetHashCode());
         lifeTotal = enemyStats.Life;
+        boxColl = Body.gameObject.GetComponent<BoxCollider>();
     }
 	
 	// Update is called once per frame
@@ -121,7 +124,6 @@ public class EnemyController : MonoBehaviour {
             if (enemyStats.Life <= 0)
             {
                 enemy.EventDead();
-
                 if (NpcController.Instance.npcType.Equals(Utils.NpcType.Npc5))
                 {
                     CompletQuest completQuest = new CompletQuest();
