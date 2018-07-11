@@ -232,6 +232,12 @@ public class BossStateControl : EnemyStateControl {
         {
             listAttacks[i].VerifyTimer();
         }
+
+        if (PlayerStatus.lifeProgress <= 0
+            && AlertStateActivated())
+        {
+            EnterState(TypeStateCharacter.Back);
+        }
     }
     #endregion
 
@@ -780,11 +786,23 @@ public class BossStateControl : EnemyStateControl {
             if (IsAutomaticResurrection)
             {
                 timer += Time.deltaTime;
-                if (timer >= TimeToResurrection)
+                if (timer >= TimeToDestroy)
                     EnterState(TypeStateCharacter.Rise);
             }
             else
-                EnterState(TypeStateCharacter.Dead);
+            {
+                if (IsDestroy)
+                {
+                    timer += Time.deltaTime;
+                    if (timer >= TimeToDestroy)
+                    {
+                        EnterState(TypeStateCharacter.Rise);
+                        return;
+                    }
+                }
+                else
+                    EnterState(TypeStateCharacter.Dead);
+            }
         }
         #endregion
     }
@@ -799,6 +817,7 @@ public class BossStateControl : EnemyStateControl {
 
         EnemyStatus.ResetLife();
         timer = 0;
+        Activated();
     }
 
     #endregion

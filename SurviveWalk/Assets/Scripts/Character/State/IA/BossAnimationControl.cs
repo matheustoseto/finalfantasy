@@ -77,12 +77,12 @@ public class BossAnimationControl : CharacterAnimationControl
 
     public void SpecialAttack2On()
     {
-        Weapon.AttackOn();
+        Weapon.SpecialAttackOn_2();
     }
 
     public void SpecialAttack2Off()
     {
-        Weapon.AttackOff();
+        Weapon.SpecialAttackOff_2();
     }
 
     #endregion
