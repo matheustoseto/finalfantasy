@@ -1973,6 +1973,11 @@ Prefab:
       propertyPath: timeToResurrection
       value: 120
       objectReference: {fileID: 0}
+    - target: {fileID: 114131251717717542, guid: ff87e771c4a88364788b5febeb35bd32,
+        type: 2}
+      propertyPath: radiusDetectPlayer
+      value: 20
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ff87e771c4a88364788b5febeb35bd32, type: 2}
   m_IsPrefabParent: 0
@@ -6007,7 +6012,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 142118220}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.29, y: -0.95, z: 5.23}
+  m_LocalPosition: {x: -8.32, y: -0.2, z: 5.82}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 631294004}
@@ -12294,6 +12299,11 @@ Prefab:
       propertyPath: timeToResurrection
       value: 100
       objectReference: {fileID: 0}
+    - target: {fileID: 114129723329331158, guid: 84b479016ca683546bea874a7e192649,
+        type: 2}
+      propertyPath: radiusDetectPlayer
+      value: 20
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 84b479016ca683546bea874a7e192649, type: 2}
   m_IsPrefabParent: 0
@@ -13286,6 +13296,16 @@ Prefab:
         type: 2}
       propertyPath: timeToResurrection
       value: 120
+      objectReference: {fileID: 0}
+    - target: {fileID: 114131251717717542, guid: ff87e771c4a88364788b5febeb35bd32,
+        type: 2}
+      propertyPath: state
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 114131251717717542, guid: ff87e771c4a88364788b5febeb35bd32,
+        type: 2}
+      propertyPath: radiusDetectPlayer
+      value: 20
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ff87e771c4a88364788b5febeb35bd32, type: 2}
@@ -19206,6 +19226,11 @@ Prefab:
       propertyPath: state
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 114131251717717542, guid: ff87e771c4a88364788b5febeb35bd32,
+        type: 2}
+      propertyPath: radiusDetectPlayer
+      value: 20
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ff87e771c4a88364788b5febeb35bd32, type: 2}
   m_IsPrefabParent: 0
@@ -19668,6 +19693,11 @@ Prefab:
         type: 2}
       propertyPath: timeToResurrection
       value: 80
+      objectReference: {fileID: 0}
+    - target: {fileID: 114438745163390974, guid: 7b713d2d2f04c9d44b301ec2bd3f4aca,
+        type: 2}
+      propertyPath: radiusDetectPlayer
+      value: 20
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7b713d2d2f04c9d44b301ec2bd3f4aca, type: 2}
@@ -20823,7 +20853,7 @@ Prefab:
     - target: {fileID: 114131251717717542, guid: ff87e771c4a88364788b5febeb35bd32,
         type: 2}
       propertyPath: state
-      value: 4
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 4247934018509890, guid: ff87e771c4a88364788b5febeb35bd32, type: 2}
       propertyPath: m_LocalScale.x
@@ -20847,6 +20877,11 @@ Prefab:
         type: 2}
       propertyPath: timeToResurrection
       value: 120
+      objectReference: {fileID: 0}
+    - target: {fileID: 114131251717717542, guid: ff87e771c4a88364788b5febeb35bd32,
+        type: 2}
+      propertyPath: radiusDetectPlayer
+      value: 20
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ff87e771c4a88364788b5febeb35bd32, type: 2}
@@ -25795,6 +25830,11 @@ Prefab:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 1.422
       objectReference: {fileID: 0}
+    - target: {fileID: 114950072953227396, guid: 3ec584b23d792e24aa865cd26f6ae332,
+        type: 2}
+      propertyPath: timer
+      value: 240
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3ec584b23d792e24aa865cd26f6ae332, type: 2}
   m_IsPrefabParent: 0
@@ -27113,6 +27153,11 @@ Prefab:
     - target: {fileID: 1302427607974460, guid: 3ec584b23d792e24aa865cd26f6ae332, type: 2}
       propertyPath: m_Name
       value: Iron (15)
+      objectReference: {fileID: 0}
+    - target: {fileID: 114950072953227396, guid: 3ec584b23d792e24aa865cd26f6ae332,
+        type: 2}
+      propertyPath: timer
+      value: 240
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3ec584b23d792e24aa865cd26f6ae332, type: 2}
@@ -38150,6 +38195,16 @@ Prefab:
       propertyPath: timeToResurrection
       value: 120
       objectReference: {fileID: 0}
+    - target: {fileID: 114131251717717542, guid: ff87e771c4a88364788b5febeb35bd32,
+        type: 2}
+      propertyPath: state
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 114131251717717542, guid: ff87e771c4a88364788b5febeb35bd32,
+        type: 2}
+      propertyPath: radiusDetectPlayer
+      value: 20
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ff87e771c4a88364788b5febeb35bd32, type: 2}
   m_IsPrefabParent: 0
@@ -38856,6 +38911,11 @@ Prefab:
         type: 2}
       propertyPath: timeToResurrection
       value: 80
+      objectReference: {fileID: 0}
+    - target: {fileID: 114438745163390974, guid: 7b713d2d2f04c9d44b301ec2bd3f4aca,
+        type: 2}
+      propertyPath: radiusDetectPlayer
+      value: 20
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7b713d2d2f04c9d44b301ec2bd3f4aca, type: 2}
@@ -47723,6 +47783,11 @@ Prefab:
       propertyPath: timeToResurrection
       value: 100
       objectReference: {fileID: 0}
+    - target: {fileID: 114129723329331158, guid: 84b479016ca683546bea874a7e192649,
+        type: 2}
+      propertyPath: radiusDetectPlayer
+      value: 20
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 84b479016ca683546bea874a7e192649, type: 2}
   m_IsPrefabParent: 0
@@ -53780,15 +53845,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4247934018509890, guid: ff87e771c4a88364788b5febeb35bd32, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -303.25
+      value: -303.12
       objectReference: {fileID: 0}
     - target: {fileID: 4247934018509890, guid: ff87e771c4a88364788b5febeb35bd32, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 39.908245
+      value: 39.74
       objectReference: {fileID: 0}
     - target: {fileID: 4247934018509890, guid: ff87e771c4a88364788b5febeb35bd32, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 571.92
+      value: 597.96
       objectReference: {fileID: 0}
     - target: {fileID: 4247934018509890, guid: ff87e771c4a88364788b5febeb35bd32, type: 2}
       propertyPath: m_LocalRotation.x
@@ -53885,6 +53950,11 @@ Prefab:
         type: 2}
       propertyPath: state
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 114131251717717542, guid: ff87e771c4a88364788b5febeb35bd32,
+        type: 2}
+      propertyPath: radiusDetectPlayer
+      value: 20
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ff87e771c4a88364788b5febeb35bd32, type: 2}
@@ -54574,6 +54644,11 @@ Prefab:
     - target: {fileID: 1302427607974460, guid: 3ec584b23d792e24aa865cd26f6ae332, type: 2}
       propertyPath: m_Name
       value: Iron (18)
+      objectReference: {fileID: 0}
+    - target: {fileID: 114950072953227396, guid: 3ec584b23d792e24aa865cd26f6ae332,
+        type: 2}
+      propertyPath: timer
+      value: 240
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3ec584b23d792e24aa865cd26f6ae332, type: 2}
@@ -57515,6 +57590,11 @@ Prefab:
         type: 2}
       propertyPath: timeToResurrection
       value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 114129723329331158, guid: 84b479016ca683546bea874a7e192649,
+        type: 2}
+      propertyPath: radiusDetectPlayer
+      value: 20
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 84b479016ca683546bea874a7e192649, type: 2}
@@ -61013,6 +61093,11 @@ Prefab:
       propertyPath: timeToResurrection
       value: 80
       objectReference: {fileID: 0}
+    - target: {fileID: 114438745163390974, guid: 7b713d2d2f04c9d44b301ec2bd3f4aca,
+        type: 2}
+      propertyPath: radiusDetectPlayer
+      value: 20
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7b713d2d2f04c9d44b301ec2bd3f4aca, type: 2}
   m_IsPrefabParent: 0
@@ -62937,6 +63022,11 @@ Prefab:
       propertyPath: timeToResurrection
       value: 120
       objectReference: {fileID: 0}
+    - target: {fileID: 114131251717717542, guid: ff87e771c4a88364788b5febeb35bd32,
+        type: 2}
+      propertyPath: radiusDetectPlayer
+      value: 20
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ff87e771c4a88364788b5febeb35bd32, type: 2}
   m_IsPrefabParent: 0
@@ -64433,6 +64523,11 @@ Prefab:
       propertyPath: state
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 114131251717717542, guid: ff87e771c4a88364788b5febeb35bd32,
+        type: 2}
+      propertyPath: radiusDetectPlayer
+      value: 20
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ff87e771c4a88364788b5febeb35bd32, type: 2}
   m_IsPrefabParent: 0
@@ -64568,7 +64663,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1769876157}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.15, y: -0.87, z: -4.33}
+  m_LocalPosition: {x: -13.85, y: -0.87, z: 3.71}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 631294004}
@@ -65939,6 +66034,11 @@ Prefab:
     - target: {fileID: 4684757136236304, guid: 3ec584b23d792e24aa865cd26f6ae332, type: 2}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 1.422
+      objectReference: {fileID: 0}
+    - target: {fileID: 114950072953227396, guid: 3ec584b23d792e24aa865cd26f6ae332,
+        type: 2}
+      propertyPath: timer
+      value: 240
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3ec584b23d792e24aa865cd26f6ae332, type: 2}
