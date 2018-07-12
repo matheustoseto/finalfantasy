@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class CameraControl : CameraFollow {
-
+    private static CameraControl instance = null;
     
     [SerializeField] private List<Vector3> distancePositions = new List<Vector3>();
     [SerializeField] private int posDistPosition = 0;
@@ -23,6 +23,18 @@ public class CameraControl : CameraFollow {
 
     private float inputCameraPosition = 0;
 
+    void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+    }
+
+    public static CameraControl GetInstance()
+    {
+        return instance;
+    }
     // Use this for initialization
     void Start () {
         if (distancePositions.Count == 0)

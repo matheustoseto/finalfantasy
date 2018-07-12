@@ -2288,16 +2288,22 @@ MonoBehaviour:
     isSpecialAttack: 0
     cooldown: 2
     hpPercentActivated: 1
+    timer: 0
+    isCooldownActive: 0
   - name: '2: SpecialAttack1'
     type: 1
     isSpecialAttack: 1
-    cooldown: 6
-    hpPercentActivated: 0.8
+    cooldown: 5
+    hpPercentActivated: 0.3
+    timer: 0
+    isCooldownActive: 0
   - name: '3: SpecialAttack2'
     type: 2
     isSpecialAttack: 1
-    cooldown: 4
-    hpPercentActivated: 0.9
+    cooldown: 5
+    hpPercentActivated: 0.7
+    timer: 0
+    isCooldownActive: 0
   bossHpPercentTest: 0
 --- !u!114 &114326456288686868
 MonoBehaviour:

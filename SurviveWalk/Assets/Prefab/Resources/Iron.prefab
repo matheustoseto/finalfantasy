@@ -704,7 +704,7 @@ MonoBehaviour:
     idItem: 3
     idQuest: -1
     idTask: -1
-  qnt: 2
+  qnt: 3
   speed: 0.008
   timer: 120
   item: {fileID: 1993325973734462, guid: ec6f2c1bb43c91546aef41c8dda42d6d, type: 2}

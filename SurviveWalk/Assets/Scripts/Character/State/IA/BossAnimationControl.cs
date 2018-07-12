@@ -68,21 +68,35 @@ public class BossAnimationControl : CharacterAnimationControl
     public void SpecialAttackOn()
     {
         Weapon.AttackOn();
+        Weapon.TrailRenderActivated(true);
     }
 
     public void SpecialAttackOff()
     {
         Weapon.AttackOff();
+        Weapon.TrailRenderActivated(false);
     }
 
     public void SpecialAttack2On()
     {
         Weapon.SpecialAttackOn_2();
+        Weapon.TrailRenderActivated(true);
     }
 
     public void SpecialAttack2Off()
     {
         Weapon.SpecialAttackOff_2();
+        Weapon.TrailRenderActivated(false);
+    }
+
+    public void TrailOn()
+    {
+        //Weapon.TrailRenderActivated(true);
+    }
+
+    public void TrailOff()
+    {
+        //Weapon.TrailRenderActivated(false);
     }
 
     #endregion

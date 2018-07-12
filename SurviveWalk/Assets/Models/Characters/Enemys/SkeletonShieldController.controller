@@ -5,7 +5,7 @@ AnimatorController:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: SkeletonController 2
+  m_Name: SkeletonShieldController
   serializedVersion: 5
   m_AnimatorParameters:
   - m_Name: Speed
@@ -518,7 +518,7 @@ AnimatorState:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: Attack
-  m_Speed: 1
+  m_Speed: 0.7
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 1101974994749698682}
@@ -531,7 +531,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400002, guid: 48ecdc11b8e74e842beb3a1eb96ff357, type: 3}
+  m_Motion: {fileID: 7400016, guid: 48ecdc11b8e74e842beb3a1eb96ff357, type: 3}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 

@@ -25,13 +25,13 @@ public class BossStateControl : EnemyStateControl {
         public float hpPercentActivated = 1;
         //public bool activated = true;
 
-        private float timer = 0;
-        private bool isCooldownActive = false;
+        [SerializeField] private float timer = 0;
+        [SerializeField] private bool isCooldownActive = false;
 
         public bool IsCooldownActive { get { return isCooldownActive; } set { isCooldownActive = value; } }
 
         #region Timer
-        public void ResetTimer()
+        public void ResetTimerp()
         {
             timer = 0;
         }
@@ -183,7 +183,7 @@ public class BossStateControl : EnemyStateControl {
         for (int i = 0; i < listAttacks.Count; i++)
         {
             listAttacks[i].name = (i + 1) + ": " + listAttacks[i].type.ToString();
-            listAttacks[i].ResetTimer();
+            //listAttacks[i].ResetTimer();
         }
 
         EnemyStatus.lifeBar.SetActive(false);
@@ -610,7 +610,7 @@ public class BossStateControl : EnemyStateControl {
     {
         timer = 0;
         isStartPointAttack = false;
-        actualBossAttackSpecial.IsCooldownActive = true;
+        
     }
     #endregion
 
@@ -640,7 +640,7 @@ public class BossStateControl : EnemyStateControl {
 
     protected override void LeaveSpecialAttack1EndState()
     {
-
+        actualBossAttackSpecial.IsCooldownActive = true;
     }
 
     #endregion

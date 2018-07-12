@@ -837,3 +837,11 @@ MonoBehaviour:
     isLoop: 0
     typeSound: 21
     audioClip: {fileID: 8300000, guid: 7a68d18b96e49d94ea9260b391570baf, type: 3}
+  - name: Touch
+    isLoop: 0
+    typeSound: 22
+    audioClip: {fileID: 8300000, guid: 1e7a5fa5ef5e6e54bb5ea2e119bfb776, type: 3}
+  - name: Batalha
+    isLoop: 0
+    typeSound: 23
+    audioClip: {fileID: 8300000, guid: f292ca64ec8770545b6423cf944b1635, type: 3}

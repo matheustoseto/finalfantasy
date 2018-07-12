@@ -4,7 +4,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public enum TypeSound { None, PlayerAttack, EnemyAttack, ArmaFinal, Cidade, Coleta, ColetaMetais, Desolacao, Erro, Floresta, ForjaItens,
-                        RisadaBoss , ColetaArvore , ColetaDefault , Button, Close, Create, Cursor, Delete, Open, Pause, Question, Touch }
+                        RisadaBoss , ColetaArvore , ColetaDefault , Button, Close, Create, Cursor, Delete, Open, Pause, Question, Touch,
+                        Batalha
+}
 
 [RequireComponent(typeof(AudioListener))]
 public class SoundControl : MonoBehaviour {

@@ -86,11 +86,13 @@ public class PlayerCheat : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.F4))
         {
             if (gameObject.GetComponent<CharacterMoveControl>().runSpeed == 50)
+            {
+                alert.GetComponent<Alerta>().SetText("Player Speed Off.");
                 gameObject.GetComponent<CharacterMoveControl>().runSpeed = 10;
-            else
+            } else {
+                alert.GetComponent<Alerta>().SetText("Player Speed On.");
                 gameObject.GetComponent<CharacterMoveControl>().runSpeed = 50;
-
-            alert.GetComponent<Alerta>().SetText("Player Speed.");
+            }      
         }
 
         if (Input.GetKeyDown(KeyCode.F5))
@@ -98,11 +100,11 @@ public class PlayerCheat : MonoBehaviour {
             if (GetComponent<CharacterStatus>().noDamage)
             {
                 GetComponent<CharacterStatus>().noDamage = false;
-                alert.GetComponent<Alerta>().SetText("No Damage False.");
+                alert.GetComponent<Alerta>().SetText("No Damage Off.");
             } else
             {
                 GetComponent<CharacterStatus>().noDamage = true;
-                alert.GetComponent<Alerta>().SetText("No Damage True.");
+                alert.GetComponent<Alerta>().SetText("No Damage On.");
             }          
         }
     }
