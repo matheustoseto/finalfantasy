@@ -796,7 +796,7 @@ MonoBehaviour:
   - name: None
     isLoop: 0
     typeSound: 0
-    audioClip: {fileID: 8300000, guid: 82543531f4f837e4c8be978dc4e3d4fc, type: 3}
+    audioClip: {fileID: 0}
   - name: ColetaArvore
     isLoop: 1
     typeSound: 12

@@ -3,9 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum TypeSound { None, PlayerAttack, EnemyAttack, ArmaFinal, Cidade, Coleta, ColetaMetais, Desolacao, Erro, Floresta, ForjaItens,
-                        RisadaBoss , ColetaArvore , ColetaDefault , Button, Close, Create, Cursor, Delete, Open, Pause, Question, Touch,
-                        Batalha
+public enum TypeSound { None = 0, PlayerAttack = 1, EnemyAttack = 2, ArmaFinal = 3, Cidade = 4,
+                        Coleta = 5, ColetaMetais = 6, Desolacao = 7, Erro = 8, Floresta = 9, ForjaItens = 10,
+                        RisadaBoss = 11, ColetaArvore = 12, ColetaDefault = 13, Button = 14, Close = 15,
+                        Create = 16, Cursor = 17, Delete = 18, Open = 19, Pause = 20, Question = 21, Touch = 22,
+                        Batalha = 23
 }
 
 [RequireComponent(typeof(AudioListener))]
