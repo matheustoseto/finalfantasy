@@ -1,0 +1,242 @@
+[
+	{
+		"id": 0,
+		"title": "Maça",
+		"value": 1,
+		"type" : "Food",
+		"stats": {
+			"power": 10,
+			"defense": 0,
+			"vitality": 0
+		},
+		"description": "Uma maça madura.",
+		"stackable": true,
+		"rarity": 1,
+		"durability" : 0,
+		"slug":  "icon_Fruta"
+	},
+	{
+		"id": 1,
+		"title": "Machado de Ferro",
+		"value": 1,
+		"type" : "Machado",
+		"stats": {
+			"power": 2,
+			"defense": 4,
+			"vitality": 2
+		},
+		"description": "Um machado de ferro.",
+		"stackable": false,
+		"rarity": 1,
+		"durability" : 20,
+		"slug":  "icon_MachadoMetal"
+	},
+	{
+		"id": 2,
+		"title": "Madeira",
+		"value": 1,
+		"type" : "Material",
+		"stats": {
+			"power": 0,
+			"defense": 0,
+			"vitality": 0
+		},
+		"description": "Uma madeira cortada.",
+		"stackable": true,
+		"rarity": 1,
+		"durability" : 0,
+		"slug": "icon_Madeira"
+	},
+	{
+		"id": 3,
+		"title": "Ferro",
+		"value": 1,
+		"type" : "Material",
+		"stats": {
+			"power": 0,
+			"defense": 0,
+			"vitality": 0
+		},
+		"description": "Um amontoado de ferro.",
+		"stackable": true,
+		"rarity": 1,
+		"durability" : 0,
+		"slug":  "icon_Metal"
+	},
+	{
+		"id": 4,
+		"title": "Picareta de Ferro",
+		"value": 1,
+		"type" : "Picareta",
+		"stats": {
+			"power": 2,
+			"defense": 4,
+			"vitality": 2
+		},
+		"description": "Uma picareta de ferro.",
+		"stackable": false,
+		"rarity": 1,
+		"durability" : 12,
+		"slug":  "icon_PicaretaMetal"
+	},
+	{
+		"id": 5,
+		"title": "Galho",
+		"value": 1,
+		"type" : "Material",
+		"stats": {
+			"power": 0,
+			"defense": 0,
+			"vitality": 0
+		},
+		"description": "Um amontoado de galhos.",
+		"stackable": true,
+		"rarity": 1,
+		"durability" : 0,
+		"slug":  "icon_Graveto"
+	},
+	{
+		"id": 6,
+		"title": "Pedra",
+		"value": 1,
+		"type" : "Material",
+		"stats": {
+			"power": 0,
+			"defense": 0,
+			"vitality": 0
+		},
+		"description": "Um amontoado de pedras.",
+		"stackable": true,
+		"rarity": 1,
+		"durability" : 0,
+		"slug":  "icon_Pedra"
+	},
+	{
+		"id": 7,
+		"title": "Machado de Pedra",
+		"value": 1,
+		"type" : "Machado",
+		"stats": {
+			"power": 2,
+			"defense": 4,
+			"vitality": 2
+		},
+		"description": "Um machado de pedra.",
+		"stackable": false,
+		"rarity": 1,
+		"durability" : 10,
+		"slug":  "icon_MachadoPedra"
+	},
+	{
+		"id": 8,
+		"title": "Picadera de Pedra",
+		"value": 1,
+		"type" : "Picareta",
+		"stats": {
+			"power": 2,
+			"defense": 4,
+			"vitality": 2
+		},
+		"description": "Uma picareta de pedra.",
+		"stackable": false,
+		"rarity": 1,
+		"durability" : 8,
+		"slug":  "icon_PicaretaPedra"
+	},
+	{
+		"id": 9,
+		"title": "Espada de Madeira",
+		"value": 1,
+		"type" : "Weapon",
+		"stats": {
+			"power": 5,
+			"defense": 1,
+			"vitality": 1
+		},
+		"description": "Uma espada feita de madeira.",
+		"stackable": false,
+		"rarity": 1,
+		"durability" : 25,
+		"slug":  "icon_EspadaMadeira"
+	},
+	{
+		"id": 10,
+		"title": "Espada de Ferro",
+		"value": 1,
+		"type" : "Weapon",
+		"stats": {
+			"power": 10,
+			"defense": 1,
+			"vitality": 1
+		},
+		"description": "Uma espada feita de ferro.",
+		"stackable": false,
+		"rarity": 1,
+		"durability" : 30,
+		"slug":  "icon_Espada"
+	},
+	{
+		"id": 11,
+		"title": "Pedra Magica",
+		"value": 1,
+		"type" : "Material",
+		"stats": {
+			"power": 0,
+			"defense": 0,
+			"vitality": 0
+		},
+		"description": "Uma pedra magica.",
+		"stackable": true,
+		"rarity": 1,
+		"durability" : 0,
+		"slug": "icon_Stone"
+	},
+	{
+		"id": 12,
+		"title": "Mithril",
+		"value": 1,
+		"type" : "Material",
+		"stats": {
+			"power": 0,
+			"defense": 0,
+			"vitality": 0
+		},
+		"description": "Um minério raro.",
+		"stackable": true,
+		"rarity": 1,
+		"durability" : 0,
+		"slug": "icon_Mithril"
+	},
+	{
+		"id": 40,
+		"title": "Espada Lendaria",
+		"value": 1,
+		"type" : "Weapon",
+		"stats": {
+			"power": 20,
+			"defense": 1,
+			"vitality": 1
+		},
+		"description": "Uma espada feita com a fé de muitos homens.",
+		"stackable": false,
+		"rarity": 1,
+		"durability" : -1,
+		"slug":  "icon_EspadaMetal"
+	},
+	{
+		"id": 1001,
+		"title": "Espada de Madeira",
+		"value": 1,
+		"type" : "Weapon",
+		"stats": {
+			"power": 100,
+			"defense": 1,
+			"vitality": 1
+		},
+		"description": "Uma espada feita de madeira.",
+		"stackable": false,
+		"rarity": 1,
+		"durability" : -1,
+		"slug":  "icon_EspadaMadeira"
+	}
+]

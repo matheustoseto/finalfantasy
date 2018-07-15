@@ -1,0 +1,30 @@
+[
+	{
+		"id": 0,
+		"name": "Skeleton",
+		"life": 17,
+		"power" : 2,
+		"special" : []
+	},
+	{
+		"id": 1,
+		"name": "ShieldSkeleton",
+		"life": 42,
+		"power" : 5,
+		"special" : []
+	},
+	{
+		"id": 2,
+		"name": "TwoHandSkeleton",
+		"life": 84,
+		"power" : 7,
+		"special" : []
+	},
+	{
+		"id": 3,
+		"name": "BossSkeletonWarrior",
+		"life": 400,
+		"power" : 15,
+		"special" : [ 10, 40 ]
+	}
+]
