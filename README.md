@@ -4,6 +4,8 @@ Especialização em Desenvolvimento de Jogos Digitais
 
 Trabalho de Conclusão do Curso - 2018/1
 
+Download .exe disponível em https://github.com/matheustoseto/finalfantasy/archive/release/release-12-07.zip
+
 # Conceito/Estilo de Arte
 - https://jovemnerd.com.br/nerdnews/no-place-for-bravery-e-um-jogo-que-troca-bravura-por-arte-e-mecanicas-minimalistas/
 - http://www.roguesnail.com/games/relic-hunters-zero/
